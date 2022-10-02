@@ -3065,7 +3065,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Break all groups and stop all playback",
-        "func": "playerNames = new Set()\n\nmusicConfig = global.get(\"state\").musicConfig.value\n\nObject.values(musicConfig).forEach(function(musicType) {\n    musicType.forEach(function(profile) {\n        profile.participants.forEach(function(participant) {\n            playerNames.add(participant.player_name)\n        });\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    node.send(msg);\n});",
+        "func": "playerNames = new Set()\n\nmusicConfig = global.get(\"state\").musicConfig.value\n\nObject.values(musicConfig).forEach(function(musicType) {\n    musicType.participants.forEach(function(participant) {\n        playerNames.add(participant.player_name)\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    node.send(msg);\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
