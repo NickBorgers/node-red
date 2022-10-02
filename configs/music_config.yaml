@@ -256,17 +256,17 @@ music:
         uri: spotify:user:spotify:playlist:37i9dQZF1DWVFeEut75IAL
         participants:
           - player_name: "Living Room"
-            volume: 28
+            volume: 24
           - player_name: "Guest Bathroom"
-            volume: 30
+            volume: 25
           - player_name: "Nook Speaker"
-            volume: 25
+            volume: 22
           - player_name: "Master Bedroom"
-            volume: 30
+            volume: 24
           - player_name: "Master Bathroom"
-            volume: 30
+            volume: 24
           - player_name: "Guest Bedroom"
-            volume: 25
+            volume: 20
       # Chilled Jazz
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX2vYju3i0lNX
