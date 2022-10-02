@@ -1,0 +1,20 @@
+---
+rooms:
+  - hue_group: Main Living Space
+    hass_area_id: living_room
+    off_if_true: isEveryoneAsleep
+  - hue_group: Nook
+    hass_area_id: nook
+    off_if_true: isEveryoneAsleep
+  - hue_group: Master Bedroom
+    hass_area_id: master_bedroom
+    off_if_true: isMasterAsleep
+  - hue_group: Guest Bedroom
+    hass_area_id: guest_suite
+    off_if_true: isGuestAsleep
+phases:
+  - morning
+  - day
+  - sunset
+  - dusk
+  - night
