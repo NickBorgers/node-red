@@ -1,0 +1,39 @@
+name: Validate-Configs
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-music-config-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate Music YAML file
+        working-directory: ./configs/
+        run: yamllint music_config.yaml
+        
+  validate-hue-config-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate Hue YAML file
+        working-directory: ./configs/
+        run: yamllint hue_config.yaml
+
+  validate-music-config-spotify-uris:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+          cache: 'pip' # caching pip dependencies
+      - run: pip install -r requirements.txt
+        working-directory: ./configs/
+      - name: execute validation script
+        working-directory: ./configs/
+        run: python validate_spotify_uris.py
