@@ -2742,8 +2742,8 @@
         "y": 100,
         "wires": [
             [
-                "84844393fff5cedb",
-                "05e5600da5d5942c"
+                "84f2d908221dfd98",
+                "d9903f7751427a48"
             ]
         ]
     },
@@ -2757,7 +2757,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set a volume",
-        "x": 2450,
+        "x": 2610,
         "y": 60,
         "wires": [
             []
@@ -3449,7 +3449,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2480,
+        "x": 2640,
         "y": 140,
         "wires": [
             [
@@ -3487,7 +3487,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Unmute appropriate participants",
-        "x": 2870,
+        "x": 3050,
         "y": 140,
         "wires": [
             []
@@ -3725,10 +3725,10 @@
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
         "name": "",
-        "pauseType": "delay",
+        "pauseType": "rate",
         "timeout": "1",
         "timeoutUnits": "seconds",
-        "rate": "1",
+        "rate": "2",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -3737,7 +3737,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2660,
+        "x": 2830,
         "y": 140,
         "wires": [
             [
@@ -4255,6 +4255,56 @@
         "wires": [
             [
                 "1e65c8e512e5da5c"
+            ]
+        ]
+    },
+    {
+        "id": "84f2d908221dfd98",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2460,
+        "y": 140,
+        "wires": [
+            [
+                "05e5600da5d5942c"
+            ]
+        ]
+    },
+    {
+        "id": "d9903f7751427a48",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2450,
+        "y": 60,
+        "wires": [
+            [
+                "84844393fff5cedb"
             ]
         ]
     },
