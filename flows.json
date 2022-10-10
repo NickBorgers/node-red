@@ -2596,7 +2596,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Put provided URI into queue",
-        "x": 1080,
+        "x": 1160,
         "y": 140,
         "wires": [
             [
@@ -2614,7 +2614,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Start Playing",
-        "x": 1650,
+        "x": 1730,
         "y": 140,
         "wires": [
             [
@@ -2632,7 +2632,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set to Repeat this playlist forever",
-        "x": 1280,
+        "x": 1360,
         "y": 200,
         "wires": [
             [
@@ -2650,7 +2650,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Clear existing Queue",
-        "x": 1180,
+        "x": 1260,
         "y": 80,
         "wires": [
             [
@@ -2669,7 +2669,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 600,
         "y": 100,
         "wires": [
             [
@@ -2695,7 +2695,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 790,
+        "x": 870,
         "y": 260,
         "wires": []
     },
@@ -2719,7 +2719,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Create playback group",
-        "x": 800,
+        "x": 880,
         "y": 80,
         "wires": [
             [
@@ -2860,10 +2860,10 @@
         "y": 160,
         "wires": [
             [
-                "2af7ad02c544ef24"
+                "c1a50671a5ed2076"
             ],
             [
-                "92f3589d8ec1ba01"
+                "a4d61097e5c3a5ba"
             ]
         ]
     },
@@ -2893,7 +2893,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1570,
+        "x": 1650,
         "y": 80,
         "wires": [
             [
@@ -3352,7 +3352,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set this playlist to shuffle",
-        "x": 1550,
+        "x": 1630,
         "y": 200,
         "wires": [
             [
@@ -3414,7 +3414,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Mute all participants",
-        "x": 960,
+        "x": 1040,
         "y": 200,
         "wires": [
             []
@@ -3430,7 +3430,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Skip first track",
-        "x": 1760,
+        "x": 1840,
         "y": 200,
         "wires": [
             [
@@ -3463,7 +3463,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Message here specifies playerName coordinator, but includes all as participants",
         "info": "",
-        "x": 980,
+        "x": 1060,
         "y": 40,
         "wires": []
     },
@@ -3510,7 +3510,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1310,
+        "x": 1390,
         "y": 140,
         "wires": [
             [
@@ -3716,7 +3716,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 810,
+        "x": 890,
         "y": 140,
         "wires": []
     },
@@ -3799,8 +3799,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Stop playback",
-        "x": 440,
-        "y": 160,
+        "x": 620,
+        "y": 180,
         "wires": [
             []
         ]
@@ -4072,7 +4072,7 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 500,
+        "x": 600,
         "y": 260,
         "wires": [
             [
@@ -4175,7 +4175,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 990,
+        "x": 1070,
         "y": 80,
         "wires": [
             [
@@ -4200,7 +4200,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 770,
+        "x": 850,
         "y": 200,
         "wires": [
             [
@@ -4225,7 +4225,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1370,
+        "x": 1450,
         "y": 80,
         "wires": [
             [
@@ -4250,7 +4250,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1490,
+        "x": 1570,
         "y": 140,
         "wires": [
             [
@@ -4305,6 +4305,56 @@
         "wires": [
             [
                 "84844393fff5cedb"
+            ]
+        ]
+    },
+    {
+        "id": "c1a50671a5ed2076",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "2af7ad02c544ef24"
+            ]
+        ]
+    },
+    {
+        "id": "a4d61097e5c3a5ba",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "92f3589d8ec1ba01"
             ]
         ]
     },
