@@ -3972,21 +3972,6 @@
         ]
     },
     {
-        "id": "43f7b7f9ef82ecdc",
-        "type": "get-shared-state",
-        "z": "90f5fe8cb80ae6a7",
-        "state": "e3cb7570.0dbb48",
-        "name": "Nick Home",
-        "triggerOnInit": false,
-        "x": 1480,
-        "y": 560,
-        "wires": [
-            [
-                "a78f9276bce4a401"
-            ]
-        ]
-    },
-    {
         "id": "c6ad1e291fee6488",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
