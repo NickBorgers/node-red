@@ -41,68 +41,44 @@ music:
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 13
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 20
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 10
       # Shuffle Syndrome
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWUq3wF0JVtEy
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 13
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 20
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 10
       # Housewerk
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DXa8NOEUWPn9W
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 13
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 20
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 10
       # Pop Remix
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DXcZDD7cfEKhW
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 13
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 20
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 10
   day:
     participants:
       - player_name: "Living Room"
@@ -146,68 +122,44 @@ music:
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 12
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 13
           - player_name: "Master Bedroom"
-            volume: 17
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 17
       # Lounge - Soft House
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX82pCGH5USnM
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 14
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 17
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 17
       # Caroline's country playlist
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:5Wyuc2BN76JyKioxcaY7ud
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 14
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 17
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 17
       # Summer Party
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX5Ozry5U6G0d
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 14
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 17
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 17
   evening:
     participants:
       - player_name: "Living Room"
@@ -251,85 +203,55 @@ music:
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 14
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 17
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 17
       # Blowin' in the wind radio
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1E8Q7fAfKoKDtW
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 14
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 17
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 17
       # Calming Classical (Needs much higher volumes for parity)
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWVFeEut75IAL
         volume_multiplier: 1.6
         participants:
           - player_name: "Living Room"
-            volume: 24
           - player_name: "Guest Bathroom"
-            volume: 25
           - player_name: "Nook Speaker"
-            volume: 22
           - player_name: "Master Bedroom"
-            volume: 24
           - player_name: "Master Bathroom"
-            volume: 24
           - player_name: "Guest Bedroom"
-            volume: 20
       # Chilled Jazz
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX2vYju3i0lNX
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 14
           - player_name: "Guest Bathroom"
-            volume: 17
           - player_name: "Nook Speaker"
-            volume: 15
           - player_name: "Master Bedroom"
-            volume: 17
           - player_name: "Master Bathroom"
-            volume: 17
           - player_name: "Guest Bedroom"
-            volume: 17
       # Classical New Releases (Needs much higher volumes for parity)
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWV0gynK7G6pD
         volume_multiplier: 2
         participants:
           - player_name: "Living Room"
-            volume: 28
           - player_name: "Guest Bathroom"
-            volume: 30
           - player_name: "Nook Speaker"
-            volume: 25
           - player_name: "Master Bedroom"
-            volume: 30
           - player_name: "Master Bathroom"
-            volume: 30
           - player_name: "Guest Bedroom"
-            volume: 25
   night:
     participants:
       - player_name: "Living Room"
@@ -373,51 +295,33 @@ music:
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 15
           - player_name: "Guest Bathroom"
-            volume: 20
           - player_name: "Nook Speaker"
-            volume: 20
           - player_name: "Master Bedroom"
-            volume: 20
           - player_name: "Master Bathroom"
-            volume: 20
           - player_name: "Guest Bedroom"
-            volume: 20
       # Ambient Relaxation
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 15
           - player_name: "Guest Bathroom"
-            volume: 20
           - player_name: "Nook Speaker"
-            volume: 20
           - player_name: "Master Bedroom"
-            volume: 20
           - player_name: "Master Bathroom"
-            volume: 20
           - player_name: "Guest Bedroom"
-            volume: 20
       # Sleep
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWZd79rJ6a7lp
         volume_multiplier: 1
         participants:
           - player_name: "Living Room"
-            volume: 15
           - player_name: "Guest Bathroom"
-            volume: 20
           - player_name: "Nook Speaker"
-            volume: 20
           - player_name: "Master Bedroom"
-            volume: 20
           - player_name: "Master Bathroom"
-            volume: 20
           - player_name: "Guest Bedroom"
-            volume: 20
   sleep:
     participants:
       - player_name: "Master Bedroom"
@@ -435,70 +339,40 @@ music:
         volume_multiplier: 1.38
         participants:
           - player_name: "Master Bedroom"
-            volume: 40
-            # AC Season
-            #volume: 50
           - player_name: "Master Bathroom"
-            volume: 55
           - player_name: "Guest Bathroom"
-            volume: 45
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/1.m4a"
         volume_multiplier: 1.28
         participants:
           - player_name: "Master Bedroom"
-            volume: 37
-            # AC Season
-            #volume: 45
           - player_name: "Master Bathroom"
-            volume: 50
           - player_name: "Guest Bathroom"
-            volume: 40
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/3.m4a"
         volume_multiplier: 1
         participants:
           - player_name: "Master Bedroom"
-            volume: 29
-            # AC Season
-            #volume: 36
           - player_name: "Master Bathroom"
-            volume: 40
           - player_name: "Guest Bathroom"
-            volume: 30
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/4.m4a"
         volume_multiplier: 1.14
         participants:
           - player_name: "Master Bedroom"
-            volume: 33
-            # AC Season
-            #volume: 41
           - player_name: "Master Bathroom"
-            volume: 45
           - player_name: "Guest Bathroom"
-            volume: 35
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/5.m4a"
         volume_multiplier: 1.38
         participants:
           - player_name: "Master Bedroom"
-            volume: 40
-            # AC Season
-            #volume: 50
           - player_name: "Master Bathroom"
-            volume: 55
           - player_name: "Guest Bathroom"
-            volume: 45
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/6.m4a"
         volume_multiplier: 1.51
         participants:
           - player_name: "Master Bedroom"
-            volume: 44
-            # AC Season
-            #volume: 55
           - player_name: "Master Bathroom"
-            volume: 60
           - player_name: "Guest Bathroom"
-            volume: 50
