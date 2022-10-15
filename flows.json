@@ -5106,7 +5106,7 @@
         "type": "function",
         "z": "45c21b8b98ae2f01",
         "name": "Run vaccuum if it's been a while",
-        "func": "lastVaccuumRunTimestamp = global.get(\"state\").lastVacuumingTimestamp.value\n\ntimeSinceLastRun = Date.now() - lastVaccuumRunTimestamp\n\n// Check against constant threshold in seconds\n// 28800000 == 8 hours\nif (timeSinceLastRun > 28800000) {\n    // It's been too long\n    return msg\n}",
+        "func": "lastVaccuumRunTimestamp = global.get(\"state\").lastVacuumingTimestamp.value\n\ntimeSinceLastRun = Date.now() - lastVaccuumRunTimestamp\n\n// Check against constant threshold in seconds\n// 39600000 == 11 hours\nif (timeSinceLastRun > 39600000) {\n    // It's been too long\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
