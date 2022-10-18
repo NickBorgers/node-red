@@ -2805,7 +2805,7 @@
         "y": 480,
         "wires": [
             [
-                "e461ac8aeac7cb0c"
+                "c1874bfaab1b2bb3"
             ]
         ]
     },
@@ -2825,21 +2825,6 @@
         "wires": [
             [
                 "b14e74697315444e"
-            ]
-        ]
-    },
-    {
-        "id": "cdb56182bb04493e",
-        "type": "get-shared-state",
-        "z": "90f5fe8cb80ae6a7",
-        "state": "60c1725bc2519ee0",
-        "name": "Everyone Asleep",
-        "triggerOnInit": false,
-        "x": 100,
-        "y": 540,
-        "wires": [
-            [
-                "e461ac8aeac7cb0c"
             ]
         ]
     },
@@ -4168,6 +4153,31 @@
         "wires": [
             [
                 "92f3589d8ec1ba01"
+            ]
+        ]
+    },
+    {
+        "id": "c1874bfaab1b2bb3",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 120,
+        "y": 540,
+        "wires": [
+            [
+                "e461ac8aeac7cb0c"
             ]
         ]
     },
