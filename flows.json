@@ -4182,6 +4182,50 @@
         ]
     },
     {
+        "id": "35d2e1491d3ecc24",
+        "type": "catch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Catch Sonos Error",
+        "scope": [
+            "f744b5b41bd0fbe0",
+            "fa5a15fef36b436f",
+            "1e65c8e512e5da5c"
+        ],
+        "uncaught": false,
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "bf3a7ded5059b145"
+            ]
+        ]
+    },
+    {
+        "id": "bf3a7ded5059b145",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 320,
+        "wires": [
+            [
+                "551ddc8702a7c82e"
+            ]
+        ]
+    },
+    {
         "id": "f98f511841b27c8c",
         "type": "comment",
         "z": "634c78c80eb9f37e",
