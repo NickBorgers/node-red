@@ -2043,6 +2043,35 @@
         ]
     },
     {
+        "id": "f5fdea4f54fba43f",
+        "type": "inject",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 840,
+        "y": 940,
+        "wires": [
+            [
+                "0e3907f2e4812720"
+            ]
+        ]
+    },
+    {
         "id": "9212dea7c3727082",
         "type": "comment",
         "z": "16cd74edb3f2c03d",
