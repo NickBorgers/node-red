@@ -1762,7 +1762,7 @@
         "finalize": "",
         "libs": [],
         "x": 1040,
-        "y": 820,
+        "y": 840,
         "wires": [
             [
                 "d51c49cc4596b1df"
@@ -1779,7 +1779,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1260,
-        "y": 820,
+        "y": 840,
         "wires": []
     },
     {
@@ -2024,6 +2024,21 @@
         "wires": [
             [
                 "de691be683f352ac"
+            ]
+        ]
+    },
+    {
+        "id": "24dfbaf0a5f808fa",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": true,
+        "x": 830,
+        "y": 880,
+        "wires": [
+            [
+                "0e3907f2e4812720"
             ]
         ]
     },
