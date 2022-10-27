@@ -113,6 +113,8 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
+          - variable: isGuestBedroomDoorOpen
+            value: false
           - variable: isNickHome
             value: false
     playback_options:
@@ -194,6 +196,8 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
+          - variable: isGuestBedroomDoorOpen
+            value: false
           - variable: isNickHome
             value: false
     playback_options:
@@ -286,6 +290,8 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
+          - variable: isGuestBedroomDoorOpen
+            value: false
           - variable: isNickHome
             value: false
     playback_options:
