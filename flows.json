@@ -1755,7 +1755,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Do we have guests?",
-        "func": "// If we don't have guests, they're not asleep\nif (global.get(\"state\").isHaveGuests.value == false) {\n    msg.payload = global.get(\"state\").isEveryoneAsleep.value\n    return msg;\n}\n",
+        "func": "// If we don't have guests, they're not asleep\nif (global.get(\"state\").isHaveGuests.value == false) {\n    msg.payload = global.get(\"state\").isMasterAsleep.value\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
