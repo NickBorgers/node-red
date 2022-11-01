@@ -373,7 +373,7 @@
         "lbl": "Reset",
         "tags": "",
         "historyCount": "2",
-        "dataType": "bool",
+        "dataType": "num",
         "boolType": "bool",
         "boolStrTrue": "",
         "boolStrFalse": "",
@@ -4713,11 +4713,11 @@
         "name": "Move on to value",
         "rules": [
             {
-                "t": "move",
-                "p": "payload.On",
+                "t": "set",
+                "p": "payload",
                 "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
+                "to": "",
+                "tot": "date"
             }
         ],
         "action": "",
@@ -4763,7 +4763,7 @@
         "y": 660,
         "wires": [
             [
-                "90601f48331ad2ba"
+                "1b9873d4c1d781ca"
             ]
         ]
     },
@@ -4819,31 +4819,6 @@
         "wires": [
             [
                 "392367f1059edf8f"
-            ]
-        ]
-    },
-    {
-        "id": "90601f48331ad2ba",
-        "type": "delay",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 460,
-        "y": 660,
-        "wires": [
-            [
-                "1b9873d4c1d781ca"
             ]
         ]
     },
