@@ -2092,7 +2092,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "light.guest_bedroom_lamp",
+        "entityidfilter": "light.master_bedroom",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
