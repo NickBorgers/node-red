@@ -1628,7 +1628,7 @@
         "name": "Wake Detection",
         "info": "",
         "x": 140,
-        "y": 1480,
+        "y": 1540,
         "wires": []
     },
     {
@@ -1639,7 +1639,7 @@
         "name": "Is Master Bedroom Door Open?",
         "triggerOnInit": false,
         "x": 210,
-        "y": 1540,
+        "y": 1580,
         "wires": [
             [
                 "c2ac73fbe3371887"
@@ -1658,7 +1658,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 1540,
+        "y": 1580,
         "wires": [
             [
                 "e308dfc1c82afa45"
@@ -1675,7 +1675,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 920,
-        "y": 1540,
+        "y": 1580,
         "wires": []
     },
     {
@@ -1686,7 +1686,7 @@
         "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
         "x": 210,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "c8232746aae4f4a0"
@@ -1705,7 +1705,7 @@
         "finalize": "",
         "libs": [],
         "x": 450,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "21aa277aaf073eb4"
@@ -1722,7 +1722,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 900,
-        "y": 1600,
+        "y": 1640,
         "wires": []
     },
     {
@@ -1929,7 +1929,7 @@
             }
         ],
         "x": 230,
-        "y": 1660,
+        "y": 1700,
         "wires": [
             [
                 "af1017d8f0817bec"
@@ -1947,7 +1947,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 640,
-        "y": 1660,
+        "y": 1700,
         "wires": []
     },
     {
@@ -1968,7 +1968,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 680,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "940899f761329f39"
@@ -1993,7 +1993,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 700,
-        "y": 1540,
+        "y": 1580,
         "wires": [
             [
                 "206aa2d74e27096a"
@@ -2020,7 +2020,7 @@
         "to": "",
         "reg": false,
         "x": 470,
-        "y": 1660,
+        "y": 1700,
         "wires": [
             [
                 "de691be683f352ac"
@@ -2039,6 +2039,129 @@
         "wires": [
             [
                 "0e3907f2e4812720"
+            ]
+        ]
+    },
+    {
+        "id": "e0fd4f80910687d8",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Applicability Checks",
+        "func": "// Check if guests currently considered asleep\nif(global.get(\"state\").isMasterAsleep.value) {\n    // They are, nothing to change here\n    return null\n}\n// Didn't disqualify this, it's what we were waiting for\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1480,
+        "wires": [
+            [
+                "8d97a2e3e664cd5b"
+            ]
+        ]
+    },
+    {
+        "id": "bef7d2e0ab4b73d9",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 860,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "b6021d4b501820ac",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Master Bedroom Lights Off for 1 minute",
+        "server": "3ec50562615a9f50",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "light.guest_bedroom_lamp",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "1",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 230,
+        "y": 1480,
+        "wires": [
+            [
+                "e0fd4f80910687d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8d97a2e3e664cd5b",
+        "type": "change",
+        "z": "d7a3510d.e93d98",
+        "name": "Set to True",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 1480,
+        "wires": [
+            [
+                "bef7d2e0ab4b73d9"
             ]
         ]
     },
