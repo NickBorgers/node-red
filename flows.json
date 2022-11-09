@@ -4241,6 +4241,21 @@
         ]
     },
     {
+        "id": "3b5eb7152ac47fa3",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "3e3052d11dc41010",
+        "name": "Is Guest Bedroom Door Open?",
+        "triggerOnInit": false,
+        "x": 1550,
+        "y": 560,
+        "wires": [
+            [
+                "a78f9276bce4a401"
+            ]
+        ]
+    },
+    {
         "id": "f98f511841b27c8c",
         "type": "comment",
         "z": "634c78c80eb9f37e",
