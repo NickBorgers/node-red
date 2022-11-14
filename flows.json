@@ -4729,7 +4729,7 @@
         "once": true,
         "onceDelay": "0.0",
         "topic": "",
-        "payload": "{\"latitude\": 40.76, \"longitude\": -73.98}",
+        "payload": "{\"latitude\": 40.76, \"longitude\": -80}",
         "payloadType": "json",
         "x": 200,
         "y": 400,
