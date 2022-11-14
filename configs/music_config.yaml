@@ -145,6 +145,10 @@ music:
           - variable: isNickHome
             value: false
     playback_options:
+      # Instrumental Study
+      - command: group.queue.urispotify
+        uri: spotify:user:spotify:playlist:37i9dQZF1DX9sIqqvKsjG8
+        volume_multiplier: 1.25
       # Jazz in the background
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWV7EzJMK2FUI
