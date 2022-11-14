@@ -341,13 +341,6 @@ music:
         leave_muted_if: []
     playback_options:
       - command: group.queue.uri
-        uri: "http://rain-sounds.nickborgers.com/0.m4a"
-        volume_multiplier: 1.38
-        participants:
-          - player_name: "Master Bedroom"
-          - player_name: "Master Bathroom"
-          - player_name: "Guest Bathroom"
-      - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/1.m4a"
         volume_multiplier: 1.28
         participants:
