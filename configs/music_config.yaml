@@ -20,7 +20,7 @@ music:
           - variable: isTVPlaying
             value: true
       - player_name: "Master Bedroom"
-        default_volume: 20
+        default_volume: 17
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
