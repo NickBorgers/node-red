@@ -1,2 +1,4 @@
 *.backup
 .automated-rendering/screenshot-capture/node_modules/*
+.automated-rendering/screenshot-capture/screenshots/*
+!.automated-rendering/screenshot-capture/screenshots/.gitkeep
