@@ -3,6 +3,7 @@ all: run
 build:
 	docker build -t node-red-local -f .automated-rendering/node-red/Dockerfile .
 	docker build -t node-red-haproxy .automated-rendering/haproxy/
+	docker build -t screenshot-capture .automated-rendering/screenshot-capture/
 
 run: build cleanup
 	docker network create node-red-backend --internal

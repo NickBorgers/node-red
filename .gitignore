@@ -1,1 +1,2 @@
 *.backup
+.automated-rendering/screenshot-capture/node_modules/*
