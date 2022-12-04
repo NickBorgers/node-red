@@ -13,9 +13,9 @@ run: cleanup
 	docker run -d --user 0:0 -e PORT=80 --network=node-red-backend --name node-red node-red-local
 
 run-to-generate-screenshots: run
-	docker run --rm --network=node-red-frontend \
+	docker run --rm --network=node-red-backend \
 	  --mount type=bind,source=${CURDIR}/.automated-rendering/screenshot-capture/,destination=/app/ \
-	  --name screenshot-capture screenshot-capture npx playwright test
+	  --name screenshot-capture screenshot-capture npm test
 
 watch-logs:
 	docker logs -f node-red

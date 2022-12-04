@@ -27,7 +27,7 @@ const config: PlaywrightTestConfig = {
     actionTimeout: 0,
 
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://node-red-proxy',
+    baseURL: 'http://node-red',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
