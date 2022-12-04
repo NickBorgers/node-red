@@ -24,6 +24,7 @@ jobs:
         run: yamllint hue_config.yaml
 
   validate-music-config-spotify-uris:
+    needs: validate-music-config-yaml
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo content
