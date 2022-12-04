@@ -39,9 +39,6 @@ test('Capture screenshot of the entire scrollable webpage', async ({page}) => {
     // Collect the flow names in this hacky way to return the list
     var flow_names = await page.evaluate('var flow_names = []; document.getElementById("red-ui-workspace-tabs").childNodes.forEach(function(this_node) {flow_names.push(this_node.getAttribute("flowname"))}); flow_names ');
     
-    console.log(tab_ids)
-    console.log(flow_names)
-    
     // Create index variable
     var index = 0;
     // Do some ugly looping
