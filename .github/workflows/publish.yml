@@ -28,7 +28,7 @@ jobs:
         run: make build
       - name: Generate screenshots
         run: make run-to-generate-screenshots
-      - name: Upload screenshots to GitHub Pages
+      - name: Upload screenshots as a github-pages artifact
         uses: actions/upload-artifact@v2
         with: 
           name: github-pages
