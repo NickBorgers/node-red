@@ -5,3 +5,5 @@ COPY ./ /app/
 WORKDIR /app/
 
 RUN npm install
+
+RUN chown -R 1001:123 "/root/.npm"
