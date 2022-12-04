@@ -3,3 +3,4 @@
 .automated-rendering/screenshot-capture/screenshots/*
 !.automated-rendering/screenshot-capture/screenshots/index.html
 .automated-rendering/screenshot-capture/test-results/
+.DS_Store
