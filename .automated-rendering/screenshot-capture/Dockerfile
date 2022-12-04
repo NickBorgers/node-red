@@ -4,4 +4,4 @@ COPY ./ /app/
 
 WORKDIR /app/
 
-RUN npm install
+RUN npm install -g npm@9.1.3 && npm install
