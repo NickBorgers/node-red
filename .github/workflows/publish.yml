@@ -1,0 +1,16 @@
+name: Publish-Screenshots
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  generate-screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: build images
+        run: make build
+      - name: generate screenshots
+        run: make run-to-generate-screenshots

@@ -1,9 +1,9 @@
 import yaml
 import requests
-
+# Read our config file to validate
 with open('music_config.yaml', 'r') as file:
     music_config = yaml.safe_load(file)
-
+# Iterate over each type of music
 for music_type in music_config['music']:
     music_type_object = music_config['music'][music_type]
     for playback_option in music_type_object['playback_options']:

@@ -11,7 +11,9 @@ run: cleanup
 	docker run --rm -d --network node-red-frontend -p 8080:80 --name node-red-proxy node-red-haproxy
 	docker network connect node-red-backend node-red-proxy
 	docker run -d --user 0:0 -e PORT=80 --network=node-red-backend --name node-red node-red-local
-	docker run -d --rm --network=node-red-backend \
+
+run-to-generate-screenshots: run
+	docker run --rm --network=node-red-backend \
 	  --mount type=bind,source=${CURDIR}/.automated-rendering/screenshot-capture/,destination=/app/ \
 	  --name screenshot-capture screenshot-capture npm test
 
