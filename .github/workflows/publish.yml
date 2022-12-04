@@ -14,8 +14,11 @@ jobs:
         run: make build
       - name: Generate screenshots
         run: make run-to-generate-screenshots
-      - name: Publish screenshots to GitHub Pages
+      - name: Upload screenshots to GitHub Pages
         uses: actions/upload-artifact@v2
         with: 
           name: screenshots
           path: .automated-rendering/screenshot-capture/screenshots/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
