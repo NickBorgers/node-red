@@ -16,10 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publish-screenshots:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  generate-screenshots:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo content
@@ -33,6 +30,11 @@ jobs:
         with: 
           name: github-pages
           path: .automated-rendering/screenshot-capture/screenshots/
+  publish-screenshots:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
