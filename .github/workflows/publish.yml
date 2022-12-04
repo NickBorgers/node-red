@@ -8,11 +8,11 @@ jobs:
   generate-screenshots:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo content
+      - name: Checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
-      - name: build images
+      - name: Build images
         run: make build
-      - name: generate screenshots
+      - name: Generate screenshots
         run: make run-to-generate-screenshots
       - name: Publish screenshots to GitHub Pages
         uses: actions/upload-artifact@v2
