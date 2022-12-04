@@ -74,7 +74,9 @@ test('Capture screenshot of the entire scrollable webpage', async ({page}) => {
             console.log(`Working tab ${this_tab_id}, ${this_flow_name}`)
             // Select the tab by clicking its tab element by id
             await page.click(`#${this_tab_id}`)
-            // Hackily wait a half second for it to render
+            // Wait for the chart to show up
+            await expect(page.locator('#red-ui-workspace-chart')).toBeVisible({timeout: 1000})
+            // There's this little thingy that I want to fade away before we screenshot, but don't want to go find the id for
             await page.waitForTimeout(500)
             // Take that sweet screenshot
             await page.locator("#red-ui-workspace-chart").screenshot({path: `screenshots/${this_flow_name}.png`})
