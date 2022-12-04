@@ -1,4 +1,4 @@
-all: build run cleanup
+all: build run watch-logs
 
 build:
 	docker build -t node-red-local -f .automated-rendering/node-red/Dockerfile .
