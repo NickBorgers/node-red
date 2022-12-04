@@ -14,4 +14,6 @@ for music_type in music_config['music']:
             if response.status_code != 200:
               print("Could not find Spotify playlist identified by: " + resource)
               print("Currently processing: " + music_type)
+              print("HTTP Response: " + response.status_code)
+              print(response.text)
               exit(1)
