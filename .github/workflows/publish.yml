@@ -17,6 +17,9 @@ concurrency:
 
 jobs:
   generate-screenshots:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo content
