@@ -4666,7 +4666,7 @@
         "id": "f991b8b5b5f73fde",
         "type": "exec",
         "z": "634c78c80eb9f37e",
-        "command": "cd /data/projects/node-red/ && git pull",
+        "command": "cd /data/projects/node-red/ && GIT_SSH_COMMAND='ssh -i ../.sshkeys/__default_NickBorgersOnLowSecurityNode -o IdentitiesOnly=yes' git pull",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
