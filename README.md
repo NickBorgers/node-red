@@ -3,6 +3,8 @@ Node Red Flows for Home Automation
 
 ### About
 
+This repo contains my home automations which are executed on [Node Red](https://nodered.org/). Many integrations interact with [Home Assistant](https://www.home-assistant.io/) which is used to interface with various devices.
+
 There are public in case they are interesting or even useful to someone else, so that I can ask help from other home automation enthusiasts, and show off a bit.
 
 [All Node Red Modules used are incidentally listed here](.automated-rendering/node-red/package.json) as part of enabling the automation for generating screenshots; basically just need the nodes so they can render.
@@ -13,6 +15,8 @@ I wanted to be able to carefully git track the fairly complex configuration obje
   - [music_config.yaml](configs/music_config.yaml)
 
 Hue config got significantly less complex when I adopted Home Assistant, as it has wonderful Hue integration which allowed me to key off the string names of the scenes for each Hue "room" in the home. At this point, modifying the lighting of a scene is done directly through the Hue App and you just save the Scene with the name matching which "Home Day Phase" it is for, e.g. `Morning`.
+
+<img src="Hue%20app%20screenshot.jpeg" width="50%">
 
 Music config remains quite complex, and is actually flattened out in the longest `function` node in the whole setup. This file remains the point of modification for music configuration. Playlist can be tried out physically through the Sonos app or Spotify, but then get added in a small PR to this repository.
 
