@@ -6305,7 +6305,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 1510,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
                 "e20f60c78f9d70c3"
@@ -6459,7 +6459,7 @@
         "to": "",
         "reg": false,
         "x": 1040,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
                 "09a1008b9a366cd2"
@@ -6641,7 +6641,7 @@
         "finalize": "",
         "libs": [],
         "x": 1260,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
                 "78b97767ec7322f1"
@@ -6782,7 +6782,92 @@
         "y": 180,
         "wires": [
             [
-                "6dc231aa8e595417"
+                "6dc231aa8e595417",
+                "06f4e5c7d9a46571"
+            ]
+        ]
+    },
+    {
+        "id": "06f4e5c7d9a46571",
+        "type": "change",
+        "z": "499c53680d148fb0",
+        "name": "Set Attr For Work",
+        "rules": [
+            {
+                "t": "set",
+                "p": "calendar",
+                "pt": "msg",
+                "to": "Work",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 220,
+        "wires": [
+            [
+                "882a7011f9d0db43"
+            ]
+        ]
+    },
+    {
+        "id": "882a7011f9d0db43",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Prevent double-notify",
+        "func": "variable_to_check = \"LastNotified\" + msg.person + \"Of\" + msg.calendar + \"CalendarEvent\"\n\nlast_notified_timestamp = global.get(\"state\")[variable_to_check].value\n\nnow = Date.now()\n\nhalf_day_in_ms = (1000 * 60 * 60 * 12)\n\nif ((now - last_notified_timestamp) >= half_day_in_ms) {\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 220,
+        "wires": [
+            [
+                "21abaeffc63334c7"
+            ]
+        ]
+    },
+    {
+        "id": "21abaeffc63334c7",
+        "type": "api-current-state",
+        "z": "499c53680d148fb0",
+        "name": "Get Caroline Work Calendar",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "calendar.carolinep_remitly_com",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1500,
+        "y": 220,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
             ]
         ]
     }
