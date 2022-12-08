@@ -3,6 +3,8 @@ Node Red Flows for Home Automation
 
 ### About
 
+This repo contains my home automations which are executed on [Node Red](https://nodered.org/). Many integrations interact with [Home Assistant](https://www.home-assistant.io/) which is used to interface with various devices.
+
 There are public in case they are interesting or even useful to someone else, so that I can ask help from other home automation enthusiasts, and show off a bit.
 
 [All Node Red Modules used are incidentally listed here](.automated-rendering/node-red/package.json) as part of enabling the automation for generating screenshots; basically just need the nodes so they can render.
