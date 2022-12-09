@@ -41,7 +41,7 @@ Music config remains quite complex, and is actually flattened out in the longest
 ![Music](https://nickborgers.github.io/node-red/Music.png)
 
 ### Lights - Hue Control
-Phillips Hue lights are used to provide accent and ambient lighting in the home. Task lighting is entirely separate and uses manually switched lights. Some conditional behavior is driven by [hue_config.yaml](configs/hue_config.yaml) but the a scene in the Hue system must exist for activation based on the "day phase" of the home.
+Phillips Hue lights are used to provide accent and ambient lighting in the home. Task lighting is entirely separate and uses manually switched lights. Some conditional behavior is driven by [hue_config.yaml](configs/hue_config.yaml) but a scene in the Hue system must exist for activation based on the "day phase" of the home.
 
 Hue config got significantly less complex when I adopted Home Assistant, as it has wonderful Hue integration which allowed me to key off the string names of the scenes for each Hue "room" in the home. At this point, modifying the lighting of a scene is done directly through the Hue App and you just save the Scene with the name matching which "Home Day Phase" it is for, e.g. `Morning`.
 
@@ -59,7 +59,7 @@ I wanted to be able to git track the fairly complex configuration objects that I
   - [hue_config.yaml](configs/hue_config.yaml)
   - [music_config.yaml](configs/music_config.yaml)
 
-[Both config files are validated for YAML correctness using `yamllint` in a GitHub Action](.github/workflows/validate.yml#10-24). Because the majority of music playback leverages public Spotify playlists, the [music_config.yaml](configs/music_config.yaml) gets some additional validation by a [script which confirms every indicated Spotify Playback URI is a valid, reachable, and public Spotify Playlist](configs/validate_spotify_uris.py).
+[Both config files are validated for YAML correctness using `yamllint` in a GitHub Action](.github/workflows/validate.yml#10-24). Because the majority of music playback leverages public Spotify playlists, the [music_config.yaml](configs/music_config.yaml) gets some additional validation by a [script which confirms every indicated Spotify Playback URI is a valid, reachable, and public Spotify Playlist](config-test/validate_spotify_uris.py).
 
 The Node Red Flow which manages Configuration is:
 
