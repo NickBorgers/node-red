@@ -2252,7 +2252,7 @@
         "name": "Anyone Home",
         "triggerOnInit": false,
         "x": 130,
-        "y": 240,
+        "y": 220,
         "wires": [
             [
                 "d2a0c7cb.1bd518"
@@ -2271,7 +2271,7 @@
         "finalize": "",
         "libs": [],
         "x": 700,
-        "y": 240,
+        "y": 220,
         "wires": [
             [
                 "c81034bf2843ebc6"
@@ -2286,7 +2286,7 @@
         "name": "Day Phase",
         "triggerOnInit": false,
         "x": 120,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
                 "d2a0c7cb.1bd518"
@@ -2301,7 +2301,7 @@
         "name": "Master Asleep",
         "triggerOnInit": false,
         "x": 130,
-        "y": 360,
+        "y": 340,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -2326,7 +2326,7 @@
         "name": "Anyone Home",
         "triggerOnInit": false,
         "x": 110,
-        "y": 600,
+        "y": 580,
         "wires": [
             [
                 "969e4b63.ed934"
@@ -2345,7 +2345,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 600,
+        "y": 580,
         "wires": [
             [
                 "6e7492c93999c36c"
@@ -2364,7 +2364,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 150,
-        "y": 120,
+        "y": 100,
         "wires": [
             [
                 "d2a0c7cb.1bd518",
@@ -2380,7 +2380,7 @@
         "name": "Guest Asleep",
         "triggerOnInit": false,
         "x": 130,
-        "y": 420,
+        "y": 400,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -2395,7 +2395,7 @@
         "name": "Everyone Asleep",
         "triggerOnInit": false,
         "x": 140,
-        "y": 300,
+        "y": 280,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -2410,7 +2410,7 @@
         "name": "Reset",
         "triggerOnInit": false,
         "x": 110,
-        "y": 480,
+        "y": 460,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -2437,7 +2437,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1550,
-        "y": 240,
+        "y": 220,
         "wires": [
             []
         ]
@@ -2454,7 +2454,7 @@
         "finalize": "",
         "libs": [],
         "x": 1070,
-        "y": 240,
+        "y": 220,
         "wires": [
             [
                 "1e0d8022cef2ed62"
@@ -2479,7 +2479,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1330,
-        "y": 240,
+        "y": 220,
         "wires": [
             [
                 "7935909ef8708c2f"
@@ -2498,7 +2498,7 @@
         "finalize": "",
         "libs": [],
         "x": 680,
-        "y": 320,
+        "y": 300,
         "wires": [
             [
                 "7ed258ec2fd76e0a"
@@ -2512,7 +2512,7 @@
         "name": "Turn on lights path",
         "info": "",
         "x": 610,
-        "y": 200,
+        "y": 180,
         "wires": []
     },
     {
@@ -2522,7 +2522,7 @@
         "name": "Turn off lights path",
         "info": "",
         "x": 610,
-        "y": 280,
+        "y": 260,
         "wires": []
     },
     {
@@ -2537,7 +2537,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 420,
+        "y": 400,
         "wires": [
             [
                 "d2a0c7cb.1bd518",
@@ -2572,7 +2572,7 @@
         ],
         "queue": "none",
         "x": 980,
-        "y": 480,
+        "y": 460,
         "wires": [
             []
         ]
@@ -2589,7 +2589,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 600,
+        "y": 580,
         "wires": [
             [
                 "7ed258ec2fd76e0a"
@@ -2614,7 +2614,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 770,
-        "y": 480,
+        "y": 460,
         "wires": [
             [
                 "d4e0576749b87d16"
@@ -2808,7 +2808,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 740,
-        "y": 480,
+        "y": 520,
         "wires": []
     },
     {
@@ -2829,7 +2829,7 @@
         "payload": "day",
         "payloadType": "str",
         "x": 410,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "b14e74697315444e"
@@ -2854,7 +2854,7 @@
         "payload": "morning",
         "payloadType": "str",
         "x": 430,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "b14e74697315444e"
@@ -2958,7 +2958,7 @@
         "name": "Music Mode Management",
         "info": "",
         "x": 130,
-        "y": 360,
+        "y": 400,
         "wires": []
     },
     {
@@ -2969,7 +2969,7 @@
         "name": "Day Phase",
         "triggerOnInit": false,
         "x": 80,
-        "y": 420,
+        "y": 460,
         "wires": [
             [
                 "e461ac8aeac7cb0c"
@@ -2994,7 +2994,7 @@
         "payload": "",
         "payloadType": "str",
         "x": 390,
-        "y": 520,
+        "y": 560,
         "wires": [
             [
                 "b14e74697315444e"
@@ -3009,7 +3009,7 @@
         "name": "Anyone Home",
         "triggerOnInit": false,
         "x": 90,
-        "y": 480,
+        "y": 520,
         "wires": [
             [
                 "c1874bfaab1b2bb3"
@@ -3028,7 +3028,7 @@
         "finalize": "",
         "libs": [],
         "x": 430,
-        "y": 480,
+        "y": 520,
         "wires": [
             [
                 "b14e74697315444e"
@@ -3043,7 +3043,7 @@
         "name": "Anyone Home",
         "triggerOnInit": true,
         "x": 90,
-        "y": 800,
+        "y": 860,
         "wires": [
             [
                 "b8dd3ae503eaaf92"
@@ -3062,7 +3062,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 800,
+        "y": 860,
         "wires": [
             [
                 "9af76eda23a1c810",
@@ -3077,7 +3077,7 @@
         "name": "Shut it all down when we leave",
         "info": "",
         "x": 150,
-        "y": 700,
+        "y": 760,
         "wires": []
     },
     {
@@ -3092,7 +3092,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 800,
+        "y": 860,
         "wires": [
             [
                 "50a24921684156f7"
@@ -3111,7 +3111,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 310,
-        "y": 740,
+        "y": 800,
         "wires": [
             [
                 "9af76eda23a1c810",
@@ -3130,7 +3130,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Break group for player",
         "x": 900,
-        "y": 800,
+        "y": 860,
         "wires": [
             [
                 "7026db35f0ed25c7"
@@ -3148,7 +3148,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Clear any queue for player",
         "x": 640,
-        "y": 860,
+        "y": 920,
         "wires": [
             [
                 "a2a8508703720287"
@@ -3166,7 +3166,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Stop any playback for player",
         "x": 920,
-        "y": 860,
+        "y": 920,
         "wires": [
             []
         ]
@@ -3175,10 +3175,10 @@
         "id": "2a368b2441b8e268",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Pooper button",
+        "name": "Button in guest bathroom for pooper to bump volume up",
         "info": "",
-        "x": 90,
-        "y": 920,
+        "x": 230,
+        "y": 960,
         "wires": []
     },
     {
@@ -3193,7 +3193,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 140,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
                 "a16d6614f34882e1"
@@ -3211,7 +3211,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Get participants",
         "x": 620,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
                 "1400bc1a11781043"
@@ -3229,7 +3229,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Get Volume",
         "x": 1030,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
                 "bb35db542533564d"
@@ -3248,7 +3248,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
                 "222f41b3e4fc44cd"
@@ -3267,7 +3267,7 @@
         "finalize": "",
         "libs": [],
         "x": 670,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "da8a13699f936fa8"
@@ -3285,7 +3285,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Set Higher Volume",
         "x": 910,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "827e944640382a04"
@@ -3303,7 +3303,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Resume volume",
         "x": 940,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             [
                 "4123044d0c15479d"
@@ -3330,7 +3330,7 @@
         "to": "",
         "reg": false,
         "x": 700,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             [
                 "b5802a0f996c0d73"
@@ -3355,7 +3355,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1110,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "1f57ca5d204495b8"
@@ -3392,7 +3392,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 140,
-        "y": 660,
+        "y": 700,
         "wires": [
             [
                 "e461ac8aeac7cb0c"
@@ -3417,7 +3417,7 @@
         "payload": "evening",
         "payloadType": "str",
         "x": 430,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "b14e74697315444e"
@@ -3469,8 +3469,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2640,
-        "y": 140,
+        "x": 2620,
+        "y": 160,
         "wires": [
             [
                 "c8ff24ee16293f06"
@@ -3491,9 +3491,9 @@
         "id": "be044ab02324dd48",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Set Volumes in speaker-specific way",
+        "name": "Set volumes and mute states",
         "info": "",
-        "x": 2160,
+        "x": 2140,
         "y": 40,
         "wires": []
     },
@@ -3507,8 +3507,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Unmute appropriate participants",
-        "x": 3050,
-        "y": 140,
+        "x": 3030,
+        "y": 160,
         "wires": [
             []
         ]
@@ -3542,9 +3542,9 @@
         "id": "aff6f6e708f7023b",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Unmute if criteria changes",
+        "name": "Mute/unmute if criteria changes",
         "info": "",
-        "x": 1530,
+        "x": 1550,
         "y": 320,
         "wires": []
     },
@@ -3582,7 +3582,7 @@
         "id": "d5f59723898a7298",
         "type": "change",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
+        "name": "Set blank value",
         "rules": [
             {
                 "t": "set",
@@ -3598,7 +3598,7 @@
         "to": "",
         "reg": false,
         "x": 640,
-        "y": 740,
+        "y": 800,
         "wires": [
             [
                 "f9f43e5b15149e43"
@@ -3615,7 +3615,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 860,
-        "y": 740,
+        "y": 800,
         "wires": []
     },
     {
@@ -3662,7 +3662,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 300,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             [
                 "1147be5849344bdf"
@@ -3697,7 +3697,7 @@
         "to": "",
         "reg": false,
         "x": 1120,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             [
                 "519ba9e8deaad0cb"
@@ -3720,7 +3720,7 @@
         "repair": false,
         "outputs": 1,
         "x": 430,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "a16d6614f34882e1"
@@ -3757,8 +3757,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2830,
-        "y": 140,
+        "x": 2810,
+        "y": 160,
         "wires": [
             [
                 "32221838690fa0f1"
@@ -3802,7 +3802,7 @@
         "payload": "night",
         "payloadType": "str",
         "x": 400,
-        "y": 600,
+        "y": 640,
         "wires": [
             [
                 "b14e74697315444e"
@@ -3852,7 +3852,7 @@
         "to": "",
         "reg": false,
         "x": 100,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             [
                 "519ba9e8deaad0cb"
@@ -3896,7 +3896,7 @@
         "payload": "sleep",
         "payloadType": "str",
         "x": 400,
-        "y": 640,
+        "y": 680,
         "wires": [
             [
                 "b14e74697315444e"
@@ -3926,7 +3926,7 @@
         "name": "Master Asleep",
         "triggerOnInit": false,
         "x": 90,
-        "y": 600,
+        "y": 640,
         "wires": [
             [
                 "e461ac8aeac7cb0c"
@@ -3937,10 +3937,10 @@
         "id": "cf4660e2535faee1",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Mute living when TV playing",
+        "name": "Monitor for whether TV is playing",
         "info": "",
-        "x": 140,
-        "y": 1200,
+        "x": 150,
+        "y": 1240,
         "wires": []
     },
     {
@@ -3987,7 +3987,7 @@
             }
         ],
         "x": 140,
-        "y": 1240,
+        "y": 1280,
         "wires": [
             [
                 "f6e3848f50908c06"
@@ -4039,7 +4039,7 @@
             }
         ],
         "x": 150,
-        "y": 1300,
+        "y": 1340,
         "wires": [
             [
                 "f6e3848f50908c06"
@@ -4057,7 +4057,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 380,
-        "y": 1260,
+        "y": 1300,
         "wires": []
     },
     {
@@ -4138,7 +4138,7 @@
         ],
         "event_type": "",
         "x": 160,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "8887203cd9731ca8"
@@ -4157,7 +4157,7 @@
         "finalize": "",
         "libs": [],
         "x": 150,
-        "y": 1060,
+        "y": 1100,
         "wires": [
             [
                 "7e52276e5e6c0bf5"
@@ -4281,8 +4281,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2460,
-        "y": 140,
+        "x": 2440,
+        "y": 160,
         "wires": [
             [
                 "05e5600da5d5942c"
@@ -4382,7 +4382,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 120,
-        "y": 540,
+        "y": 580,
         "wires": [
             [
                 "e461ac8aeac7cb0c"
@@ -4503,8 +4503,8 @@
             }
         ],
         "queue": "none",
-        "x": 2040,
-        "y": 440,
+        "x": 2120,
+        "y": 500,
         "wires": [
             []
         ]
@@ -4518,7 +4518,7 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "10",
+        "nbRateUnits": "5",
         "rateUnits": "minute",
         "randomFirst": "1",
         "randomLast": "5",
@@ -4526,8 +4526,8 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1860,
-        "y": 440,
+        "x": 1940,
+        "y": 500,
         "wires": [
             [
                 "11e49d93300ae5ca"
@@ -4543,8 +4543,8 @@
             "11e49d93300ae5ca"
         ],
         "uncaught": false,
-        "x": 2110,
-        "y": 500,
+        "x": 2190,
+        "y": 560,
         "wires": [
             []
         ]
@@ -4572,8 +4572,8 @@
         "state": "",
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
-        "name": "Break group for player",
-        "x": 1160,
+        "name": "Remove guest bedroom from playback group",
+        "x": 1200,
         "y": 380,
         "wires": [
             []
@@ -4585,7 +4585,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Aggressively protect guest from audio",
         "info": "",
-        "x": 930,
+        "x": 890,
         "y": 340,
         "wires": []
     },
@@ -4596,7 +4596,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": false,
-        "x": 850,
+        "x": 810,
         "y": 380,
         "wires": [
             [
@@ -4608,7 +4608,7 @@
         "id": "bb8bbe7668b007b3",
         "type": "switch",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
+        "name": "If True",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -4619,7 +4619,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 990,
+        "x": 950,
         "y": 380,
         "wires": [
             [
@@ -4644,13 +4644,43 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1700,
-        "y": 440,
+        "x": 1780,
+        "y": 500,
         "wires": [
             [
                 "1abeb0848bc2aaa3"
             ]
         ]
+    },
+    {
+        "id": "6569ebcfeb27a672",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Force TV to use soundbar b/c TV is dumb and forgets",
+        "info": "",
+        "x": 1920,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "3abcf1a8523e994c",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set Volumes",
+        "info": "",
+        "x": 2450,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "0b54c55fc3673dc2",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set mute states (after volumes)",
+        "info": "",
+        "x": 2510,
+        "y": 120,
+        "wires": []
     },
     {
         "id": "f98f511841b27c8c",
@@ -4825,7 +4855,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1370,
-        "y": 400,
+        "y": 340,
         "wires": []
     },
     {
@@ -4846,7 +4876,7 @@
         "payload": "night",
         "payloadType": "str",
         "x": 1200,
-        "y": 460,
+        "y": 400,
         "wires": [
             [
                 "09657a19ee07783e"
@@ -4871,7 +4901,7 @@
         "payload": "dusk",
         "payloadType": "str",
         "x": 940,
-        "y": 460,
+        "y": 400,
         "wires": [
             [
                 "09657a19ee07783e"
@@ -4896,7 +4926,7 @@
         "payload": "sunset",
         "payloadType": "str",
         "x": 680,
-        "y": 460,
+        "y": 400,
         "wires": [
             [
                 "09657a19ee07783e"
@@ -4915,7 +4945,7 @@
         "finalize": "",
         "libs": [],
         "x": 700,
-        "y": 400,
+        "y": 340,
         "wires": [
             [
                 "09657a19ee07783e"
@@ -4940,7 +4970,7 @@
         "payload": "day",
         "payloadType": "str",
         "x": 430,
-        "y": 460,
+        "y": 400,
         "wires": [
             [
                 "09657a19ee07783e"
@@ -4956,7 +4986,7 @@
         "topic": "",
         "name": "Sun State Reporter",
         "x": 470,
-        "y": 400,
+        "y": 340,
         "wires": [
             [
                 "f826979d9173e4f6"
@@ -4981,7 +5011,7 @@
         "payload": "morning",
         "payloadType": "str",
         "x": 160,
-        "y": 460,
+        "y": 400,
         "wires": [
             [
                 "09657a19ee07783e"
@@ -5006,7 +5036,7 @@
         "payload": "{\"latitude\": 40.76, \"longitude\": -80}",
         "payloadType": "json",
         "x": 200,
-        "y": 400,
+        "y": 340,
         "wires": [
             [
                 "60f3d3f665e7ea46"
@@ -5020,7 +5050,7 @@
         "name": "Sun Event Tracking to set Scenes",
         "info": "",
         "x": 170,
-        "y": 360,
+        "y": 300,
         "wires": [],
         "icon": "font-awesome/fa-question-circle"
     },
@@ -5050,7 +5080,7 @@
         "name": "Reset",
         "info": "",
         "x": 90,
-        "y": 720,
+        "y": 640,
         "wires": []
     },
     {
@@ -5097,7 +5127,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 130,
-        "y": 760,
+        "y": 680,
         "wires": [
             [
                 "45230be763c062ae"
@@ -5115,7 +5145,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 690,
-        "y": 760,
+        "y": 680,
         "wires": []
     },
     {
@@ -5138,7 +5168,7 @@
         "to": "",
         "reg": false,
         "x": 310,
-        "y": 760,
+        "y": 680,
         "wires": [
             [
                 "05dc4cb847d1d054"
@@ -5172,7 +5202,7 @@
         "to": "",
         "reg": false,
         "x": 300,
-        "y": 820,
+        "y": 740,
         "wires": [
             [
                 "1b9873d4c1d781ca"
@@ -5197,7 +5227,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 520,
-        "y": 760,
+        "y": 680,
         "wires": [
             [
                 "aa9dca0548480ae1",
@@ -5227,7 +5257,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 820,
+        "y": 740,
         "wires": [
             [
                 "392367f1059edf8f"
@@ -5241,7 +5271,7 @@
         "name": "Home day phase, largely based on sun event",
         "info": "",
         "x": 210,
-        "y": 520,
+        "y": 460,
         "wires": [],
         "icon": "font-awesome/fa-question-circle"
     },
@@ -5253,7 +5283,7 @@
         "name": "Sun Event",
         "triggerOnInit": true,
         "x": 100,
-        "y": 580,
+        "y": 520,
         "wires": [
             [
                 "6acc06089b237d56"
@@ -5272,7 +5302,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 170,
-        "y": 640,
+        "y": 580,
         "wires": [
             [
                 "6acc06089b237d56"
@@ -5283,7 +5313,7 @@
         "id": "6acc06089b237d56",
         "type": "function",
         "z": "634c78c80eb9f37e",
-        "name": "State Generator",
+        "name": "Phase Decider",
         "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    msg.payload = \"morning\"\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // If it's after 7pm, go ahead and roll with dusk\n    if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // If it's after 10pm, go ahead and roll with night\n    if (this_hour >= 22) {\n        msg.payload = \"night\"\n    // If it's after 7pm, use dusk instead\n    } else if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not 7pm yet I don't care, use sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -5291,7 +5321,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 580,
+        "y": 520,
         "wires": [
             [
                 "cec5fcf493bb58c1"
@@ -5308,7 +5338,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 610,
-        "y": 580,
+        "y": 520,
         "wires": []
     },
     {
@@ -5541,7 +5571,7 @@
         "fan_speed": "",
         "homekit_stop_to_dock": true,
         "x": 320,
-        "y": 480,
+        "y": 460,
         "wires": [
             [
                 "c70e06b3.d015b8",
@@ -5560,7 +5590,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 530,
-        "y": 480,
+        "y": 460,
         "wires": [
             []
         ]
@@ -5574,7 +5604,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 690,
-        "y": 480,
+        "y": 460,
         "wires": [
             []
         ]
@@ -5588,7 +5618,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 840,
-        "y": 480,
+        "y": 460,
         "wires": [
             []
         ]
@@ -5602,7 +5632,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 980,
-        "y": 480,
+        "y": 460,
         "wires": [
             []
         ]
@@ -5611,25 +5641,15 @@
         "id": "f0a1ec111362b20b",
         "type": "inject",
         "z": "45c21b8b98ae2f01",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
+        "name": "Trigger",
+        "props": [],
+        "repeat": "86400",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
         "x": 120,
-        "y": 480,
+        "y": 460,
         "wires": [
             [
                 "864447bb.cf7f48"
@@ -5981,7 +6001,7 @@
         "voice_pack": null,
         "homekit_stop_to_dock": false,
         "x": 660,
-        "y": 580,
+        "y": 560,
         "wires": [
             []
         ]
@@ -5993,7 +6013,7 @@
         "name": "Clean Kitchen",
         "info": "",
         "x": 90,
-        "y": 540,
+        "y": 520,
         "wires": []
     },
     {
@@ -6023,7 +6043,7 @@
         "to": "",
         "reg": false,
         "x": 290,
-        "y": 640,
+        "y": 620,
         "wires": [
             [
                 "e565d65f50e1abb3"
@@ -6048,7 +6068,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 340,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "14d24c31ae2299d8"
@@ -6077,7 +6097,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 640,
+        "y": 620,
         "wires": [
             [
                 "14fafc9f6d18a633"
@@ -6128,7 +6148,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 140,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "dff04e040e879291"
@@ -6152,13 +6172,23 @@
         "repair": false,
         "outputs": 1,
         "x": 490,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "92ec058fd4c3696a",
                 "14fafc9f6d18a633"
             ]
         ]
+    },
+    {
+        "id": "b5d50edc1b2efd6c",
+        "type": "comment",
+        "z": "45c21b8b98ae2f01",
+        "name": "Monitor Vacuum condition",
+        "info": "",
+        "x": 130,
+        "y": 400,
+        "wires": []
     },
     {
         "id": "f16bcb4bfea89461",
