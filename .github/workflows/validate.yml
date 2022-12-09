@@ -11,8 +11,7 @@ jobs:
       - name: Checkout repo content
         uses: actions/checkout@v2
       - name: Validate Music YAML file
-        working-directory: ./configs/
-        run: yamllint music_config.yaml
+        run: make run-yamllint-music
         
   validate-hue-config-yaml:
     runs-on: ubuntu-latest
@@ -20,8 +19,7 @@ jobs:
       - name: Checkout repo content
         uses: actions/checkout@v2
       - name: Validate Hue YAML file
-        working-directory: ./configs/
-        run: yamllint hue_config.yaml
+        run: make run-yamllint-hue
 
   validate-music-config-spotify-uris:
     needs: validate-music-config-yaml
@@ -30,13 +28,4 @@ jobs:
       - name: Checkout repo content
         uses: actions/checkout@v2
       - name: Prepare pip
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10' 
-          cache: 'pip' # caching pip dependencies
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-        working-directory: ./configs/
-      - name: Execute validation script
-        working-directory: ./configs/
-        run: python validate_spotify_uris.py
+        run: make run-spotify-validation-music
