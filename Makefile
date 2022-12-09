@@ -51,3 +51,17 @@ cleanup:
 	docker rm node-red || true
 	docker network rm node-red-backend || true
 	docker network rm node-red-frontend || true
+
+run-config-tests: run-yamllint-hue run-yamllint-music run-spotify-validation-music
+
+run-yamllint-hue: build-config-tester
+	docker run --rm --mount type=bind,source=${CURDIR}/configs/hue_config.yaml,destination=/app/hue_config.yaml node-red-config-tester yamllint hue_config.yaml
+
+run-yamllint-music: build-config-tester
+	docker run --rm --mount type=bind,source=${CURDIR}/configs/music_config.yaml,destination=/app/music_config.yaml node-red-config-tester yamllint music_config.yaml
+
+run-spotify-validation-music: build-config-tester
+	docker run --rm --mount type=bind,source=${CURDIR}/configs/music_config.yaml,destination=/app/music_config.yaml node-red-config-tester python3 -u validate_spotify_uris.py
+
+build-config-tester:
+	docker build -t node-red-config-tester ./config-test/
