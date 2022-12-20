@@ -34,6 +34,8 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
+          - variable: isGuestBedroomDoorOpen
+            value: false
     playback_options:
       # Dance Hits
       - command: group.queue.urispotify
