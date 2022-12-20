@@ -5549,7 +5549,7 @@
         "voice_pack": null,
         "homekit_stop_to_dock": false,
         "x": 780,
-        "y": 160,
+        "y": 280,
         "wires": [
             [
                 "a153aee19cd0e1dd"
@@ -5571,7 +5571,7 @@
         "fan_speed": "",
         "homekit_stop_to_dock": true,
         "x": 320,
-        "y": 460,
+        "y": 580,
         "wires": [
             [
                 "c70e06b3.d015b8",
@@ -5590,7 +5590,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 530,
-        "y": 460,
+        "y": 580,
         "wires": [
             []
         ]
@@ -5604,7 +5604,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 690,
-        "y": 460,
+        "y": 580,
         "wires": [
             []
         ]
@@ -5618,7 +5618,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 840,
-        "y": 460,
+        "y": 580,
         "wires": [
             []
         ]
@@ -5632,7 +5632,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 980,
-        "y": 460,
+        "y": 580,
         "wires": [
             []
         ]
@@ -5649,7 +5649,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 120,
-        "y": 460,
+        "y": 580,
         "wires": [
             [
                 "864447bb.cf7f48"
@@ -5664,7 +5664,7 @@
         "name": "Anyone Home",
         "triggerOnInit": false,
         "x": 110,
-        "y": 200,
+        "y": 320,
         "wires": [
             [
                 "808803961811f725",
@@ -5684,7 +5684,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 160,
+        "y": 280,
         "wires": [
             [
                 "943c5232d392ac86"
@@ -5703,7 +5703,7 @@
         "finalize": "",
         "libs": [],
         "x": 1010,
-        "y": 160,
+        "y": 280,
         "wires": [
             [
                 "3ddae2dbb6c714dd"
@@ -5720,7 +5720,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1280,
-        "y": 160,
+        "y": 280,
         "wires": []
     },
     {
@@ -5735,7 +5735,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 160,
+        "y": 280,
         "wires": [
             [
                 "d389488a08d98ed3"
@@ -5754,7 +5754,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 240,
+        "y": 360,
         "wires": [
             [
                 "1aa5da490ac08911"
@@ -5777,7 +5777,7 @@
         "voice_pack": null,
         "homekit_stop_to_dock": false,
         "x": 580,
-        "y": 260,
+        "y": 380,
         "wires": [
             [
                 "3d7ba466a8638421"
@@ -5796,7 +5796,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 140,
-        "y": 60,
+        "y": 180,
         "wires": [
             [
                 "2192d9c1b6dec6df"
@@ -5824,11 +5824,11 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 290,
-        "y": 120,
+        "x": 590,
+        "y": 240,
         "wires": [
             [
-                "943c5232d392ac86"
+                "d389488a08d98ed3"
             ]
         ]
     },
@@ -5854,7 +5854,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 360,
-        "y": 200,
+        "y": 320,
         "wires": [
             [
                 "1aa5da490ac08911"
@@ -5873,7 +5873,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 60,
+        "y": 180,
         "wires": [
             [
                 "943c5232d392ac86"
@@ -5888,7 +5888,7 @@
         "name": "Everyone Asleep",
         "triggerOnInit": false,
         "x": 100,
-        "y": 300,
+        "y": 420,
         "wires": [
             [
                 "2c632d54825906f3"
@@ -5907,7 +5907,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 300,
+        "y": 420,
         "wires": [
             [
                 "1aa5da490ac08911"
@@ -5932,7 +5932,7 @@
         "payload": "0",
         "payloadType": "num",
         "x": 1050,
-        "y": 220,
+        "y": 340,
         "wires": [
             [
                 "3ddae2dbb6c714dd"
@@ -5955,7 +5955,7 @@
         "voice_pack": null,
         "homekit_stop_to_dock": false,
         "x": 870,
-        "y": 260,
+        "y": 380,
         "wires": [
             []
         ]
@@ -5978,7 +5978,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 740,
-        "y": 260,
+        "y": 380,
         "wires": [
             [
                 "0fda931bf6487d0e"
@@ -6001,7 +6001,7 @@
         "voice_pack": null,
         "homekit_stop_to_dock": false,
         "x": 660,
-        "y": 560,
+        "y": 680,
         "wires": [
             []
         ]
@@ -6013,7 +6013,7 @@
         "name": "Clean Kitchen",
         "info": "",
         "x": 90,
-        "y": 520,
+        "y": 640,
         "wires": []
     },
     {
@@ -6043,7 +6043,7 @@
         "to": "",
         "reg": false,
         "x": 290,
-        "y": 620,
+        "y": 740,
         "wires": [
             [
                 "e565d65f50e1abb3"
@@ -6068,7 +6068,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 340,
-        "y": 560,
+        "y": 680,
         "wires": [
             [
                 "14d24c31ae2299d8"
@@ -6097,7 +6097,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 620,
+        "y": 740,
         "wires": [
             [
                 "14fafc9f6d18a633"
@@ -6148,7 +6148,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 140,
-        "y": 560,
+        "y": 680,
         "wires": [
             [
                 "dff04e040e879291"
@@ -6172,7 +6172,7 @@
         "repair": false,
         "outputs": 1,
         "x": 490,
-        "y": 560,
+        "y": 680,
         "wires": [
             [
                 "92ec058fd4c3696a",
@@ -6187,8 +6187,182 @@
         "name": "Monitor Vacuum condition",
         "info": "",
         "x": 130,
-        "y": 400,
+        "y": 520,
         "wires": []
+    },
+    {
+        "id": "0abf6234b7590992",
+        "type": "comment",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean All Floors",
+        "info": "",
+        "x": 640,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1cc2997adf18efd4",
+        "type": "change",
+        "z": "45c21b8b98ae2f01",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 160,
+        "wires": [
+            [
+                "411bfdf502c42f26"
+            ]
+        ]
+    },
+    {
+        "id": "242cdb71b5e628a8",
+        "type": "delay",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 880,
+        "y": 100,
+        "wires": [
+            [
+                "9d3b5f7cafc6afdd"
+            ]
+        ]
+    },
+    {
+        "id": "3c7015679afdb09a",
+        "type": "inject",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "1cc2997adf18efd4"
+            ]
+        ]
+    },
+    {
+        "id": "411bfdf502c42f26",
+        "type": "homekit-service",
+        "z": "45c21b8b98ae2f01",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Clean Floors",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 100,
+        "wires": [
+            [
+                "242cdb71b5e628a8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9d3b5f7cafc6afdd",
+        "type": "switch",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1030,
+        "y": 100,
+        "wires": [
+            [
+                "1cc2997adf18efd4",
+                "d389488a08d98ed3"
+            ]
+        ]
     },
     {
         "id": "f16bcb4bfea89461",
