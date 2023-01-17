@@ -1720,7 +1720,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Was master asleep?",
-        "func": "// Was master asleep?\nif(global.get(\"state\").isMasterAsleep.value) {\n    // They were, now the door is open though\n    return msg\n}",
+        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was master asleep?\nif(global.get(\"state\").isMasterAsleep.value) {\n    // They were, now the door is open though\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1767,7 +1767,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Was guest asleep?",
-        "func": "// Was guest asleep?\nif(global.get(\"state\").isGuestAsleep.value) {\n    // They were, now the door is open though\n    return msg\n}",
+        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was guest asleep?\nif(global.get(\"state\").isGuestAsleep.value) {\n    // They were, now the door is open though\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2618,6 +2618,253 @@
         "wires": [
             [
                 "d4e0576749b87d16"
+            ]
+        ]
+    },
+    {
+        "id": "de7d4b5c6bd29efc",
+        "type": "comment",
+        "z": "16cd74edb3f2c03d",
+        "name": "Bright",
+        "info": "",
+        "x": 70,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "3a18c616bed81b01",
+        "type": "homekit-service",
+        "z": "16cd74edb3f2c03d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Bright",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 110,
+        "y": 680,
+        "wires": [
+            [
+                "515bdc9718d62b40"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "515bdc9718d62b40",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Move on to value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 680,
+        "wires": [
+            [
+                "117283bed69961e5"
+            ]
+        ]
+    },
+    {
+        "id": "be1b0aef8b46b403",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 740,
+        "wires": [
+            [
+                "3a18c616bed81b01"
+            ]
+        ]
+    },
+    {
+        "id": "1ef69f3a154c54fd",
+        "type": "inject",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 740,
+        "wires": [
+            [
+                "be1b0aef8b46b403"
+            ]
+        ]
+    },
+    {
+        "id": "b9f2817921074955",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "Apply Bright to all rooms",
+        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\ndayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    msg.payload.group_name = thisRoomToActivate.hue_group\n    msg.payload.scene_name = \"Bright\"\n    msg.payload.dynamic = true\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 680,
+        "wires": [
+            [
+                "0793eb5edefcf142"
+            ]
+        ]
+    },
+    {
+        "id": "fcfad92e25c72d66",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 680,
+        "wires": [
+            [
+                "b9f2817921074955"
+            ]
+        ]
+    },
+    {
+        "id": "0793eb5edefcf142",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Activate Bright Scene",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "hue",
+        "service": "hue_activate_scene",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1120,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "117283bed69961e5",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 680,
+        "wires": [
+            [
+                "be1b0aef8b46b403",
+                "fcfad92e25c72d66"
             ]
         ]
     },
@@ -5144,7 +5391,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 690,
+        "x": 850,
         "y": 680,
         "wires": []
     },
@@ -5171,7 +5418,7 @@
         "y": 680,
         "wires": [
             [
-                "05dc4cb847d1d054"
+                "fc6d53171a0a2eef"
             ]
         ]
     },
@@ -5226,12 +5473,11 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 520,
+        "x": 680,
         "y": 680,
         "wires": [
             [
-                "aa9dca0548480ae1",
-                "392367f1059edf8f"
+                "aa9dca0548480ae1"
             ]
         ]
     },
@@ -5340,6 +5586,32 @@
         "x": 610,
         "y": 520,
         "wires": []
+    },
+    {
+        "id": "fc6d53171a0a2eef",
+        "type": "delay",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 680,
+        "wires": [
+            [
+                "05dc4cb847d1d054",
+                "392367f1059edf8f"
+            ]
+        ]
     },
     {
         "id": "a99efe1134ae512d",
