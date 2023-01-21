@@ -5517,7 +5517,7 @@
         "name": "Home day phase, largely based on sun event",
         "info": "",
         "x": 210,
-        "y": 460,
+        "y": 480,
         "wires": [],
         "icon": "font-awesome/fa-question-circle"
     },
