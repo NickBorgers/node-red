@@ -2290,7 +2290,7 @@
         "y": 220,
         "wires": [
             [
-                "c81034bf2843ebc6"
+                "1ee8dd5329aad550"
             ]
         ]
     },
@@ -2452,7 +2452,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1550,
+        "x": 1730,
         "y": 220,
         "wires": [
             []
@@ -2469,7 +2469,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1070,
+        "x": 1290,
         "y": 220,
         "wires": [
             [
@@ -2494,7 +2494,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1330,
+        "x": 1530,
         "y": 220,
         "wires": [
             [
@@ -2881,6 +2881,31 @@
             [
                 "be1b0aef8b46b403",
                 "fcfad92e25c72d66"
+            ]
+        ]
+    },
+    {
+        "id": "1ee8dd5329aad550",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "Only allow 1 per minute",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1010,
+        "y": 220,
+        "wires": [
+            [
+                "c81034bf2843ebc6"
             ]
         ]
     },
