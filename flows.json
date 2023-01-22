@@ -534,6 +534,22 @@
         "polling": "10"
     },
     {
+        "id": "9784d6c488d7a77e",
+        "type": "shared-state",
+        "name": "isTVon",
+        "lbl": "Is TV On?",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -4318,8 +4334,7 @@
         "y": 500,
         "wires": [
             [
-                "a78f9276bce4a401",
-                "380c792e6a4c1fe0"
+                "a78f9276bce4a401"
             ]
         ]
     },
@@ -4721,82 +4736,6 @@
         ]
     },
     {
-        "id": "11e49d93300ae5ca",
-        "type": "api-call-service",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Use Soundbar",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "remote",
-        "service": "send_command",
-        "areaId": [
-            "living_room"
-        ],
-        "deviceId": [
-            "ef759f6d3bb61617024ceacfc5e14c12"
-        ],
-        "entityId": [],
-        "data": "{\"command\":\"AudioOutput_AudioSystem\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "payload",
-                "valueType": "msg"
-            }
-        ],
-        "queue": "none",
-        "x": 2120,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1abeb0848bc2aaa3",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "2",
-        "nbRateUnits": "5",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1940,
-        "y": 500,
-        "wires": [
-            [
-                "11e49d93300ae5ca"
-            ]
-        ]
-    },
-    {
-        "id": "75bba6f7c3360b9c",
-        "type": "catch",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Ignore errors from HASS Soundbar call",
-        "scope": [
-            "11e49d93300ae5ca"
-        ],
-        "uncaught": false,
-        "x": 2190,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "b1f2b5145a191585",
         "type": "link in",
         "z": "90f5fe8cb80ae6a7",
@@ -4875,41 +4814,6 @@
         ]
     },
     {
-        "id": "380c792e6a4c1fe0",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "7",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1780,
-        "y": 500,
-        "wires": [
-            [
-                "1abeb0848bc2aaa3"
-            ]
-        ]
-    },
-    {
-        "id": "6569ebcfeb27a672",
-        "type": "comment",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Force TV to use soundbar b/c TV is dumb and forgets",
-        "info": "",
-        "x": 1920,
-        "y": 460,
-        "wires": []
-    },
-    {
         "id": "3abcf1a8523e994c",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
@@ -4930,31 +4834,278 @@
         "wires": []
     },
     {
-        "id": "6338f6b805d710d4",
-        "type": "inject",
+        "id": "274f237edf2f1bd7",
+        "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "props": [
+        "name": "Monitor for whether TV is on",
+        "info": "",
+        "x": 600,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "54b3e77834091de8",
+        "type": "server-state-changed",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Sense if TV is on",
+        "server": "3ec50562615a9f50",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
             {
-                "p": "payload"
+                "property": "name",
+                "value": ""
             },
             {
-                "p": "topic",
-                "vt": "str"
+                "property": "icon",
+                "value": ""
             }
         ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1860,
-        "y": 560,
+        "entityidfilter": "remote.sony_xr_65a80k",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "x": 580,
+        "y": 1280,
         "wires": [
             [
-                "11e49d93300ae5ca"
+                "5e0f976532de47d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5e0f976532de47d8",
+        "type": "set-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "9784d6c488d7a77e",
+        "name": "Is TV On?",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 820,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "577710b513289538",
+        "type": "server-state-changed",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Sense if TV is off",
+        "server": "3ec50562615a9f50",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "remote.sony_xr_65a80k",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "x": 580,
+        "y": 1340,
+        "wires": [
+            [
+                "5e0f976532de47d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d103b94b406b7baa",
+        "type": "catch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Ignore errors from HASS Soundbar call",
+        "scope": [
+            "208a5dede994fffb"
+        ],
+        "uncaught": false,
+        "x": 630,
+        "y": 1520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "208a5dede994fffb",
+        "type": "api-call-service",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Use Soundbar",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [
+            "living_room"
+        ],
+        "deviceId": [
+            "ef759f6d3bb61617024ceacfc5e14c12"
+        ],
+        "entityId": [],
+        "data": "{\"command\":\"AudioOutput_AudioSystem\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "payload",
+                "valueType": "msg"
+            }
+        ],
+        "queue": "none",
+        "x": 700,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bb965cc294dceee",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "5",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 1460,
+        "wires": [
+            [
+                "208a5dede994fffb"
+            ]
+        ]
+    },
+    {
+        "id": "99acc5997d05518e",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 1460,
+        "wires": [
+            [
+                "6bb965cc294dceee"
+            ]
+        ]
+    },
+    {
+        "id": "304eb5d8976b8c42",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Force TV to use soundbar b/c TV is dumb and forgets",
+        "info": "",
+        "x": 220,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "5d4188b7f3d455a1",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "9784d6c488d7a77e",
+        "name": "Is TV On?",
+        "triggerOnInit": true,
+        "x": 80,
+        "y": 1460,
+        "wires": [
+            [
+                "ee620ad966506c53"
+            ]
+        ]
+    },
+    {
+        "id": "ee620ad966506c53",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "If TV On",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 220,
+        "y": 1460,
+        "wires": [
+            [
+                "99acc5997d05518e"
             ]
         ]
     },
