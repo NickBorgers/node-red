@@ -183,7 +183,7 @@ music:
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWV0gynK7G6pD
         volume_multiplier: 2
-  night:
+  winddown:
     participants:
       - player_name: "Living Room"
         default_volume: 15
