@@ -2463,7 +2463,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick which rooms to apply scenes to",
-        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\ndayPhase = global.get(\"state\").dayPhase.value\n\nif (hueConfig.phases.indexOf(dayPhase) > -1) {\n    hueConfig.rooms.forEach(function(thisRoomToActivate) {\n        // Does this participant even have this attribute?\n        if (\"off_if_true\" in thisRoomToActivate) {\n            // If so, is it true?\n            if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n                return null\n            }\n        }\n        \n        msg.payload = {}\n        msg.payload.group_name = thisRoomToActivate.hue_group\n        msg.payload.scene_name = dayPhase\n        msg.payload.dynamic = true\n        // The nook doesn't do well with dynamics b/c of its lights\n        if (thisRoomToActivate.hue_group == \"Nook\") {\n            msg.payload.dynamic = false\n        }\n        node.send(msg)\n    });\n} else {\n    node.error(\"dayPhase (\" + dayPhase +\") not in hueConfig\")\n    return null\n}",
+        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\ndayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    msg.payload.group_name = thisRoomToActivate.hue_group\n    msg.payload.scene_name = dayPhase\n    msg.payload.dynamic = true\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2910,6 +2910,137 @@
         ]
     },
     {
+        "id": "ce39a8ad9c69d2fc",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 790,
+        "y": 840,
+        "wires": [
+            [
+                "41dbd523811a581e"
+            ]
+        ]
+    },
+    {
+        "id": "24ce402d5bc60b67",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1090,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "41dbd523811a581e",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 940,
+        "y": 840,
+        "wires": [
+            [
+                "24ce402d5bc60b67"
+            ]
+        ]
+    },
+    {
+        "id": "8e385e93b350c76e",
+        "type": "comment",
+        "z": "16cd74edb3f2c03d",
+        "name": "Flash lights in common areas",
+        "info": "",
+        "x": 840,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "fb460a8de579e348",
+        "type": "inject",
+        "z": "16cd74edb3f2c03d",
+        "name": "Notify to stop using screens",
+        "props": [],
+        "repeat": "",
+        "crontab": "30 22 * * 1,2,3,4,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 840,
+        "wires": [
+            [
+                "11e901d7ed5ce219"
+            ]
+        ]
+    },
+    {
+        "id": "11e901d7ed5ce219",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "Check if anyone home and not everyone asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isEveryoneAsleep.value == true) {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 840,
+        "wires": [
+            [
+                "ce39a8ad9c69d2fc"
+            ]
+        ]
+    },
+    {
         "id": "f744b5b41bd0fbe0",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
@@ -3309,7 +3440,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Set music type based on conditions",
-        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If master is asleep, set to sleep\nif (global.get(\"state\").isMasterAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\ndayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was someone waking up, kick off some music\n    if (msg.topic == \"isMasterAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If master isn't asleep then day starts\n    if (global.get(\"state\").isMasterAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\"\n        || dayPhase == \"night\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\") {\n    msg.payload = \"winddown\"\n    return msg\n}\n",
+        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If master is asleep, set to sleep\nif (global.get(\"state\").isMasterAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\ndayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was someone waking up, kick off some music\n    if (msg.topic == \"isMasterAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If master isn't asleep then day starts\n    if (global.get(\"state\").isMasterAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    msg.payload = \"winddown\"\n    return msg\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5765,7 +5896,7 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Phase Decider",
-        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    msg.payload = \"morning\"\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // If it's after 7pm, go ahead and roll with dusk\n    if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // If it's after 10pm, go ahead and roll with winddown\n    if (this_hour >= 22) {\n        msg.payload = \"winddown\"\n    // If it's after 7pm, use dusk instead\n    } else if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not 7pm yet I don't care, use sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
+        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    msg.payload = \"morning\"\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // If it's after 7pm, go ahead and roll with dusk\n    if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // Get the minute\n    this_minute = now.getMinutes()\n    // If it's after 11:30pm, go ahead and roll with night\n    if (this_hour >= 23 && this_minute >= 30) {\n        msg.payload = \"night\"\n    // If it's after 9:30pm, go ahead and roll with winddown\n    } else if ((this_hour >= 21 && this_minute >= 30) || this_hour >= 22) {\n        msg.payload = \"winddown\"\n    // If it's after 7pm, use dusk instead\n    } else if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not 7pm yet I don't care, use sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
