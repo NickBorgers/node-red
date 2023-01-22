@@ -12,9 +12,3 @@ rooms:
   - hue_group: Guest Bedroom
     hass_area_id: guest_suite
     off_if_true: isGuestAsleep
-phases:
-  - morning
-  - day
-  - sunset
-  - dusk
-  - winddown
