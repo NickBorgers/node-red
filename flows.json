@@ -54,6 +54,14 @@
         "env": []
     },
     {
+        "id": "95cf961539320dd3",
+        "type": "tab",
+        "label": "Morning Rise",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "b2cc5799.eea9d",
         "type": "homekit-bridge",
         "bridgeName": "NodeRed1",
@@ -5266,6 +5274,22 @@
         ]
     },
     {
+        "id": "34bd02b0a6ce0a3f",
+        "type": "link in",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set Volumes and Mute",
+        "links": [
+            "9cf90b7812a7ab73"
+        ],
+        "x": 1885,
+        "y": 260,
+        "wires": [
+            [
+                "d6f678177a40f732"
+            ]
+        ]
+    },
+    {
         "id": "f98f511841b27c8c",
         "type": "comment",
         "z": "634c78c80eb9f37e",
@@ -7680,6 +7704,265 @@
         "wires": [
             [
                 "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "6d6e6c06f83da0ce",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Fade Out Sleep Music",
+        "info": "",
+        "x": 140,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5a68ab32843927be",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "Before wake-up",
+        "props": [],
+        "repeat": "",
+        "crontab": "45 07 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "928a0a31ac991089"
+            ]
+        ]
+    },
+    {
+        "id": "928a0a31ac991089",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Ensure master is home and asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nif (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "59d57e477a5898af"
+            ]
+        ]
+    },
+    {
+        "id": "5e48c3e112af83c7",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Reduce Volume of Currently Playing Music",
+        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    participant.volume--;\n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "f36a036109920e8f",
+                "3e957f7268580f2f"
+            ]
+        ]
+    },
+    {
+        "id": "9cf90b7812a7ab73",
+        "type": "link out",
+        "z": "95cf961539320dd3",
+        "name": "Set Volumes and Mute",
+        "mode": "link",
+        "links": [
+            "34bd02b0a6ce0a3f"
+        ],
+        "x": 755,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "67b6101b961d5624",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 100,
+        "wires": [
+            [
+                "5e48c3e112af83c7"
+            ]
+        ]
+    },
+    {
+        "id": "59d57e477a5898af",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Duplicate message many times",
+        "func": "for (let i = 0; i <= 60; i++) {\n  node.send(msg)\n} ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 100,
+        "wires": [
+            [
+                "67b6101b961d5624"
+            ]
+        ]
+    },
+    {
+        "id": "f36a036109920e8f",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "b74697c734ad5557",
+        "name": "Currently Playing Music",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 710,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3e957f7268580f2f",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "9cf90b7812a7ab73"
+            ]
+        ]
+    },
+    {
+        "id": "e93449ceeb92c731",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 40,
+        "wires": [
+            [
+                "59d57e477a5898af"
+            ]
+        ]
+    },
+    {
+        "id": "2c4d218e099b884a",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Auto Wakeup",
+        "info": "",
+        "x": 110,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "aab6bd67aaf53ce3",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "Auto wake-up",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 08 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 140,
+        "y": 300,
+        "wires": [
+            [
+                "bf78c1f1983f4368"
+            ]
+        ]
+    },
+    {
+        "id": "97f5f1603f7e631a",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 620,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "bf78c1f1983f4368",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Ensure master is home and asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 300,
+        "wires": [
+            [
+                "97f5f1603f7e631a"
             ]
         ]
     }
