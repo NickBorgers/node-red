@@ -5249,7 +5249,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Set a volume",
         "x": 3590,
-        "y": 40,
+        "y": 60,
         "wires": [
             []
         ]
@@ -5272,7 +5272,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 3430,
-        "y": 40,
+        "y": 60,
         "wires": [
             [
                 "e53ccbfadb71b977"
@@ -5297,7 +5297,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 3240,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "9637e0e343385196"
@@ -5316,13 +5316,33 @@
         "finalize": "",
         "libs": [],
         "x": 3440,
-        "y": 100,
+        "y": 120,
         "wires": [
             [
                 "478c37ee53f595cf",
                 "fbef539b9c81e0e4"
             ]
         ]
+    },
+    {
+        "id": "2ac64818b1503ff5",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "If volume decrease, it's immediate",
+        "info": "",
+        "x": 3500,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "18aa5fb312ee3408",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Break out volume increase and do slowly",
+        "info": "",
+        "x": 3080,
+        "y": 20,
+        "wires": []
     },
     {
         "id": "f98f511841b27c8c",
@@ -7061,7 +7081,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1490,
+        "x": 1290,
         "y": 100,
         "wires": [
             [
@@ -7099,7 +7119,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1500,
+        "x": 1300,
         "y": 40,
         "wires": [
             [
@@ -7175,7 +7195,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1510,
+        "x": 1310,
         "y": 160,
         "wires": [
             [
@@ -7279,7 +7299,7 @@
         "y": 100,
         "wires": [
             [
-                "978a96321f6da112"
+                "f16bcb4bfea89461"
             ]
         ]
     },
@@ -7306,7 +7326,7 @@
         "y": 40,
         "wires": [
             [
-                "3054ee3082fac032"
+                "eeb048faac509fb7"
             ]
         ]
     },
@@ -7333,7 +7353,7 @@
         "y": 160,
         "wires": [
             [
-                "09a1008b9a366cd2"
+                "78b97767ec7322f1"
             ]
         ]
     },
@@ -7355,8 +7375,8 @@
         "speakingrate": "1",
         "speakingpitch": "0",
         "unmuteIfMuted": true,
-        "x": 590,
-        "y": 420,
+        "x": 870,
+        "y": 360,
         "wires": [
             [],
             []
@@ -7377,173 +7397,7 @@
         "y": 360,
         "wires": [
             [
-                "568d7fb427e2cdc9",
                 "691e49e8493599d4"
-            ]
-        ]
-    },
-    {
-        "id": "568d7fb427e2cdc9",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Update Variable",
-        "func": "msg.payload = Date.now()\n\nif (msg.person == \"Nick\") {\n    if (msg.calendar == \"Personal\") {\n        return [msg, null, null, null]\n    }\n    if (msg.calendar == \"Work\") {\n        return [null, msg, null, null]\n    }\n}\n\nif (msg.person == \"Caroline\") {\n    if (msg.calendar == \"Personal\") {\n        return [null, null, msg, null]\n    }\n    if (msg.calendar == \"Work\") {\n        return [null, null, null, msg]\n    }\n}",
-        "outputs": 4,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 960,
-        "y": 440,
-        "wires": [
-            [
-                "9566becdf7946408"
-            ],
-            [
-                "ee9721cf8b05874b"
-            ],
-            [
-                "ac060dd3f32181f9"
-            ],
-            [
-                "e83ee10d435b1872"
-            ]
-        ]
-    },
-    {
-        "id": "9566becdf7946408",
-        "type": "set-shared-state",
-        "z": "499c53680d148fb0",
-        "state": "e322473ef1735b18",
-        "name": "LastNotifiedNickOfPersonalCalendarEvent",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1290,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "ee9721cf8b05874b",
-        "type": "set-shared-state",
-        "z": "499c53680d148fb0",
-        "state": "2bf9dc55335f8ae6",
-        "name": "LastNotifiedNickOfWorkCalendarEvent",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1270,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "ac060dd3f32181f9",
-        "type": "set-shared-state",
-        "z": "499c53680d148fb0",
-        "state": "92a507baf322525e",
-        "name": "LastNotifiedCarolineOfPersonalCalendarEvent",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1300,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "e83ee10d435b1872",
-        "type": "set-shared-state",
-        "z": "499c53680d148fb0",
-        "state": "7afd8eb5168c403d",
-        "name": "LastNotifiedCarolineOfWorkCalendarEvent",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1290,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "3054ee3082fac032",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Prevent double-notify",
-        "func": "variable_to_check = \"LastNotified\" + msg.person + \"Of\" + msg.calendar + \"CalendarEvent\"\n\nlast_notified_timestamp = global.get(\"state\")[variable_to_check].value\n\nnow = Date.now()\n\nhalf_day_in_ms = (1000 * 60 * 60 * 12)\n\nif ((now - last_notified_timestamp) >= half_day_in_ms) {\n    return msg;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 40,
-        "wires": [
-            [
-                "eeb048faac509fb7"
-            ]
-        ]
-    },
-    {
-        "id": "978a96321f6da112",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Prevent double-notify",
-        "func": "variable_to_check = \"LastNotified\" + msg.person + \"Of\" + msg.calendar + \"CalendarEvent\"\n\nlast_notified_timestamp = global.get(\"state\")[variable_to_check].value\n\nnow = Date.now()\n\nhalf_day_in_ms = (1000 * 60 * 60 * 12)\n\nif ((now - last_notified_timestamp) >= half_day_in_ms) {\n    return msg;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 100,
-        "wires": [
-            [
-                "f16bcb4bfea89461"
-            ]
-        ]
-    },
-    {
-        "id": "09a1008b9a366cd2",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Prevent double-notify",
-        "func": "variable_to_check = \"LastNotified\" + msg.person + \"Of\" + msg.calendar + \"CalendarEvent\"\n\nlast_notified_timestamp = global.get(\"state\")[variable_to_check].value\n\nnow = Date.now()\n\nhalf_day_in_ms = (1000 * 60 * 60 * 12)\n\nif ((now - last_notified_timestamp) >= half_day_in_ms) {\n    return msg;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 160,
-        "wires": [
-            [
-                "78b97767ec7322f1"
-            ]
-        ]
-    },
-    {
-        "id": "a8b90fe672a296b6",
-        "type": "inject",
-        "z": "499c53680d148fb0",
-        "name": "Reset",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "0",
-        "payloadType": "num",
-        "x": 950,
-        "y": 380,
-        "wires": [
-            [
-                "9566becdf7946408",
-                "ee9721cf8b05874b",
-                "ac060dd3f32181f9",
-                "e83ee10d435b1872"
             ]
         ]
     },
@@ -7556,8 +7410,8 @@
             "b1f2b5145a191585"
         ],
         "timeout": "30",
-        "x": 770,
-        "y": 480,
+        "x": 1050,
+        "y": 420,
         "wires": [
             []
         ]
@@ -7590,8 +7444,8 @@
             "a3678204f8f05362"
         ],
         "uncaught": false,
-        "x": 600,
-        "y": 480,
+        "x": 880,
+        "y": 420,
         "wires": [
             [
                 "0ed88bf8056f6919"
@@ -7681,25 +7535,6 @@
         "y": 220,
         "wires": [
             [
-                "882a7011f9d0db43"
-            ]
-        ]
-    },
-    {
-        "id": "882a7011f9d0db43",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Prevent double-notify",
-        "func": "variable_to_check = \"LastNotified\" + msg.person + \"Of\" + msg.calendar + \"CalendarEvent\"\n\nlast_notified_timestamp = global.get(\"state\")[variable_to_check].value\n\nnow = Date.now()\n\nhalf_day_in_ms = (1000 * 60 * 60 * 12)\n\nif ((now - last_notified_timestamp) >= half_day_in_ms) {\n    return msg;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1260,
-        "y": 220,
-        "wires": [
-            [
                 "21abaeffc63334c7"
             ]
         ]
@@ -7734,7 +7569,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1500,
+        "x": 1300,
         "y": 220,
         "wires": [
             [
@@ -7759,7 +7594,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1730,
+        "x": 1530,
         "y": 40,
         "wires": [
             [
@@ -7784,7 +7619,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1730,
+        "x": 1530,
         "y": 100,
         "wires": [
             [
@@ -7809,7 +7644,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1730,
+        "x": 1530,
         "y": 160,
         "wires": [
             [
@@ -7834,7 +7669,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1730,
+        "x": 1530,
         "y": 220,
         "wires": [
             [
@@ -7859,8 +7694,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 420,
-        "y": 420,
+        "x": 700,
+        "y": 360,
         "wires": [
             [
                 "a3678204f8f05362"
@@ -7933,7 +7768,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
                 "f36a036109920e8f",
@@ -7951,7 +7786,7 @@
             "34bd02b0a6ce0a3f"
         ],
         "x": 615,
-        "y": 220,
+        "y": 260,
         "wires": []
     },
     {
@@ -8008,7 +7843,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 710,
-        "y": 160,
+        "y": 200,
         "wires": []
     },
     {
@@ -8047,7 +7882,7 @@
         "name": "Auto Wakeup",
         "info": "",
         "x": 110,
-        "y": 360,
+        "y": 400,
         "wires": []
     },
     {
@@ -8069,7 +7904,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 140,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "bf78c1f1983f4368"
@@ -8086,7 +7921,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 620,
-        "y": 400,
+        "y": 440,
         "wires": []
     },
     {
@@ -8101,7 +7936,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "97f5f1603f7e631a"
@@ -8131,7 +7966,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 790,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "155b4a97cc43ad8e"
@@ -8161,7 +7996,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1090,
-        "y": 500,
+        "y": 540,
         "wires": [
             []
         ]
@@ -8184,7 +8019,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 940,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "9ea8215ef33d6060"
@@ -8198,7 +8033,7 @@
         "name": "Flash lights in common areas",
         "info": "",
         "x": 840,
-        "y": 460,
+        "y": 500,
         "wires": []
     },
     {
@@ -8213,7 +8048,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 190,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "97584da3ae7e0bb2"
@@ -8232,7 +8067,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "18a95e3ded1a3298"
@@ -8243,10 +8078,10 @@
         "id": "98ed89c644b239ae",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Help with winddown",
+        "name": "Notifications to help with winddown",
         "info": "",
-        "x": 130,
-        "y": 460,
+        "x": 180,
+        "y": 500,
         "wires": []
     },
     {
@@ -8256,7 +8091,7 @@
         "name": "Fade Up Bedroom Lights",
         "info": "",
         "x": 150,
-        "y": 260,
+        "y": 300,
         "wires": []
     },
     {
@@ -8271,7 +8106,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 150,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "275ab3ce38067011"
@@ -8300,7 +8135,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 410,
-        "y": 300,
+        "y": 340,
         "wires": [
             []
         ]
@@ -8317,11 +8152,31 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 220,
-        "y": 540,
+        "y": 580,
         "wires": [
             [
                 "97584da3ae7e0bb2"
             ]
         ]
+    },
+    {
+        "id": "3136712708331ea3",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Reduce volume by modifying currentlyPlaying object",
+        "info": "",
+        "x": 410,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "bd681b1c8d39bf09",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Use normal volume set to apply",
+        "info": "",
+        "x": 770,
+        "y": 260,
+        "wires": []
     }
 ]
