@@ -3069,8 +3069,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2170,
-        "y": 100,
+        "x": 2150,
+        "y": 280,
         "wires": [
             [
                 "84f2d908221dfd98",
@@ -3749,8 +3749,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2620,
-        "y": 160,
+        "x": 2640,
+        "y": 380,
         "wires": [
             [
                 "c8ff24ee16293f06"
@@ -3773,8 +3773,8 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Set volumes and mute states",
         "info": "",
-        "x": 2140,
-        "y": 40,
+        "x": 2120,
+        "y": 240,
         "wires": []
     },
     {
@@ -3787,8 +3787,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Unmute appropriate participants",
-        "x": 3030,
-        "y": 160,
+        "x": 3050,
+        "y": 380,
         "wires": [
             []
         ]
@@ -4037,8 +4037,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2810,
-        "y": 160,
+        "x": 2830,
+        "y": 380,
         "wires": [
             [
                 "32221838690fa0f1"
@@ -4560,8 +4560,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2440,
-        "y": 160,
+        "x": 2460,
+        "y": 380,
         "wires": [
             [
                 "05e5600da5d5942c"
@@ -4586,7 +4586,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 2450,
-        "y": 60,
+        "y": 160,
         "wires": [
             [
                 "ecc73635aa91485a"
@@ -4837,17 +4837,17 @@
         "name": "Set Volumes",
         "info": "",
         "x": 2450,
-        "y": 20,
+        "y": 120,
         "wires": []
     },
     {
         "id": "0b54c55fc3673dc2",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Set mute states (after volumes)",
+        "name": "Set mute states (after volumes and with blind sleep)",
         "info": "",
-        "x": 2510,
-        "y": 120,
+        "x": 2590,
+        "y": 340,
         "wires": []
     },
     {
@@ -5182,7 +5182,7 @@
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
         "x": 2830,
-        "y": 60,
+        "y": 160,
         "wires": [
             [
                 "06b5888b90359103"
@@ -5209,7 +5209,7 @@
         "to": "",
         "reg": false,
         "x": 2640,
-        "y": 60,
+        "y": 160,
         "wires": [
             [
                 "22f2d17d21e14f6e"
@@ -5228,7 +5228,7 @@
         "finalize": "",
         "libs": [],
         "x": 3040,
-        "y": 60,
+        "y": 160,
         "wires": [
             [
                 "fbef539b9c81e0e4"
@@ -5248,8 +5248,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set a volume",
-        "x": 3590,
-        "y": 60,
+        "x": 3130,
+        "y": 280,
         "wires": [
             []
         ]
@@ -5271,8 +5271,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 3430,
-        "y": 60,
+        "x": 2970,
+        "y": 280,
         "wires": [
             [
                 "e53ccbfadb71b977"
@@ -5296,8 +5296,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 3240,
-        "y": 120,
+        "x": 2500,
+        "y": 280,
         "wires": [
             [
                 "9637e0e343385196"
@@ -5315,8 +5315,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3440,
-        "y": 120,
+        "x": 2700,
+        "y": 280,
         "wires": [
             [
                 "478c37ee53f595cf",
@@ -5330,8 +5330,8 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "If volume decrease, it's immediate",
         "info": "",
-        "x": 3500,
-        "y": 20,
+        "x": 3040,
+        "y": 240,
         "wires": []
     },
     {
@@ -5341,7 +5341,27 @@
         "name": "Break out volume increase and do slowly",
         "info": "",
         "x": 3080,
-        "y": 20,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f6379d3ea7c03bbf",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Allow calling from other flows",
+        "info": "",
+        "x": 1740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b1b296e25475539b",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "If volume increase, do in one unit steps",
+        "info": "",
+        "x": 2590,
+        "y": 240,
         "wires": []
     },
     {
@@ -6027,6 +6047,17 @@
                 "392367f1059edf8f"
             ]
         ]
+    },
+    {
+        "id": "010adf42d0378bf0",
+        "type": "comment",
+        "z": "634c78c80eb9f37e",
+        "name": "Decider has hardcoded times right now, need to fix",
+        "info": "",
+        "x": 530,
+        "y": 560,
+        "wires": [],
+        "icon": "font-awesome/fa-question-circle"
     },
     {
         "id": "a99efe1134ae512d",
