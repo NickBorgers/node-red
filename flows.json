@@ -56,7 +56,7 @@
     {
         "id": "95cf961539320dd3",
         "type": "tab",
-        "label": "Sleep Hygeine",
+        "label": "Sleep Hygiene",
         "disabled": false,
         "info": "",
         "env": []
@@ -5082,9 +5082,9 @@
         "id": "304eb5d8976b8c42",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Force TV to use soundbar b/c TV is dumb and forgets",
+        "name": "Force TV to use soundbar b/c TV is dumb and picks the wrong one every time",
         "info": "",
-        "x": 220,
+        "x": 290,
         "y": 1420,
         "wires": []
     },
@@ -5739,9 +5739,9 @@
         "id": "5c380b83edfd85d6",
         "type": "comment",
         "z": "634c78c80eb9f37e",
-        "name": "Reset",
+        "name": "Reset mechanism available through Homekit",
         "info": "",
-        "x": 90,
+        "x": 210,
         "y": 640,
         "wires": []
     },
@@ -7082,7 +7082,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 1290,
-        "y": 100,
+        "y": 140,
         "wires": [
             [
                 "ef40c5c9c328117a"
@@ -7120,7 +7120,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 1300,
-        "y": 40,
+        "y": 80,
         "wires": [
             [
                 "7ea81c237d1bc6b9"
@@ -7139,7 +7139,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "ef3a03f27ccc5aac"
@@ -7158,7 +7158,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "5aae9e2ba1aaac07"
@@ -7196,7 +7196,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 1310,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
                 "54dc994524561093"
@@ -7215,7 +7215,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 170,
-        "y": 60,
+        "y": 100,
         "wires": [
             [
                 "e05c1b0b11607600"
@@ -7242,7 +7242,7 @@
         "to": "",
         "reg": false,
         "x": 470,
-        "y": 80,
+        "y": 120,
         "wires": [
             [
                 "d307702ed23e98f3"
@@ -7269,7 +7269,7 @@
         "to": "",
         "reg": false,
         "x": 460,
-        "y": 180,
+        "y": 220,
         "wires": [
             [
                 "704229286b8d3587"
@@ -7296,7 +7296,7 @@
         "to": "",
         "reg": false,
         "x": 1030,
-        "y": 100,
+        "y": 140,
         "wires": [
             [
                 "f16bcb4bfea89461"
@@ -7323,7 +7323,7 @@
         "to": "",
         "reg": false,
         "x": 1040,
-        "y": 40,
+        "y": 80,
         "wires": [
             [
                 "eeb048faac509fb7"
@@ -7350,7 +7350,7 @@
         "to": "",
         "reg": false,
         "x": 1040,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
                 "78b97767ec7322f1"
@@ -7376,7 +7376,7 @@
         "speakingpitch": "0",
         "unmuteIfMuted": true,
         "x": 870,
-        "y": 360,
+        "y": 400,
         "wires": [
             [],
             []
@@ -7394,7 +7394,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "691e49e8493599d4"
@@ -7411,7 +7411,7 @@
         ],
         "timeout": "30",
         "x": 1050,
-        "y": 420,
+        "y": 460,
         "wires": [
             []
         ]
@@ -7428,7 +7428,7 @@
         "finalize": "",
         "libs": [],
         "x": 1060,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "8c780ce574114c79"
@@ -7445,7 +7445,7 @@
         ],
         "uncaught": false,
         "x": 880,
-        "y": 420,
+        "y": 460,
         "wires": [
             [
                 "0ed88bf8056f6919"
@@ -7464,7 +7464,7 @@
         "finalize": "",
         "libs": [],
         "x": 190,
-        "y": 120,
+        "y": 160,
         "wires": [
             [
                 "4692feeb7bad273d",
@@ -7484,7 +7484,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 80,
+        "y": 120,
         "wires": [
             [
                 "788db9362b2ed4ab",
@@ -7504,7 +7504,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 180,
+        "y": 220,
         "wires": [
             [
                 "6dc231aa8e595417",
@@ -7532,7 +7532,7 @@
         "to": "",
         "reg": false,
         "x": 1030,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "21abaeffc63334c7"
@@ -7570,7 +7570,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 1300,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "7801e88d316cb498"
@@ -7595,7 +7595,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1530,
-        "y": 40,
+        "y": 80,
         "wires": [
             [
                 "e20f60c78f9d70c3"
@@ -7620,7 +7620,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1530,
-        "y": 100,
+        "y": 140,
         "wires": [
             [
                 "e20f60c78f9d70c3"
@@ -7645,7 +7645,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1530,
-        "y": 160,
+        "y": 200,
         "wires": [
             [
                 "e20f60c78f9d70c3"
@@ -7670,7 +7670,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1530,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "e20f60c78f9d70c3"
@@ -7695,12 +7695,42 @@
         "allowrate": false,
         "outputs": 1,
         "x": 700,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "a3678204f8f05362"
             ]
         ]
+    },
+    {
+        "id": "5eafd94846b1351d",
+        "type": "comment",
+        "z": "499c53680d148fb0",
+        "name": "Ugly check trigger",
+        "info": "",
+        "x": 130,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "28ae008b535bbdc3",
+        "type": "comment",
+        "z": "499c53680d148fb0",
+        "name": "Only notify once per day",
+        "info": "",
+        "x": 1570,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5908acc6f289a226",
+        "type": "comment",
+        "z": "499c53680d148fb0",
+        "name": "Read calendar",
+        "info": "",
+        "x": 1260,
+        "y": 40,
+        "wires": []
     },
     {
         "id": "6d6e6c06f83da0ce",
