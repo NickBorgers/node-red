@@ -56,7 +56,7 @@
     {
         "id": "95cf961539320dd3",
         "type": "tab",
-        "label": "Morning Rise",
+        "label": "Sleep Hygeine",
         "disabled": false,
         "info": "",
         "env": []
@@ -139,7 +139,7 @@
         "name": "sunevent",
         "lbl": "Sun Event",
         "tags": "Ambient",
-        "historyCount": "3",
+        "historyCount": "12",
         "dataType": "str",
         "boolType": "bool",
         "boolStrTrue": "",
@@ -511,7 +511,7 @@
         "name": "dayPhase",
         "lbl": "Day Phase",
         "tags": "",
-        "historyCount": "6",
+        "historyCount": "12",
         "dataType": "str",
         "boolType": "bool",
         "boolStrTrue": "",
@@ -1744,7 +1744,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Was master asleep?",
-        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was master asleep?\nif(global.get(\"state\").isMasterAsleep.value) {\n    // They were, now the door is open though\n    return msg\n}",
+        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was master asleep?\nif(global.get(\"state\").isMasterAsleep.value == true) {\n    // They were, now the door is open though\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1791,7 +1791,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Was guest asleep?",
-        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was guest asleep?\nif(global.get(\"state\").isGuestAsleep.value) {\n    // They were, now the door is open though\n    return msg\n}",
+        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was guest asleep?\nif(global.get(\"state\").isGuestAsleep.value = true) {\n    // They were, now the door is open though\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2515,7 +2515,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick rooms whose variables are now true",
-        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\ndayPhase = global.get(\"state\").dayPhase.value\n\nif (hueConfig.phases.indexOf(dayPhase) > -1) {\n    hueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n        // Does this participant even have this attribute?\n        if (\"off_if_true\" in thisRoomToTurnOff) {\n            // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n            if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_true) \n            // Is the variable this room cares about true?\n            && global.get(\"state\")[thisRoomToTurnOff.off_if_true].value) {\n                msg.targetArea = thisRoomToTurnOff.hass_area_id\n                node.send(msg)\n            }\n        }\n    });\n} else {\n    node.error(\"dayPhase (\" + dayPhase +\") not in hueConfig\")\n    node.error(hueConfig.phases)\n    return null\n}",
+        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\ndayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToTurnOff) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_true) \n        // Is the variable this room cares about true?\n        && global.get(\"state\")[thisRoomToTurnOff.off_if_true].value) {\n            msg.targetArea = thisRoomToTurnOff.hass_area_id\n            node.send(msg)\n        }\n    }\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2918,137 +2918,6 @@
         ]
     },
     {
-        "id": "ce39a8ad9c69d2fc",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Flash Lights",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [
-            "living_room",
-            "nook"
-        ],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\"flash\": \"short\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 790,
-        "y": 840,
-        "wires": [
-            [
-                "41dbd523811a581e"
-            ]
-        ]
-    },
-    {
-        "id": "24ce402d5bc60b67",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Flash Lights",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [
-            "living_room",
-            "nook"
-        ],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\"flash\": \"short\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1090,
-        "y": 840,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "41dbd523811a581e",
-        "type": "delay",
-        "z": "16cd74edb3f2c03d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 940,
-        "y": 840,
-        "wires": [
-            [
-                "24ce402d5bc60b67"
-            ]
-        ]
-    },
-    {
-        "id": "8e385e93b350c76e",
-        "type": "comment",
-        "z": "16cd74edb3f2c03d",
-        "name": "Flash lights in common areas",
-        "info": "",
-        "x": 840,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "fb460a8de579e348",
-        "type": "inject",
-        "z": "16cd74edb3f2c03d",
-        "name": "Notify to stop using screens",
-        "props": [],
-        "repeat": "",
-        "crontab": "30 22 * * 1,2,3,4,0",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 190,
-        "y": 840,
-        "wires": [
-            [
-                "11e901d7ed5ce219"
-            ]
-        ]
-    },
-    {
-        "id": "11e901d7ed5ce219",
-        "type": "function",
-        "z": "16cd74edb3f2c03d",
-        "name": "Check if anyone home and not everyone asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isEveryoneAsleep.value == true) {\n    return null\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 840,
-        "wires": [
-            [
-                "ce39a8ad9c69d2fc"
-            ]
-        ]
-    },
-    {
         "id": "f744b5b41bd0fbe0",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
@@ -3207,22 +3076,6 @@
                 "84f2d908221dfd98",
                 "d9903f7751427a48"
             ]
-        ]
-    },
-    {
-        "id": "84844393fff5cedb",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "confignode": "80cf2bfc253ff8c2",
-        "command": "player.set.volume",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": false,
-        "name": "Set a volume",
-        "x": 2610,
-        "y": 60,
-        "wires": [
-            []
         ]
     },
     {
@@ -4736,7 +4589,7 @@
         "y": 60,
         "wires": [
             [
-                "84844393fff5cedb"
+                "ecc73635aa91485a"
             ]
         ]
     },
@@ -5206,7 +5059,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "",
         "pauseType": "delay",
-        "timeout": "7",
+        "timeout": "8",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -5286,6 +5139,188 @@
         "wires": [
             [
                 "d6f678177a40f732"
+            ]
+        ]
+    },
+    {
+        "id": "e1425a88bc5fcf41",
+        "type": "inject",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 380,
+        "y": 1520,
+        "wires": [
+            [
+                "208a5dede994fffb"
+            ]
+        ]
+    },
+    {
+        "id": "22f2d17d21e14f6e",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.get.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Get a volume",
+        "x": 2830,
+        "y": 60,
+        "wires": [
+            [
+                "06b5888b90359103"
+            ]
+        ]
+    },
+    {
+        "id": "ecc73635aa91485a",
+        "type": "change",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Save desired volume",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "desired_volume",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2640,
+        "y": 60,
+        "wires": [
+            [
+                "22f2d17d21e14f6e"
+            ]
+        ]
+    },
+    {
+        "id": "06b5888b90359103",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Branch out volume turn ups",
+        "func": "current_volume = msg.payload\n\ndesired_volume = msg.desired_volume\n\nif (current_volume < desired_volume) {\n    current_volume++\n    msg.payload = current_volume\n    node.send([msg, msg])\n} else {\n    msg.payload = desired_volume\n    node.send([msg, null])\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3040,
+        "y": 60,
+        "wires": [
+            [
+                "fbef539b9c81e0e4"
+            ],
+            [
+                "478c37ee53f595cf"
+            ]
+        ]
+    },
+    {
+        "id": "e53ccbfadb71b977",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.set.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Set a volume",
+        "x": 3590,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fbef539b9c81e0e4",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3430,
+        "y": 40,
+        "wires": [
+            [
+                "e53ccbfadb71b977"
+            ]
+        ]
+    },
+    {
+        "id": "478c37ee53f595cf",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 3240,
+        "y": 100,
+        "wires": [
+            [
+                "9637e0e343385196"
+            ]
+        ]
+    },
+    {
+        "id": "9637e0e343385196",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Repeat turn ups until done",
+        "func": "current_volume = msg.payload\n\ndesired_volume = msg.desired_volume\n\nif (current_volume < desired_volume) {\n    current_volume++\n    msg.payload = current_volume\n    node.send(msg)\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3440,
+        "y": 100,
+        "wires": [
+            [
+                "478c37ee53f595cf",
+                "fbef539b9c81e0e4"
             ]
         ]
     },
@@ -7030,7 +7065,7 @@
         "y": 100,
         "wires": [
             [
-                "e20f60c78f9d70c3"
+                "ef40c5c9c328117a"
             ]
         ]
     },
@@ -7068,7 +7103,7 @@
         "y": 40,
         "wires": [
             [
-                "e20f60c78f9d70c3"
+                "7ea81c237d1bc6b9"
             ]
         ]
     },
@@ -7144,7 +7179,7 @@
         "y": 160,
         "wires": [
             [
-                "e20f60c78f9d70c3"
+                "54dc994524561093"
             ]
         ]
     },
@@ -7321,7 +7356,7 @@
         "speakingpitch": "0",
         "unmuteIfMuted": true,
         "x": 590,
-        "y": 440,
+        "y": 420,
         "wires": [
             [],
             []
@@ -7342,8 +7377,8 @@
         "y": 360,
         "wires": [
             [
-                "a3678204f8f05362",
-                "568d7fb427e2cdc9"
+                "568d7fb427e2cdc9",
+                "691e49e8493599d4"
             ]
         ]
     },
@@ -7522,7 +7557,7 @@
         ],
         "timeout": "30",
         "x": 770,
-        "y": 500,
+        "y": 480,
         "wires": [
             []
         ]
@@ -7556,7 +7591,7 @@
         ],
         "uncaught": false,
         "x": 600,
-        "y": 500,
+        "y": 480,
         "wires": [
             [
                 "0ed88bf8056f6919"
@@ -7703,7 +7738,132 @@
         "y": 220,
         "wires": [
             [
+                "7801e88d316cb498"
+            ]
+        ]
+    },
+    {
+        "id": "7ea81c237d1bc6b9",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "day",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1730,
+        "y": 40,
+        "wires": [
+            [
                 "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "ef40c5c9c328117a",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "day",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1730,
+        "y": 100,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "54dc994524561093",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "day",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1730,
+        "y": 160,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "7801e88d316cb498",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "day",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1730,
+        "y": 220,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "691e49e8493599d4",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 420,
+        "y": 420,
+        "wires": [
+            [
+                "a3678204f8f05362"
             ]
         ]
     },
@@ -7711,7 +7871,7 @@
         "id": "6d6e6c06f83da0ce",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Fade Out Sleep Music",
+        "name": "Fade Out Sleep Sounds",
         "info": "",
         "x": 140,
         "y": 40,
@@ -7722,12 +7882,18 @@
         "type": "inject",
         "z": "95cf961539320dd3",
         "name": "Before wake-up",
-        "props": [],
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
         "repeat": "",
         "crontab": "45 07 * * 1,2,3,4,5",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
+        "payload": "whatever",
+        "payloadType": "str",
         "x": 150,
         "y": 100,
         "wires": [
@@ -7771,7 +7937,7 @@
         "wires": [
             [
                 "f36a036109920e8f",
-                "3e957f7268580f2f"
+                "9cf90b7812a7ab73"
             ]
         ]
     },
@@ -7784,7 +7950,7 @@
         "links": [
             "34bd02b0a6ce0a3f"
         ],
-        "x": 755,
+        "x": 615,
         "y": 220,
         "wires": []
     },
@@ -7846,31 +8012,6 @@
         "wires": []
     },
     {
-        "id": "3e957f7268580f2f",
-        "type": "delay",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 660,
-        "y": 220,
-        "wires": [
-            [
-                "9cf90b7812a7ab73"
-            ]
-        ]
-    },
-    {
         "id": "e93449ceeb92c731",
         "type": "inject",
         "z": "95cf961539320dd3",
@@ -7906,13 +8047,14 @@
         "name": "Auto Wakeup",
         "info": "",
         "x": 110,
-        "y": 260,
+        "y": 360,
         "wires": []
     },
     {
         "id": "aab6bd67aaf53ce3",
         "type": "inject",
         "z": "95cf961539320dd3",
+        "d": true,
         "name": "Auto wake-up",
         "props": [
             {
@@ -7927,7 +8069,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 140,
-        "y": 300,
+        "y": 400,
         "wires": [
             [
                 "bf78c1f1983f4368"
@@ -7944,7 +8086,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 620,
-        "y": 300,
+        "y": 400,
         "wires": []
     },
     {
@@ -7959,10 +8101,226 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 300,
+        "y": 400,
         "wires": [
             [
                 "97f5f1603f7e631a"
+            ]
+        ]
+    },
+    {
+        "id": "18a95e3ded1a3298",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 790,
+        "y": 500,
+        "wires": [
+            [
+                "155b4a97cc43ad8e"
+            ]
+        ]
+    },
+    {
+        "id": "9ea8215ef33d6060",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1090,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "155b4a97cc43ad8e",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 940,
+        "y": 500,
+        "wires": [
+            [
+                "9ea8215ef33d6060"
+            ]
+        ]
+    },
+    {
+        "id": "eadc2192bfca6069",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Flash lights in common areas",
+        "info": "",
+        "x": 840,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "5e9989853277defc",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "Notify to stop using screens",
+        "props": [],
+        "repeat": "",
+        "crontab": "30 22 * * 1,2,3,4,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 500,
+        "wires": [
+            [
+                "97584da3ae7e0bb2"
+            ]
+        ]
+    },
+    {
+        "id": "97584da3ae7e0bb2",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Check if anyone home and not everyone asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isEveryoneAsleep.value == true) {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "18a95e3ded1a3298"
+            ]
+        ]
+    },
+    {
+        "id": "98ed89c644b239ae",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Help with winddown",
+        "info": "",
+        "x": 130,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a1ef0e5197dfb196",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Fade Up Bedroom Lights",
+        "info": "",
+        "x": 150,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "0bb2f2ed1a74460f",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "Before wake-up",
+        "props": [],
+        "repeat": "",
+        "crontab": "45 07 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "275ab3ce38067011"
+            ]
+        ]
+    },
+    {
+        "id": "275ab3ce38067011",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Turn on Master Bedroom Lights Slowly",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "master_bedroom"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"transition\": 900, \"color_temp\": 290, \"brightness_pct\": 100}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 410,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "041066fd79505d59",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "Notify to go to bed",
+        "props": [],
+        "repeat": "",
+        "crontab": "30 23 * * 1,2,3,4,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 220,
+        "y": 540,
+        "wires": [
+            [
+                "97584da3ae7e0bb2"
             ]
         ]
     }
