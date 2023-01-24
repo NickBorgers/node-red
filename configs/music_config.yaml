@@ -2,6 +2,9 @@
 music:
   morning:
     participants:
+      - player_name: "Nook Speaker"
+        default_volume: 13
+        leave_muted_if: []
       - player_name: "Living Room"
         default_volume: 13
         leave_muted_if:
@@ -9,9 +12,6 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Nook Speaker"
-        default_volume: 13
-        leave_muted_if: []
       - player_name: "Guest Bathroom"
         default_volume: 17
         leave_muted_if:
@@ -55,6 +55,9 @@ music:
         volume_multiplier: 1
   day:
     participants:
+      - player_name: "Nook Speaker"
+        default_volume: 10
+        leave_muted_if: []
       - player_name: "Living Room"
         default_volume: 12
         leave_muted_if:
@@ -62,9 +65,6 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Nook Speaker"
-        default_volume: 10
-        leave_muted_if: []
       - player_name: "Guest Bathroom"
         default_volume: 17
         leave_muted_if:
@@ -122,6 +122,9 @@ music:
         volume_multiplier: 1
   evening:
     participants:
+      - player_name: "Nook Speaker"
+        default_volume: 13
+        leave_muted_if: []
       - player_name: "Living Room"
         default_volume: 14
         leave_muted_if:
@@ -129,9 +132,6 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Nook Speaker"
-        default_volume: 13
-        leave_muted_if: []
       - player_name: "Guest Bathroom"
         default_volume: 17
         leave_muted_if:
@@ -185,6 +185,9 @@ music:
         volume_multiplier: 2
   winddown:
     participants:
+      - player_name: "Nook Speaker"
+        default_volume: 20
+        leave_muted_if: []
       - player_name: "Living Room"
         default_volume: 15
         leave_muted_if:
@@ -192,9 +195,6 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Nook Speaker"
-        default_volume: 20
-        leave_muted_if: []
       - player_name: "Guest Bathroom"
         default_volume: 20
         leave_muted_if:
