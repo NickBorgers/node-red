@@ -70,6 +70,11 @@ Responding to the occupants of the home requires tracking state, largely facilit
 
 ![State Tracking](https://nickborgers.github.io/node-red/State%20Tracking.png)
 
+### Sleep Hygiene
+We're working on sleep hygiene right now and have enslisted the home automation to help. 
+
+![Sleep Hygiene](https://nickborgers.github.io/node-red/Sleep%20Hygiene.png)
+
 ### Calendar
 Verbal alerts are played for us based on calendar events. Home Assistant is actually integrated with our calendars, and this automation checks those calendars and notifies us if we should really be going to be bed instead of watching that next YouTube video or whatever.
 
@@ -79,4 +84,5 @@ Verbal alerts are played for us based on calendar events. Home Assistant is actu
 Changes to state variables which drive behavior are written to an Elasticsearch instance in the home, [originally setup to track energy consumption](https://github.com/NickBorgers/coned-data-visualizer).
 
 ![Log](https://nickborgers.github.io/node-red/Log.png)
+
 
