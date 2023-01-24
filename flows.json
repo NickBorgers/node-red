@@ -30,14 +30,6 @@
         "env": []
     },
     {
-        "id": "9e0490d1fc323107",
-        "type": "tab",
-        "label": "Log",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "45c21b8b98ae2f01",
         "type": "tab",
         "label": "Vacuum",
@@ -57,6 +49,14 @@
         "id": "95cf961539320dd3",
         "type": "tab",
         "label": "Sleep Hygiene",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9e0490d1fc323107",
+        "type": "tab",
+        "label": "Log",
         "disabled": false,
         "info": "",
         "env": []
@@ -435,70 +435,6 @@
         "TTSRootFolderPath": ""
     },
     {
-        "id": "e322473ef1735b18",
-        "type": "shared-state",
-        "name": "LastNotifiedNickOfPersonalCalendarEvent",
-        "lbl": "",
-        "tags": "",
-        "historyCount": "2",
-        "dataType": "num",
-        "boolType": "bool",
-        "boolStrTrue": "",
-        "boolStrFalse": "",
-        "precision": "",
-        "numMin": "",
-        "numMax": "",
-        "unit": "ms"
-    },
-    {
-        "id": "2bf9dc55335f8ae6",
-        "type": "shared-state",
-        "name": "LastNotifiedNickOfWorkCalendarEvent",
-        "lbl": "",
-        "tags": "",
-        "historyCount": "2",
-        "dataType": "num",
-        "boolType": "bool",
-        "boolStrTrue": "",
-        "boolStrFalse": "",
-        "precision": "",
-        "numMin": "",
-        "numMax": "",
-        "unit": "ms"
-    },
-    {
-        "id": "92a507baf322525e",
-        "type": "shared-state",
-        "name": "LastNotifiedCarolineOfPersonalCalendarEvent",
-        "lbl": "",
-        "tags": "",
-        "historyCount": "2",
-        "dataType": "num",
-        "boolType": "bool",
-        "boolStrTrue": "",
-        "boolStrFalse": "",
-        "precision": "",
-        "numMin": "",
-        "numMax": "",
-        "unit": "ms"
-    },
-    {
-        "id": "7afd8eb5168c403d",
-        "type": "shared-state",
-        "name": "LastNotifiedCarolineOfWorkCalendarEvent",
-        "lbl": "",
-        "tags": "",
-        "historyCount": "2",
-        "dataType": "num",
-        "boolType": "bool",
-        "boolStrTrue": "",
-        "boolStrFalse": "",
-        "precision": "",
-        "numMin": "",
-        "numMax": "",
-        "unit": "ms"
-    },
-    {
         "id": "440f06b05d48d38b",
         "type": "sonos-config",
         "name": "Guest Bedroom",
@@ -549,6 +485,22 @@
         "tags": "",
         "historyCount": "2",
         "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "f4fbefedb919c3c1",
+        "type": "shared-state",
+        "name": "schedule",
+        "lbl": "Schedule",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "obj",
         "boolType": "bool",
         "boolStrTrue": "",
         "boolStrFalse": "",
@@ -5391,7 +5343,8 @@
         "wires": [
             [
                 "a78b91dcc37bee92",
-                "8409a48850c82e37"
+                "8409a48850c82e37",
+                "03d49e6e6a6a882d"
             ],
             [],
             []
@@ -6060,196 +6013,50 @@
         "icon": "font-awesome/fa-question-circle"
     },
     {
-        "id": "a99efe1134ae512d",
-        "type": "log-elk",
-        "z": "9e0490d1fc323107",
-        "name": "Log",
-        "logger": "e98cb8b7d7a02f27",
-        "complete": "true",
-        "loglevel": "info",
-        "x": 450,
-        "y": 160,
+        "id": "03d49e6e6a6a882d",
+        "type": "file in",
+        "z": "634c78c80eb9f37e",
+        "name": "Read Schedule config file",
+        "filename": "/data/projects/node-red/configs/schedule_config.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 630,
+        "y": 40,
+        "wires": [
+            [
+                "db2ed0e33cc5550d"
+            ]
+        ]
+    },
+    {
+        "id": "db2ed0e33cc5550d",
+        "type": "yaml",
+        "z": "634c78c80eb9f37e",
+        "property": "payload",
+        "name": "Convert to JSON",
+        "x": 870,
+        "y": 40,
+        "wires": [
+            [
+                "91bfd1cbe0c7c95b"
+            ]
+        ]
+    },
+    {
+        "id": "91bfd1cbe0c7c95b",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "f4fbefedb919c3c1",
+        "name": "Schedule",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1060,
+        "y": 40,
         "wires": []
-    },
-    {
-        "id": "b75fb2b31f3ab775",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "1dd96a4a.9d6316",
-        "name": "Anyone Home",
-        "triggerOnInit": false,
-        "x": 150,
-        "y": 80,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "397f1108a960601f",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "99455ccf.2c8498",
-        "name": "Caroline Home",
-        "triggerOnInit": false,
-        "x": 160,
-        "y": 120,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "a2c6403a03dfe142",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "b74697c734ad5557",
-        "name": "Currently Playing Music",
-        "triggerOnInit": false,
-        "x": 180,
-        "y": 160,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "e814263e57b76d82",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "156ccde543ba4845",
-        "name": "Guest Asleep",
-        "triggerOnInit": false,
-        "x": 150,
-        "y": 200,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "6c3515ab36ce9cbc",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "86b433f8beadaac5",
-        "name": "Hue Config",
-        "triggerOnInit": false,
-        "x": 150,
-        "y": 240,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "1acc23f7c21becd6",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "b69e9a96.7fc43",
-        "name": "Master Asleep",
-        "triggerOnInit": false,
-        "x": 150,
-        "y": 280,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "2aa7698b4364880c",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "e4f5bf03444063a0",
-        "name": "Music Config",
-        "triggerOnInit": false,
-        "x": 150,
-        "y": 320,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "ba6acb2cd13275c6",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "8c211e55da1f4c7f",
-        "name": "Music Playback Type",
-        "triggerOnInit": false,
-        "x": 180,
-        "y": 360,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "99e192fa7b4ef8b6",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "659fd61043193a4d",
-        "name": "Music Playlist Numbers",
-        "triggerOnInit": false,
-        "x": 180,
-        "y": 400,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "a51249a224ea8dbb",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "e3cb7570.0dbb48",
-        "name": "Nick Home",
-        "triggerOnInit": false,
-        "x": 140,
-        "y": 440,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "224e1c91419b027f",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "174c278f.609ec8",
-        "name": "Sun Event",
-        "triggerOnInit": false,
-        "x": 140,
-        "y": 480,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
-    },
-    {
-        "id": "946ab51969f69a22",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "efc87f0de00a2d36",
-        "name": "Day Phase",
-        "triggerOnInit": false,
-        "x": 140,
-        "y": 520,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
     },
     {
         "id": "d389488a08d98ed3",
@@ -7617,15 +7424,15 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "day",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1530,
+        "x": 1540,
         "y": 80,
         "wires": [
             [
@@ -7642,15 +7449,15 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "day",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1530,
+        "x": 1540,
         "y": 140,
         "wires": [
             [
@@ -7667,15 +7474,15 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "day",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1530,
+        "x": 1540,
         "y": 200,
         "wires": [
             [
@@ -7692,15 +7499,15 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "day",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1530,
+        "x": 1540,
         "y": 260,
         "wires": [
             [
@@ -8238,5 +8045,197 @@
         "x": 770,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "a99efe1134ae512d",
+        "type": "log-elk",
+        "z": "9e0490d1fc323107",
+        "name": "Log",
+        "logger": "e98cb8b7d7a02f27",
+        "complete": "true",
+        "loglevel": "info",
+        "x": 450,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b75fb2b31f3ab775",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "1dd96a4a.9d6316",
+        "name": "Anyone Home",
+        "triggerOnInit": false,
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "397f1108a960601f",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "99455ccf.2c8498",
+        "name": "Caroline Home",
+        "triggerOnInit": false,
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "a2c6403a03dfe142",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "b74697c734ad5557",
+        "name": "Currently Playing Music",
+        "triggerOnInit": false,
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "e814263e57b76d82",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "156ccde543ba4845",
+        "name": "Guest Asleep",
+        "triggerOnInit": false,
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "6c3515ab36ce9cbc",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "86b433f8beadaac5",
+        "name": "Hue Config",
+        "triggerOnInit": false,
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "1acc23f7c21becd6",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": false,
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "2aa7698b4364880c",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "e4f5bf03444063a0",
+        "name": "Music Config",
+        "triggerOnInit": false,
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "ba6acb2cd13275c6",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": false,
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "99e192fa7b4ef8b6",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "659fd61043193a4d",
+        "name": "Music Playlist Numbers",
+        "triggerOnInit": false,
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "a51249a224ea8dbb",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "e3cb7570.0dbb48",
+        "name": "Nick Home",
+        "triggerOnInit": false,
+        "x": 140,
+        "y": 440,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "224e1c91419b027f",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "174c278f.609ec8",
+        "name": "Sun Event",
+        "triggerOnInit": false,
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "946ab51969f69a22",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
+        "triggerOnInit": false,
+        "x": 140,
+        "y": 520,
+        "wires": [
+            [
+                "a99efe1134ae512d"
+            ]
+        ]
     }
 ]

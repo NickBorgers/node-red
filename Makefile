@@ -61,7 +61,7 @@ run-yamllint-music: build-config-tester
 	docker run --rm --mount type=bind,source=${CURDIR}/configs/music_config.yaml,destination=/app/music_config.yaml node-red-config-tester yamllint music_config.yaml
 
 run-yamllint-schedule: build-config-tester
-        docker run --rm --mount type=bind,source=${CURDIR}/configs/schedule_config.yaml,destination=/app/schedule_config.yaml node-red-config-tester yamllint schedule_config.yaml
+	docker run --rm --mount type=bind,source=${CURDIR}/configs/schedule_config.yaml,destination=/app/schedule_config.yaml node-red-config-tester yamllint schedule_config.yaml
 
 run-spotify-validation-music: build-config-tester
 	docker run --rm --mount type=bind,source=${CURDIR}/configs/music_config.yaml,destination=/app/music_config.yaml node-red-config-tester python3 -u validate_spotify_uris.py
