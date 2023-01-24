@@ -5285,7 +5285,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "",
         "pauseType": "delay",
-        "timeout": "10",
+        "timeout": "20",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -7919,7 +7919,6 @@
         "id": "aab6bd67aaf53ce3",
         "type": "inject",
         "z": "95cf961539320dd3",
-        "d": true,
         "name": "Auto wake-up",
         "props": [
             {
