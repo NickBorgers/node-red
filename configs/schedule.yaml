@@ -1,0 +1,9 @@
+---
+schedule:
+  begin_wake: "07:45"
+  wake: "08:00"
+  dusk_override: "19:00"
+  night_override: "23:30"
+  winddown: "21:30"
+  stop_screens: "22:00"
+  go_to_bed: "23:00"

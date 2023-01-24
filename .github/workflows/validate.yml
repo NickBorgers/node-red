@@ -21,6 +21,14 @@ jobs:
       - name: Validate Hue YAML file
         run: make run-yamllint-hue
 
+  validate-schedule-config-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v2
+      - name: Validate Schedule YAML file
+        run: make run-yamllint-schedule
+
   validate-music-config-spotify-uris:
     needs: validate-music-config-yaml
     runs-on: ubuntu-latest
