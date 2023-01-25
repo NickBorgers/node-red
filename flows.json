@@ -1743,7 +1743,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Was guest asleep?",
-        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was guest asleep?\nif(global.get(\"state\").isGuestAsleep.value = true) {\n    // They were, now the door is open though\n    return msg\n}",
+        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was guest asleep?\nif(global.get(\"state\").isGuestAsleep.value == true) {\n    // They were, now the door is open though\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2207,6 +2207,21 @@
         "wires": [
             [
                 "bef7d2e0ab4b73d9"
+            ]
+        ]
+    },
+    {
+        "id": "05dba22067da7be4",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "156ccde543ba4845",
+        "name": "Guest Asleep",
+        "triggerOnInit": true,
+        "x": 830,
+        "y": 940,
+        "wires": [
+            [
+                "0e3907f2e4812720"
             ]
         ]
     },
