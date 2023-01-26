@@ -13,7 +13,7 @@ music:
           - variable: isTVPlaying
             value: true
       - player_name: "Guest Bathroom"
-        default_volume: 17
+        default_volume: 10
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
