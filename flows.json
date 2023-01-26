@@ -5332,6 +5332,91 @@
         "wires": []
     },
     {
+        "id": "53d4e4efdc24769d",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": false,
+        "x": 840,
+        "y": 680,
+        "wires": [
+            [
+                "1f2c2279830e6f01"
+            ]
+        ]
+    },
+    {
+        "id": "547ddda64a1b6148",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set all speaker volumes to 0 when sleep starts",
+        "info": "",
+        "x": 910,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "1f2c2279830e6f01",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "if sleep",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "sleep",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1020,
+        "y": 680,
+        "wires": [
+            [
+                "04d8ead9f50cc124"
+            ]
+        ]
+    },
+    {
+        "id": "04d8ead9f50cc124",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "For all speakers generate volume 0 msg",
+        "func": "playerNames = new Set()\n\nmusicConfig = global.get(\"state\").musicConfig.value\n\nObject.values(musicConfig).forEach(function(musicType) {\n    musicType.participants.forEach(function(participant) {\n        playerNames.add(participant.player_name)\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    msg.payload = 0\n    node.send(msg);\n});",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 680,
+        "wires": [
+            [
+                "dfd5eadfaffa3982"
+            ]
+        ]
+    },
+    {
+        "id": "dfd5eadfaffa3982",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.set.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Set a volume",
+        "x": 1510,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "f98f511841b27c8c",
         "type": "comment",
         "z": "634c78c80eb9f37e",
@@ -7606,7 +7691,7 @@
             }
         ],
         "repeat": "",
-        "crontab": "45 07 * * 1,2,3,4,5",
+        "crontab": "30 07 * * 1,2,3,4,5",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
@@ -7644,7 +7729,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Reduce Volume of Currently Playing Music",
-        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    participant.volume--;\n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
+        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    if (participant.volume > 0) {\n        participant.volume--;\n    }\n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7702,7 +7787,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Duplicate message many times",
-        "func": "for (let i = 0; i <= 60; i++) {\n  node.send(msg)\n} ",
+        "func": "for (let i = 0; i <= 100; i++) {\n  node.send(msg)\n} ",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7983,7 +8068,7 @@
         "name": "Before wake-up",
         "props": [],
         "repeat": "",
-        "crontab": "45 07 * * 1,2,3,4,5",
+        "crontab": "30 07 * * 1,2,3,4,5",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
@@ -8010,7 +8095,7 @@
         ],
         "deviceId": [],
         "entityId": [],
-        "data": "{\"transition\": 900, \"color_temp\": 290, \"brightness_pct\": 100}",
+        "data": "{\"transition\": 1800, \"color_temp\": 290, \"brightness_pct\": 100}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
