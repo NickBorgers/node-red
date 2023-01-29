@@ -1578,53 +1578,6 @@
         "wires": []
     },
     {
-        "id": "d0e3234db5ed142a",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "b69e9a96.7fc43",
-        "name": "Master Asleep",
-        "triggerOnInit": true,
-        "x": 150,
-        "y": 940,
-        "wires": [
-            [
-                "5aca578258e5aa5c"
-            ]
-        ]
-    },
-    {
-        "id": "5aca578258e5aa5c",
-        "type": "function",
-        "z": "d7a3510d.e93d98",
-        "name": "Are there guests?",
-        "func": "// If we don't have guests, drive this just based on master\nif(global.get(\"state\").isMasterAsleep.value && (global.get(\"state\").isHaveGuests.value == false)) {\n    msg.payload = true\n    return msg;\n}\nreturn null",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 940,
-        "wires": [
-            [
-                "7c52551b8f2e07e3"
-            ]
-        ]
-    },
-    {
-        "id": "7c52551b8f2e07e3",
-        "type": "set-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "60c1725bc2519ee0",
-        "name": "Everyone Asleep",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 610,
-        "y": 940,
-        "wires": []
-    },
-    {
         "id": "f1aab11be0de5020",
         "type": "comment",
         "z": "d7a3510d.e93d98",
@@ -2320,26 +2273,7 @@
         "y": 580,
         "wires": [
             [
-                "969e4b63.ed934"
-            ]
-        ]
-    },
-    {
-        "id": "969e4b63.ed934",
-        "type": "function",
-        "z": "16cd74edb3f2c03d",
-        "name": "Check if anyone home",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return msg\n}\n// Somebody is home, do nothing\nreturn null",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 580,
-        "wires": [
-            [
-                "6e7492c93999c36c"
+                "a14179adc764d592"
             ]
         ]
     },
@@ -2580,7 +2514,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 580,
+        "y": 520,
         "wires": [
             [
                 "7ed258ec2fd76e0a"
@@ -2885,6 +2819,226 @@
         ]
     },
     {
+        "id": "54078ecde99da032",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn off TV",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [
+            "living_room"
+        ],
+        "deviceId": [
+            "4cb91db5c368ef79e9cd2fafb2e9ac3c"
+        ],
+        "entityId": [
+            "remote.big_beautiful_oled"
+        ],
+        "data": "{\"delay_secs\":1, \"command\": [\"home_hold\",\"select\"]}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 530,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0266ff67bd766f59",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on Apple TV",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [
+            "living_room"
+        ],
+        "deviceId": [
+            "4cb91db5c368ef79e9cd2fafb2e9ac3c"
+        ],
+        "entityId": [
+            "remote.big_beautiful_oled"
+        ],
+        "data": "{\"command\": \"home\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1070,
+        "y": 360,
+        "wires": [
+            [
+                "fa7a5706b010cfbf",
+                "bbb3c2adcebcc288",
+                "d138ea7f8fd5969b"
+            ]
+        ]
+    },
+    {
+        "id": "8ba57550455da33b",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Go to home screen",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [
+            "living_room"
+        ],
+        "deviceId": [
+            "4cb91db5c368ef79e9cd2fafb2e9ac3c"
+        ],
+        "entityId": [
+            "remote.big_beautiful_oled"
+        ],
+        "data": "{\"command\": \"home\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1530,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa7a5706b010cfbf",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1340,
+        "y": 360,
+        "wires": [
+            [
+                "8ba57550455da33b"
+            ]
+        ]
+    },
+    {
+        "id": "b4bae27b40c93f10",
+        "type": "comment",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on TV and screensaver",
+        "info": "",
+        "x": 1040,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "bbb3c2adcebcc288",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1340,
+        "y": 420,
+        "wires": [
+            [
+                "8ba57550455da33b"
+            ]
+        ]
+    },
+    {
+        "id": "d138ea7f8fd5969b",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "9",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1340,
+        "y": 480,
+        "wires": [
+            [
+                "8ba57550455da33b"
+            ]
+        ]
+    },
+    {
+        "id": "9d79d6cd3f994b75",
+        "type": "link in",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on Apple TV Screensaver",
+        "links": [],
+        "x": 935,
+        "y": 360,
+        "wires": [
+            [
+                "0266ff67bd766f59"
+            ]
+        ]
+    },
+    {
+        "id": "a14179adc764d592",
+        "type": "switch",
+        "z": "16cd74edb3f2c03d",
+        "name": "If noone home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "6e7492c93999c36c",
+                "54078ecde99da032"
+            ]
+        ]
+    },
+    {
         "id": "f744b5b41bd0fbe0",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
@@ -2894,7 +3048,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Put provided URI into queue",
-        "x": 1160,
+        "x": 1240,
         "y": 140,
         "wires": [
             [
@@ -2912,7 +3066,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Start Playing",
-        "x": 1730,
+        "x": 1810,
         "y": 140,
         "wires": [
             [
@@ -2930,7 +3084,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set to Repeat this playlist forever",
-        "x": 1360,
+        "x": 1440,
         "y": 200,
         "wires": [
             [
@@ -2948,7 +3102,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Clear existing Queue",
-        "x": 1260,
+        "x": 1340,
         "y": 80,
         "wires": [
             [
@@ -2967,7 +3121,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 680,
         "y": 100,
         "wires": [
             [
@@ -2993,7 +3147,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 870,
+        "x": 950,
         "y": 260,
         "wires": []
     },
@@ -3017,7 +3171,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Create playback group",
-        "x": 880,
+        "x": 960,
         "y": 80,
         "wires": [
             [
@@ -3036,7 +3190,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2150,
+        "x": 2230,
         "y": 280,
         "wires": [
             [
@@ -3119,7 +3273,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 150,
+        "x": 170,
         "y": 280,
         "wires": [
             [
@@ -3138,14 +3292,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 170,
+        "x": 190,
         "y": 160,
         "wires": [
             [
                 "c1a50671a5ed2076"
             ],
             [
-                "a4d61097e5c3a5ba"
+                "1d6d18eb04f69a2b"
             ]
         ]
     },
@@ -3175,7 +3329,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1650,
+        "x": 1730,
         "y": 80,
         "wires": [
             [
@@ -3190,7 +3344,7 @@
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": false,
-        "x": 120,
+        "x": 140,
         "y": 100,
         "wires": [
             [
@@ -3293,27 +3447,7 @@
         "y": 860,
         "wires": [
             [
-                "b8dd3ae503eaaf92"
-            ]
-        ]
-    },
-    {
-        "id": "b8dd3ae503eaaf92",
-        "type": "function",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Check if anyone home",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = false\n    return msg\n}\n// Somebody is home, do nothing\nreturn null",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 860,
-        "wires": [
-            [
-                "9af76eda23a1c810",
-                "d5f59723898a7298"
+                "ac0919edce9342cb"
             ]
         ]
     },
@@ -3338,7 +3472,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 610,
+        "x": 690,
         "y": 860,
         "wires": [
             [
@@ -3357,12 +3491,11 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 310,
-        "y": 800,
+        "x": 230,
+        "y": 820,
         "wires": [
             [
-                "9af76eda23a1c810",
-                "d5f59723898a7298"
+                "84aa12b53063f146"
             ]
         ]
     },
@@ -3376,7 +3509,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Break group for player",
-        "x": 900,
+        "x": 980,
         "y": 860,
         "wires": [
             [
@@ -3394,7 +3527,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Clear any queue for player",
-        "x": 640,
+        "x": 720,
         "y": 920,
         "wires": [
             [
@@ -3412,7 +3545,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Stop any playback for player",
-        "x": 920,
+        "x": 1000,
         "y": 920,
         "wires": [
             []
@@ -3619,7 +3752,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set this playlist to shuffle",
-        "x": 1630,
+        "x": 1710,
         "y": 200,
         "wires": [
             [
@@ -3680,8 +3813,8 @@
         "state": "",
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
-        "name": "Mute all participants",
-        "x": 1040,
+        "name": "Mute Participant",
+        "x": 1180,
         "y": 200,
         "wires": [
             []
@@ -3697,7 +3830,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Skip first track",
-        "x": 1840,
+        "x": 1920,
         "y": 200,
         "wires": [
             [
@@ -3716,7 +3849,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2640,
+        "x": 2720,
         "y": 380,
         "wires": [
             [
@@ -3754,7 +3887,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Unmute appropriate participants",
-        "x": 3050,
+        "x": 3130,
         "y": 380,
         "wires": [
             []
@@ -3777,7 +3910,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1390,
+        "x": 1470,
         "y": 140,
         "wires": [
             [
@@ -3802,7 +3935,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": false,
-        "x": 1490,
+        "x": 1570,
         "y": 380,
         "wires": [
             [
@@ -3817,7 +3950,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": false,
-        "x": 1490,
+        "x": 1570,
         "y": 440,
         "wires": [
             [
@@ -3844,7 +3977,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
+        "x": 720,
         "y": 800,
         "wires": [
             [
@@ -3861,7 +3994,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 860,
+        "x": 940,
         "y": 800,
         "wires": []
     },
@@ -3983,7 +4116,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 890,
+        "x": 970,
         "y": 140,
         "wires": []
     },
@@ -3995,7 +4128,7 @@
         "pauseType": "rate",
         "timeout": "1",
         "timeoutUnits": "seconds",
-        "rate": "2",
+        "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -4004,7 +4137,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2830,
+        "x": 2910,
         "y": 380,
         "wires": [
             [
@@ -4023,7 +4156,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1740,
+        "x": 1820,
         "y": 380,
         "wires": [
             [
@@ -4054,22 +4187,6 @@
             [
                 "b14e74697315444e"
             ]
-        ]
-    },
-    {
-        "id": "92f3589d8ec1ba01",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "confignode": "eb483a028b06c90a",
-        "command": "group.stop",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": false,
-        "name": "Stop playback",
-        "x": 620,
-        "y": 180,
-        "wires": [
-            []
         ]
     },
     {
@@ -4117,7 +4234,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1810,
+        "x": 1890,
         "y": 320,
         "wires": [
             [
@@ -4157,7 +4274,7 @@
         "state": "3d96ef25996d1dd1",
         "name": "Reset",
         "triggerOnInit": false,
-        "x": 70,
+        "x": 90,
         "y": 220,
         "wires": [
             [
@@ -4314,7 +4431,7 @@
         "state": "d9abb6b3441e0c2a",
         "name": "Is TV Playing?",
         "triggerOnInit": false,
-        "x": 1490,
+        "x": 1570,
         "y": 500,
         "wires": [
             [
@@ -4339,7 +4456,7 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 600,
+        "x": 680,
         "y": 260,
         "wires": [
             [
@@ -4416,8 +4533,8 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "",
         "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -4427,7 +4544,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1070,
+        "x": 1140,
         "y": 80,
         "wires": [
             [
@@ -4439,11 +4556,11 @@
         "id": "74c73e32cb11e451",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
+        "name": "Delay",
         "pauseType": "delay",
         "timeout": "100",
         "timeoutUnits": "milliseconds",
-        "rate": "1",
+        "rate": "10",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -4452,11 +4569,11 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 850,
+        "x": 910,
         "y": 200,
         "wires": [
             [
-                "f03b35b35db09355"
+                "f20a5ab810409235"
             ]
         ]
     },
@@ -4477,7 +4594,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1450,
+        "x": 1530,
         "y": 80,
         "wires": [
             [
@@ -4502,7 +4619,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1570,
+        "x": 1650,
         "y": 140,
         "wires": [
             [
@@ -4527,7 +4644,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2460,
+        "x": 2540,
         "y": 380,
         "wires": [
             [
@@ -4552,7 +4669,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2450,
+        "x": 2530,
         "y": 160,
         "wires": [
             [
@@ -4564,7 +4681,7 @@
         "id": "c1a50671a5ed2076",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
+        "name": "Limit",
         "pauseType": "rate",
         "timeout": "5",
         "timeoutUnits": "seconds",
@@ -4577,36 +4694,11 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 360,
+        "x": 370,
         "y": 100,
         "wires": [
             [
-                "2af7ad02c544ef24"
-            ]
-        ]
-    },
-    {
-        "id": "a4d61097e5c3a5ba",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 420,
-        "y": 180,
-        "wires": [
-            [
-                "92f3589d8ec1ba01"
+                "15448e0eedc040e8"
             ]
         ]
     },
@@ -4646,7 +4738,7 @@
             "1e65c8e512e5da5c"
         ],
         "uncaught": false,
-        "x": 110,
+        "x": 130,
         "y": 320,
         "wires": [
             [
@@ -4671,7 +4763,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 300,
+        "x": 320,
         "y": 320,
         "wires": [
             [
@@ -4686,7 +4778,7 @@
         "state": "3e3052d11dc41010",
         "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
-        "x": 1550,
+        "x": 1630,
         "y": 560,
         "wires": [
             [
@@ -4711,7 +4803,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 460,
+        "x": 480,
         "y": 320,
         "wires": [
             [
@@ -4725,7 +4817,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Reset Music",
         "links": [],
-        "x": 185,
+        "x": 205,
         "y": 220,
         "wires": [
             [
@@ -4953,7 +5045,7 @@
             "208a5dede994fffb"
         ],
         "uncaught": false,
-        "x": 630,
+        "x": 810,
         "y": 1520,
         "wires": [
             []
@@ -4989,35 +5081,10 @@
             }
         ],
         "queue": "none",
-        "x": 700,
+        "x": 880,
         "y": 1460,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "6bb965cc294dceee",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "2",
-        "nbRateUnits": "5",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 520,
-        "y": 1460,
-        "wires": [
-            [
-                "208a5dede994fffb"
-            ]
         ]
     },
     {
@@ -5037,11 +5104,11 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 360,
+        "x": 540,
         "y": 1460,
         "wires": [
             [
-                "6bb965cc294dceee"
+                "208a5dede994fffb"
             ]
         ]
     },
@@ -5061,7 +5128,7 @@
         "z": "90f5fe8cb80ae6a7",
         "state": "9784d6c488d7a77e",
         "name": "Is TV On?",
-        "triggerOnInit": true,
+        "triggerOnInit": false,
         "x": 80,
         "y": 1460,
         "wires": [
@@ -5089,7 +5156,7 @@
         "y": 1460,
         "wires": [
             [
-                "99acc5997d05518e"
+                "3b152c7512f4ac2d"
             ]
         ]
     },
@@ -5101,7 +5168,7 @@
         "links": [
             "9cf90b7812a7ab73"
         ],
-        "x": 1885,
+        "x": 1965,
         "y": 260,
         "wires": [
             [
@@ -5130,8 +5197,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 380,
-        "y": 1520,
+        "x": 540,
+        "y": 1640,
         "wires": [
             [
                 "208a5dede994fffb"
@@ -5148,7 +5215,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
-        "x": 2830,
+        "x": 2910,
         "y": 160,
         "wires": [
             [
@@ -5175,7 +5242,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2640,
+        "x": 2720,
         "y": 160,
         "wires": [
             [
@@ -5194,7 +5261,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3040,
+        "x": 3120,
         "y": 160,
         "wires": [
             [
@@ -5215,7 +5282,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set a volume",
-        "x": 3130,
+        "x": 3210,
         "y": 280,
         "wires": [
             []
@@ -5238,7 +5305,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2970,
+        "x": 3050,
         "y": 280,
         "wires": [
             [
@@ -5263,7 +5330,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2500,
+        "x": 2580,
         "y": 280,
         "wires": [
             [
@@ -5282,7 +5349,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2700,
+        "x": 2780,
         "y": 280,
         "wires": [
             [
@@ -5330,6 +5397,291 @@
         "x": 2590,
         "y": 240,
         "wires": []
+    },
+    {
+        "id": "53d4e4efdc24769d",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": false,
+        "x": 840,
+        "y": 680,
+        "wires": [
+            [
+                "1f2c2279830e6f01"
+            ]
+        ]
+    },
+    {
+        "id": "547ddda64a1b6148",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set all speaker volumes to 0 when sleep starts",
+        "info": "",
+        "x": 910,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "1f2c2279830e6f01",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "if sleep",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "sleep",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1020,
+        "y": 680,
+        "wires": [
+            [
+                "04d8ead9f50cc124"
+            ]
+        ]
+    },
+    {
+        "id": "04d8ead9f50cc124",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "For all speakers generate volume 0 msg",
+        "func": "playerNames = new Set()\n\nmusicConfig = global.get(\"state\").musicConfig.value\n\nObject.values(musicConfig).forEach(function(musicType) {\n    musicType.participants.forEach(function(participant) {\n        playerNames.add(participant.player_name)\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    msg.payload = 0\n    node.send(msg);\n});",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 680,
+        "wires": [
+            [
+                "dfd5eadfaffa3982"
+            ]
+        ]
+    },
+    {
+        "id": "dfd5eadfaffa3982",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.set.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Set a volume",
+        "x": 1510,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9321d252a71550cd",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 1520,
+        "wires": [
+            [
+                "208a5dede994fffb"
+            ]
+        ]
+    },
+    {
+        "id": "801adf24fd80f807",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "12",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 1580,
+        "wires": [
+            [
+                "208a5dede994fffb"
+            ]
+        ]
+    },
+    {
+        "id": "3b152c7512f4ac2d",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 1460,
+        "wires": [
+            [
+                "99acc5997d05518e",
+                "9321d252a71550cd",
+                "801adf24fd80f807"
+            ]
+        ]
+    },
+    {
+        "id": "f20a5ab810409235",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Limit",
+        "pauseType": "rate",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1030,
+        "y": 200,
+        "wires": [
+            [
+                "f03b35b35db09355"
+            ]
+        ]
+    },
+    {
+        "id": "ac0919edce9342cb",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "If noone home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 260,
+        "y": 860,
+        "wires": [
+            [
+                "84aa12b53063f146"
+            ]
+        ]
+    },
+    {
+        "id": "8a79fe3b400b6c66",
+        "type": "link in",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Stop all Music Playback",
+        "links": [
+            "37f338bf292f6dfb",
+            "1d6d18eb04f69a2b"
+        ],
+        "x": 435,
+        "y": 860,
+        "wires": [
+            [
+                "9af76eda23a1c810"
+            ]
+        ]
+    },
+    {
+        "id": "1d6d18eb04f69a2b",
+        "type": "link out",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Stop all Music Playback",
+        "mode": "link",
+        "links": [
+            "8a79fe3b400b6c66"
+        ],
+        "x": 355,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "15448e0eedc040e8",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Delay",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 100,
+        "wires": [
+            [
+                "2af7ad02c544ef24"
+            ]
+        ]
+    },
+    {
+        "id": "84aa12b53063f146",
+        "type": "change",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Aggregate",
+        "rules": [],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 800,
+        "wires": [
+            [
+                "9af76eda23a1c810",
+                "d5f59723898a7298"
+            ]
+        ]
     },
     {
         "id": "f98f511841b27c8c",
@@ -5712,7 +6064,7 @@
         "props": [],
         "repeat": "7200",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "900",
         "topic": "",
         "x": 140,
@@ -5963,7 +6315,7 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Phase Decider",
-        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    msg.payload = \"morning\"\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // If it's after 7pm, go ahead and roll with dusk\n    if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // Get current time\n    now = new Date()\n    // Get the hour\n    this_hour = now.getHours()\n    // Get the minute\n    this_minute = now.getMinutes()\n    // If it's after 11:30pm, go ahead and roll with night\n    if (this_hour >= 23 && this_minute >= 30) {\n        msg.payload = \"night\"\n    // If it's after 9:30pm, go ahead and roll with winddown\n    } else if ((this_hour >= 21 && this_minute >= 30) || this_hour >= 22) {\n        msg.payload = \"winddown\"\n    // If it's after 7pm, use dusk instead\n    } else if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not 7pm yet I don't care, use sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
+        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// Get override times\ndusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nwindown_time = new Date(global.get(\"state\").schedule.value.windown)\nnight_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > windown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6017,17 +6369,6 @@
         ]
     },
     {
-        "id": "010adf42d0378bf0",
-        "type": "comment",
-        "z": "634c78c80eb9f37e",
-        "name": "Decider has hardcoded times right now, need to fix",
-        "info": "",
-        "x": 530,
-        "y": 560,
-        "wires": [],
-        "icon": "font-awesome/fa-question-circle"
-    },
-    {
         "id": "03d49e6e6a6a882d",
         "type": "file in",
         "z": "634c78c80eb9f37e",
@@ -6056,7 +6397,7 @@
         "y": 40,
         "wires": [
             [
-                "91bfd1cbe0c7c95b"
+                "e9dd15aabc896de3"
             ]
         ]
     },
@@ -6069,9 +6410,28 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1060,
+        "x": 1260,
         "y": 40,
         "wires": []
+    },
+    {
+        "id": "e9dd15aabc896de3",
+        "type": "function",
+        "z": "634c78c80eb9f37e",
+        "name": "Parse schedule times",
+        "func": "var today = new Date();\nvar dd = String(today.getDate()).padStart(2, '0');\nvar mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!\nvar yyyy = today.getFullYear();\n\ntoday = yyyy + '-' + mm + '-' + dd;\n\nschedule = {}\n\nfunction get_time_from_string (string_time) {\n    return Date.parse(today+'T'+string_time+\":00\")\n}\n\nschedule.begin_wake = get_time_from_string(msg.payload.schedule.begin_wake)\nschedule.wake = get_time_from_string(msg.payload.schedule.wake)\nschedule.dusk = get_time_from_string(msg.payload.schedule.dusk)\nschedule.winddown = get_time_from_string(msg.payload.schedule.winddown)\nschedule.stop_screens = get_time_from_string(msg.payload.schedule.stop_screens)\nschedule.go_to_bed = get_time_from_string(msg.payload.schedule.go_to_bed)\nschedule.night = get_time_from_string(msg.payload.schedule.night)\n\nmsg.payload = schedule\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 40,
+        "wires": [
+            [
+                "91bfd1cbe0c7c95b"
+            ]
+        ]
     },
     {
         "id": "d389488a08d98ed3",
@@ -6336,10 +6696,10 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 140,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
-                "2192d9c1b6dec6df"
+                "3a29bf394c945c90"
             ]
         ]
     },
@@ -6412,8 +6772,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 180,
+        "x": 180,
+        "y": 240,
         "wires": [
             [
                 "943c5232d392ac86"
@@ -6901,6 +7261,421 @@
             [
                 "1cc2997adf18efd4",
                 "d389488a08d98ed3"
+            ]
+        ]
+    },
+    {
+        "id": "f38ee7a3c51b0389",
+        "type": "miio-roborock-command",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Entryway",
+        "server": "b63f730b24581cdc",
+        "command_name": "► Start room cleaning",
+        "command": "app_segment_clean",
+        "commandType": "vacuum_cmd",
+        "payload": "17",
+        "payloadType": "num",
+        "coordinates": "",
+        "fan_speed": 100,
+        "voice_pack": null,
+        "homekit_stop_to_dock": false,
+        "x": 660,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "30476d80162c5584",
+        "type": "comment",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Entryway",
+        "info": "",
+        "x": 100,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "70dd2750ef69c883",
+        "type": "change",
+        "z": "45c21b8b98ae2f01",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 900,
+        "wires": [
+            [
+                "bbbe4b1d331694d3"
+            ]
+        ]
+    },
+    {
+        "id": "bcdb42a387ca65b0",
+        "type": "delay",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 840,
+        "wires": [
+            [
+                "b576eb6dde1e8c0d"
+            ]
+        ]
+    },
+    {
+        "id": "9c6e10d8714bd13f",
+        "type": "inject",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 900,
+        "wires": [
+            [
+                "70dd2750ef69c883"
+            ]
+        ]
+    },
+    {
+        "id": "bbbe4b1d331694d3",
+        "type": "homekit-service",
+        "z": "45c21b8b98ae2f01",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Clean Entryway",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 840,
+        "wires": [
+            [
+                "bcdb42a387ca65b0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b576eb6dde1e8c0d",
+        "type": "switch",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 840,
+        "wires": [
+            [
+                "f38ee7a3c51b0389",
+                "70dd2750ef69c883"
+            ]
+        ]
+    },
+    {
+        "id": "02edb1b65217113e",
+        "type": "miio-roborock-command",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Master Bath",
+        "server": "b63f730b24581cdc",
+        "command_name": "► Start room cleaning",
+        "command": "app_segment_clean",
+        "commandType": "vacuum_cmd",
+        "payload": "23",
+        "payloadType": "num",
+        "coordinates": "",
+        "fan_speed": 100,
+        "voice_pack": null,
+        "homekit_stop_to_dock": false,
+        "x": 670,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e574e77415853b6",
+        "type": "comment",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Master Bath",
+        "info": "",
+        "x": 110,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "e6178b09c2ead93b",
+        "type": "change",
+        "z": "45c21b8b98ae2f01",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 1060,
+        "wires": [
+            [
+                "bb68bf3e759f5cdf"
+            ]
+        ]
+    },
+    {
+        "id": "11176f46fc615053",
+        "type": "delay",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 1000,
+        "wires": [
+            [
+                "034aca5c9ead9aaf"
+            ]
+        ]
+    },
+    {
+        "id": "6a72915831b6a28c",
+        "type": "inject",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1060,
+        "wires": [
+            [
+                "e6178b09c2ead93b"
+            ]
+        ]
+    },
+    {
+        "id": "bb68bf3e759f5cdf",
+        "type": "homekit-service",
+        "z": "45c21b8b98ae2f01",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Clean Master Bath",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 1000,
+        "wires": [
+            [
+                "11176f46fc615053"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "034aca5c9ead9aaf",
+        "type": "switch",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 1000,
+        "wires": [
+            [
+                "02edb1b65217113e",
+                "e6178b09c2ead93b"
+            ]
+        ]
+    },
+    {
+        "id": "3a29bf394c945c90",
+        "type": "delay",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "2192d9c1b6dec6df"
             ]
         ]
     },
@@ -7596,31 +8371,6 @@
         "wires": []
     },
     {
-        "id": "5a68ab32843927be",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "Before wake-up",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "45 07 * * 1,2,3,4,5",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "whatever",
-        "payloadType": "str",
-        "x": 150,
-        "y": 100,
-        "wires": [
-            [
-                "928a0a31ac991089"
-            ]
-        ]
-    },
-    {
         "id": "928a0a31ac991089",
         "type": "function",
         "z": "95cf961539320dd3",
@@ -7631,7 +8381,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
+        "x": 260,
         "y": 100,
         "wires": [
             [
@@ -7644,13 +8394,13 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Reduce Volume of Currently Playing Music",
-        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    participant.volume--;\n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
+        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    if (participant.volume > 0) {\n        participant.volume--;\n    }\n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 250,
         "y": 200,
         "wires": [
             [
@@ -7668,7 +8418,7 @@
         "links": [
             "34bd02b0a6ce0a3f"
         ],
-        "x": 615,
+        "x": 475,
         "y": 260,
         "wires": []
     },
@@ -7689,7 +8439,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 920,
+        "x": 780,
         "y": 100,
         "wires": [
             [
@@ -7702,13 +8452,13 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Duplicate message many times",
-        "func": "for (let i = 0; i <= 60; i++) {\n  node.send(msg)\n} ",
+        "func": "for (let i = 0; i <= 100; i++) {\n  node.send(msg)\n} ",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
+        "x": 550,
         "y": 100,
         "wires": [
             [
@@ -7725,7 +8475,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 710,
+        "x": 570,
         "y": 200,
         "wires": []
     },
@@ -7750,7 +8500,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 480,
+        "x": 340,
         "y": 40,
         "wires": [
             [
@@ -7759,42 +8509,240 @@
         ]
     },
     {
-        "id": "2c4d218e099b884a",
+        "id": "3136712708331ea3",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Auto Wakeup",
+        "name": "Reduce volume by modifying currentlyPlaying object",
         "info": "",
-        "x": 110,
-        "y": 400,
+        "x": 270,
+        "y": 160,
         "wires": []
     },
     {
-        "id": "aab6bd67aaf53ce3",
+        "id": "bd681b1c8d39bf09",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Use normal volume set to apply",
+        "info": "",
+        "x": 630,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c725c25378348402",
         "type": "inject",
         "z": "95cf961539320dd3",
-        "name": "Auto wake-up",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "00 08 * * 1,2,3,4,5",
+        "name": "Check every minute",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "x": 140,
-        "y": 440,
+        "x": 160,
+        "y": 480,
         "wires": [
             [
-                "bf78c1f1983f4368"
+                "3275d4dbed0798c1"
             ]
         ]
     },
     {
-        "id": "97f5f1603f7e631a",
+        "id": "3275d4dbed0798c1",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Identify which time triggers are satisfied",
+        "func": "begin_wake_time = new Date(global.get(\"state\").schedule.value.begin_wake)\nwake_time = new Date(global.get(\"state\").schedule.value.wake)\nstop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\ngo_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nnow = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now > begin_wake_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - begin_wake_time) < ONE_HOUR) {\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now > wake_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - wake_time) < ONE_HOUR) {\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now > stop_screens_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - stop_screens_time) < ONE_HOUR) {\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now > go_to_bed_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - go_to_bed_time) < ONE_HOUR) {\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "db4ccb257569707c"
+            ]
+        ]
+    },
+    {
+        "id": "db4ccb257569707c",
+        "type": "switch",
+        "z": "95cf961539320dd3",
+        "name": "Route Messages",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "begin_wake",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "wake",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop_screens",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "go_to_bed",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 710,
+        "y": 480,
+        "wires": [
+            [
+                "1436fedcf61d1e78"
+            ],
+            [
+                "3b11d8f644b1a4bf"
+            ],
+            [
+                "ae68485605384501"
+            ],
+            [
+                "3a134624a0af51fb"
+            ]
+        ]
+    },
+    {
+        "id": "1436fedcf61d1e78",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 380,
+        "wires": [
+            [
+                "abd63eda68fd8674",
+                "933b06632a61b4c2"
+            ]
+        ]
+    },
+    {
+        "id": "3b11d8f644b1a4bf",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 460,
+        "wires": [
+            [
+                "fa146de078cdbe8d"
+            ]
+        ]
+    },
+    {
+        "id": "ae68485605384501",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 540,
+        "wires": [
+            [
+                "1085fc2a0db788a3"
+            ]
+        ]
+    },
+    {
+        "id": "3a134624a0af51fb",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 620,
+        "wires": [
+            [
+                "1085fc2a0db788a3"
+            ]
+        ]
+    },
+    {
+        "id": "abd63eda68fd8674",
+        "type": "link out",
+        "z": "95cf961539320dd3",
+        "name": "Before Wakeup",
+        "mode": "link",
+        "links": [],
+        "x": 1075,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "da54c4772dbeeaaf",
+        "type": "link in",
+        "z": "95cf961539320dd3",
+        "name": "Fade out sleep sounds",
+        "links": [],
+        "x": 75,
+        "y": 100,
+        "wires": [
+            [
+                "928a0a31ac991089"
+            ]
+        ]
+    },
+    {
+        "id": "ac0d047163dd056f",
         "type": "set-shared-state",
         "z": "95cf961539320dd3",
         "state": "b69e9a96.7fc43",
@@ -7802,89 +8750,136 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 620,
-        "y": 440,
+        "x": 1400,
+        "y": 460,
         "wires": []
     },
     {
-        "id": "bf78c1f1983f4368",
+        "id": "fa146de078cdbe8d",
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Ensure master is home and asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nreturn msg;",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\nmsg.payload = false\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 440,
+        "x": 1160,
+        "y": 460,
         "wires": [
             [
-                "97f5f1603f7e631a"
+                "ac0d047163dd056f"
             ]
         ]
     },
     {
-        "id": "18a95e3ded1a3298",
+        "id": "598754ddfd55071d",
         "type": "api-call-service",
         "z": "95cf961539320dd3",
-        "name": "Flash Lights",
+        "name": "Turn on Master Bedroom Lights Slowly",
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
         "domain": "light",
         "service": "turn_on",
         "areaId": [
-            "living_room",
-            "nook"
+            "master_bedroom"
         ],
         "deviceId": [],
         "entityId": [],
-        "data": "{\"flash\": \"short\"}",
+        "data": "{\"transition\": 1800, \"color_temp\": 290, \"brightness_pct\": 100}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 790,
-        "y": 540,
-        "wires": [
-            [
-                "155b4a97cc43ad8e"
-            ]
-        ]
-    },
-    {
-        "id": "9ea8215ef33d6060",
-        "type": "api-call-service",
-        "z": "95cf961539320dd3",
-        "name": "Flash Lights",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [
-            "living_room",
-            "nook"
-        ],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\"flash\": \"short\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1090,
-        "y": 540,
+        "x": 1510,
+        "y": 380,
         "wires": [
             []
         ]
     },
     {
-        "id": "155b4a97cc43ad8e",
+        "id": "013b7017f85ad5c9",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Before Wakeup time",
+        "info": "",
+        "x": 930,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "db0aed47fddfc328",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "At Wakeup time",
+        "info": "",
+        "x": 920,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "83673f02cf1c7866",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1530,
+        "y": 620,
+        "wires": [
+            [
+                "7ed38cdcf25b1c70"
+            ]
+        ]
+    },
+    {
+        "id": "2ef6b47ca1cf0854",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1830,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ed38cdcf25b1c70",
         "type": "delay",
         "z": "95cf961539320dd3",
         "name": "",
@@ -7900,45 +8895,26 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 940,
-        "y": 540,
+        "x": 1680,
+        "y": 620,
         "wires": [
             [
-                "9ea8215ef33d6060"
+                "2ef6b47ca1cf0854"
             ]
         ]
     },
     {
-        "id": "eadc2192bfca6069",
+        "id": "468e855f71924dbe",
         "type": "comment",
         "z": "95cf961539320dd3",
         "name": "Flash lights in common areas",
         "info": "",
-        "x": 840,
-        "y": 500,
+        "x": 1580,
+        "y": 580,
         "wires": []
     },
     {
-        "id": "5e9989853277defc",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "Notify to stop using screens",
-        "props": [],
-        "repeat": "",
-        "crontab": "00 22 * * 1,2,3,4,0",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 190,
-        "y": 540,
-        "wires": [
-            [
-                "97584da3ae7e0bb2"
-            ]
-        ]
-    },
-    {
-        "id": "97584da3ae7e0bb2",
+        "id": "1085fc2a0db788a3",
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Check if anyone home and not everyone asleep",
@@ -7948,117 +8924,81 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 540,
+        "x": 1260,
+        "y": 620,
         "wires": [
             [
-                "18a95e3ded1a3298"
+                "83673f02cf1c7866"
             ]
         ]
     },
     {
-        "id": "98ed89c644b239ae",
+        "id": "732b6e52425b9427",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Notifications to help with winddown",
+        "name": "When time to stop using screens",
         "info": "",
-        "x": 180,
+        "x": 970,
         "y": 500,
         "wires": []
     },
     {
-        "id": "a1ef0e5197dfb196",
+        "id": "96afb3a9d2a7d841",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "When time to go to bed",
+        "info": "",
+        "x": 940,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "933b06632a61b4c2",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Ensure master is home and asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 380,
+        "wires": [
+            [
+                "598754ddfd55071d"
+            ]
+        ]
+    },
+    {
+        "id": "7096f06620fde73c",
         "type": "comment",
         "z": "95cf961539320dd3",
         "name": "Fade Up Bedroom Lights",
         "info": "",
-        "x": 150,
-        "y": 300,
+        "x": 1470,
+        "y": 340,
         "wires": []
     },
     {
-        "id": "0bb2f2ed1a74460f",
-        "type": "inject",
+        "id": "1a40e8a8fe20fc43",
+        "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Before wake-up",
-        "props": [],
-        "repeat": "",
-        "crontab": "45 07 * * 1,2,3,4,5",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 150,
-        "y": 340,
-        "wires": [
-            [
-                "275ab3ce38067011"
-            ]
-        ]
+        "name": "Auto Wakeup",
+        "info": "",
+        "x": 1390,
+        "y": 420,
+        "wires": []
     },
     {
-        "id": "275ab3ce38067011",
-        "type": "api-call-service",
+        "id": "e05bccce05e34da2",
+        "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Turn on Master Bedroom Lights Slowly",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [
-            "master_bedroom"
-        ],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\"transition\": 900, \"color_temp\": 290, \"brightness_pct\": 100}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 410,
-        "y": 340,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "041066fd79505d59",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "Notify to go to bed",
-        "props": [],
-        "repeat": "",
-        "crontab": "00 23 * * 1,2,3,4,0",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
+        "name": "Apply schedule config and trigger as appropriate",
+        "info": "",
         "x": 220,
-        "y": 580,
-        "wires": [
-            [
-                "97584da3ae7e0bb2"
-            ]
-        ]
-    },
-    {
-        "id": "3136712708331ea3",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Reduce volume by modifying currentlyPlaying object",
-        "info": "",
-        "x": 410,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "bd681b1c8d39bf09",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Use normal volume set to apply",
-        "info": "",
-        "x": 770,
-        "y": 260,
+        "y": 340,
         "wires": []
     },
     {
@@ -8069,24 +9009,9 @@
         "logger": "e98cb8b7d7a02f27",
         "complete": "true",
         "loglevel": "info",
-        "x": 450,
-        "y": 160,
+        "x": 790,
+        "y": 500,
         "wires": []
-    },
-    {
-        "id": "b75fb2b31f3ab775",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "1dd96a4a.9d6316",
-        "name": "Anyone Home",
-        "triggerOnInit": false,
-        "x": 150,
-        "y": 80,
-        "wires": [
-            [
-                "a99efe1134ae512d"
-            ]
-        ]
     },
     {
         "id": "397f1108a960601f",
@@ -8099,7 +9024,7 @@
         "y": 120,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8114,7 +9039,7 @@
         "y": 160,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8122,14 +9047,14 @@
         "id": "e814263e57b76d82",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "156ccde543ba4845",
-        "name": "Guest Asleep",
+        "state": "60c1725bc2519ee0",
+        "name": "Everyone Asleep",
         "triggerOnInit": false,
-        "x": 150,
-        "y": 200,
+        "x": 160,
+        "y": 240,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8137,14 +9062,14 @@
         "id": "6c3515ab36ce9cbc",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "86b433f8beadaac5",
-        "name": "Hue Config",
+        "state": "156ccde543ba4845",
+        "name": "Guest Asleep",
         "triggerOnInit": false,
         "x": 150,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8152,14 +9077,14 @@
         "id": "1acc23f7c21becd6",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "b69e9a96.7fc43",
-        "name": "Master Asleep",
+        "state": "a5ea3d0a7df352b2",
+        "name": "Have Guests?",
         "triggerOnInit": false,
         "x": 150,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8167,14 +9092,14 @@
         "id": "2aa7698b4364880c",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "e4f5bf03444063a0",
-        "name": "Music Config",
+        "state": "86b433f8beadaac5",
+        "name": "Hue Config",
         "triggerOnInit": false,
         "x": 150,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8182,14 +9107,14 @@
         "id": "ba6acb2cd13275c6",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "8c211e55da1f4c7f",
-        "name": "Music Playback Type",
+        "state": "3e3052d11dc41010",
+        "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
-        "x": 180,
-        "y": 360,
+        "x": 210,
+        "y": 400,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8197,14 +9122,14 @@
         "id": "99e192fa7b4ef8b6",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "659fd61043193a4d",
-        "name": "Music Playlist Numbers",
+        "state": "8c8dbb69a0c4c67f",
+        "name": "Is Master Bedroom Door Open?",
         "triggerOnInit": false,
-        "x": 180,
-        "y": 400,
+        "x": 210,
+        "y": 440,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8212,14 +9137,14 @@
         "id": "a51249a224ea8dbb",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "e3cb7570.0dbb48",
-        "name": "Nick Home",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
         "triggerOnInit": false,
         "x": 140,
-        "y": 440,
+        "y": 200,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8227,14 +9152,14 @@
         "id": "224e1c91419b027f",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "174c278f.609ec8",
-        "name": "Sun Event",
+        "state": "9784d6c488d7a77e",
+        "name": "Is TV On?",
         "triggerOnInit": false,
         "x": 140,
         "y": 480,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "d302fd95b8fbd25a"
             ]
         ]
     },
@@ -8242,14 +9167,168 @@
         "id": "946ab51969f69a22",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "efc87f0de00a2d36",
-        "name": "Day Phase",
+        "state": "d9abb6b3441e0c2a",
+        "name": "Is TV Playing?",
         "triggerOnInit": false,
-        "x": 140,
+        "x": 150,
         "y": 520,
         "wires": [
             [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "d302fd95b8fbd25a",
+        "type": "function",
+        "z": "9e0490d1fc323107",
+        "name": "If object move to such an attribute",
+        "func": "if (typeof msg.payload == \"object\") {\n    msg.object = msg.payload\n    msg.payload = \"object\"\n    msg.object_string = JSON.stringify(msg.object);\n} else if (typeof msg.payload == \"string\") {\n    msg.string = msg.payload\n    msg.payload = \"string\"\n} else if (typeof msg.payload == \"number\") {\n    msg.number = msg.payload\n    msg.payload = \"number\"\n} else if (typeof msg.payload == \"boolean\") {\n    msg.boolean = msg.payload\n    msg.payload = \"boolean\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
                 "a99efe1134ae512d"
+            ]
+        ]
+    },
+    {
+        "id": "f2d07297affa0f44",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "e498a23d75394b05",
+        "name": "Last Vaccuming Timestamp",
+        "triggerOnInit": false,
+        "x": 200,
+        "y": 560,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "428ef2c98f36c39f",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": false,
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "aaaec1687e570cc8",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "e4f5bf03444063a0",
+        "name": "Music Config",
+        "triggerOnInit": false,
+        "x": 150,
+        "y": 640,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "892a1fa97788998f",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": false,
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "8f0e34f261117ab2",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "659fd61043193a4d",
+        "name": "Music Playlist Numbers",
+        "triggerOnInit": false,
+        "x": 180,
+        "y": 720,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "a932511e3452f810",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "e3cb7570.0dbb48",
+        "name": "Nick Home",
+        "triggerOnInit": false,
+        "x": 140,
+        "y": 760,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "e5b05347dbf080c9",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "3d96ef25996d1dd1",
+        "name": "Reset",
+        "triggerOnInit": false,
+        "x": 130,
+        "y": 800,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "d6f35e4b01de6c88",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "f4fbefedb919c3c1",
+        "name": "Schedule",
+        "triggerOnInit": false,
+        "x": 140,
+        "y": 840,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "b65bf0d89d2df038",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "174c278f.609ec8",
+        "name": "Sun Event",
+        "triggerOnInit": false,
+        "x": 140,
+        "y": 880,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
             ]
         ]
     }
