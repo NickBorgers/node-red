@@ -1,6 +1,6 @@
 ---
 schedule:
-  begin_wake: "07:45"
+  begin_wake: "07:30"
   wake: "08:00"
   dusk: "19:00"
   winddown: "21:30"
