@@ -6369,17 +6369,6 @@
         ]
     },
     {
-        "id": "010adf42d0378bf0",
-        "type": "comment",
-        "z": "634c78c80eb9f37e",
-        "name": "Decider has hardcoded times right now, need to fix",
-        "info": "",
-        "x": 530,
-        "y": 560,
-        "wires": [],
-        "icon": "font-awesome/fa-question-circle"
-    },
-    {
         "id": "03d49e6e6a6a882d",
         "type": "file in",
         "z": "634c78c80eb9f37e",
@@ -6707,10 +6696,10 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 140,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
-                "2192d9c1b6dec6df"
+                "3a29bf394c945c90"
             ]
         ]
     },
@@ -6783,8 +6772,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 180,
+        "x": 180,
+        "y": 240,
         "wires": [
             [
                 "943c5232d392ac86"
@@ -7471,35 +7460,6 @@
         ]
     },
     {
-        "id": "db0ca5c5ea72ce3b",
-        "type": "inject",
-        "z": "45c21b8b98ae2f01",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 500,
-        "y": 900,
-        "wires": [
-            [
-                "f38ee7a3c51b0389"
-            ]
-        ]
-    },
-    {
         "id": "02edb1b65217113e",
         "type": "miio-roborock-command",
         "z": "45c21b8b98ae2f01",
@@ -7508,7 +7468,7 @@
         "command_name": "► Start room cleaning",
         "command": "app_segment_clean",
         "commandType": "vacuum_cmd",
-        "payload": "10",
+        "payload": "23",
         "payloadType": "num",
         "coordinates": "",
         "fan_speed": 100,
@@ -7695,73 +7655,29 @@
         ]
     },
     {
-        "id": "ba3e19a73fe716e1",
-        "type": "inject",
+        "id": "3a29bf394c945c90",
+        "type": "delay",
         "z": "45c21b8b98ae2f01",
         "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 500,
-        "y": 1060,
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 200,
         "wires": [
             [
-                "9794ee74ab47bde5"
+                "2192d9c1b6dec6df"
             ]
         ]
-    },
-    {
-        "id": "9794ee74ab47bde5",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "",
-        "server": "b63f730b24581cdc",
-        "command_name": "ⓘ Get room mapping",
-        "command": "get_room_mapping",
-        "commandType": "vacuum_cmd",
-        "payload": "payload",
-        "payloadType": "msg",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 700,
-        "y": 1060,
-        "wires": [
-            [
-                "c0cd276273d95141"
-            ]
-        ]
-    },
-    {
-        "id": "c0cd276273d95141",
-        "type": "debug",
-        "z": "45c21b8b98ae2f01",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 1060,
-        "wires": []
     },
     {
         "id": "f16bcb4bfea89461",
@@ -8455,31 +8371,6 @@
         "wires": []
     },
     {
-        "id": "5a68ab32843927be",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "Before wake-up",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "30 07 * * 1,2,3,4,5",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "whatever",
-        "payloadType": "str",
-        "x": 150,
-        "y": 100,
-        "wires": [
-            [
-                "928a0a31ac991089"
-            ]
-        ]
-    },
-    {
         "id": "928a0a31ac991089",
         "type": "function",
         "z": "95cf961539320dd3",
@@ -8490,7 +8381,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
+        "x": 260,
         "y": 100,
         "wires": [
             [
@@ -8509,7 +8400,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 250,
         "y": 200,
         "wires": [
             [
@@ -8527,7 +8418,7 @@
         "links": [
             "34bd02b0a6ce0a3f"
         ],
-        "x": 615,
+        "x": 475,
         "y": 260,
         "wires": []
     },
@@ -8548,7 +8439,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 920,
+        "x": 780,
         "y": 100,
         "wires": [
             [
@@ -8567,7 +8458,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
+        "x": 550,
         "y": 100,
         "wires": [
             [
@@ -8584,7 +8475,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 710,
+        "x": 570,
         "y": 200,
         "wires": []
     },
@@ -8609,7 +8500,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 480,
+        "x": 340,
         "y": 40,
         "wires": [
             [
@@ -8618,42 +8509,240 @@
         ]
     },
     {
-        "id": "2c4d218e099b884a",
+        "id": "3136712708331ea3",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Auto Wakeup",
+        "name": "Reduce volume by modifying currentlyPlaying object",
         "info": "",
-        "x": 110,
-        "y": 400,
+        "x": 270,
+        "y": 160,
         "wires": []
     },
     {
-        "id": "aab6bd67aaf53ce3",
+        "id": "bd681b1c8d39bf09",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Use normal volume set to apply",
+        "info": "",
+        "x": 630,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c725c25378348402",
         "type": "inject",
         "z": "95cf961539320dd3",
-        "name": "Auto wake-up",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "00 08 * * 1,2,3,4,5",
+        "name": "Check every minute",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "x": 140,
-        "y": 440,
+        "x": 160,
+        "y": 480,
         "wires": [
             [
-                "bf78c1f1983f4368"
+                "3275d4dbed0798c1"
             ]
         ]
     },
     {
-        "id": "97f5f1603f7e631a",
+        "id": "3275d4dbed0798c1",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Identify which time triggers are satisfied",
+        "func": "begin_wake_time = new Date(global.get(\"state\").schedule.value.begin_wake)\nwake_time = new Date(global.get(\"state\").schedule.value.wake)\nstop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\ngo_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nnow = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now > begin_wake_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - begin_wake_time) < ONE_HOUR) {\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now > wake_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - wake_time) < ONE_HOUR) {\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now > stop_screens_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - stop_screens_time) < ONE_HOUR) {\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now > go_to_bed_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - go_to_bed_time) < ONE_HOUR) {\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "db4ccb257569707c"
+            ]
+        ]
+    },
+    {
+        "id": "db4ccb257569707c",
+        "type": "switch",
+        "z": "95cf961539320dd3",
+        "name": "Route Messages",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "begin_wake",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "wake",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop_screens",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "go_to_bed",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 710,
+        "y": 480,
+        "wires": [
+            [
+                "1436fedcf61d1e78"
+            ],
+            [
+                "3b11d8f644b1a4bf"
+            ],
+            [
+                "ae68485605384501"
+            ],
+            [
+                "3a134624a0af51fb"
+            ]
+        ]
+    },
+    {
+        "id": "1436fedcf61d1e78",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 380,
+        "wires": [
+            [
+                "abd63eda68fd8674",
+                "933b06632a61b4c2"
+            ]
+        ]
+    },
+    {
+        "id": "3b11d8f644b1a4bf",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 460,
+        "wires": [
+            [
+                "fa146de078cdbe8d"
+            ]
+        ]
+    },
+    {
+        "id": "ae68485605384501",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 540,
+        "wires": [
+            [
+                "1085fc2a0db788a3"
+            ]
+        ]
+    },
+    {
+        "id": "3a134624a0af51fb",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 620,
+        "wires": [
+            [
+                "1085fc2a0db788a3"
+            ]
+        ]
+    },
+    {
+        "id": "abd63eda68fd8674",
+        "type": "link out",
+        "z": "95cf961539320dd3",
+        "name": "Before Wakeup",
+        "mode": "link",
+        "links": [],
+        "x": 1075,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "da54c4772dbeeaaf",
+        "type": "link in",
+        "z": "95cf961539320dd3",
+        "name": "Fade out sleep sounds",
+        "links": [],
+        "x": 75,
+        "y": 100,
+        "wires": [
+            [
+                "928a0a31ac991089"
+            ]
+        ]
+    },
+    {
+        "id": "ac0d047163dd056f",
         "type": "set-shared-state",
         "z": "95cf961539320dd3",
         "state": "b69e9a96.7fc43",
@@ -8661,201 +8750,31 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 620,
-        "y": 440,
+        "x": 1400,
+        "y": 460,
         "wires": []
     },
     {
-        "id": "bf78c1f1983f4368",
+        "id": "fa146de078cdbe8d",
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Ensure master is home and asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nreturn msg;",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\nmsg.payload = false\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 440,
+        "x": 1160,
+        "y": 460,
         "wires": [
             [
-                "97f5f1603f7e631a"
+                "ac0d047163dd056f"
             ]
         ]
     },
     {
-        "id": "18a95e3ded1a3298",
-        "type": "api-call-service",
-        "z": "95cf961539320dd3",
-        "name": "Flash Lights",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [
-            "living_room",
-            "nook"
-        ],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\"flash\": \"short\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 790,
-        "y": 540,
-        "wires": [
-            [
-                "155b4a97cc43ad8e"
-            ]
-        ]
-    },
-    {
-        "id": "9ea8215ef33d6060",
-        "type": "api-call-service",
-        "z": "95cf961539320dd3",
-        "name": "Flash Lights",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [
-            "living_room",
-            "nook"
-        ],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\"flash\": \"short\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1090,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "155b4a97cc43ad8e",
-        "type": "delay",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 940,
-        "y": 540,
-        "wires": [
-            [
-                "9ea8215ef33d6060"
-            ]
-        ]
-    },
-    {
-        "id": "eadc2192bfca6069",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Flash lights in common areas",
-        "info": "",
-        "x": 840,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "5e9989853277defc",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "Notify to stop using screens",
-        "props": [],
-        "repeat": "",
-        "crontab": "00 22 * * 1,2,3,4,0",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 190,
-        "y": 540,
-        "wires": [
-            [
-                "97584da3ae7e0bb2"
-            ]
-        ]
-    },
-    {
-        "id": "97584da3ae7e0bb2",
-        "type": "function",
-        "z": "95cf961539320dd3",
-        "name": "Check if anyone home and not everyone asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isEveryoneAsleep.value == true) {\n    return null\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 540,
-        "wires": [
-            [
-                "18a95e3ded1a3298"
-            ]
-        ]
-    },
-    {
-        "id": "98ed89c644b239ae",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Notifications to help with winddown",
-        "info": "",
-        "x": 180,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "a1ef0e5197dfb196",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Fade Up Bedroom Lights",
-        "info": "",
-        "x": 150,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "0bb2f2ed1a74460f",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "Before wake-up",
-        "props": [],
-        "repeat": "",
-        "crontab": "30 07 * * 1,2,3,4,5",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 150,
-        "y": 340,
-        "wires": [
-            [
-                "275ab3ce38067011"
-            ]
-        ]
-    },
-    {
-        "id": "275ab3ce38067011",
+        "id": "598754ddfd55071d",
         "type": "api-call-service",
         "z": "95cf961539320dd3",
         "name": "Turn on Master Bedroom Lights Slowly",
@@ -8875,49 +8794,211 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 410,
-        "y": 340,
+        "x": 1510,
+        "y": 380,
         "wires": [
             []
         ]
     },
     {
-        "id": "041066fd79505d59",
-        "type": "inject",
+        "id": "013b7017f85ad5c9",
+        "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Notify to go to bed",
-        "props": [],
-        "repeat": "",
-        "crontab": "00 23 * * 1,2,3,4,0",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 220,
-        "y": 580,
+        "name": "Before Wakeup time",
+        "info": "",
+        "x": 930,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "db0aed47fddfc328",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "At Wakeup time",
+        "info": "",
+        "x": 920,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "83673f02cf1c7866",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1530,
+        "y": 620,
         "wires": [
             [
-                "97584da3ae7e0bb2"
+                "7ed38cdcf25b1c70"
             ]
         ]
     },
     {
-        "id": "3136712708331ea3",
+        "id": "2ef6b47ca1cf0854",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "living_room",
+            "nook"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1830,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ed38cdcf25b1c70",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1680,
+        "y": 620,
+        "wires": [
+            [
+                "2ef6b47ca1cf0854"
+            ]
+        ]
+    },
+    {
+        "id": "468e855f71924dbe",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Reduce volume by modifying currentlyPlaying object",
+        "name": "Flash lights in common areas",
         "info": "",
-        "x": 410,
-        "y": 160,
+        "x": 1580,
+        "y": 580,
         "wires": []
     },
     {
-        "id": "bd681b1c8d39bf09",
+        "id": "1085fc2a0db788a3",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Check if anyone home and not everyone asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isEveryoneAsleep.value == true) {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 620,
+        "wires": [
+            [
+                "83673f02cf1c7866"
+            ]
+        ]
+    },
+    {
+        "id": "732b6e52425b9427",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "Use normal volume set to apply",
+        "name": "When time to stop using screens",
         "info": "",
-        "x": 770,
-        "y": 260,
+        "x": 970,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "96afb3a9d2a7d841",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "When time to go to bed",
+        "info": "",
+        "x": 940,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "933b06632a61b4c2",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Ensure master is home and asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 380,
+        "wires": [
+            [
+                "598754ddfd55071d"
+            ]
+        ]
+    },
+    {
+        "id": "7096f06620fde73c",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Fade Up Bedroom Lights",
+        "info": "",
+        "x": 1470,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "1a40e8a8fe20fc43",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Auto Wakeup",
+        "info": "",
+        "x": 1390,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e05bccce05e34da2",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Apply schedule config and trigger as appropriate",
+        "info": "",
+        "x": 220,
+        "y": 340,
         "wires": []
     },
     {
