@@ -1578,53 +1578,6 @@
         "wires": []
     },
     {
-        "id": "d0e3234db5ed142a",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "b69e9a96.7fc43",
-        "name": "Master Asleep",
-        "triggerOnInit": true,
-        "x": 150,
-        "y": 940,
-        "wires": [
-            [
-                "5aca578258e5aa5c"
-            ]
-        ]
-    },
-    {
-        "id": "5aca578258e5aa5c",
-        "type": "function",
-        "z": "d7a3510d.e93d98",
-        "name": "Are there guests?",
-        "func": "// If we don't have guests, drive this just based on master\nif(global.get(\"state\").isMasterAsleep.value && (global.get(\"state\").isHaveGuests.value == false)) {\n    msg.payload = true\n    return msg;\n}\nreturn null",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 940,
-        "wires": [
-            [
-                "7c52551b8f2e07e3"
-            ]
-        ]
-    },
-    {
-        "id": "7c52551b8f2e07e3",
-        "type": "set-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "60c1725bc2519ee0",
-        "name": "Everyone Asleep",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 610,
-        "y": 940,
-        "wires": []
-    },
-    {
         "id": "f1aab11be0de5020",
         "type": "comment",
         "z": "d7a3510d.e93d98",
@@ -2320,26 +2273,7 @@
         "y": 580,
         "wires": [
             [
-                "969e4b63.ed934"
-            ]
-        ]
-    },
-    {
-        "id": "969e4b63.ed934",
-        "type": "function",
-        "z": "16cd74edb3f2c03d",
-        "name": "Check if anyone home",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return msg\n}\n// Somebody is home, do nothing\nreturn null",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 580,
-        "wires": [
-            [
-                "6e7492c93999c36c"
+                "a14179adc764d592"
             ]
         ]
     },
@@ -2580,7 +2514,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 580,
+        "y": 520,
         "wires": [
             [
                 "7ed258ec2fd76e0a"
@@ -2885,6 +2819,226 @@
         ]
     },
     {
+        "id": "54078ecde99da032",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn off TV",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [
+            "living_room"
+        ],
+        "deviceId": [
+            "4cb91db5c368ef79e9cd2fafb2e9ac3c"
+        ],
+        "entityId": [
+            "remote.big_beautiful_oled"
+        ],
+        "data": "{\"delay_secs\":1, \"command\": [\"home_hold\",\"select\"]}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 530,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0266ff67bd766f59",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on Apple TV",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [
+            "living_room"
+        ],
+        "deviceId": [
+            "4cb91db5c368ef79e9cd2fafb2e9ac3c"
+        ],
+        "entityId": [
+            "remote.big_beautiful_oled"
+        ],
+        "data": "{\"command\": \"home\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1070,
+        "y": 360,
+        "wires": [
+            [
+                "fa7a5706b010cfbf",
+                "bbb3c2adcebcc288",
+                "d138ea7f8fd5969b"
+            ]
+        ]
+    },
+    {
+        "id": "8ba57550455da33b",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Go to home screen",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [
+            "living_room"
+        ],
+        "deviceId": [
+            "4cb91db5c368ef79e9cd2fafb2e9ac3c"
+        ],
+        "entityId": [
+            "remote.big_beautiful_oled"
+        ],
+        "data": "{\"command\": \"home\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1530,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa7a5706b010cfbf",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1340,
+        "y": 360,
+        "wires": [
+            [
+                "8ba57550455da33b"
+            ]
+        ]
+    },
+    {
+        "id": "b4bae27b40c93f10",
+        "type": "comment",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on TV and screensaver",
+        "info": "",
+        "x": 1040,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "bbb3c2adcebcc288",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1340,
+        "y": 420,
+        "wires": [
+            [
+                "8ba57550455da33b"
+            ]
+        ]
+    },
+    {
+        "id": "d138ea7f8fd5969b",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "9",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1340,
+        "y": 480,
+        "wires": [
+            [
+                "8ba57550455da33b"
+            ]
+        ]
+    },
+    {
+        "id": "9d79d6cd3f994b75",
+        "type": "link in",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on Apple TV Screensaver",
+        "links": [],
+        "x": 935,
+        "y": 360,
+        "wires": [
+            [
+                "0266ff67bd766f59"
+            ]
+        ]
+    },
+    {
+        "id": "a14179adc764d592",
+        "type": "switch",
+        "z": "16cd74edb3f2c03d",
+        "name": "If noone home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "6e7492c93999c36c",
+                "54078ecde99da032"
+            ]
+        ]
+    },
+    {
         "id": "f744b5b41bd0fbe0",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
@@ -2894,7 +3048,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Put provided URI into queue",
-        "x": 1160,
+        "x": 1240,
         "y": 140,
         "wires": [
             [
@@ -2912,7 +3066,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Start Playing",
-        "x": 1730,
+        "x": 1810,
         "y": 140,
         "wires": [
             [
@@ -2930,7 +3084,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set to Repeat this playlist forever",
-        "x": 1360,
+        "x": 1440,
         "y": 200,
         "wires": [
             [
@@ -2948,7 +3102,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Clear existing Queue",
-        "x": 1260,
+        "x": 1340,
         "y": 80,
         "wires": [
             [
@@ -2967,7 +3121,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 680,
         "y": 100,
         "wires": [
             [
@@ -2993,7 +3147,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 870,
+        "x": 950,
         "y": 260,
         "wires": []
     },
@@ -3017,7 +3171,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Create playback group",
-        "x": 880,
+        "x": 960,
         "y": 80,
         "wires": [
             [
@@ -3036,7 +3190,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2150,
+        "x": 2230,
         "y": 280,
         "wires": [
             [
@@ -3119,7 +3273,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 150,
+        "x": 170,
         "y": 280,
         "wires": [
             [
@@ -3138,14 +3292,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 170,
+        "x": 190,
         "y": 160,
         "wires": [
             [
                 "c1a50671a5ed2076"
             ],
             [
-                "a4d61097e5c3a5ba"
+                "1d6d18eb04f69a2b"
             ]
         ]
     },
@@ -3175,7 +3329,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1650,
+        "x": 1730,
         "y": 80,
         "wires": [
             [
@@ -3190,7 +3344,7 @@
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": false,
-        "x": 120,
+        "x": 140,
         "y": 100,
         "wires": [
             [
@@ -3293,27 +3447,7 @@
         "y": 860,
         "wires": [
             [
-                "b8dd3ae503eaaf92"
-            ]
-        ]
-    },
-    {
-        "id": "b8dd3ae503eaaf92",
-        "type": "function",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Check if anyone home",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = false\n    return msg\n}\n// Somebody is home, do nothing\nreturn null",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 860,
-        "wires": [
-            [
-                "9af76eda23a1c810",
-                "d5f59723898a7298"
+                "ac0919edce9342cb"
             ]
         ]
     },
@@ -3338,7 +3472,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 610,
+        "x": 690,
         "y": 860,
         "wires": [
             [
@@ -3357,12 +3491,11 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 310,
-        "y": 800,
+        "x": 230,
+        "y": 820,
         "wires": [
             [
-                "9af76eda23a1c810",
-                "d5f59723898a7298"
+                "84aa12b53063f146"
             ]
         ]
     },
@@ -3376,7 +3509,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Break group for player",
-        "x": 900,
+        "x": 980,
         "y": 860,
         "wires": [
             [
@@ -3394,7 +3527,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Clear any queue for player",
-        "x": 640,
+        "x": 720,
         "y": 920,
         "wires": [
             [
@@ -3412,7 +3545,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Stop any playback for player",
-        "x": 920,
+        "x": 1000,
         "y": 920,
         "wires": [
             []
@@ -3619,7 +3752,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set this playlist to shuffle",
-        "x": 1630,
+        "x": 1710,
         "y": 200,
         "wires": [
             [
@@ -3680,8 +3813,8 @@
         "state": "",
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
-        "name": "Mute all participants",
-        "x": 1040,
+        "name": "Mute Participant",
+        "x": 1180,
         "y": 200,
         "wires": [
             []
@@ -3697,7 +3830,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Skip first track",
-        "x": 1840,
+        "x": 1920,
         "y": 200,
         "wires": [
             [
@@ -3716,7 +3849,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2640,
+        "x": 2720,
         "y": 380,
         "wires": [
             [
@@ -3754,7 +3887,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Unmute appropriate participants",
-        "x": 3050,
+        "x": 3130,
         "y": 380,
         "wires": [
             []
@@ -3777,7 +3910,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1390,
+        "x": 1470,
         "y": 140,
         "wires": [
             [
@@ -3802,7 +3935,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": false,
-        "x": 1490,
+        "x": 1570,
         "y": 380,
         "wires": [
             [
@@ -3817,7 +3950,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": false,
-        "x": 1490,
+        "x": 1570,
         "y": 440,
         "wires": [
             [
@@ -3844,7 +3977,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 640,
+        "x": 720,
         "y": 800,
         "wires": [
             [
@@ -3861,7 +3994,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 860,
+        "x": 940,
         "y": 800,
         "wires": []
     },
@@ -3983,7 +4116,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 890,
+        "x": 970,
         "y": 140,
         "wires": []
     },
@@ -3995,7 +4128,7 @@
         "pauseType": "rate",
         "timeout": "1",
         "timeoutUnits": "seconds",
-        "rate": "2",
+        "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -4004,7 +4137,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2830,
+        "x": 2910,
         "y": 380,
         "wires": [
             [
@@ -4023,7 +4156,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1740,
+        "x": 1820,
         "y": 380,
         "wires": [
             [
@@ -4054,22 +4187,6 @@
             [
                 "b14e74697315444e"
             ]
-        ]
-    },
-    {
-        "id": "92f3589d8ec1ba01",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "confignode": "eb483a028b06c90a",
-        "command": "group.stop",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": false,
-        "name": "Stop playback",
-        "x": 620,
-        "y": 180,
-        "wires": [
-            []
         ]
     },
     {
@@ -4117,7 +4234,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1810,
+        "x": 1890,
         "y": 320,
         "wires": [
             [
@@ -4157,7 +4274,7 @@
         "state": "3d96ef25996d1dd1",
         "name": "Reset",
         "triggerOnInit": false,
-        "x": 70,
+        "x": 90,
         "y": 220,
         "wires": [
             [
@@ -4314,7 +4431,7 @@
         "state": "d9abb6b3441e0c2a",
         "name": "Is TV Playing?",
         "triggerOnInit": false,
-        "x": 1490,
+        "x": 1570,
         "y": 500,
         "wires": [
             [
@@ -4339,7 +4456,7 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 600,
+        "x": 680,
         "y": 260,
         "wires": [
             [
@@ -4416,8 +4533,8 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "",
         "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -4427,7 +4544,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1070,
+        "x": 1140,
         "y": 80,
         "wires": [
             [
@@ -4439,11 +4556,11 @@
         "id": "74c73e32cb11e451",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
+        "name": "Delay",
         "pauseType": "delay",
         "timeout": "100",
         "timeoutUnits": "milliseconds",
-        "rate": "1",
+        "rate": "10",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -4452,11 +4569,11 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 850,
+        "x": 910,
         "y": 200,
         "wires": [
             [
-                "f03b35b35db09355"
+                "f20a5ab810409235"
             ]
         ]
     },
@@ -4477,7 +4594,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1450,
+        "x": 1530,
         "y": 80,
         "wires": [
             [
@@ -4502,7 +4619,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1570,
+        "x": 1650,
         "y": 140,
         "wires": [
             [
@@ -4527,7 +4644,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2460,
+        "x": 2540,
         "y": 380,
         "wires": [
             [
@@ -4552,7 +4669,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2450,
+        "x": 2530,
         "y": 160,
         "wires": [
             [
@@ -4564,7 +4681,7 @@
         "id": "c1a50671a5ed2076",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
+        "name": "Limit",
         "pauseType": "rate",
         "timeout": "5",
         "timeoutUnits": "seconds",
@@ -4577,36 +4694,11 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 360,
+        "x": 370,
         "y": 100,
         "wires": [
             [
-                "2af7ad02c544ef24"
-            ]
-        ]
-    },
-    {
-        "id": "a4d61097e5c3a5ba",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 420,
-        "y": 180,
-        "wires": [
-            [
-                "92f3589d8ec1ba01"
+                "15448e0eedc040e8"
             ]
         ]
     },
@@ -4646,7 +4738,7 @@
             "1e65c8e512e5da5c"
         ],
         "uncaught": false,
-        "x": 110,
+        "x": 130,
         "y": 320,
         "wires": [
             [
@@ -4671,7 +4763,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 300,
+        "x": 320,
         "y": 320,
         "wires": [
             [
@@ -4686,7 +4778,7 @@
         "state": "3e3052d11dc41010",
         "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
-        "x": 1550,
+        "x": 1630,
         "y": 560,
         "wires": [
             [
@@ -4711,7 +4803,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 460,
+        "x": 480,
         "y": 320,
         "wires": [
             [
@@ -4725,7 +4817,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Reset Music",
         "links": [],
-        "x": 185,
+        "x": 205,
         "y": 220,
         "wires": [
             [
@@ -4953,7 +5045,7 @@
             "208a5dede994fffb"
         ],
         "uncaught": false,
-        "x": 630,
+        "x": 810,
         "y": 1520,
         "wires": [
             []
@@ -4989,35 +5081,10 @@
             }
         ],
         "queue": "none",
-        "x": 700,
+        "x": 880,
         "y": 1460,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "6bb965cc294dceee",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "2",
-        "nbRateUnits": "5",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 520,
-        "y": 1460,
-        "wires": [
-            [
-                "208a5dede994fffb"
-            ]
         ]
     },
     {
@@ -5037,11 +5104,11 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 360,
+        "x": 540,
         "y": 1460,
         "wires": [
             [
-                "6bb965cc294dceee"
+                "208a5dede994fffb"
             ]
         ]
     },
@@ -5061,7 +5128,7 @@
         "z": "90f5fe8cb80ae6a7",
         "state": "9784d6c488d7a77e",
         "name": "Is TV On?",
-        "triggerOnInit": true,
+        "triggerOnInit": false,
         "x": 80,
         "y": 1460,
         "wires": [
@@ -5089,7 +5156,7 @@
         "y": 1460,
         "wires": [
             [
-                "99acc5997d05518e"
+                "3b152c7512f4ac2d"
             ]
         ]
     },
@@ -5101,7 +5168,7 @@
         "links": [
             "9cf90b7812a7ab73"
         ],
-        "x": 1885,
+        "x": 1965,
         "y": 260,
         "wires": [
             [
@@ -5130,8 +5197,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 380,
-        "y": 1520,
+        "x": 540,
+        "y": 1640,
         "wires": [
             [
                 "208a5dede994fffb"
@@ -5148,7 +5215,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
-        "x": 2830,
+        "x": 2910,
         "y": 160,
         "wires": [
             [
@@ -5175,7 +5242,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2640,
+        "x": 2720,
         "y": 160,
         "wires": [
             [
@@ -5194,7 +5261,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3040,
+        "x": 3120,
         "y": 160,
         "wires": [
             [
@@ -5215,7 +5282,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set a volume",
-        "x": 3130,
+        "x": 3210,
         "y": 280,
         "wires": [
             []
@@ -5238,7 +5305,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2970,
+        "x": 3050,
         "y": 280,
         "wires": [
             [
@@ -5263,7 +5330,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2500,
+        "x": 2580,
         "y": 280,
         "wires": [
             [
@@ -5282,7 +5349,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2700,
+        "x": 2780,
         "y": 280,
         "wires": [
             [
@@ -5414,6 +5481,206 @@
         "y": 680,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "9321d252a71550cd",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 1520,
+        "wires": [
+            [
+                "208a5dede994fffb"
+            ]
+        ]
+    },
+    {
+        "id": "801adf24fd80f807",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "12",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 1580,
+        "wires": [
+            [
+                "208a5dede994fffb"
+            ]
+        ]
+    },
+    {
+        "id": "3b152c7512f4ac2d",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 1460,
+        "wires": [
+            [
+                "99acc5997d05518e",
+                "9321d252a71550cd",
+                "801adf24fd80f807"
+            ]
+        ]
+    },
+    {
+        "id": "f20a5ab810409235",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Limit",
+        "pauseType": "rate",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1030,
+        "y": 200,
+        "wires": [
+            [
+                "f03b35b35db09355"
+            ]
+        ]
+    },
+    {
+        "id": "ac0919edce9342cb",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "If noone home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 260,
+        "y": 860,
+        "wires": [
+            [
+                "84aa12b53063f146"
+            ]
+        ]
+    },
+    {
+        "id": "8a79fe3b400b6c66",
+        "type": "link in",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Stop all Music Playback",
+        "links": [
+            "37f338bf292f6dfb",
+            "1d6d18eb04f69a2b"
+        ],
+        "x": 435,
+        "y": 860,
+        "wires": [
+            [
+                "9af76eda23a1c810"
+            ]
+        ]
+    },
+    {
+        "id": "1d6d18eb04f69a2b",
+        "type": "link out",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Stop all Music Playback",
+        "mode": "link",
+        "links": [
+            "8a79fe3b400b6c66"
+        ],
+        "x": 355,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "15448e0eedc040e8",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Delay",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 100,
+        "wires": [
+            [
+                "2af7ad02c544ef24"
+            ]
+        ]
+    },
+    {
+        "id": "84aa12b53063f146",
+        "type": "change",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Aggregate",
+        "rules": [],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 800,
+        "wires": [
+            [
+                "9af76eda23a1c810",
+                "d5f59723898a7298"
+            ]
         ]
     },
     {
@@ -5797,7 +6064,7 @@
         "props": [],
         "repeat": "7200",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": "900",
         "topic": "",
         "x": 140,
@@ -6048,7 +6315,7 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Phase Decider",
-        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after 7pm, go ahead and roll with dusk\n    if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after 11:30pm, go ahead and roll with night\n    if (this_hour >= 23 && this_minute >= 30) {\n        msg.payload = \"night\"\n    // If it's after 9:30pm, go ahead and roll with winddown\n    } else if ((this_hour >= 21 && this_minute >= 30) || this_hour >= 22) {\n        msg.payload = \"winddown\"\n    // If it's after 7pm, use dusk instead\n    } else if (this_hour >= 19) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not 7pm yet I don't care, use sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
+        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// Get override times\ndusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nwindown_time = new Date(global.get(\"state\").schedule.value.windown)\nnight_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > windown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6141,7 +6408,7 @@
         "y": 40,
         "wires": [
             [
-                "91bfd1cbe0c7c95b"
+                "e9dd15aabc896de3"
             ]
         ]
     },
@@ -6154,9 +6421,28 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1060,
+        "x": 1260,
         "y": 40,
         "wires": []
+    },
+    {
+        "id": "e9dd15aabc896de3",
+        "type": "function",
+        "z": "634c78c80eb9f37e",
+        "name": "Parse schedule times",
+        "func": "var today = new Date();\nvar dd = String(today.getDate()).padStart(2, '0');\nvar mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!\nvar yyyy = today.getFullYear();\n\ntoday = yyyy + '-' + mm + '-' + dd;\n\nschedule = {}\n\nfunction get_time_from_string (string_time) {\n    return Date.parse(today+'T'+string_time+\":00\")\n}\n\nschedule.begin_wake = get_time_from_string(msg.payload.schedule.begin_wake)\nschedule.wake = get_time_from_string(msg.payload.schedule.wake)\nschedule.dusk = get_time_from_string(msg.payload.schedule.dusk)\nschedule.winddown = get_time_from_string(msg.payload.schedule.winddown)\nschedule.stop_screens = get_time_from_string(msg.payload.schedule.stop_screens)\nschedule.go_to_bed = get_time_from_string(msg.payload.schedule.go_to_bed)\nschedule.night = get_time_from_string(msg.payload.schedule.night)\n\nmsg.payload = schedule\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 40,
+        "wires": [
+            [
+                "91bfd1cbe0c7c95b"
+            ]
+        ]
     },
     {
         "id": "d389488a08d98ed3",
@@ -8645,21 +8931,6 @@
         "x": 790,
         "y": 500,
         "wires": []
-    },
-    {
-        "id": "b75fb2b31f3ab775",
-        "type": "get-shared-state",
-        "z": "9e0490d1fc323107",
-        "state": "99455ccf.2c8498",
-        "name": "Caroline Home",
-        "triggerOnInit": false,
-        "x": 160,
-        "y": 80,
-        "wires": [
-            [
-                "d302fd95b8fbd25a"
-            ]
-        ]
     },
     {
         "id": "397f1108a960601f",
