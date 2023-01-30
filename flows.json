@@ -3873,7 +3873,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Set volumes and mute states",
         "info": "",
-        "x": 2120,
+        "x": 2200,
         "y": 240,
         "wires": []
     },
@@ -3924,7 +3924,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Mute/unmute if criteria changes",
         "info": "",
-        "x": 1550,
+        "x": 1630,
         "y": 320,
         "wires": []
     },
@@ -5384,7 +5384,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Allow calling from other flows",
         "info": "",
-        "x": 1740,
+        "x": 1820,
         "y": 260,
         "wires": []
     },
@@ -6315,7 +6315,7 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Phase Decider",
-        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// Get override times\ndusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nwindown_time = new Date(global.get(\"state\").schedule.value.windown)\nnight_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > windown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
+        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// Get override times\ndusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nwinddown_time = new Date(global.get(\"state\").schedule.value.winddown)\nnight_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > winddown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
