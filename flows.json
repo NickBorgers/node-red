@@ -8722,7 +8722,9 @@
         "z": "95cf961539320dd3",
         "name": "Before Wakeup",
         "mode": "link",
-        "links": [],
+        "links": [
+            "da54c4772dbeeaaf"
+        ],
         "x": 1075,
         "y": 340,
         "wires": []
@@ -8732,7 +8734,9 @@
         "type": "link in",
         "z": "95cf961539320dd3",
         "name": "Fade out sleep sounds",
-        "links": [],
+        "links": [
+            "abd63eda68fd8674"
+        ],
         "x": 75,
         "y": 100,
         "wires": [
