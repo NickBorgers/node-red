@@ -2218,7 +2218,8 @@
         "y": 220,
         "wires": [
             [
-                "1ee8dd5329aad550"
+                "1ee8dd5329aad550",
+                "f9cd25793f40ac96"
             ]
         ]
     },
@@ -2921,7 +2922,7 @@
         "z": "16cd74edb3f2c03d",
         "name": "",
         "pauseType": "delay",
-        "timeout": "5",
+        "timeout": "7",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -2956,7 +2957,7 @@
         "z": "16cd74edb3f2c03d",
         "name": "",
         "pauseType": "delay",
-        "timeout": "7",
+        "timeout": "9",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -2981,7 +2982,7 @@
         "z": "16cd74edb3f2c03d",
         "name": "",
         "pauseType": "delay",
-        "timeout": "9",
+        "timeout": "11",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -3005,7 +3006,9 @@
         "type": "link in",
         "z": "16cd74edb3f2c03d",
         "name": "Turn on Apple TV Screensaver",
-        "links": [],
+        "links": [
+            "b47a5d8324f29a71"
+        ],
         "x": 935,
         "y": 360,
         "wires": [
@@ -3037,6 +3040,38 @@
                 "54078ecde99da032"
             ]
         ]
+    },
+    {
+        "id": "f9cd25793f40ac96",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "If morning",
+        "func": "dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"morning\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 260,
+        "wires": [
+            [
+                "b47a5d8324f29a71"
+            ]
+        ]
+    },
+    {
+        "id": "b47a5d8324f29a71",
+        "type": "link out",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "9d79d6cd3f994b75"
+        ],
+        "x": 1055,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "f744b5b41bd0fbe0",
@@ -8762,6 +8797,7 @@
         "id": "fa146de078cdbe8d",
         "type": "function",
         "z": "95cf961539320dd3",
+        "d": true,
         "name": "Ensure master is home and asleep",
         "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\nmsg.payload = false\n\nreturn msg;",
         "outputs": 1,
