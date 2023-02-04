@@ -4704,8 +4704,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2530,
-        "y": 160,
+        "x": 2550,
+        "y": 180,
         "wires": [
             [
                 "ecc73635aa91485a"
@@ -4930,8 +4930,8 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Set Volumes",
         "info": "",
-        "x": 2450,
-        "y": 120,
+        "x": 2550,
+        "y": 140,
         "wires": []
     },
     {
@@ -4940,7 +4940,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Set mute states (after volumes and with blind sleep)",
         "info": "",
-        "x": 2590,
+        "x": 2670,
         "y": 340,
         "wires": []
     },
@@ -5250,8 +5250,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
-        "x": 2910,
-        "y": 160,
+        "x": 2930,
+        "y": 180,
         "wires": [
             [
                 "06b5888b90359103"
@@ -5277,8 +5277,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2720,
-        "y": 160,
+        "x": 2740,
+        "y": 180,
         "wires": [
             [
                 "22f2d17d21e14f6e"
@@ -5290,14 +5290,14 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Branch out volume turn ups",
-        "func": "current_volume = msg.payload\n\ndesired_volume = msg.desired_volume\n\nif (current_volume < desired_volume) {\n    current_volume++\n    msg.payload = current_volume\n    node.send([msg, msg])\n} else {\n    msg.payload = desired_volume\n    node.send([msg, null])\n}",
+        "func": "current_volume = msg.payload\n\ndesired_volume = msg.desired_volume\n\nif (current_volume < desired_volume) {\n    current_volume++\n    msg.payload = current_volume\n    msg.last_volume_set = current_volume\n    node.send([msg, msg])\n} else {\n    msg.payload = desired_volume\n    node.send([msg, null])\n}",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 3120,
-        "y": 160,
+        "x": 3140,
+        "y": 180,
         "wires": [
             [
                 "fbef539b9c81e0e4"
@@ -5317,7 +5317,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set a volume",
-        "x": 3210,
+        "x": 3310,
         "y": 280,
         "wires": [
             []
@@ -5340,7 +5340,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 3050,
+        "x": 3150,
         "y": 280,
         "wires": [
             [
@@ -5352,8 +5352,8 @@
         "id": "478c37ee53f595cf",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "delay",
+        "name": "Delay",
+        "pauseType": "delayv",
         "timeout": "20",
         "timeoutUnits": "seconds",
         "rate": "1",
@@ -5365,11 +5365,11 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2580,
+        "x": 2530,
         "y": 280,
         "wires": [
             [
-                "9637e0e343385196"
+                "64fb15a8a7187bb5"
             ]
         ]
     },
@@ -5378,13 +5378,13 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Repeat turn ups until done",
-        "func": "current_volume = msg.payload\n\ndesired_volume = msg.desired_volume\n\nif (current_volume < desired_volume) {\n    current_volume++\n    msg.payload = current_volume\n    node.send(msg)\n}",
+        "func": "// What is the volume currently?\ncurrent_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume < msg.last_volume_set) {\n    // If the volume is less than what was last set, assume someone\n    // is fighting the system trying to turn down the volume\n    return null\n}\n\n// What is the volume supposed to be?\ndesired_volume = msg.desired_volume\n\n// If we haven't gotten up to the desired volume\nif (current_volume < desired_volume) {\n    // The new set volume is current + 1\n    new_volume = current_volume + 1\n    // This new volume is the payload\n    msg.payload = new_volume\n    // Separately save off the value we're setting\n    msg.last_volume_set = new_volume\n    // Set the delay for the next turn up to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 1000\n    // Send the change\n    node.send(msg)\n}\n\n// We're done, everything is as it should be",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2780,
+        "x": 2880,
         "y": 280,
         "wires": [
             [
@@ -5399,7 +5399,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "If volume decrease, it's immediate",
         "info": "",
-        "x": 3040,
+        "x": 3220,
         "y": 240,
         "wires": []
     },
@@ -5409,8 +5409,8 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Break out volume increase and do slowly",
         "info": "",
-        "x": 3080,
-        "y": 120,
+        "x": 3100,
+        "y": 140,
         "wires": []
     },
     {
@@ -5429,7 +5429,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "If volume increase, do in one unit steps",
         "info": "",
-        "x": 2590,
+        "x": 2630,
         "y": 240,
         "wires": []
     },
@@ -5715,6 +5715,24 @@
             [
                 "9af76eda23a1c810",
                 "d5f59723898a7298"
+            ]
+        ]
+    },
+    {
+        "id": "64fb15a8a7187bb5",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.get.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Get a volume",
+        "x": 2670,
+        "y": 280,
+        "wires": [
+            [
+                "9637e0e343385196"
             ]
         ]
     },
