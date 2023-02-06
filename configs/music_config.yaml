@@ -41,10 +41,6 @@ music:
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX0BcQWzuB7ZO
         volume_multiplier: 1
-      # Shuffle Syndrome
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DWUq3wF0JVtEy
-        volume_multiplier: 1
       # Housewerk
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DXa8NOEUWPn9W
