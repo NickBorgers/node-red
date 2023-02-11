@@ -37,13 +37,17 @@ music:
           - variable: isGuestBedroomDoorOpen
             value: false
     playback_options:
-      # Dance Hits
+      # Instrumental Melodic House and Techno
       - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX0BcQWzuB7ZO
+        uri: spotify:user:spotify:playlist:62CFZGi01r81y81tSuj155
         volume_multiplier: 1
-      # Housewerk
+      # Instrumental Techno Mix
       - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DXa8NOEUWPn9W
+        uri: spotify:user:spotify:playlist:37i9dQZF1EIgBWjkyfXHmo
+        volume_multiplier: 1
+      # Instrumental House Mix
+      - command: group.queue.urispotify
+        uri: spotify:user:spotify:playlist:37i9dQZF1EIhris6SwzGuN
         volume_multiplier: 1
       # Pop Remix
       - command: group.queue.urispotify
