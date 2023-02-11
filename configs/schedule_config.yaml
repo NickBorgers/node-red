@@ -1,7 +1,7 @@
 ---
 schedule:
   # Sunday
-  - begin_wake: "08:30"
+  - begin_wake: "09:00"
     wake: "09:00"
     dusk: "19:00"
     winddown: "21:30"
@@ -49,7 +49,7 @@ schedule:
     go_to_bed: "23:59"
     night: "23:59"
   # Saturday
-  - begin_wake: "08:30"
+  - begin_wake: "09:00"
     wake: "09:00"
     dusk: "19:00"
     winddown: "22:00"
