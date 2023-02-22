@@ -1970,9 +1970,9 @@
         "z": "d7a3510d.e93d98",
         "name": "If stays true for 20 seconds",
         "op1": "",
-        "op2": "0",
-        "op1type": "pay",
-        "op2type": "str",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "pay",
         "duration": "20",
         "extend": false,
         "overrideDelay": false,
@@ -1995,9 +1995,9 @@
         "z": "d7a3510d.e93d98",
         "name": "If stays true for 20 seconds",
         "op1": "",
-        "op2": "0",
-        "op1type": "pay",
-        "op2type": "str",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "pay",
         "duration": "20",
         "extend": false,
         "overrideDelay": false,
@@ -2068,7 +2068,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 1480,
+        "y": 1460,
         "wires": [
             [
                 "8d97a2e3e664cd5b"
@@ -2085,7 +2085,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 860,
-        "y": 1480,
+        "y": 1460,
         "wires": []
     },
     {
@@ -2144,7 +2144,7 @@
             }
         ],
         "x": 230,
-        "y": 1480,
+        "y": 1460,
         "wires": [
             [
                 "e0fd4f80910687d8"
@@ -2172,7 +2172,7 @@
         "to": "",
         "reg": false,
         "x": 690,
-        "y": 1480,
+        "y": 1460,
         "wires": [
             [
                 "bef7d2e0ab4b73d9"
@@ -7991,6 +7991,209 @@
         "wires": [
             [
                 "2192d9c1b6dec6df"
+            ]
+        ]
+    },
+    {
+        "id": "072e9b000d766ec4",
+        "type": "get-shared-state",
+        "z": "45c21b8b98ae2f01",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": false,
+        "x": 890,
+        "y": 680,
+        "wires": [
+            [
+                "72772b7050cd06e4"
+            ]
+        ]
+    },
+    {
+        "id": "71799f916b7138fb",
+        "type": "get-shared-state",
+        "z": "45c21b8b98ae2f01",
+        "state": "156ccde543ba4845",
+        "name": "Guest Asleep",
+        "triggerOnInit": false,
+        "x": 890,
+        "y": 740,
+        "wires": [
+            [
+                "623978305b080b3c"
+            ]
+        ]
+    },
+    {
+        "id": "7fbb873572485075",
+        "type": "get-shared-state",
+        "z": "45c21b8b98ae2f01",
+        "state": "3e3052d11dc41010",
+        "name": "Is Guest Bedroom Door Open?",
+        "triggerOnInit": false,
+        "x": 950,
+        "y": 800,
+        "wires": [
+            [
+                "e2707d9bae30501b"
+            ]
+        ]
+    },
+    {
+        "id": "9e2abf81ab49f842",
+        "type": "function",
+        "z": "45c21b8b98ae2f01",
+        "name": "If everyone is awake and bedroom door closed",
+        "func": "if (global.get(\"state\").isMasterAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestBedroomDoorOpen.value == true) {\n    return null\n}\n\nmsg.payload = {\"On\": true}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1620,
+        "y": 740,
+        "wires": [
+            [
+                "d467158e33f7a72c"
+            ]
+        ]
+    },
+    {
+        "id": "72772b7050cd06e4",
+        "type": "trigger",
+        "z": "45c21b8b98ae2f01",
+        "name": "If stays false for 10 minutes",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "10",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "true",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1240,
+        "y": 680,
+        "wires": [
+            [
+                "9e2abf81ab49f842"
+            ]
+        ]
+    },
+    {
+        "id": "623978305b080b3c",
+        "type": "trigger",
+        "z": "45c21b8b98ae2f01",
+        "name": "If stays false for 10 minutes",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "10",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "true",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1240,
+        "y": 740,
+        "wires": [
+            [
+                "9e2abf81ab49f842"
+            ]
+        ]
+    },
+    {
+        "id": "e2707d9bae30501b",
+        "type": "trigger",
+        "z": "45c21b8b98ae2f01",
+        "name": "If stays false for 20 minutes",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "20",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "true",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1240,
+        "y": 800,
+        "wires": [
+            [
+                "9e2abf81ab49f842"
+            ]
+        ]
+    },
+    {
+        "id": "d6f6f57a09be0655",
+        "type": "link in",
+        "z": "45c21b8b98ae2f01",
+        "name": "Turn on Master Bath Vacuum",
+        "links": [
+            "514f8a014a8b5060"
+        ],
+        "x": 25,
+        "y": 1000,
+        "wires": [
+            [
+                "bb68bf3e759f5cdf"
+            ]
+        ]
+    },
+    {
+        "id": "514f8a014a8b5060",
+        "type": "link out",
+        "z": "45c21b8b98ae2f01",
+        "name": "Turn on Master Bath Vacuum",
+        "mode": "link",
+        "links": [
+            "d6f6f57a09be0655"
+        ],
+        "x": 2015,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "fe257a60613c0601",
+        "type": "comment",
+        "z": "45c21b8b98ae2f01",
+        "name": "Automatically clean master bath after Caroline starts work",
+        "info": "",
+        "x": 1030,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "d467158e33f7a72c",
+        "type": "delay",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "20",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1900,
+        "y": 740,
+        "wires": [
+            [
+                "514f8a014a8b5060"
             ]
         ]
     },
