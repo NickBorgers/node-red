@@ -1656,25 +1656,6 @@
         "y": 1580,
         "wires": [
             [
-                "c2ac73fbe3371887"
-            ]
-        ]
-    },
-    {
-        "id": "c2ac73fbe3371887",
-        "type": "function",
-        "z": "d7a3510d.e93d98",
-        "name": "Was master asleep?",
-        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was master asleep?\nif(global.get(\"state\").isMasterAsleep.value == true) {\n    // They were, now the door is open though\n    return msg\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 1580,
-        "wires": [
-            [
                 "e308dfc1c82afa45"
             ]
         ]
@@ -1700,25 +1681,6 @@
         "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
         "x": 210,
-        "y": 1640,
-        "wires": [
-            [
-                "c8232746aae4f4a0"
-            ]
-        ]
-    },
-    {
-        "id": "c8232746aae4f4a0",
-        "type": "function",
-        "z": "d7a3510d.e93d98",
-        "name": "Was guest asleep?",
-        "func": "// If the door is closed, break the wait\nif (msg.payload == false) {\n    return msg\n}\n// Was guest asleep?\nif(global.get(\"state\").isGuestAsleep.value == true) {\n    // They were, now the door is open though\n    return msg\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 450,
         "y": 1640,
         "wires": [
             [
