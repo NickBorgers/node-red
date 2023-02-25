@@ -253,7 +253,7 @@ music:
         leave_muted_if: []
       - player_name: "Guest Bedroom"
         default_volume: 20
-        leave_muted_if:
+        leave_muted_if: []
     playback_options:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/1.m4a"
