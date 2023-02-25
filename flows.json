@@ -8912,7 +8912,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Reduce Volume of Currently Playing Music",
-        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    if (participant.volume > 0) {\n        participant.volume--;\n    }\n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
+        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    // If it's a Master room speaker\n    if (participant.player_name.indexOf(\"Master\") > -1) {\n        // Reduce its volume by 1, so long as current volume greater than 0\n        if (participant.volume > 0) {\n            participant.volume--;\n        }\n    }\n    \n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
