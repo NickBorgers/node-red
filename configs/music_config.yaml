@@ -49,10 +49,6 @@ music:
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1EIhris6SwzGuN
         volume_multiplier: 1
-      # Pop Remix
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DXcZDD7cfEKhW
-        volume_multiplier: 1
   day:
     participants:
       - player_name: "Nook Speaker"
