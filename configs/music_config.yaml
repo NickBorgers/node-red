@@ -234,10 +234,14 @@ music:
     participants:
       - player_name: "Nook Speaker"
         default_volume: 40
-        leave_muted_if: []
+        leave_muted_if: 
+          - variable: isHaveGuests
+            value: false
       - player_name: "Living Room"
         default_volume: 20
-        leave_muted_if: []
+        leave_muted_if: 
+          - variable: isGuestAsleep
+            value: false
       - player_name: "Master Bathroom"
         default_volume: 40
         leave_muted_if: []
@@ -246,10 +250,14 @@ music:
         leave_muted_if: []
       - player_name: "Guest Bathroom"
         default_volume: 30
-        leave_muted_if: []
+        leave_muted_if: 
+          - variable: isGuestAsleep
+            value: false
       - player_name: "Guest Bedroom"
         default_volume: 20
-        leave_muted_if: []
+        leave_muted_if: 
+          - variable: isHaveGuests
+            value: false
     playback_options:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/1.m4a"
