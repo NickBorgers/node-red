@@ -62,6 +62,14 @@
         "env": []
     },
     {
+        "id": "6a064f420a191bf8",
+        "type": "tab",
+        "label": "Climate Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "b2cc5799.eea9d",
         "type": "homekit-bridge",
         "bridgeName": "NodeRed1",
@@ -517,6 +525,22 @@
         "tags": "",
         "historyCount": "2",
         "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "611761b9dd5c9c4c",
+        "type": "shared-state",
+        "name": "climateConfig",
+        "lbl": "Climate Config",
+        "tags": "",
+        "historyCount": "1",
+        "dataType": "obj",
         "boolType": "bool",
         "boolStrTrue": "",
         "boolStrFalse": "",
@@ -1669,7 +1693,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 920,
+        "x": 700,
         "y": 1580,
         "wires": []
     },
@@ -1697,7 +1721,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 900,
+        "x": 700,
         "y": 1640,
         "wires": []
     },
@@ -1943,7 +1967,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 680,
+        "x": 480,
         "y": 1640,
         "wires": [
             [
@@ -1968,7 +1992,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 700,
+        "x": 480,
         "y": 1580,
         "wires": [
             [
@@ -2900,7 +2924,7 @@
         "z": "16cd74edb3f2c03d",
         "name": "",
         "pauseType": "delay",
-        "timeout": "7",
+        "timeout": "8",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -5034,6 +5058,7 @@
         "id": "bb8bbe7668b007b3",
         "type": "switch",
         "z": "90f5fe8cb80ae6a7",
+        "d": true,
         "name": "If True",
         "property": "payload",
         "propertyType": "msg",
@@ -5987,7 +6012,8 @@
             [
                 "a78b91dcc37bee92",
                 "8409a48850c82e37",
-                "03d49e6e6a6a882d"
+                "03d49e6e6a6a882d",
+                "c0e040aaba90066e"
             ],
             [],
             []
@@ -6022,7 +6048,7 @@
         "y": 100,
         "wires": [
             [
-                "52cfeb2902628054"
+                "ca1cb228dbf5cd0e"
             ]
         ]
     },
@@ -6055,28 +6081,9 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 870,
-        "y": 160,
+        "x": 1070,
+        "y": 100,
         "wires": []
-    },
-    {
-        "id": "52cfeb2902628054",
-        "type": "function",
-        "z": "634c78c80eb9f37e",
-        "name": "Validate config object",
-        "func": "currentMusicConfig = global.get(\"state\").musicConfig.value\nnewMusicConfig = msg.payload.music\n\nif (Object.keys(newMusicConfig).length < Object.keys(currentMusicConfig).length) {\n    node.error(\"New music config is less complex than current; refusing to set it\")\n    return null\n}\n\nmsg.payload = newMusicConfig\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 640,
-        "y": 160,
-        "wires": [
-            [
-                "ca1cb228dbf5cd0e"
-            ]
-        ]
     },
     {
         "id": "8409a48850c82e37",
@@ -6709,6 +6716,52 @@
                 "91bfd1cbe0c7c95b"
             ]
         ]
+    },
+    {
+        "id": "c0e040aaba90066e",
+        "type": "file in",
+        "z": "634c78c80eb9f37e",
+        "name": "Read climate config file",
+        "filename": "/data/projects/node-red/configs/climate_config.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "950b27ce0e1df41e"
+            ]
+        ]
+    },
+    {
+        "id": "950b27ce0e1df41e",
+        "type": "yaml",
+        "z": "634c78c80eb9f37e",
+        "property": "payload",
+        "name": "Convert to JSON",
+        "x": 860,
+        "y": 160,
+        "wires": [
+            [
+                "742f79ea2723fc83"
+            ]
+        ]
+    },
+    {
+        "id": "742f79ea2723fc83",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "611761b9dd5c9c4c",
+        "name": "Climate Config",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1050,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "d389488a08d98ed3",
@@ -9856,6 +9909,689 @@
             [
                 "d302fd95b8fbd25a"
             ]
+        ]
+    },
+    {
+        "id": "f52083fdd7491f1b",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
+        "triggerOnInit": true,
+        "x": 80,
+        "y": 80,
+        "wires": [
+            [
+                "b8f64fef44da2ad4"
+            ]
+        ]
+    },
+    {
+        "id": "0a087ffd6a970361",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "8c8dbb69a0c4c67f",
+        "name": "Is Master Bedroom Door Open?",
+        "triggerOnInit": true,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "b8f64fef44da2ad4"
+            ]
+        ]
+    },
+    {
+        "id": "b8f64fef44da2ad4",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "Humidifiy or not to humidifiy?",
+        "func": "// If the master bedroom door is open, no chance of meaningful humidification so turn off\nif (global.get(\"state\").isMasterBedroomDoorOpen.value) {\n    return [msg, null]\n}\n// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").dayPhase == \"day\" || global.get(\"state\").dayPhase == \"evening\") {\n    return [msg, null]\n}\n// The door is closed and its winddown-morning, humidify!\nreturn [null, msg]",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [
+                "b4138b425944434b"
+            ],
+            [
+                "c02601d37dfb8fc1",
+                "c2ad03f07cca0d64"
+            ]
+        ]
+    },
+    {
+        "id": "c02601d37dfb8fc1",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Turn on humidification",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "humidifier",
+        "service": "turn_on",
+        "areaId": [
+            "master_bedroom"
+        ],
+        "deviceId": [
+            "3a7bab5f23e10f98bb210ea2e7ca54a0"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 760,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4138b425944434b",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Turn off humidification",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "humidifier",
+        "service": "turn_off",
+        "areaId": [
+            "master_bedroom"
+        ],
+        "deviceId": [
+            "3a7bab5f23e10f98bb210ea2e7ca54a0"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 760,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "20102ed2a3a10d6b",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "99455ccf.2c8498",
+        "name": "Caroline Home",
+        "triggerOnInit": true,
+        "x": 100,
+        "y": 300,
+        "wires": [
+            [
+                "0a1bdf274467562a"
+            ]
+        ]
+    },
+    {
+        "id": "0a1bdf274467562a",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "Not Home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "2d3889f3b872a383"
+            ]
+        ]
+    },
+    {
+        "id": "a30febd4f0f1f98a",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Run master bedroom humidifier at night",
+        "info": "",
+        "x": 170,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "c2ad03f07cca0d64",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "12",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 200,
+        "wires": [
+            [
+                "9d4699704c3e41b4"
+            ]
+        ]
+    },
+    {
+        "id": "0b4db01d2701a613",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "20",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1090,
+        "y": 200,
+        "wires": [
+            [
+                "6b9a6be0ddd86773"
+            ]
+        ]
+    },
+    {
+        "id": "9d4699704c3e41b4",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Max fan speed",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "master_bedroom"
+        ],
+        "deviceId": [
+            "3a7bab5f23e10f98bb210ea2e7ca54a0"
+        ],
+        "entityId": [
+            "fan.master_bedroom"
+        ],
+        "data": "{\"percentage\": 100}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 920,
+        "y": 200,
+        "wires": [
+            [
+                "0b4db01d2701a613"
+            ]
+        ]
+    },
+    {
+        "id": "6b9a6be0ddd86773",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Normal fan speed",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "master_bedroom"
+        ],
+        "deviceId": [
+            "3a7bab5f23e10f98bb210ea2e7ca54a0"
+        ],
+        "entityId": [
+            "fan.master_bedroom"
+        ],
+        "data": "{\"percentage\": 60}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1270,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bfeccf01f3dd1801",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Run hard for a little while",
+        "info": "",
+        "x": 770,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d712f79e9cfd991a",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Reset Oscillation when Caroline Leaves",
+        "info": "",
+        "x": 170,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2d3889f3b872a383",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Turn on oscillation",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "oscillate",
+        "areaId": [
+            "living_room_2"
+        ],
+        "deviceId": [
+            "ed5d2ae45ff8b4ff56c110761e112648",
+            "95e3a0a837f68e8c4eb54bc6afc7da25"
+        ],
+        "entityId": [],
+        "data": "{\"oscillating\": \"on\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 450,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c736f9253fa9ba2",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
+        "triggerOnInit": true,
+        "x": 80,
+        "y": 400,
+        "wires": [
+            [
+                "23755656ed766d1e"
+            ]
+        ]
+    },
+    {
+        "id": "a96e02e59ea320ab",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "1dd96a4a.9d6316",
+        "name": "Anyone Home",
+        "triggerOnInit": false,
+        "x": 90,
+        "y": 460,
+        "wires": [
+            [
+                "9ca03041089b6a9d",
+                "23755656ed766d1e"
+            ]
+        ]
+    },
+    {
+        "id": "23755656ed766d1e",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "Should we change fan speed?",
+        "func": "// If nobody's home, slow the fans down to very low\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    return [msg, null]\n} else {\n    return [null, msg]\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "4925b947985b2af7"
+            ],
+            [
+                "d6780dc3d1f346a0"
+            ]
+        ]
+    },
+    {
+        "id": "9ca03041089b6a9d",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "Just got home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "81b04d253cd97b0f"
+            ]
+        ]
+    },
+    {
+        "id": "8bcd7836afc9a713",
+        "type": "inject",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 560,
+        "wires": [
+            [
+                "81b04d253cd97b0f"
+            ]
+        ]
+    },
+    {
+        "id": "81b04d253cd97b0f",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 560,
+        "wires": [
+            [
+                "e98856f0458e6d20"
+            ]
+        ]
+    },
+    {
+        "id": "494cb5fc939fcbee",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 560,
+        "wires": [
+            [
+                "13475531f6944d0e"
+            ]
+        ]
+    },
+    {
+        "id": "e98856f0458e6d20",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Max fan speed",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "guest_suite",
+            "living_room_2",
+            "master_bedroom"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"percentage\": 100}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 560,
+        "wires": [
+            [
+                "494cb5fc939fcbee"
+            ]
+        ]
+    },
+    {
+        "id": "402a3618544d57e1",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Run hard for a little while",
+        "info": "",
+        "x": 530,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "13475531f6944d0e",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Normal fan speed",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "guest_suite",
+            "living_room_2",
+            "master_bedroom"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"percentage\": 30}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1010,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4925b947985b2af7",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Low fan speed everywhere",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "guest_suite",
+            "living_room_2",
+            "master_bedroom"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"percentage\": 20}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 600,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d6780dc3d1f346a0",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "Send fan speed messages",
+        "func": "// Get full climateConfig\nclimateConfig = global.get(\"state\").climateConfig.value.climate\n// Get current day phase\ndayPhase = global.get(\"state\").dayPhase.value\n\ncurrentFanConfig = climateConfig[dayPhase].fans\n\ncurrentFanConfig.forEach(function(thisFanConfig) {\n   if (thisFanConfig.area == \"Master Suite\"){\n       msg.payload = {\"percentage\": thisFanConfig.percentage}\n       node.send([msg, null, null])\n   }\n   if (thisFanConfig.area == \"Living Room\"){\n       msg.payload = {\"percentage\": thisFanConfig.percentage}\n       node.send([null, msg, null])\n   }\n   if (thisFanConfig.area == \"Guest Suite\"){\n       msg.payload = {\"percentage\": thisFanConfig.percentage}\n       node.send([null, null, msg])\n   }\n});",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "a78adf1024effbae"
+            ],
+            [
+                "b460a2f7c87f3795"
+            ],
+            [
+                "8292bb8f30d17629"
+            ]
+        ]
+    },
+    {
+        "id": "a78adf1024effbae",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Master Suite Fan Speed",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "master_bedroom"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 870,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b460a2f7c87f3795",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Living Room Fan Speed",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "living_room_2"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 870,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8292bb8f30d17629",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Guest Suite Fan Speed",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "fan",
+        "service": "set_percentage",
+        "areaId": [
+            "guest_suite"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 870,
+        "y": 480,
+        "wires": [
+            []
         ]
     }
 ]

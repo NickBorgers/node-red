@@ -1,0 +1,50 @@
+---
+climate:
+  morning:
+    fans:
+      - area: "Master Suite"
+        percentage: 30
+      - area: "Living Room"
+        percentage: 30
+      - area: "Guest Suite"
+        percentage: 30
+  day:
+    fans:
+      - area: "Master Suite"
+        percentage: 30
+      - area: "Living Room"
+        percentage: 30
+      - area: "Guest Suite"
+        percentage: 30
+  sunset:
+    fans:
+      - area: "Master Suite"
+        percentage: 40
+      - area: "Living Room"
+        percentage: 40
+      - area: "Guest Suite"
+        percentage: 40
+  evening:
+    fans:
+      - area: "Master Suite"
+        percentage: 40
+      - area: "Living Room"
+        percentage: 40
+      - area: "Guest Suite"
+        percentage: 40
+  winddown:
+    fans:
+      - area: "Master Suite"
+        percentage: 20
+      - area: "Living Room"
+        percentage: 20
+      - area: "Guest Suite"
+        percentage: 20
+  night:
+    fans:
+      - area: "Master Suite"
+        percentage: 40
+      - area: "Living Room"
+        percentage: 10
+      - area: "Guest Suite"
+        percentage: 40
