@@ -7,6 +7,22 @@
         "info": ""
     },
     {
+        "id": "634c78c80eb9f37e",
+        "type": "tab",
+        "label": "Configuration",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "499c53680d148fb0",
+        "type": "tab",
+        "label": "Calendar",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "16cd74edb3f2c03d",
         "type": "tab",
         "label": "Hue Control",
@@ -22,25 +38,9 @@
         "env": []
     },
     {
-        "id": "634c78c80eb9f37e",
-        "type": "tab",
-        "label": "Configuration",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "45c21b8b98ae2f01",
         "type": "tab",
         "label": "Vacuum",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "499c53680d148fb0",
-        "type": "tab",
-        "label": "Calendar",
         "disabled": false,
         "info": "",
         "env": []
@@ -2179,6 +2179,1466 @@
                 "0e3907f2e4812720"
             ]
         ]
+    },
+    {
+        "id": "f98f511841b27c8c",
+        "type": "comment",
+        "z": "634c78c80eb9f37e",
+        "name": "Configurations",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f991b8b5b5f73fde",
+        "type": "exec",
+        "z": "634c78c80eb9f37e",
+        "command": "cd /data/projects/node-red/ && GIT_SSH_COMMAND='ssh -i ../.sshkeys/__default_NickBorgersOnLowSecurityNode -o IdentitiesOnly=yes' git pull",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Pull latest config",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "a78b91dcc37bee92",
+                "8409a48850c82e37",
+                "03d49e6e6a6a882d",
+                "c0e040aaba90066e"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a78b91dcc37bee92",
+        "type": "file in",
+        "z": "634c78c80eb9f37e",
+        "name": "Read music config file",
+        "filename": "/data/projects/node-red/configs/music_config.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 620,
+        "y": 100,
+        "wires": [
+            [
+                "1e97b7b783f670f6"
+            ]
+        ]
+    },
+    {
+        "id": "1e97b7b783f670f6",
+        "type": "yaml",
+        "z": "634c78c80eb9f37e",
+        "property": "payload",
+        "name": "Convert to JSON",
+        "x": 870,
+        "y": 100,
+        "wires": [
+            [
+                "ca1cb228dbf5cd0e"
+            ]
+        ]
+    },
+    {
+        "id": "6b334e0185781b32",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Force refresh",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 350,
+        "y": 40,
+        "wires": [
+            [
+                "f991b8b5b5f73fde",
+                "03d49e6e6a6a882d"
+            ]
+        ]
+    },
+    {
+        "id": "ca1cb228dbf5cd0e",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "e4f5bf03444063a0",
+        "name": "Music Config",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1070,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8409a48850c82e37",
+        "type": "file in",
+        "z": "634c78c80eb9f37e",
+        "name": "Read Hue config file",
+        "filename": "/data/projects/node-red/configs/hue_config.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 180,
+        "y": 220,
+        "wires": [
+            [
+                "08d6acf51e6f0e15"
+            ]
+        ]
+    },
+    {
+        "id": "08d6acf51e6f0e15",
+        "type": "yaml",
+        "z": "634c78c80eb9f37e",
+        "property": "payload",
+        "name": "Convert to JSON",
+        "x": 430,
+        "y": 220,
+        "wires": [
+            [
+                "3073aace89faf61f"
+            ]
+        ]
+    },
+    {
+        "id": "3073aace89faf61f",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "86b433f8beadaac5",
+        "name": "Hue Config",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 630,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "09657a19ee07783e",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "174c278f.609ec8",
+        "name": "Sun Event",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1370,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7939e475c30ab6f5",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Manually set to Night",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "night",
+        "payloadType": "str",
+        "x": 1200,
+        "y": 400,
+        "wires": [
+            [
+                "09657a19ee07783e"
+            ]
+        ]
+    },
+    {
+        "id": "4f14558e96091d5d",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Manually set to Dusk",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "dusk",
+        "payloadType": "str",
+        "x": 940,
+        "y": 400,
+        "wires": [
+            [
+                "09657a19ee07783e"
+            ]
+        ]
+    },
+    {
+        "id": "271909a69a880cd1",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Manually set to Sunset",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sunset",
+        "payloadType": "str",
+        "x": 680,
+        "y": 400,
+        "wires": [
+            [
+                "09657a19ee07783e"
+            ]
+        ]
+    },
+    {
+        "id": "f826979d9173e4f6",
+        "type": "function",
+        "z": "634c78c80eb9f37e",
+        "name": "Sun State Summarizer",
+        "func": "// If sunset\nif (\n    msg.payload.sunevent == \"goldenHour\" ||\n    msg.payload.sunevent == \"sunsetStart\" ||\n    msg.payload.sunevent == \"sunset\"\n  ) {\n    // output true\n    msg.payload = \"sunset\"\n}\n// If dusk\nelse if (\n    msg.payload.sunevent == \"dusk\" ||\n    msg.payload.sunevent == \"nauticalDusk\"\n  ) {\n    // output true\n    msg.payload = \"dusk\"\n}\n// If night\nelse if (\n    msg.payload.sunevent == \"night\" ||\n    msg.payload.sunevent == \"nightEnd\" ||\n    msg.payload.sunevent == \"nauticalDawn\" ||\n    msg.payload.sunevent == \"dawn\" ||\n    msg.payload.sunevent == \"nadir\"\n  ) {\n    // output true\n    msg.payload = \"night\"\n}\n// If morning\nelse if (\n    msg.payload.sunevent == \"sunrise\" ||\n    msg.payload.sunevent == \"sunriseEnd\" ||\n    msg.payload.sunevent == \"goldenHourEnd\"\n  ) {\n    // output true\n    msg.payload = \"morning\"\n}\n// If it's not morning, sunset, dusk, or night; assume it's day\nelse {\n    msg.payload = \"day\"\n}\n\n// Check if this is new, if it is send it\nif (global.get(\"state\").sunevent.value != msg.payload) {\n    return msg\n}\nreturn null",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 340,
+        "wires": [
+            [
+                "09657a19ee07783e"
+            ]
+        ]
+    },
+    {
+        "id": "cc1b28fa3ee72e9b",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Manually set to Day",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "day",
+        "payloadType": "str",
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "09657a19ee07783e"
+            ]
+        ]
+    },
+    {
+        "id": "60f3d3f665e7ea46",
+        "type": "sun events",
+        "z": "634c78c80eb9f37e",
+        "testmode": false,
+        "verbose": "N",
+        "topic": "",
+        "name": "Sun State Reporter",
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "f826979d9173e4f6"
+            ]
+        ]
+    },
+    {
+        "id": "a230628c753abd65",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Manually set to Morn",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "morning",
+        "payloadType": "str",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "09657a19ee07783e"
+            ]
+        ]
+    },
+    {
+        "id": "38a0f923f2d7e97e",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Inject Coordinates for Sun Events",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "21600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.0",
+        "topic": "",
+        "payload": "{\"latitude\": 40.76, \"longitude\": -80}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 340,
+        "wires": [
+            [
+                "60f3d3f665e7ea46"
+            ]
+        ]
+    },
+    {
+        "id": "7001439deafa5a47",
+        "type": "comment",
+        "z": "634c78c80eb9f37e",
+        "name": "Sun Event Tracking to set Scenes",
+        "info": "",
+        "x": 170,
+        "y": 300,
+        "wires": [],
+        "icon": "font-awesome/fa-question-circle"
+    },
+    {
+        "id": "37cb22aac1fa4a99",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "props": [],
+        "repeat": "7200",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "900",
+        "topic": "",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "f991b8b5b5f73fde"
+            ]
+        ]
+    },
+    {
+        "id": "5c380b83edfd85d6",
+        "type": "comment",
+        "z": "634c78c80eb9f37e",
+        "name": "Reset mechanism available through Homekit",
+        "info": "",
+        "x": 210,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "1b9873d4c1d781ca",
+        "type": "homekit-service",
+        "z": "634c78c80eb9f37e",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Reset",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 130,
+        "y": 680,
+        "wires": [
+            [
+                "45230be763c062ae"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "aa9dca0548480ae1",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "3d96ef25996d1dd1",
+        "name": "Reset",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 850,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "45230be763c062ae",
+        "type": "change",
+        "z": "634c78c80eb9f37e",
+        "name": "Move on to value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 680,
+        "wires": [
+            [
+                "fc6d53171a0a2eef"
+            ]
+        ]
+    },
+    {
+        "id": "392367f1059edf8f",
+        "type": "change",
+        "z": "634c78c80eb9f37e",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 740,
+        "wires": [
+            [
+                "1b9873d4c1d781ca"
+            ]
+        ]
+    },
+    {
+        "id": "05dc4cb847d1d054",
+        "type": "delay",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 680,
+        "wires": [
+            [
+                "aa9dca0548480ae1"
+            ]
+        ]
+    },
+    {
+        "id": "3c5040df487f58af",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 740,
+        "wires": [
+            [
+                "392367f1059edf8f"
+            ]
+        ]
+    },
+    {
+        "id": "a727f6fa4e037102",
+        "type": "comment",
+        "z": "634c78c80eb9f37e",
+        "name": "Home day phase, largely based on sun event",
+        "info": "",
+        "x": 210,
+        "y": 480,
+        "wires": [],
+        "icon": "font-awesome/fa-question-circle"
+    },
+    {
+        "id": "b681b75836dbf49a",
+        "type": "get-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "174c278f.609ec8",
+        "name": "Sun Event",
+        "triggerOnInit": true,
+        "x": 100,
+        "y": 520,
+        "wires": [
+            [
+                "6acc06089b237d56"
+            ]
+        ]
+    },
+    {
+        "id": "14c93c9256bae5c4",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Check during evening",
+        "props": [],
+        "repeat": "",
+        "crontab": "*/30 4-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 580,
+        "wires": [
+            [
+                "6acc06089b237d56"
+            ]
+        ]
+    },
+    {
+        "id": "6acc06089b237d56",
+        "type": "function",
+        "z": "634c78c80eb9f37e",
+        "name": "Phase Decider",
+        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// Get override times\ndusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nwinddown_time = new Date(global.get(\"state\").schedule.value.winddown)\nnight_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > winddown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 520,
+        "wires": [
+            [
+                "cec5fcf493bb58c1"
+            ]
+        ]
+    },
+    {
+        "id": "cec5fcf493bb58c1",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 610,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "fc6d53171a0a2eef",
+        "type": "delay",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 680,
+        "wires": [
+            [
+                "05dc4cb847d1d054",
+                "392367f1059edf8f"
+            ]
+        ]
+    },
+    {
+        "id": "03d49e6e6a6a882d",
+        "type": "file in",
+        "z": "634c78c80eb9f37e",
+        "name": "Read Schedule config file",
+        "filename": "/data/projects/node-red/configs/schedule_config.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 630,
+        "y": 40,
+        "wires": [
+            [
+                "db2ed0e33cc5550d"
+            ]
+        ]
+    },
+    {
+        "id": "db2ed0e33cc5550d",
+        "type": "yaml",
+        "z": "634c78c80eb9f37e",
+        "property": "payload",
+        "name": "Convert to JSON",
+        "x": 870,
+        "y": 40,
+        "wires": [
+            [
+                "e9dd15aabc896de3"
+            ]
+        ]
+    },
+    {
+        "id": "91bfd1cbe0c7c95b",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "f4fbefedb919c3c1",
+        "name": "Schedule",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1260,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e9dd15aabc896de3",
+        "type": "function",
+        "z": "634c78c80eb9f37e",
+        "name": "Parse schedule times",
+        "func": "var today = new Date();\nvar day_of_week = today.getDay();\nvar dd = String(today.getDate()).padStart(2, '0');\nvar mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!\nvar yyyy = today.getFullYear();\n\ntoday = yyyy + '-' + mm + '-' + dd;\n\nschedule = {}\n\nfunction get_time_from_string (string_time) {\n    return Date.parse(today+'T'+string_time+\":00\")\n}\n\n// Get the schedule for today's day of the week\ntoday_schedule = msg.payload.schedule[day_of_week]\n\nschedule.begin_wake = get_time_from_string(today_schedule.begin_wake)\nschedule.wake = get_time_from_string(today_schedule.wake)\nschedule.dusk = get_time_from_string(today_schedule.dusk)\nschedule.winddown = get_time_from_string(today_schedule.winddown)\nschedule.stop_screens = get_time_from_string(today_schedule.stop_screens)\nschedule.go_to_bed = get_time_from_string(today_schedule.go_to_bed)\nschedule.night = get_time_from_string(today_schedule.night)\n\nmsg.payload = schedule\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 40,
+        "wires": [
+            [
+                "91bfd1cbe0c7c95b"
+            ]
+        ]
+    },
+    {
+        "id": "c0e040aaba90066e",
+        "type": "file in",
+        "z": "634c78c80eb9f37e",
+        "name": "Read climate config file",
+        "filename": "/data/projects/node-red/configs/climate_config.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "950b27ce0e1df41e"
+            ]
+        ]
+    },
+    {
+        "id": "950b27ce0e1df41e",
+        "type": "yaml",
+        "z": "634c78c80eb9f37e",
+        "property": "payload",
+        "name": "Convert to JSON",
+        "x": 860,
+        "y": 160,
+        "wires": [
+            [
+                "742f79ea2723fc83"
+            ]
+        ]
+    },
+    {
+        "id": "742f79ea2723fc83",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "611761b9dd5c9c4c",
+        "name": "Climate Config",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1050,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f16bcb4bfea89461",
+        "type": "api-current-state",
+        "z": "499c53680d148fb0",
+        "name": "Get Nick Work Calendar",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "calendar.nborgers_pinterest_com",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1290,
+        "y": 140,
+        "wires": [
+            [
+                "ef40c5c9c328117a"
+            ]
+        ]
+    },
+    {
+        "id": "eeb048faac509fb7",
+        "type": "api-current-state",
+        "z": "499c53680d148fb0",
+        "name": "Get Nick Personal Calendar",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "calendar.nickborgers_gmail_com",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1300,
+        "y": 80,
+        "wires": [
+            [
+                "7ea81c237d1bc6b9"
+            ]
+        ]
+    },
+    {
+        "id": "e20f60c78f9d70c3",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Parse Start Timestamp",
+        "func": "next_event_start = Date.parse(msg.data.attributes.start_time)\n\n\nnew_msg = {}\n\nnew_msg.person = msg.person\nnew_msg.calendar = msg.calendar\nnew_msg.next_event_start = next_event_start\n\nreturn new_msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 340,
+        "wires": [
+            [
+                "ef3a03f27ccc5aac"
+            ]
+        ]
+    },
+    {
+        "id": "ef3a03f27ccc5aac",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Check if event starts tomorrow morning",
+        "func": "const today = new Date()\nconst tomorrow = new Date(today)\ntomorrow.setDate(tomorrow.getDate() + 1)\n\nstartOfTomorrowMorning = new Date(tomorrow);\nstartOfTomorrowMorning.setHours(4);\nstartOfTomorrowMorning.setMinutes(0);\nstartOfTomorrowMorning.setSeconds(0);\n\nendOfTomorrowMorning = new Date(tomorrow);\nendOfTomorrowMorning.setHours(10);\nendOfTomorrowMorning.setMinutes(0);\nendOfTomorrowMorning.setSeconds(0);\n\nif (startOfTomorrowMorning < msg.next_event_start &&\n    endOfTomorrowMorning > msg.next_event_start) {\n        return msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 340,
+        "wires": [
+            [
+                "5aae9e2ba1aaac07"
+            ]
+        ]
+    },
+    {
+        "id": "78b97767ec7322f1",
+        "type": "api-current-state",
+        "z": "499c53680d148fb0",
+        "name": "Get Caroline Personal Calendar",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "calendar.cpersonius216_gmail_com",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1310,
+        "y": 200,
+        "wires": [
+            [
+                "54dc994524561093"
+            ]
+        ]
+    },
+    {
+        "id": "27cc38fa63122801",
+        "type": "inject",
+        "z": "499c53680d148fb0",
+        "name": "Check during evening",
+        "props": [],
+        "repeat": "",
+        "crontab": "*/30 18-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "e05c1b0b11607600"
+            ]
+        ]
+    },
+    {
+        "id": "4692feeb7bad273d",
+        "type": "change",
+        "z": "499c53680d148fb0",
+        "name": "Set Attr For Nick",
+        "rules": [
+            {
+                "t": "set",
+                "p": "person",
+                "pt": "msg",
+                "to": "Nick",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "d307702ed23e98f3"
+            ]
+        ]
+    },
+    {
+        "id": "2ae4546130f6a88d",
+        "type": "change",
+        "z": "499c53680d148fb0",
+        "name": "Set Attr For Caroline",
+        "rules": [
+            {
+                "t": "set",
+                "p": "person",
+                "pt": "msg",
+                "to": "Caroline",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "704229286b8d3587"
+            ]
+        ]
+    },
+    {
+        "id": "788db9362b2ed4ab",
+        "type": "change",
+        "z": "499c53680d148fb0",
+        "name": "Set Attr For Work",
+        "rules": [
+            {
+                "t": "set",
+                "p": "calendar",
+                "pt": "msg",
+                "to": "Work",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 140,
+        "wires": [
+            [
+                "f16bcb4bfea89461"
+            ]
+        ]
+    },
+    {
+        "id": "90885fafa2c4dd63",
+        "type": "change",
+        "z": "499c53680d148fb0",
+        "name": "Set Attr For Personal",
+        "rules": [
+            {
+                "t": "set",
+                "p": "calendar",
+                "pt": "msg",
+                "to": "Personal",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 80,
+        "wires": [
+            [
+                "eeb048faac509fb7"
+            ]
+        ]
+    },
+    {
+        "id": "6dc231aa8e595417",
+        "type": "change",
+        "z": "499c53680d148fb0",
+        "name": "Set Attr For Personal",
+        "rules": [
+            {
+                "t": "set",
+                "p": "calendar",
+                "pt": "msg",
+                "to": "Personal",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 200,
+        "wires": [
+            [
+                "78b97767ec7322f1"
+            ]
+        ]
+    },
+    {
+        "id": "a3678204f8f05362",
+        "type": "ttsultimate",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "voice": "en-GB",
+        "ssml": false,
+        "sonosipaddress": "10.212.100.226",
+        "sonosvolume": "20",
+        "sonoshailing": "Hailing_Hailing.mp3",
+        "config": "89337ebbba16965d",
+        "property": "payload",
+        "propertyType": {},
+        "rules": [],
+        "playertype": "sonos",
+        "speakingrate": "1",
+        "speakingpitch": "0",
+        "unmuteIfMuted": true,
+        "x": 870,
+        "y": 400,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8c780ce574114c79",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Generate Notification Message",
+        "func": "event_start = new Date(parseInt(msg.next_event_start))\n\nhour = event_start.getHours();\nminute = event_start.getMinutes();\n\nnotification_message = msg.person + \", you have an event on your \" + msg.calendar + \" calendar which starts at \"\n\nif (minute == 0) {\n    notification_message = notification_message + hour + \" am\"\n} else {\n    notification_message = notification_message + hour + \" \" + minute + \" am\"\n}\n\nnotification_message = notification_message + \" tomorrow morning.\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "691e49e8493599d4"
+            ]
+        ]
+    },
+    {
+        "id": "0ed88bf8056f6919",
+        "type": "link call",
+        "z": "499c53680d148fb0",
+        "name": "Reset Music",
+        "links": [
+            "b1f2b5145a191585"
+        ],
+        "timeout": "30",
+        "x": 1050,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5aae9e2ba1aaac07",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Proceed if event starts within 11.5 hours",
+        "func": "const now = new Date()\nconst event = new Date(parseInt(msg.next_event_start))\n\ntime_until_event_start = event - now\n\n// Calculate ten hours\nten_hours_in_ms = (1000 * 60 * 60 * 11.5)\n\nif (time_until_event_start < ten_hours_in_ms) {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 340,
+        "wires": [
+            [
+                "8c780ce574114c79"
+            ]
+        ]
+    },
+    {
+        "id": "f8f16db190a9bbf1",
+        "type": "catch",
+        "z": "499c53680d148fb0",
+        "name": "Catch TTS Error",
+        "scope": [
+            "a3678204f8f05362"
+        ],
+        "uncaught": false,
+        "x": 880,
+        "y": 460,
+        "wires": [
+            [
+                "0ed88bf8056f6919"
+            ]
+        ]
+    },
+    {
+        "id": "e05c1b0b11607600",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Only Proceed if we are awake",
+        "func": "if (global.get(\"state\").isMasterAsleep.value == false) {\n    return msg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "4692feeb7bad273d",
+                "2ae4546130f6a88d"
+            ]
+        ]
+    },
+    {
+        "id": "d307702ed23e98f3",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Only Proceed if Nick is Home",
+        "func": "if (global.get(\"state\").isNickHome.value) {\n    return msg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 120,
+        "wires": [
+            [
+                "788db9362b2ed4ab",
+                "90885fafa2c4dd63"
+            ]
+        ]
+    },
+    {
+        "id": "704229286b8d3587",
+        "type": "function",
+        "z": "499c53680d148fb0",
+        "name": "Only Proceed if Caroline is Home",
+        "func": "if (global.get(\"state\").isCarolineHome.value) {\n    return msg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 220,
+        "wires": [
+            [
+                "6dc231aa8e595417",
+                "06f4e5c7d9a46571"
+            ]
+        ]
+    },
+    {
+        "id": "06f4e5c7d9a46571",
+        "type": "change",
+        "z": "499c53680d148fb0",
+        "name": "Set Attr For Work",
+        "rules": [
+            {
+                "t": "set",
+                "p": "calendar",
+                "pt": "msg",
+                "to": "Work",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 260,
+        "wires": [
+            [
+                "21abaeffc63334c7"
+            ]
+        ]
+    },
+    {
+        "id": "21abaeffc63334c7",
+        "type": "api-current-state",
+        "z": "499c53680d148fb0",
+        "name": "Get Caroline Work Calendar",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "calendar.carolinep_remitly_com",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1300,
+        "y": 260,
+        "wires": [
+            [
+                "7801e88d316cb498"
+            ]
+        ]
+    },
+    {
+        "id": "7ea81c237d1bc6b9",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1540,
+        "y": 80,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "ef40c5c9c328117a",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1540,
+        "y": 140,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "54dc994524561093",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1540,
+        "y": 200,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "7801e88d316cb498",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "19",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1540,
+        "y": 260,
+        "wires": [
+            [
+                "e20f60c78f9d70c3"
+            ]
+        ]
+    },
+    {
+        "id": "691e49e8493599d4",
+        "type": "delay",
+        "z": "499c53680d148fb0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "a3678204f8f05362"
+            ]
+        ]
+    },
+    {
+        "id": "5eafd94846b1351d",
+        "type": "comment",
+        "z": "499c53680d148fb0",
+        "name": "Ugly check trigger",
+        "info": "",
+        "x": 130,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "28ae008b535bbdc3",
+        "type": "comment",
+        "z": "499c53680d148fb0",
+        "name": "Only notify once per day",
+        "info": "",
+        "x": 1570,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5908acc6f289a226",
+        "type": "comment",
+        "z": "499c53680d148fb0",
+        "name": "Read calendar",
+        "info": "",
+        "x": 1260,
+        "y": 40,
+        "wires": []
     },
     {
         "id": "9212dea7c3727082",
@@ -5985,785 +7445,6 @@
         ]
     },
     {
-        "id": "f98f511841b27c8c",
-        "type": "comment",
-        "z": "634c78c80eb9f37e",
-        "name": "Configurations",
-        "info": "",
-        "x": 120,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "f991b8b5b5f73fde",
-        "type": "exec",
-        "z": "634c78c80eb9f37e",
-        "command": "cd /data/projects/node-red/ && GIT_SSH_COMMAND='ssh -i ../.sshkeys/__default_NickBorgersOnLowSecurityNode -o IdentitiesOnly=yes' git pull",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Pull latest config",
-        "x": 340,
-        "y": 100,
-        "wires": [
-            [
-                "a78b91dcc37bee92",
-                "8409a48850c82e37",
-                "03d49e6e6a6a882d",
-                "c0e040aaba90066e"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "a78b91dcc37bee92",
-        "type": "file in",
-        "z": "634c78c80eb9f37e",
-        "name": "Read music config file",
-        "filename": "/data/projects/node-red/configs/music_config.yaml",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "utf8",
-        "allProps": false,
-        "x": 620,
-        "y": 100,
-        "wires": [
-            [
-                "1e97b7b783f670f6"
-            ]
-        ]
-    },
-    {
-        "id": "1e97b7b783f670f6",
-        "type": "yaml",
-        "z": "634c78c80eb9f37e",
-        "property": "payload",
-        "name": "Convert to JSON",
-        "x": 870,
-        "y": 100,
-        "wires": [
-            [
-                "ca1cb228dbf5cd0e"
-            ]
-        ]
-    },
-    {
-        "id": "6b334e0185781b32",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Force refresh",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 350,
-        "y": 40,
-        "wires": [
-            [
-                "f991b8b5b5f73fde",
-                "03d49e6e6a6a882d"
-            ]
-        ]
-    },
-    {
-        "id": "ca1cb228dbf5cd0e",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "e4f5bf03444063a0",
-        "name": "Music Config",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1070,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "8409a48850c82e37",
-        "type": "file in",
-        "z": "634c78c80eb9f37e",
-        "name": "Read Hue config file",
-        "filename": "/data/projects/node-red/configs/hue_config.yaml",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "utf8",
-        "allProps": false,
-        "x": 180,
-        "y": 220,
-        "wires": [
-            [
-                "08d6acf51e6f0e15"
-            ]
-        ]
-    },
-    {
-        "id": "08d6acf51e6f0e15",
-        "type": "yaml",
-        "z": "634c78c80eb9f37e",
-        "property": "payload",
-        "name": "Convert to JSON",
-        "x": 430,
-        "y": 220,
-        "wires": [
-            [
-                "3073aace89faf61f"
-            ]
-        ]
-    },
-    {
-        "id": "3073aace89faf61f",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "86b433f8beadaac5",
-        "name": "Hue Config",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 630,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "09657a19ee07783e",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "174c278f.609ec8",
-        "name": "Sun Event",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1370,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "7939e475c30ab6f5",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Manually set to Night",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "night",
-        "payloadType": "str",
-        "x": 1200,
-        "y": 400,
-        "wires": [
-            [
-                "09657a19ee07783e"
-            ]
-        ]
-    },
-    {
-        "id": "4f14558e96091d5d",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Manually set to Dusk",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "dusk",
-        "payloadType": "str",
-        "x": 940,
-        "y": 400,
-        "wires": [
-            [
-                "09657a19ee07783e"
-            ]
-        ]
-    },
-    {
-        "id": "271909a69a880cd1",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Manually set to Sunset",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "sunset",
-        "payloadType": "str",
-        "x": 680,
-        "y": 400,
-        "wires": [
-            [
-                "09657a19ee07783e"
-            ]
-        ]
-    },
-    {
-        "id": "f826979d9173e4f6",
-        "type": "function",
-        "z": "634c78c80eb9f37e",
-        "name": "Sun State Summarizer",
-        "func": "// If sunset\nif (\n    msg.payload.sunevent == \"goldenHour\" ||\n    msg.payload.sunevent == \"sunsetStart\" ||\n    msg.payload.sunevent == \"sunset\"\n  ) {\n    // output true\n    msg.payload = \"sunset\"\n}\n// If dusk\nelse if (\n    msg.payload.sunevent == \"dusk\" ||\n    msg.payload.sunevent == \"nauticalDusk\"\n  ) {\n    // output true\n    msg.payload = \"dusk\"\n}\n// If night\nelse if (\n    msg.payload.sunevent == \"night\" ||\n    msg.payload.sunevent == \"nightEnd\" ||\n    msg.payload.sunevent == \"nauticalDawn\" ||\n    msg.payload.sunevent == \"dawn\" ||\n    msg.payload.sunevent == \"nadir\"\n  ) {\n    // output true\n    msg.payload = \"night\"\n}\n// If morning\nelse if (\n    msg.payload.sunevent == \"sunrise\" ||\n    msg.payload.sunevent == \"sunriseEnd\" ||\n    msg.payload.sunevent == \"goldenHourEnd\"\n  ) {\n    // output true\n    msg.payload = \"morning\"\n}\n// If it's not morning, sunset, dusk, or night; assume it's day\nelse {\n    msg.payload = \"day\"\n}\n\n// Check if this is new, if it is send it\nif (global.get(\"state\").sunevent.value != msg.payload) {\n    return msg\n}\nreturn null",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 700,
-        "y": 340,
-        "wires": [
-            [
-                "09657a19ee07783e"
-            ]
-        ]
-    },
-    {
-        "id": "cc1b28fa3ee72e9b",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Manually set to Day",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "day",
-        "payloadType": "str",
-        "x": 430,
-        "y": 400,
-        "wires": [
-            [
-                "09657a19ee07783e"
-            ]
-        ]
-    },
-    {
-        "id": "60f3d3f665e7ea46",
-        "type": "sun events",
-        "z": "634c78c80eb9f37e",
-        "testmode": false,
-        "verbose": "N",
-        "topic": "",
-        "name": "Sun State Reporter",
-        "x": 470,
-        "y": 340,
-        "wires": [
-            [
-                "f826979d9173e4f6"
-            ]
-        ]
-    },
-    {
-        "id": "a230628c753abd65",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Manually set to Morn",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "morning",
-        "payloadType": "str",
-        "x": 160,
-        "y": 400,
-        "wires": [
-            [
-                "09657a19ee07783e"
-            ]
-        ]
-    },
-    {
-        "id": "38a0f923f2d7e97e",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Inject Coordinates for Sun Events",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "21600",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.0",
-        "topic": "",
-        "payload": "{\"latitude\": 40.76, \"longitude\": -80}",
-        "payloadType": "json",
-        "x": 200,
-        "y": 340,
-        "wires": [
-            [
-                "60f3d3f665e7ea46"
-            ]
-        ]
-    },
-    {
-        "id": "7001439deafa5a47",
-        "type": "comment",
-        "z": "634c78c80eb9f37e",
-        "name": "Sun Event Tracking to set Scenes",
-        "info": "",
-        "x": 170,
-        "y": 300,
-        "wires": [],
-        "icon": "font-awesome/fa-question-circle"
-    },
-    {
-        "id": "37cb22aac1fa4a99",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "props": [],
-        "repeat": "7200",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "900",
-        "topic": "",
-        "x": 140,
-        "y": 100,
-        "wires": [
-            [
-                "f991b8b5b5f73fde"
-            ]
-        ]
-    },
-    {
-        "id": "5c380b83edfd85d6",
-        "type": "comment",
-        "z": "634c78c80eb9f37e",
-        "name": "Reset mechanism available through Homekit",
-        "info": "",
-        "x": 210,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "1b9873d4c1d781ca",
-        "type": "homekit-service",
-        "z": "634c78c80eb9f37e",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Reset",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 130,
-        "y": 680,
-        "wires": [
-            [
-                "45230be763c062ae"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "aa9dca0548480ae1",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "3d96ef25996d1dd1",
-        "name": "Reset",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 850,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "45230be763c062ae",
-        "type": "change",
-        "z": "634c78c80eb9f37e",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "date"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 310,
-        "y": 680,
-        "wires": [
-            [
-                "fc6d53171a0a2eef"
-            ]
-        ]
-    },
-    {
-        "id": "392367f1059edf8f",
-        "type": "change",
-        "z": "634c78c80eb9f37e",
-        "name": "Turn off",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 300,
-        "y": 740,
-        "wires": [
-            [
-                "1b9873d4c1d781ca"
-            ]
-        ]
-    },
-    {
-        "id": "05dc4cb847d1d054",
-        "type": "delay",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 680,
-        "wires": [
-            [
-                "aa9dca0548480ae1"
-            ]
-        ]
-    },
-    {
-        "id": "3c5040df487f58af",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 740,
-        "wires": [
-            [
-                "392367f1059edf8f"
-            ]
-        ]
-    },
-    {
-        "id": "a727f6fa4e037102",
-        "type": "comment",
-        "z": "634c78c80eb9f37e",
-        "name": "Home day phase, largely based on sun event",
-        "info": "",
-        "x": 210,
-        "y": 480,
-        "wires": [],
-        "icon": "font-awesome/fa-question-circle"
-    },
-    {
-        "id": "b681b75836dbf49a",
-        "type": "get-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "174c278f.609ec8",
-        "name": "Sun Event",
-        "triggerOnInit": true,
-        "x": 100,
-        "y": 520,
-        "wires": [
-            [
-                "6acc06089b237d56"
-            ]
-        ]
-    },
-    {
-        "id": "14c93c9256bae5c4",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "Check during evening",
-        "props": [],
-        "repeat": "",
-        "crontab": "*/30 4-23 * * *",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 170,
-        "y": 580,
-        "wires": [
-            [
-                "6acc06089b237d56"
-            ]
-        ]
-    },
-    {
-        "id": "6acc06089b237d56",
-        "type": "function",
-        "z": "634c78c80eb9f37e",
-        "name": "Phase Decider",
-        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// Get override times\ndusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nwinddown_time = new Date(global.get(\"state\").schedule.value.winddown)\nnight_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > winddown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 520,
-        "wires": [
-            [
-                "cec5fcf493bb58c1"
-            ]
-        ]
-    },
-    {
-        "id": "cec5fcf493bb58c1",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "efc87f0de00a2d36",
-        "name": "Day Phase",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 610,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "fc6d53171a0a2eef",
-        "type": "delay",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 500,
-        "y": 680,
-        "wires": [
-            [
-                "05dc4cb847d1d054",
-                "392367f1059edf8f"
-            ]
-        ]
-    },
-    {
-        "id": "03d49e6e6a6a882d",
-        "type": "file in",
-        "z": "634c78c80eb9f37e",
-        "name": "Read Schedule config file",
-        "filename": "/data/projects/node-red/configs/schedule_config.yaml",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "utf8",
-        "allProps": false,
-        "x": 630,
-        "y": 40,
-        "wires": [
-            [
-                "db2ed0e33cc5550d"
-            ]
-        ]
-    },
-    {
-        "id": "db2ed0e33cc5550d",
-        "type": "yaml",
-        "z": "634c78c80eb9f37e",
-        "property": "payload",
-        "name": "Convert to JSON",
-        "x": 870,
-        "y": 40,
-        "wires": [
-            [
-                "e9dd15aabc896de3"
-            ]
-        ]
-    },
-    {
-        "id": "91bfd1cbe0c7c95b",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "f4fbefedb919c3c1",
-        "name": "Schedule",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1260,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "e9dd15aabc896de3",
-        "type": "function",
-        "z": "634c78c80eb9f37e",
-        "name": "Parse schedule times",
-        "func": "var today = new Date();\nvar day_of_week = today.getDay();\nvar dd = String(today.getDate()).padStart(2, '0');\nvar mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!\nvar yyyy = today.getFullYear();\n\ntoday = yyyy + '-' + mm + '-' + dd;\n\nschedule = {}\n\nfunction get_time_from_string (string_time) {\n    return Date.parse(today+'T'+string_time+\":00\")\n}\n\n// Get the schedule for today's day of the week\ntoday_schedule = msg.payload.schedule[day_of_week]\n\nschedule.begin_wake = get_time_from_string(today_schedule.begin_wake)\nschedule.wake = get_time_from_string(today_schedule.wake)\nschedule.dusk = get_time_from_string(today_schedule.dusk)\nschedule.winddown = get_time_from_string(today_schedule.winddown)\nschedule.stop_screens = get_time_from_string(today_schedule.stop_screens)\nschedule.go_to_bed = get_time_from_string(today_schedule.go_to_bed)\nschedule.night = get_time_from_string(today_schedule.night)\n\nmsg.payload = schedule\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 40,
-        "wires": [
-            [
-                "91bfd1cbe0c7c95b"
-            ]
-        ]
-    },
-    {
-        "id": "c0e040aaba90066e",
-        "type": "file in",
-        "z": "634c78c80eb9f37e",
-        "name": "Read climate config file",
-        "filename": "/data/projects/node-red/configs/climate_config.yaml",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "utf8",
-        "allProps": false,
-        "x": 630,
-        "y": 160,
-        "wires": [
-            [
-                "950b27ce0e1df41e"
-            ]
-        ]
-    },
-    {
-        "id": "950b27ce0e1df41e",
-        "type": "yaml",
-        "z": "634c78c80eb9f37e",
-        "property": "payload",
-        "name": "Convert to JSON",
-        "x": 860,
-        "y": 160,
-        "wires": [
-            [
-                "742f79ea2723fc83"
-            ]
-        ]
-    },
-    {
-        "id": "742f79ea2723fc83",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "611761b9dd5c9c4c",
-        "name": "Climate Config",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1050,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "d389488a08d98ed3",
         "type": "miio-roborock-command",
         "z": "45c21b8b98ae2f01",
@@ -8213,687 +8894,6 @@
         ]
     },
     {
-        "id": "f16bcb4bfea89461",
-        "type": "api-current-state",
-        "z": "499c53680d148fb0",
-        "name": "Get Nick Work Calendar",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "calendar.nborgers_pinterest_com",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1290,
-        "y": 140,
-        "wires": [
-            [
-                "ef40c5c9c328117a"
-            ]
-        ]
-    },
-    {
-        "id": "eeb048faac509fb7",
-        "type": "api-current-state",
-        "z": "499c53680d148fb0",
-        "name": "Get Nick Personal Calendar",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "calendar.nickborgers_gmail_com",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1300,
-        "y": 80,
-        "wires": [
-            [
-                "7ea81c237d1bc6b9"
-            ]
-        ]
-    },
-    {
-        "id": "e20f60c78f9d70c3",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Parse Start Timestamp",
-        "func": "next_event_start = Date.parse(msg.data.attributes.start_time)\n\n\nnew_msg = {}\n\nnew_msg.person = msg.person\nnew_msg.calendar = msg.calendar\nnew_msg.next_event_start = next_event_start\n\nreturn new_msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 340,
-        "wires": [
-            [
-                "ef3a03f27ccc5aac"
-            ]
-        ]
-    },
-    {
-        "id": "ef3a03f27ccc5aac",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Check if event starts tomorrow morning",
-        "func": "const today = new Date()\nconst tomorrow = new Date(today)\ntomorrow.setDate(tomorrow.getDate() + 1)\n\nstartOfTomorrowMorning = new Date(tomorrow);\nstartOfTomorrowMorning.setHours(4);\nstartOfTomorrowMorning.setMinutes(0);\nstartOfTomorrowMorning.setSeconds(0);\n\nendOfTomorrowMorning = new Date(tomorrow);\nendOfTomorrowMorning.setHours(10);\nendOfTomorrowMorning.setMinutes(0);\nendOfTomorrowMorning.setSeconds(0);\n\nif (startOfTomorrowMorning < msg.next_event_start &&\n    endOfTomorrowMorning > msg.next_event_start) {\n        return msg;\n}\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 340,
-        "wires": [
-            [
-                "5aae9e2ba1aaac07"
-            ]
-        ]
-    },
-    {
-        "id": "78b97767ec7322f1",
-        "type": "api-current-state",
-        "z": "499c53680d148fb0",
-        "name": "Get Caroline Personal Calendar",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "calendar.cpersonius216_gmail_com",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1310,
-        "y": 200,
-        "wires": [
-            [
-                "54dc994524561093"
-            ]
-        ]
-    },
-    {
-        "id": "27cc38fa63122801",
-        "type": "inject",
-        "z": "499c53680d148fb0",
-        "name": "Check during evening",
-        "props": [],
-        "repeat": "",
-        "crontab": "*/30 18-23 * * *",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 170,
-        "y": 100,
-        "wires": [
-            [
-                "e05c1b0b11607600"
-            ]
-        ]
-    },
-    {
-        "id": "4692feeb7bad273d",
-        "type": "change",
-        "z": "499c53680d148fb0",
-        "name": "Set Attr For Nick",
-        "rules": [
-            {
-                "t": "set",
-                "p": "person",
-                "pt": "msg",
-                "to": "Nick",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 470,
-        "y": 120,
-        "wires": [
-            [
-                "d307702ed23e98f3"
-            ]
-        ]
-    },
-    {
-        "id": "2ae4546130f6a88d",
-        "type": "change",
-        "z": "499c53680d148fb0",
-        "name": "Set Attr For Caroline",
-        "rules": [
-            {
-                "t": "set",
-                "p": "person",
-                "pt": "msg",
-                "to": "Caroline",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 460,
-        "y": 220,
-        "wires": [
-            [
-                "704229286b8d3587"
-            ]
-        ]
-    },
-    {
-        "id": "788db9362b2ed4ab",
-        "type": "change",
-        "z": "499c53680d148fb0",
-        "name": "Set Attr For Work",
-        "rules": [
-            {
-                "t": "set",
-                "p": "calendar",
-                "pt": "msg",
-                "to": "Work",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1030,
-        "y": 140,
-        "wires": [
-            [
-                "f16bcb4bfea89461"
-            ]
-        ]
-    },
-    {
-        "id": "90885fafa2c4dd63",
-        "type": "change",
-        "z": "499c53680d148fb0",
-        "name": "Set Attr For Personal",
-        "rules": [
-            {
-                "t": "set",
-                "p": "calendar",
-                "pt": "msg",
-                "to": "Personal",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1040,
-        "y": 80,
-        "wires": [
-            [
-                "eeb048faac509fb7"
-            ]
-        ]
-    },
-    {
-        "id": "6dc231aa8e595417",
-        "type": "change",
-        "z": "499c53680d148fb0",
-        "name": "Set Attr For Personal",
-        "rules": [
-            {
-                "t": "set",
-                "p": "calendar",
-                "pt": "msg",
-                "to": "Personal",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1040,
-        "y": 200,
-        "wires": [
-            [
-                "78b97767ec7322f1"
-            ]
-        ]
-    },
-    {
-        "id": "a3678204f8f05362",
-        "type": "ttsultimate",
-        "z": "499c53680d148fb0",
-        "name": "",
-        "voice": "en-GB",
-        "ssml": false,
-        "sonosipaddress": "10.212.100.226",
-        "sonosvolume": "20",
-        "sonoshailing": "Hailing_Hailing.mp3",
-        "config": "89337ebbba16965d",
-        "property": "payload",
-        "propertyType": {},
-        "rules": [],
-        "playertype": "sonos",
-        "speakingrate": "1",
-        "speakingpitch": "0",
-        "unmuteIfMuted": true,
-        "x": 870,
-        "y": 400,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "8c780ce574114c79",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Generate Notification Message",
-        "func": "event_start = new Date(parseInt(msg.next_event_start))\n\nhour = event_start.getHours();\nminute = event_start.getMinutes();\n\nnotification_message = msg.person + \", you have an event on your \" + msg.calendar + \" calendar which starts at \"\n\nif (minute == 0) {\n    notification_message = notification_message + hour + \" am\"\n} else {\n    notification_message = notification_message + hour + \" \" + minute + \" am\"\n}\n\nnotification_message = notification_message + \" tomorrow morning.\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 400,
-        "wires": [
-            [
-                "691e49e8493599d4"
-            ]
-        ]
-    },
-    {
-        "id": "0ed88bf8056f6919",
-        "type": "link call",
-        "z": "499c53680d148fb0",
-        "name": "Reset Music",
-        "links": [
-            "b1f2b5145a191585"
-        ],
-        "timeout": "30",
-        "x": 1050,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5aae9e2ba1aaac07",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Proceed if event starts within 11.5 hours",
-        "func": "const now = new Date()\nconst event = new Date(parseInt(msg.next_event_start))\n\ntime_until_event_start = event - now\n\n// Calculate ten hours\nten_hours_in_ms = (1000 * 60 * 60 * 11.5)\n\nif (time_until_event_start < ten_hours_in_ms) {\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1060,
-        "y": 340,
-        "wires": [
-            [
-                "8c780ce574114c79"
-            ]
-        ]
-    },
-    {
-        "id": "f8f16db190a9bbf1",
-        "type": "catch",
-        "z": "499c53680d148fb0",
-        "name": "Catch TTS Error",
-        "scope": [
-            "a3678204f8f05362"
-        ],
-        "uncaught": false,
-        "x": 880,
-        "y": 460,
-        "wires": [
-            [
-                "0ed88bf8056f6919"
-            ]
-        ]
-    },
-    {
-        "id": "e05c1b0b11607600",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Only Proceed if we are awake",
-        "func": "if (global.get(\"state\").isMasterAsleep.value == false) {\n    return msg\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 190,
-        "y": 160,
-        "wires": [
-            [
-                "4692feeb7bad273d",
-                "2ae4546130f6a88d"
-            ]
-        ]
-    },
-    {
-        "id": "d307702ed23e98f3",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Only Proceed if Nick is Home",
-        "func": "if (global.get(\"state\").isNickHome.value) {\n    return msg\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 120,
-        "wires": [
-            [
-                "788db9362b2ed4ab",
-                "90885fafa2c4dd63"
-            ]
-        ]
-    },
-    {
-        "id": "704229286b8d3587",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Only Proceed if Caroline is Home",
-        "func": "if (global.get(\"state\").isCarolineHome.value) {\n    return msg\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 220,
-        "wires": [
-            [
-                "6dc231aa8e595417",
-                "06f4e5c7d9a46571"
-            ]
-        ]
-    },
-    {
-        "id": "06f4e5c7d9a46571",
-        "type": "change",
-        "z": "499c53680d148fb0",
-        "name": "Set Attr For Work",
-        "rules": [
-            {
-                "t": "set",
-                "p": "calendar",
-                "pt": "msg",
-                "to": "Work",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1030,
-        "y": 260,
-        "wires": [
-            [
-                "21abaeffc63334c7"
-            ]
-        ]
-    },
-    {
-        "id": "21abaeffc63334c7",
-        "type": "api-current-state",
-        "z": "499c53680d148fb0",
-        "name": "Get Caroline Work Calendar",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "calendar.carolinep_remitly_com",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1300,
-        "y": 260,
-        "wires": [
-            [
-                "7801e88d316cb498"
-            ]
-        ]
-    },
-    {
-        "id": "7ea81c237d1bc6b9",
-        "type": "delay",
-        "z": "499c53680d148fb0",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "19",
-        "rateUnits": "hour",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1540,
-        "y": 80,
-        "wires": [
-            [
-                "e20f60c78f9d70c3"
-            ]
-        ]
-    },
-    {
-        "id": "ef40c5c9c328117a",
-        "type": "delay",
-        "z": "499c53680d148fb0",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "19",
-        "rateUnits": "hour",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1540,
-        "y": 140,
-        "wires": [
-            [
-                "e20f60c78f9d70c3"
-            ]
-        ]
-    },
-    {
-        "id": "54dc994524561093",
-        "type": "delay",
-        "z": "499c53680d148fb0",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "19",
-        "rateUnits": "hour",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1540,
-        "y": 200,
-        "wires": [
-            [
-                "e20f60c78f9d70c3"
-            ]
-        ]
-    },
-    {
-        "id": "7801e88d316cb498",
-        "type": "delay",
-        "z": "499c53680d148fb0",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "19",
-        "rateUnits": "hour",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1540,
-        "y": 260,
-        "wires": [
-            [
-                "e20f60c78f9d70c3"
-            ]
-        ]
-    },
-    {
-        "id": "691e49e8493599d4",
-        "type": "delay",
-        "z": "499c53680d148fb0",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "30",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 700,
-        "y": 400,
-        "wires": [
-            [
-                "a3678204f8f05362"
-            ]
-        ]
-    },
-    {
-        "id": "5eafd94846b1351d",
-        "type": "comment",
-        "z": "499c53680d148fb0",
-        "name": "Ugly check trigger",
-        "info": "",
-        "x": 130,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "28ae008b535bbdc3",
-        "type": "comment",
-        "z": "499c53680d148fb0",
-        "name": "Only notify once per day",
-        "info": "",
-        "x": 1570,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "5908acc6f289a226",
-        "type": "comment",
-        "z": "499c53680d148fb0",
-        "name": "Read calendar",
-        "info": "",
-        "x": 1260,
-        "y": 40,
-        "wires": []
-    },
-    {
         "id": "6d6e6c06f83da0ce",
         "type": "comment",
         "z": "95cf961539320dd3",
@@ -9934,7 +9934,7 @@
         "name": "Is Master Bedroom Door Open?",
         "triggerOnInit": true,
         "x": 150,
-        "y": 140,
+        "y": 160,
         "wires": [
             [
                 "b8f64fef44da2ad4"
@@ -9946,7 +9946,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Humidifiy or not to humidifiy?",
-        "func": "// If the master bedroom door is open, no chance of meaningful humidification so turn off\nif (global.get(\"state\").isMasterBedroomDoorOpen.value) {\n    return [msg, null]\n}\n// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").dayPhase == \"day\" || global.get(\"state\").dayPhase == \"evening\") {\n    return [msg, null]\n}\n// The door is closed and its winddown-morning, humidify!\nreturn [null, msg]",
+        "func": "// If the master bedroom door is open, no chance of meaningful humidification so turn off\nif (global.get(\"state\").isMasterBedroomDoorOpen.value) {\n    return [msg, null]\n}\n// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").dayPhase == \"day\" || global.get(\"state\").dayPhase == \"sunset\") {\n    return [msg, null]\n}\n// The door is closed and its winddown-morning, humidify!\nreturn [null, msg]",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -10116,7 +10116,7 @@
         "y": 200,
         "wires": [
             [
-                "6b9a6be0ddd86773"
+                "e6de6db28626e551"
             ]
         ]
     },
@@ -10151,37 +10151,6 @@
             [
                 "0b4db01d2701a613"
             ]
-        ]
-    },
-    {
-        "id": "6b9a6be0ddd86773",
-        "type": "api-call-service",
-        "z": "6a064f420a191bf8",
-        "name": "Normal fan speed",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
-        "areaId": [
-            "master_bedroom"
-        ],
-        "deviceId": [
-            "3a7bab5f23e10f98bb210ea2e7ca54a0"
-        ],
-        "entityId": [
-            "fan.master_bedroom"
-        ],
-        "data": "{\"percentage\": 60}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1270,
-        "y": 200,
-        "wires": [
-            []
         ]
     },
     {
@@ -10663,8 +10632,37 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 460,
-        "y": 400,
+        "x": 480,
+        "y": 380,
+        "wires": [
+            [
+                "d6780dc3d1f346a0"
+            ]
+        ]
+    },
+    {
+        "id": "e6de6db28626e551",
+        "type": "link out",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "caa6aa12e7dda2e1"
+        ],
+        "x": 1195,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "caa6aa12e7dda2e1",
+        "type": "link in",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "links": [
+            "e6de6db28626e551"
+        ],
+        "x": 365,
+        "y": 420,
         "wires": [
             [
                 "d6780dc3d1f346a0"
