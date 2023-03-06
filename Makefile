@@ -18,7 +18,7 @@ run: cleanup
 	# Create the node-red container on the backend network
 	docker run -d --user 0:0 -e PORT=80 --network=node-red-backend --name node-red node-red-local
 
-run-to-generate-screenshots: run
+run-to-generate-screenshots: build run
 	# Hacky sleep to avoid hitting TCP connection refused against node-red container
 	sleep 1
 	# Start our "test" which pulls the screenshots out of the node-red container

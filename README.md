@@ -58,8 +58,10 @@ A [Roborock vacuum is controlled](https://us.roborock.com/products/roborock-s7-m
 I wanted to be able to git track the fairly complex configuration objects that I needed to describe my intents for music playback and lighting. These were the first files in this repository to be source controlled. Those configuration objects take the form of YAML files:
   - [hue_config.yaml](configs/hue_config.yaml)
   - [music_config.yaml](configs/music_config.yaml)
+  - [schedule_config.yaml](configs/schedule_config.yaml)
+  - [climate_config.yaml](configs/climate_config.yaml)
 
-[Both config files are validated for YAML correctness using `yamllint` in a GitHub Action](.github/workflows/validate.yml#10-24). Because the majority of music playback leverages public Spotify playlists, the [music_config.yaml](configs/music_config.yaml) gets some additional validation by a [script which confirms every indicated Spotify Playback URI is a valid, reachable, and public Spotify Playlist](config-test/validate_spotify_uris.py).
+[The config files are validated for YAML correctness using `yamllint` in a GitHub Action](.github/workflows/validate.yml#10-24). Because the majority of music playback leverages public Spotify playlists, the [music_config.yaml](configs/music_config.yaml) gets some additional validation by a [script which confirms every indicated Spotify Playback URI is a valid, reachable, and public Spotify Playlist](config-test/validate_spotify_uris.py).
 
 The Node Red Flow which manages Configuration is:
 
@@ -85,4 +87,7 @@ Changes to state variables which drive behavior are written to an Elasticsearch 
 
 ![Log](https://nickborgers.github.io/node-red/Log.png)
 
+### Climate Control
+Configuring the speed of the fans in the home and activating the humidifier in the bedroom when appropriate, plus recording the interior temperature and humidity. These flows have significant issues with being hardcoded to this home.
 
+![Climate Control](https://nickborgers.github.io/node-red/Climate%20Control.png)
