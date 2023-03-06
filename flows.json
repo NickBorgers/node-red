@@ -550,6 +550,134 @@
         "unit": ""
     },
     {
+        "id": "816d3fb762a92b71",
+        "type": "shared-state",
+        "name": "humidityOfBedroom",
+        "lbl": "Humidity of Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "d19054ef0f693509",
+        "type": "shared-state",
+        "name": "humidityOfLivingRoomWindow",
+        "lbl": "Humidity of Living Room Window",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "7e0b34e77bae8edb",
+        "type": "shared-state",
+        "name": "humidityOfLivingRoomCenter",
+        "lbl": "Humidity of Living Room Center",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "51ddddf9304ec19f",
+        "type": "shared-state",
+        "name": "humidityOfMasterBedroom",
+        "lbl": "Humidity of Master Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "4faab2d5448df995",
+        "type": "shared-state",
+        "name": "temperatureOfMasterBedroom",
+        "lbl": "Temperature of Master Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "F"
+    },
+    {
+        "id": "098765180c8f29ad",
+        "type": "shared-state",
+        "name": "temperatureOfLivingRoomCenter",
+        "lbl": "Temperature of Living Room Center",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "F"
+    },
+    {
+        "id": "0133e13457d0b692",
+        "type": "shared-state",
+        "name": "temperatureOfLivingRoomWindow",
+        "lbl": "Temperature of Living Room Window",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "F"
+    },
+    {
+        "id": "60f1a7e39e0a4f1c",
+        "type": "shared-state",
+        "name": "temperatureOfBedroom",
+        "lbl": "Temperature of Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "F"
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -9600,7 +9728,7 @@
         "name": "Caroline Home",
         "triggerOnInit": false,
         "x": 160,
-        "y": 120,
+        "y": 80,
         "wires": [
             [
                 "d302fd95b8fbd25a"
@@ -9772,7 +9900,8 @@
         "y": 500,
         "wires": [
             [
-                "a99efe1134ae512d"
+                "a99efe1134ae512d",
+                "2cc9cfdabb70b53a"
             ]
         ]
     },
@@ -9910,6 +10039,38 @@
                 "d302fd95b8fbd25a"
             ]
         ]
+    },
+    {
+        "id": "1720b539ad30b259",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "611761b9dd5c9c4c",
+        "name": "Climate Config",
+        "triggerOnInit": false,
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
+        "id": "2cc9cfdabb70b53a",
+        "type": "debug",
+        "z": "9e0490d1fc323107",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 420,
+        "wires": []
     },
     {
         "id": "f52083fdd7491f1b",
@@ -10666,6 +10827,949 @@
         "wires": [
             [
                 "d6780dc3d1f346a0"
+            ]
+        ]
+    },
+    {
+        "id": "225f857752659a36",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Collect Temperature and Humidity Data",
+        "info": "",
+        "x": 170,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "156f16e0c85e2816",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.master_bedroom_humidity",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 580,
+        "y": 720,
+        "wires": [
+            [
+                "06780408ced82219"
+            ]
+        ]
+    },
+    {
+        "id": "975576f9dbe21947",
+        "type": "inject",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 940,
+        "wires": [
+            [
+                "9c377bc17a4aa03a",
+                "414b598fd90ee4de",
+                "9a39ae1dd8b22980",
+                "9fe8377df9dba651",
+                "d0a15d3cd2962152",
+                "ccf4342cd237b4fe",
+                "1e71b32d69eb7fe6",
+                "bbaee6b986a4ee5a",
+                "a8b85510e85625a1"
+            ]
+        ]
+    },
+    {
+        "id": "75cb9283e2cb7aba",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.living_room_humidity",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 570,
+        "y": 780,
+        "wires": [
+            [
+                "eb26439b8c2472f8"
+            ]
+        ]
+    },
+    {
+        "id": "2ec3a969aa01e5c2",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.living_room_humidity_2",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 570,
+        "y": 840,
+        "wires": [
+            [
+                "c463febc133f46b6"
+            ]
+        ]
+    },
+    {
+        "id": "b3fd89c4de936d7c",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.bedroom_humidity",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 900,
+        "wires": [
+            [
+                "605c125667351b1d"
+            ]
+        ]
+    },
+    {
+        "id": "589452f0e043686c",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.master_bedroom_temperature",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 600,
+        "y": 960,
+        "wires": [
+            [
+                "c00c1d09dc355e50"
+            ]
+        ]
+    },
+    {
+        "id": "19c242d2027aedf7",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.living_room_temperature",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 580,
+        "y": 1020,
+        "wires": [
+            [
+                "31739342eb065d47"
+            ]
+        ]
+    },
+    {
+        "id": "59ac828528febe57",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.living_room_temperature_2",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 590,
+        "y": 1080,
+        "wires": [
+            [
+                "8a3e7c2d711a2d47"
+            ]
+        ]
+    },
+    {
+        "id": "921d40799aa20523",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.bedroom_temperature",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 570,
+        "y": 1140,
+        "wires": [
+            [
+                "480f8c2ce0a49284"
+            ]
+        ]
+    },
+    {
+        "id": "605c125667351b1d",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "816d3fb762a92b71",
+        "name": "Humidity of Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1100,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "c463febc133f46b6",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "d19054ef0f693509",
+        "name": "Humidity of Living Room Window",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1140,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "eb26439b8c2472f8",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "7e0b34e77bae8edb",
+        "name": "Humidity of Living Room Center",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1130,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "06780408ced82219",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "51ddddf9304ec19f",
+        "name": "Humidity of Master Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1120,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c00c1d09dc355e50",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "4faab2d5448df995",
+        "name": "Temperature of Master Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1130,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "31739342eb065d47",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "098765180c8f29ad",
+        "name": "Temperature of Living Room Center",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1140,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "8a3e7c2d711a2d47",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "0133e13457d0b692",
+        "name": "Temperature of Living Room Window",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1150,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "480f8c2ce0a49284",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "60f1a7e39e0a4f1c",
+        "name": "Temperature of Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1110,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "5c5b49d9b27da7ce",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "Build indoor humidity and temp report",
+        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Window\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            //report[\"Bedroom\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Window\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            //report[\"Bedroom\"].humidity\n                                        ])\n\n// Build msg for logging\nmsg.payload = {};\nmsg.payload.object = report\nmsg.payload.type = \"object\"\nmsg.payload.object_string = JSON.stringify(msg.payload.object);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 1220,
+        "wires": [
+            [
+                "67c5137b0466f356"
+            ]
+        ]
+    },
+    {
+        "id": "67c5137b0466f356",
+        "type": "log-elk",
+        "z": "6a064f420a191bf8",
+        "name": "Log",
+        "logger": "e98cb8b7d7a02f27",
+        "complete": "payload",
+        "loglevel": "info",
+        "x": 770,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "142fd9870b53a95d",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae87c948b424fbf9",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "396fb4253e303c36",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6345360059b9e468",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a9bfb194f2bc4dd",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c02b4ad91b25140",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26ef1be69d85f102",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "feadb618e7635a07",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c377bc17a4aa03a",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 720,
+        "wires": [
+            [
+                "156f16e0c85e2816"
+            ]
+        ]
+    },
+    {
+        "id": "414b598fd90ee4de",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 780,
+        "wires": [
+            [
+                "75cb9283e2cb7aba"
+            ]
+        ]
+    },
+    {
+        "id": "9a39ae1dd8b22980",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "4",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 840,
+        "wires": [
+            [
+                "2ec3a969aa01e5c2"
+            ]
+        ]
+    },
+    {
+        "id": "9fe8377df9dba651",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "6",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 900,
+        "wires": [
+            [
+                "b3fd89c4de936d7c"
+            ]
+        ]
+    },
+    {
+        "id": "d0a15d3cd2962152",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "8",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 960,
+        "wires": [
+            [
+                "589452f0e043686c"
+            ]
+        ]
+    },
+    {
+        "id": "ccf4342cd237b4fe",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1020,
+        "wires": [
+            [
+                "19c242d2027aedf7"
+            ]
+        ]
+    },
+    {
+        "id": "1e71b32d69eb7fe6",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "12",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1080,
+        "wires": [
+            [
+                "59ac828528febe57"
+            ]
+        ]
+    },
+    {
+        "id": "bbaee6b986a4ee5a",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "14",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1140,
+        "wires": [
+            [
+                "921d40799aa20523"
+            ]
+        ]
+    },
+    {
+        "id": "a8b85510e85625a1",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1220,
+        "wires": [
+            [
+                "5c5b49d9b27da7ce"
             ]
         ]
     }
