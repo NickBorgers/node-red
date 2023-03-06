@@ -52,7 +52,7 @@ cleanup:
 	docker network rm node-red-backend || true
 	docker network rm node-red-frontend || true
 
-run-config-tests: run-yamllint-hue run-yamllint-music run-yamllint-schedule run-spotify-validation-music
+run-config-tests: run-yamllint-hue run-yamllint-music run-yamllint-schedule run-yamllint-climate run-spotify-validation-music
 
 run-yamllint-hue: build-config-tester
 	docker run --rm --mount type=bind,source=${CURDIR}/configs/hue_config.yaml,destination=/app/hue_config.yaml node-red-config-tester yamllint hue_config.yaml
@@ -62,6 +62,9 @@ run-yamllint-music: build-config-tester
 
 run-yamllint-schedule: build-config-tester
 	docker run --rm --mount type=bind,source=${CURDIR}/configs/schedule_config.yaml,destination=/app/schedule_config.yaml node-red-config-tester yamllint schedule_config.yaml
+
+run-yamllint-climate: build-config-tester
+	docker run --rm --mount type=bind,source=${CURDIR}/configs/climate_config.yaml,destination=/app/climate_config.yaml node-red-config-tester yamllint climate_config.yaml
 
 run-spotify-validation-music: build-config-tester
 	docker run --rm --mount type=bind,source=${CURDIR}/configs/music_config.yaml,destination=/app/music_config.yaml node-red-config-tester python3 -u validate_spotify_uris.py
