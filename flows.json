@@ -4763,7 +4763,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Build master music message",
-        "func": "// Music type is set by variable\nmusicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n} else {\n    musicPlaylistNumbers = {}\n}\n// If this type has a number already, use it; otherwise create it as 0\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nmusicConfig = global.get(\"state\").musicConfig.value\n// Get the overall object for this type of music\nmusicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nmusicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n// Generate a list of players to group for playback based on the config\nplayers = \"\"\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n        }\n    });\n    // Mute all players being engaged in this group\n    muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nleadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nplayMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\n\ncurrentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nincrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg ] ",
+        "func": "// Music type is set by variable\nmusicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n} else {\n    musicPlaylistNumbers = {}\n}\n// If this type has a number already, use it; otherwise create it as 0\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nmusicConfig = global.get(\"state\").musicConfig.value.music\n// Get the overall object for this type of music\nmusicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nmusicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n// Generate a list of players to group for playback based on the config\nplayers = \"\"\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n        }\n    });\n    // Mute all players being engaged in this group\n    muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nleadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nplayMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\n\ncurrentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nincrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg ] ",
         "outputs": 4,
         "noerr": 0,
         "initialize": "",
@@ -5114,7 +5114,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Break all groups and stop all playback",
-        "func": "playerNames = new Set()\n\nmusicConfig = global.get(\"state\").musicConfig.value\n\nObject.values(musicConfig).forEach(function(musicType) {\n    musicType.participants.forEach(function(participant) {\n        playerNames.add(participant.player_name)\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    node.send(msg);\n});",
+        "func": "playerNames = new Set()\n\nmusicConfig = global.get(\"state\").musicConfig.value.music\n\nObject.values(musicConfig).forEach(function(musicType) {\n    musicType.participants.forEach(function(participant) {\n        playerNames.add(participant.player_name)\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    node.send(msg);\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5959,7 +5959,7 @@
         "id": "22a942ce5b9137fe",
         "type": "server-state-changed",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Sense if TV is playing",
+        "name": "Sense if Apple TV is playing",
         "server": "3ec50562615a9f50",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -5998,7 +5998,7 @@
                 "valueType": "bool"
             }
         ],
-        "x": 140,
+        "x": 160,
         "y": 1280,
         "wires": [
             [
@@ -6011,7 +6011,7 @@
         "id": "51c32d5740a1645d",
         "type": "server-state-changed",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Sense if TV is not playing",
+        "name": "Sense if Apple TV is not playing",
         "server": "3ec50562615a9f50",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -6050,7 +6050,7 @@
                 "valueType": "bool"
             }
         ],
-        "x": 150,
+        "x": 170,
         "y": 1340,
         "wires": [
             [
@@ -6068,7 +6068,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 400,
+        "x": 440,
         "y": 1300,
         "wires": []
     },
@@ -6564,7 +6564,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Monitor for whether TV is on",
         "info": "",
-        "x": 620,
+        "x": 700,
         "y": 1240,
         "wires": []
     },
@@ -6611,7 +6611,7 @@
                 "valueType": "bool"
             }
         ],
-        "x": 600,
+        "x": 680,
         "y": 1280,
         "wires": [
             [
@@ -6629,7 +6629,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 840,
+        "x": 920,
         "y": 1300,
         "wires": []
     },
@@ -6676,7 +6676,7 @@
                 "valueType": "bool"
             }
         ],
-        "x": 600,
+        "x": 680,
         "y": 1340,
         "wires": [
             [
@@ -7138,7 +7138,7 @@
         "server": "3ec50562615a9f50",
         "version": 3,
         "outputs": 2,
-        "halt_if": "playing",
+        "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "entity_id": "media_player.sony_xr_65a80k",
