@@ -11,6 +11,20 @@ These are public in case they are interesting or even useful to someone else, so
 
 [All Node Red Modules used are incidentally listed here](.automated-rendering/node-red/package.json) as part of enabling the automation for generating screenshots; basically just need the nodes so they can render.
 
+### Components
+```mermaid
+flowchart LR
+
+A[Node Red] --> |Websockets| B[Home Assistant]
+A --> C[Sonos]
+A --> D[Elasticsearch]
+A --> G[HomeKit]
+B --> E[Phillips Hue]
+B --> F[Dyson]
+B --> H[Apple TV]
+B --> I[Bravia TV]
+```
+
 ### Taking a look at the nodes interactively
 If you would like to see what these nodes look like in a local instance of Node Red, clone this repository and run:
 ```
