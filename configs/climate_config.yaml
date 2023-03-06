@@ -24,7 +24,7 @@ climate:
         percentage: 40
       - area: "Guest Suite"
         percentage: 40
-  evening:
+  dusk:
     fans:
       - area: "Master Suite"
         percentage: 40
