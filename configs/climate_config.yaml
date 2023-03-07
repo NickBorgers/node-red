@@ -35,7 +35,7 @@ climate:
   winddown:
     fans:
       - area: "Master Suite"
-        percentage: 40
+        percentage: 60
       - area: "Living Room"
         percentage: 20
       - area: "Guest Suite"
@@ -43,7 +43,7 @@ climate:
   night:
     fans:
       - area: "Master Suite"
-        percentage: 40
+        percentage: 60
       - area: "Living Room"
         percentage: 10
       - area: "Guest Suite"
