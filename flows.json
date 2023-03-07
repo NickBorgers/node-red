@@ -10117,11 +10117,11 @@
         "y": 80,
         "wires": [
             [
-                "b4138b425944434b"
+                "f9d66d0649e9bd11"
             ],
             [
-                "c02601d37dfb8fc1",
-                "c2ad03f07cca0d64"
+                "c2ad03f07cca0d64",
+                "2262ccb67c3b1114"
             ]
         ]
     },
@@ -10148,7 +10148,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 760,
+        "x": 920,
         "y": 100,
         "wires": [
             []
@@ -10177,7 +10177,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 760,
+        "x": 920,
         "y": 40,
         "wires": [
             []
@@ -10248,7 +10248,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 740,
+        "x": 720,
         "y": 200,
         "wires": [
             [
@@ -10273,7 +10273,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1090,
+        "x": 1070,
         "y": 200,
         "wires": [
             [
@@ -10306,7 +10306,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 920,
+        "x": 900,
         "y": 200,
         "wires": [
             [
@@ -10320,7 +10320,7 @@
         "z": "6a064f420a191bf8",
         "name": "Run hard for a little while",
         "info": "",
-        "x": 770,
+        "x": 750,
         "y": 160,
         "wires": []
     },
@@ -10810,7 +10810,7 @@
         "links": [
             "caa6aa12e7dda2e1"
         ],
-        "x": 1195,
+        "x": 1175,
         "y": 200,
         "wires": []
     },
@@ -11770,6 +11770,56 @@
         "wires": [
             [
                 "5c5b49d9b27da7ce"
+            ]
+        ]
+    },
+    {
+        "id": "f9d66d0649e9bd11",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 710,
+        "y": 40,
+        "wires": [
+            [
+                "b4138b425944434b"
+            ]
+        ]
+    },
+    {
+        "id": "2262ccb67c3b1114",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 100,
+        "wires": [
+            [
+                "c02601d37dfb8fc1"
             ]
         ]
     }
