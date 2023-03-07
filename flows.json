@@ -10818,12 +10818,13 @@
         "id": "caa6aa12e7dda2e1",
         "type": "link in",
         "z": "6a064f420a191bf8",
-        "name": "",
+        "name": "Reset Fan Speeds",
         "links": [
-            "e6de6db28626e551"
+            "e6de6db28626e551",
+            "adc754d173d18011"
         ],
-        "x": 365,
-        "y": 420,
+        "x": 405,
+        "y": 500,
         "wires": [
             [
                 "d6780dc3d1f346a0"
@@ -11788,7 +11789,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
-        "allowrate": false,
+        "allowrate": true,
         "outputs": 1,
         "x": 710,
         "y": 40,
@@ -11820,6 +11821,173 @@
         "wires": [
             [
                 "c02601d37dfb8fc1"
+            ]
+        ]
+    },
+    {
+        "id": "9487045d442fbd6a",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Restart Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "homeassistant",
+        "service": "restart",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1450,
+        "y": 320,
+        "wires": [
+            [
+                "adc754d173d18011"
+            ]
+        ]
+    },
+    {
+        "id": "d640980ca6e1b2b1",
+        "type": "catch",
+        "z": "6a064f420a191bf8",
+        "name": "Catch Dyson Errors",
+        "scope": [
+            "c02601d37dfb8fc1",
+            "b4138b425944434b",
+            "2d3889f3b872a383",
+            "4925b947985b2af7",
+            "a78adf1024effbae",
+            "b460a2f7c87f3795",
+            "8292bb8f30d17629"
+        ],
+        "uncaught": false,
+        "x": 690,
+        "y": 320,
+        "wires": [
+            [
+                "c838778390ca81b8"
+            ]
+        ]
+    },
+    {
+        "id": "c838778390ca81b8",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "12",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 880,
+        "y": 320,
+        "wires": [
+            [
+                "e137a7a92df1509a"
+            ]
+        ]
+    },
+    {
+        "id": "e137a7a92df1509a",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1040,
+        "y": 320,
+        "wires": [
+            [
+                "a649f7d60ee87e24"
+            ]
+        ]
+    },
+    {
+        "id": "adc754d173d18011",
+        "type": "link out",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "6016baf9f8808810",
+            "caa6aa12e7dda2e1"
+        ],
+        "x": 1595,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6016baf9f8808810",
+        "type": "link in",
+        "z": "6a064f420a191bf8",
+        "name": "Reset Humidifiers",
+        "links": [
+            "adc754d173d18011"
+        ],
+        "x": 265,
+        "y": 120,
+        "wires": [
+            [
+                "b8f64fef44da2ad4"
+            ]
+        ]
+    },
+    {
+        "id": "cf5205abceb397a2",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Handle Dyson Communication Errors",
+        "info": "",
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a649f7d60ee87e24",
+        "type": "change",
+        "z": "6a064f420a191bf8",
+        "name": "Override Rate Limits",
+        "rules": [
+            {
+                "t": "set",
+                "p": "rate",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1220,
+        "y": 320,
+        "wires": [
+            [
+                "9487045d442fbd6a"
             ]
         ]
     }
