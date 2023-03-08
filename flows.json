@@ -10088,26 +10088,11 @@
         ]
     },
     {
-        "id": "0a087ffd6a970361",
-        "type": "get-shared-state",
-        "z": "6a064f420a191bf8",
-        "state": "8c8dbb69a0c4c67f",
-        "name": "Is Master Bedroom Door Open?",
-        "triggerOnInit": true,
-        "x": 150,
-        "y": 160,
-        "wires": [
-            [
-                "b8f64fef44da2ad4"
-            ]
-        ]
-    },
-    {
         "id": "b8f64fef44da2ad4",
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Humidifiy or not to humidifiy?",
-        "func": "// If the master bedroom door is open, no chance of meaningful humidification so turn off\nif (global.get(\"state\").isMasterBedroomDoorOpen.value) {\n    return [msg, null]\n}\n// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").dayPhase == \"day\" || global.get(\"state\").dayPhase == \"sunset\") {\n    return [msg, null]\n}\n// The door is closed and its winddown-morning, humidify!\nreturn [null, msg]",
+        "func": "// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").musicPlaybackType == \"morning\" ||\n    global.get(\"state\").dayPhase == \"day\" ||\n    global.get(\"state\").dayPhase == \"evening\"\n    ) {\n    return [msg, null]\n}\n// If it's winddown or sleep definitely humidify\nif (global.get(\"state\").musicPlaybackType == \"winddown\" ||\n    global.get(\"state\").dayPhase == \"sleep\"\n    ) {\n    return [null, msg]\n}\n// Otherwise, not so clear so do nothing\nreturn [null, null]",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -10148,7 +10133,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 920,
+        "x": 1060,
         "y": 100,
         "wires": [
             []
@@ -10177,7 +10162,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 920,
+        "x": 1060,
         "y": 40,
         "wires": [
             []
@@ -10262,8 +10247,8 @@
         "z": "6a064f420a191bf8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "20",
-        "timeoutUnits": "minutes",
+        "timeout": "1",
+        "timeoutUnits": "hours",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -10273,7 +10258,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1070,
+        "x": 1060,
         "y": 200,
         "wires": [
             [
@@ -10810,7 +10795,7 @@
         "links": [
             "caa6aa12e7dda2e1"
         ],
-        "x": 1175,
+        "x": 1155,
         "y": 200,
         "wires": []
     },
@@ -11795,7 +11780,7 @@
         "y": 40,
         "wires": [
             [
-                "b4138b425944434b"
+                "3ac1f5afde110dd5"
             ]
         ]
     },
@@ -11820,7 +11805,7 @@
         "y": 100,
         "wires": [
             [
-                "c02601d37dfb8fc1"
+                "185597969597ddde"
             ]
         ]
     },
@@ -11988,6 +11973,85 @@
         "wires": [
             [
                 "9487045d442fbd6a"
+            ]
+        ]
+    },
+    {
+        "id": "3ac1f5afde110dd5",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 880,
+        "y": 40,
+        "wires": [
+            [
+                "b4138b425944434b"
+            ]
+        ]
+    },
+    {
+        "id": "185597969597ddde",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 880,
+        "y": 100,
+        "wires": [
+            [
+                "c02601d37dfb8fc1"
+            ]
+        ]
+    },
+    {
+        "id": "1e9541493a2ef7b4",
+        "type": "inject",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "b8f64fef44da2ad4"
             ]
         ]
     }
