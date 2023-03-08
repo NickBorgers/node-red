@@ -10092,7 +10092,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Humidifiy or not to humidifiy?",
-        "func": "// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").musicPlaybackType == \"morning\" ||\n    global.get(\"state\").dayPhase == \"day\" ||\n    global.get(\"state\").dayPhase == \"evening\"\n    ) {\n    return [msg, null]\n}\n// If it's winddown or sleep definitely humidify\nif (global.get(\"state\").musicPlaybackType == \"winddown\" ||\n    global.get(\"state\").dayPhase == \"sleep\"\n    ) {\n    return [null, msg]\n}\n// Otherwise, not so clear so do nothing\nreturn [null, null]",
+        "func": "// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").musicPlaybackType == \"morning\" ||\n    global.get(\"state\").musicPlaybackType == \"day\" ||\n    global.get(\"state\").musicPlaybackType == \"evening\"\n    ) {\n    return [msg, null]\n}\n// If it's winddown or sleep definitely humidify\nif (global.get(\"state\").musicPlaybackType == \"winddown\" ||\n    global.get(\"state\").musicPlaybackType == \"sleep\"\n    ) {\n    return [null, msg]\n}\n// Otherwise, not so clear so do nothing\nreturn [null, null]",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
