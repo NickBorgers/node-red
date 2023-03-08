@@ -4418,7 +4418,7 @@
         "version": 5,
         "debugenabled": false,
         "domain": "remote",
-        "service": "send_command",
+        "service": "turn_off",
         "areaId": [
             "living_room"
         ],
@@ -4428,7 +4428,7 @@
         "entityId": [
             "remote.big_beautiful_oled"
         ],
-        "data": "{\"delay_secs\":1, \"command\": [\"home_hold\",\"select\"]}",
+        "data": "",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
