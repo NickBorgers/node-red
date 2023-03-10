@@ -678,6 +678,22 @@
         "unit": "F"
     },
     {
+        "id": "1ce72a9fb27d8577",
+        "type": "shared-state",
+        "name": "isHumidifierOn",
+        "lbl": "Is Humdifier On?",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -9900,8 +9916,7 @@
         "y": 500,
         "wires": [
             [
-                "a99efe1134ae512d",
-                "2cc9cfdabb70b53a"
+                "a99efe1134ae512d"
             ]
         ]
     },
@@ -10056,30 +10071,28 @@
         ]
     },
     {
-        "id": "2cc9cfdabb70b53a",
-        "type": "debug",
+        "id": "25ce20e84e6765a8",
+        "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 770,
-        "y": 420,
-        "wires": []
+        "state": "1ce72a9fb27d8577",
+        "name": "Is Humdifier On?",
+        "triggerOnInit": false,
+        "x": 380,
+        "y": 80,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
     },
     {
         "id": "f52083fdd7491f1b",
         "type": "get-shared-state",
         "z": "6a064f420a191bf8",
-        "state": "efc87f0de00a2d36",
-        "name": "Day Phase",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
         "triggerOnInit": true,
-        "x": 80,
+        "x": 120,
         "y": 80,
         "wires": [
             [
@@ -10092,7 +10105,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Humidifiy or not to humidifiy?",
-        "func": "// If it's day or evening there's no point in humidifying\nif (global.get(\"state\").musicPlaybackType == \"morning\" ||\n    global.get(\"state\").musicPlaybackType == \"day\" ||\n    global.get(\"state\").musicPlaybackType == \"evening\"\n    ) {\n    return [msg, null]\n}\n// If it's winddown or sleep definitely humidify\nif (global.get(\"state\").musicPlaybackType == \"winddown\" ||\n    global.get(\"state\").musicPlaybackType == \"sleep\"\n    ) {\n    return [null, msg]\n}\n// Otherwise, not so clear so do nothing\nreturn [null, null]",
+        "func": "musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's day or evening there's no point in humidifying\nif (musicPlaybackType == \"morning\" ||\n    musicPlaybackType == \"day\" ||\n    musicPlaybackType == \"evening\"\n    ) {\n    return [msg, null]\n}\n// If it's winddown or sleep definitely humidify\nif (musicPlaybackType == \"winddown\" ||\n    musicPlaybackType == \"sleep\"\n    ) {\n    return [null, msg]\n}\n// Otherwise, not so clear so do nothing\nreturn [null, null]",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -10136,7 +10149,9 @@
         "x": 1060,
         "y": 100,
         "wires": [
-            []
+            [
+                "8a6956eba86703b9"
+            ]
         ]
     },
     {
@@ -10165,7 +10180,9 @@
         "x": 1060,
         "y": 40,
         "wires": [
-            []
+            [
+                "fefbf7c03885030f"
+            ]
         ]
     },
     {
@@ -11868,7 +11885,7 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "12",
+        "nbRateUnits": "4",
         "rateUnits": "hour",
         "randomFirst": "1",
         "randomLast": "5",
@@ -12047,11 +12064,91 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 180,
+        "x": 160,
         "y": 120,
         "wires": [
             [
                 "b8f64fef44da2ad4"
+            ]
+        ]
+    },
+    {
+        "id": "1ab2bb4d53bedd65",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "1ce72a9fb27d8577",
+        "name": "Is Humdifier On?",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1390,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "fa5d9866f07171f2",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "1ce72a9fb27d8577",
+        "name": "Is Humdifier On?",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1390,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "8a6956eba86703b9",
+        "type": "change",
+        "z": "6a064f420a191bf8",
+        "name": "True",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1230,
+        "y": 100,
+        "wires": [
+            [
+                "1ab2bb4d53bedd65"
+            ]
+        ]
+    },
+    {
+        "id": "fefbf7c03885030f",
+        "type": "change",
+        "z": "6a064f420a191bf8",
+        "name": "False",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1230,
+        "y": 40,
+        "wires": [
+            [
+                "fa5d9866f07171f2"
             ]
         ]
     }
