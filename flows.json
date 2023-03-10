@@ -10517,7 +10517,7 @@
         "y": 620,
         "wires": [
             [
-                "13475531f6944d0e"
+                "d6780dc3d1f346a0"
             ]
         ]
     },
@@ -10561,35 +10561,6 @@
         "x": 530,
         "y": 580,
         "wires": []
-    },
-    {
-        "id": "13475531f6944d0e",
-        "type": "api-call-service",
-        "z": "6a064f420a191bf8",
-        "name": "Normal fan speed",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
-        "areaId": [
-            "guest_suite",
-            "living_room_2",
-            "master_bedroom"
-        ],
-        "deviceId": [],
-        "entityId": [],
-        "data": "{\"percentage\": 30}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1010,
-        "y": 620,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "4925b947985b2af7",
