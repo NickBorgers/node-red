@@ -175,10 +175,6 @@ music:
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX2vYju3i0lNX
         volume_multiplier: 1
-      # Classical New Releases (Needs much higher volumes for parity)
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DWV0gynK7G6pD
-        volume_multiplier: 1.9
   winddown:
     participants:
       - player_name: "Nook Speaker"
