@@ -5655,7 +5655,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Message here specifies playerName coordinator, but includes all as participants",
         "info": "",
-        "x": 1060,
+        "x": 1140,
         "y": 40,
         "wires": []
     },
