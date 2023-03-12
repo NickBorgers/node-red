@@ -27,7 +27,7 @@ jobs:
       - name: Build Docker images
         run: make build
       - name: Generate screenshots
-        run: make run-to-generate-screenshots
+        run: make generate-screenshots
       - name: Upload screenshots as a github-pages artifact
         uses: actions/upload-pages-artifact@v1
         with: 

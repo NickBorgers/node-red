@@ -18,7 +18,7 @@ run: cleanup
 	# Create the node-red container on the backend network
 	docker run -d --user 0:0 -e PORT=80 --network=node-red-backend --name node-red node-red-local
 
-run-to-generate-screenshots: build run
+generate-screenshots: build run
 	# Hacky sleep to avoid hitting TCP connection refused against node-red container
 	sleep 1
 	# Start our "test" which pulls the screenshots out of the node-red container
@@ -29,6 +29,7 @@ run-to-generate-screenshots: build run
 	docker run --rm --network=none \
 	  --mount type=bind,source=${CURDIR}/.automated-rendering/screenshot-capture/screenshots/,destination=/screenshots/ \
 	  --name image-magick-auto-crop --entrypoint=mogrify dpokidov/imagemagick -fuzz 27% -trim +repage /screenshots/*.png
+	${MAKE} cleanup
 
 watch-logs:
 	docker logs -f node-red

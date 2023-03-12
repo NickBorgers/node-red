@@ -63,29 +63,21 @@ test('Capture screenshot of the entire scrollable webpage', async ({page}) => {
     // Create index variable
     var index = 0;
     // Do some ugly looping
-    while (true) {
-        // If there's a tab with this index
-        if (tab_ids[index]) {
-            // Set the tab id with the index
-            var this_tab_id = tab_ids[index]
-            // Set the flow name with the index
-            var this_flow_name = flow_names[index]
-            // Log that we're working this tab ID and flow name
-            console.log(`Working tab ${this_tab_id}, ${this_flow_name}`)
-            // Select the tab by clicking its tab element by id
-            await page.click(`#${this_tab_id}`)
-            // Wait for the chart to show up
-            await expect(page.locator('#red-ui-workspace-chart')).toBeVisible({timeout: 1000})
-            // There's this little thingy that I want to fade away before we screenshot, but don't want to go find the id for
-            await page.waitForTimeout(500)
-            // Take that sweet screenshot
-            await page.locator("#red-ui-workspace-chart").screenshot({path: `screenshots/${this_flow_name}.png`})
-        } else {
-            // If undefined, break
-            break
-        }
-        // increment iterator
-        index++;
+    for (var index = 0; index < tab_ids.length; index++) {
+        // Set the tab id with the index
+        var this_tab_id = tab_ids[index]
+        // Set the flow name with the index
+        var this_flow_name = flow_names[index]
+        // Log that we're working this tab ID and flow name
+        console.log(`Working tab ${this_tab_id}, ${this_flow_name}`)
+        // Select the tab by clicking its tab element by id
+        await page.click(`#${this_tab_id}`)
+        // Wait for the chart to show up
+        await expect(page.locator('#red-ui-workspace-chart')).toBeVisible({timeout: 1000})
+        // There's this little thingy that I want to fade away before we screenshot, but don't want to go find the id for
+        await page.waitForTimeout(500)
+        // Take that sweet screenshot
+        await page.locator("#red-ui-workspace-chart").screenshot({path: `screenshots/${this_flow_name}.png`})
     }
 
     // Yay we did it!
