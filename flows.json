@@ -5376,7 +5376,7 @@
         "id": "a16d6614f34882e1",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
-        "confignode": "7cd072335f421810",
+        "confignode": "047dcd09c592e040",
         "command": "group.get.members",
         "state": "",
         "stateType": "str",
