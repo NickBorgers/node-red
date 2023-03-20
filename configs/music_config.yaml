@@ -49,6 +49,10 @@ music:
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1EIhris6SwzGuN
         volume_multiplier: 1
+      # Epic Classical
+      - command: group.queue.urispotify
+        uri: spotify:user:spotify:playlist:37i9dQZF1E4vSnB7GD9Gct
+        volume_multiplier: 1
   day:
     participants:
       - player_name: "Nook Speaker"
