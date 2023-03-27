@@ -469,7 +469,7 @@
         "id": "e98cb8b7d7a02f27",
         "type": "log-elk-logger",
         "name": "Elasticsearch",
-        "url": "https://10.212.99.5:9200",
+        "url": "https://10.212.99.6:9200",
         "filename": "log-elk.log",
         "maxsize": "1",
         "maxfiles": "2",
@@ -5432,7 +5432,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Create Adjusted Volume",
-        "func": "msg.originalVolume = msg.payload\n\nnew_based_on_percentage = Math.floor(msg.payload * 1.3)\nnew_based_on_minimum = msg.payload + 10\n\nmsg.payload = Math.max(new_based_on_percentage, new_based_on_minimum)\nreturn msg",
+        "func": "msg.originalVolume = msg.payload\n\nnew_based_on_percentage = Math.floor(msg.payload * 1.3)\nnew_based_on_minimum = msg.payload + 7\n\nmsg.payload = Math.max(new_based_on_percentage, new_based_on_minimum)\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8884,7 +8884,7 @@
         "type": "function",
         "z": "45c21b8b98ae2f01",
         "name": "If everyone is awake and bedroom door closed",
-        "func": "if (global.get(\"state\").isMasterAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestBedroomDoorOpen.value == true) {\n    return null\n}\n\n// don't run this if we have guests b/c the signal will be less reliable\nif (global.get(\"state\").isHaveGuests.value == true) {\n    return null\n}\n\nmsg.payload = {\"On\": true}\n\nreturn msg",
+        "func": "if (global.get(\"state\").isMasterAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestBedroomDoorOpen.value == true) {\n    return null\n}\n\n// don't run this if we have guests b/c the signal will be less reliable\nif (global.get(\"state\").isHaveGuests.value == true) {\n    return null\n}\n// Only run this during the day\nif (global.get(\"state\").dayPhase.value != \"day\") {\n    return null\n}\n\nmsg.payload = {\"On\": true}\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9034,6 +9034,21 @@
         "wires": [
             [
                 "514f8a014a8b5060"
+            ]
+        ]
+    },
+    {
+        "id": "434e4fafc2d5e542",
+        "type": "get-shared-state",
+        "z": "45c21b8b98ae2f01",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
+        "triggerOnInit": false,
+        "x": 1300,
+        "y": 860,
+        "wires": [
+            [
+                "9e2abf81ab49f842"
             ]
         ]
     },
