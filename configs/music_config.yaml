@@ -259,10 +259,10 @@ music:
       - player_name: "Guest Bathroom"
         default_volume: 30
         leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
+          - variable: isHaveGuests
+            value: false
       - player_name: "Guest Bedroom"
-        default_volume: 20
+        default_volume: 25
         leave_muted_if:
           - variable: isHaveGuests
             value: false
