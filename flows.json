@@ -10179,6 +10179,21 @@
         ]
     },
     {
+        "id": "d5bf6da70ddd047d",
+        "type": "get-shared-state",
+        "z": "9e0490d1fc323107",
+        "state": "26ccc92b36b23b99",
+        "name": "Anyone Asleep",
+        "triggerOnInit": false,
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "d302fd95b8fbd25a"
+            ]
+        ]
+    },
+    {
         "id": "f52083fdd7491f1b",
         "type": "get-shared-state",
         "z": "6a064f420a191bf8",
