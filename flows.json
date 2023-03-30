@@ -694,6 +694,22 @@
         "unit": ""
     },
     {
+        "id": "26ccc92b36b23b99",
+        "type": "shared-state",
+        "name": "isAnyoneAsleep",
+        "lbl": "Anyone Asleep",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -1396,7 +1412,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 610,
-        "y": 820,
+        "y": 800,
         "wires": []
     },
     {
@@ -1406,7 +1422,7 @@
         "name": "Manage Asleep variable",
         "info": "",
         "x": 160,
-        "y": 740,
+        "y": 720,
         "wires": []
     },
     {
@@ -1417,7 +1433,7 @@
         "name": "Master Asleep",
         "triggerOnInit": true,
         "x": 150,
-        "y": 800,
+        "y": 780,
         "wires": [
             [
                 "ca90adbe07cc8c51"
@@ -1432,7 +1448,7 @@
         "name": "Guest Asleep",
         "triggerOnInit": true,
         "x": 150,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "ca90adbe07cc8c51"
@@ -1451,7 +1467,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 820,
+        "y": 800,
         "wires": [
             [
                 "6dd5f9bf57603ff8"
@@ -2321,6 +2337,68 @@
         "wires": [
             [
                 "0e3907f2e4812720"
+            ]
+        ]
+    },
+    {
+        "id": "4db9c19db8e3a4e7",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "26ccc92b36b23b99",
+        "name": "Anyone Asleep",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 600,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "f0278e0c734507b0",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": true,
+        "x": 150,
+        "y": 900,
+        "wires": [
+            [
+                "acdaab9da7d03657"
+            ]
+        ]
+    },
+    {
+        "id": "76d76502f760e0ad",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "156ccde543ba4845",
+        "name": "Guest Asleep",
+        "triggerOnInit": true,
+        "x": 150,
+        "y": 960,
+        "wires": [
+            [
+                "acdaab9da7d03657"
+            ]
+        ]
+    },
+    {
+        "id": "acdaab9da7d03657",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Is anyone asleep?",
+        "func": "// If anyone is asleep true otherwise false\nmsg.payload = global.get(\"state\").isAnyoneAsleep.value || global.get(\"state\").isGuestAsleep.value\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 920,
+        "wires": [
+            [
+                "4db9c19db8e3a4e7"
             ]
         ]
     },
@@ -5214,7 +5292,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Set music type based on conditions",
-        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If everyone is asleep, set to sleep\nif (global.get(\"state\").isEveryoneAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\ndayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was someone waking up, kick off some music\n    if (msg.topic == \"isEveryoneAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If everyone isn't asleep then day starts\n    if (global.get(\"state\").isEveryoneAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    // Override for when sleep sounds get started a little early\n    if (global.get(\"state\").musicPlaybackType.value == \"sleep\") {\n        return null\n    }\n    msg.payload = \"winddown\"\n    return msg\n}\n",
+        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If anyone is asleep, set to sleep\nif (global.get(\"state\").isAnyoneAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\ndayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was the last person waking up, kick off some music\n    if (msg.topic == \"isAnyoneAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If noone is asleep then day starts\n    if (global.get(\"state\").isAnyoneAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    // Override for when sleep sounds get started a little early\n    if (global.get(\"state\").musicPlaybackType.value == \"sleep\") {\n        return null\n    }\n    msg.payload = \"winddown\"\n    return msg\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6078,8 +6156,8 @@
         "id": "0637e774c1000926",
         "type": "get-shared-state",
         "z": "90f5fe8cb80ae6a7",
-        "state": "60c1725bc2519ee0",
-        "name": "Everyone Asleep",
+        "state": "26ccc92b36b23b99",
+        "name": "Anyone Asleep",
         "triggerOnInit": false,
         "x": 100,
         "y": 640,
