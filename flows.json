@@ -2388,7 +2388,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Is anyone asleep?",
-        "func": "// If anyone is asleep true otherwise false\nmsg.payload = global.get(\"state\").isAnyoneAsleep.value || global.get(\"state\").isGuestAsleep.value\nreturn msg;",
+        "func": "// If anyone is asleep true otherwise false\nmsg.payload = global.get(\"state\").isMasterAsleep.value || global.get(\"state\").isGuestAsleep.value\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
