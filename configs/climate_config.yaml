@@ -13,38 +13,38 @@ climate:
       - area: "Master Suite"
         percentage: 30
       - area: "Living Room"
-        percentage: 30
+        percentage: 70
       - area: "Guest Suite"
-        percentage: 30
+        percentage: 70
   sunset:
     fans:
       - area: "Master Suite"
         percentage: 40
       - area: "Living Room"
-        percentage: 40
+        percentage: 70
       - area: "Guest Suite"
-        percentage: 40
+        percentage: 70
   dusk:
     fans:
       - area: "Master Suite"
         percentage: 40
       - area: "Living Room"
-        percentage: 40
+        percentage: 70
       - area: "Guest Suite"
-        percentage: 40
+        percentage: 70
   winddown:
     fans:
       - area: "Master Suite"
-        percentage: 60
+        percentage: 70
       - area: "Living Room"
-        percentage: 20
+        percentage: 70
       - area: "Guest Suite"
-        percentage: 20
+        percentage: 70
   night:
     fans:
       - area: "Master Suite"
-        percentage: 60
+        percentage: 70
       - area: "Living Room"
         percentage: 10
       - area: "Guest Suite"
-        percentage: 40
+        percentage: 70
