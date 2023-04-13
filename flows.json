@@ -6478,7 +6478,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "",
         "pauseType": "delay",
-        "timeout": "500",
+        "timeout": "750",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -6837,7 +6837,8 @@
         "y": 1280,
         "wires": [
             [
-                "5e0f976532de47d8"
+                "5e0f976532de47d8",
+                "86d4e21e11d6bf10"
             ],
             []
         ]
@@ -7664,6 +7665,63 @@
         "y": 1520,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "86d4e21e11d6bf10",
+        "type": "ha-api",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Restart Apple TV Integration",
+        "server": "3ec50562615a9f50",
+        "version": 1,
+        "debugenabled": false,
+        "protocol": "http",
+        "method": "post",
+        "path": "config/config_entries/entry/5ee23acf922d850d37cf4eea4b95297b/reload",
+        "data": "{}",
+        "dataType": "json",
+        "responseType": "json",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "x": 1060,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e394e3d7d2d0f765",
+        "type": "inject",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 840,
+        "y": 1380,
+        "wires": [
+            [
+                "86d4e21e11d6bf10"
+            ]
         ]
     },
     {
@@ -9222,7 +9280,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Duplicate message many times",
-        "func": "for (let i = 0; i <= 100; i++) {\n  node.send(msg)\n} ",
+        "func": "for (let i = 0; i <= 50; i++) {\n  node.send(msg)\n} ",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10687,7 +10745,7 @@
         ],
         "deviceId": [],
         "entityId": [],
-        "data": "{\"percentage\": 20}",
+        "data": "{\"percentage\": 10}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
