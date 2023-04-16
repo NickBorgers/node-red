@@ -251,10 +251,10 @@ music:
           - variable: isGuestAsleep
             value: true
       - player_name: "Master Bathroom"
-        default_volume: 40
+        default_volume: 35
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        default_volume: 30
+        default_volume: 40
         leave_muted_if: []
       - player_name: "Guest Bathroom"
         default_volume: 30
