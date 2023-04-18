@@ -6956,7 +6956,8 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Set Volumes and Mute",
         "links": [
-            "9cf90b7812a7ab73"
+            "9cf90b7812a7ab73",
+            "4a3bdf6826669285"
         ],
         "x": 1965,
         "y": 260,
@@ -9241,152 +9242,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
+        "x": 220,
         "y": 100,
         "wires": [
             [
-                "59d57e477a5898af"
+                "ca6d0e931ce891e2"
             ]
         ]
-    },
-    {
-        "id": "5e48c3e112af83c7",
-        "type": "function",
-        "z": "95cf961539320dd3",
-        "name": "Reduce Volume of Currently Playing Music",
-        "func": "if (global.get(\"state\").musicPlaybackType.value != \"sleep\") {\n    return null\n}\n\ncurrentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentlyPlayingMusic.participants.forEach(function(participant) {\n    // If it's a Master room speaker\n    if (participant.player_name.indexOf(\"Master\") > -1) {\n        // Reduce its volume by 1, so long as current volume greater than 0\n        if (participant.volume > 0) {\n            participant.volume--;\n        }\n    }\n    \n});\n\nmsg.payload = currentlyPlayingMusic;\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 250,
-        "y": 200,
-        "wires": [
-            [
-                "f36a036109920e8f",
-                "9cf90b7812a7ab73"
-            ]
-        ]
-    },
-    {
-        "id": "9cf90b7812a7ab73",
-        "type": "link out",
-        "z": "95cf961539320dd3",
-        "name": "Set Volumes and Mute",
-        "mode": "link",
-        "links": [
-            "34bd02b0a6ce0a3f"
-        ],
-        "x": 475,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "67b6101b961d5624",
-        "type": "delay",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "2",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 780,
-        "y": 100,
-        "wires": [
-            [
-                "5e48c3e112af83c7"
-            ]
-        ]
-    },
-    {
-        "id": "59d57e477a5898af",
-        "type": "function",
-        "z": "95cf961539320dd3",
-        "name": "Duplicate message many times",
-        "func": "for (let i = 0; i <= 50; i++) {\n  node.send(msg)\n} ",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 550,
-        "y": 100,
-        "wires": [
-            [
-                "67b6101b961d5624"
-            ]
-        ]
-    },
-    {
-        "id": "f36a036109920e8f",
-        "type": "set-shared-state",
-        "z": "95cf961539320dd3",
-        "state": "b74697c734ad5557",
-        "name": "Currently Playing Music",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 570,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "e93449ceeb92c731",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 340,
-        "y": 40,
-        "wires": [
-            [
-                "59d57e477a5898af"
-            ]
-        ]
-    },
-    {
-        "id": "3136712708331ea3",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Reduce volume by modifying currentlyPlaying object",
-        "info": "",
-        "x": 270,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "bd681b1c8d39bf09",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Use normal volume set to apply",
-        "info": "",
-        "x": 630,
-        "y": 260,
-        "wires": []
     },
     {
         "id": "c725c25378348402",
@@ -9598,7 +9460,7 @@
         "links": [
             "abd63eda68fd8674"
         ],
-        "x": 75,
+        "x": 55,
         "y": 100,
         "wires": [
             [
@@ -9906,6 +9768,244 @@
         "x": 1320,
         "y": 680,
         "wires": []
+    },
+    {
+        "id": "ca6d0e931ce891e2",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Create participant-specific message",
+        "func": "// By default, move to set volume and appropriately unmute all players in current playback\nspeakers = global.get(\"state\").currentlyPlayingMusic.value.participants\n// Iterate over our targets and kick off setting their volume and mute state\nspeakers.forEach(function(target) {\n    participantSpecificMsg = {}\n    // If this player is in Master suite\n    if (target.player_name.indexOf(\"Master\") > -1) {\n        participantSpecificMsg.playerName = target.player_name\n        node.send(participantSpecificMsg);\n    }\n});\n\nreturn null",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "7e90140297338312"
+            ]
+        ]
+    },
+    {
+        "id": "7e90140297338312",
+        "type": "sonos-universal",
+        "z": "95cf961539320dd3",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.get.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Get a volume",
+        "x": 790,
+        "y": 100,
+        "wires": [
+            [
+                "560e9e7e53edf40e"
+            ]
+        ]
+    },
+    {
+        "id": "21072dd8887381eb",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Update known state with the actual current volumes",
+        "func": "observed_volume = msg.payload\nmsg.last_volume_set = observed_volume\n\ncurrentKnownPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentKnownPlayingMusic.participants.forEach(function(participant) {\n    if (participant.player_name == msg.playerName) {\n        participant.volume = observed_volume\n    }\n});\n\nupdateCurrentlyPlayingMusicMsg = {}\nupdateCurrentlyPlayingMusicMsg.payload = currentKnownPlayingMusic\n\nreturn [updateCurrentlyPlayingMusicMsg, msg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "6de7fcb07c82a9ce"
+            ],
+            [
+                "b2ce538e032e4961"
+            ]
+        ]
+    },
+    {
+        "id": "6de7fcb07c82a9ce",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "b74697c734ad5557",
+        "name": "Currently Playing Music",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 950,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "560e9e7e53edf40e",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 960,
+        "y": 100,
+        "wires": [
+            [
+                "21072dd8887381eb"
+            ]
+        ]
+    },
+    {
+        "id": "3da544b5240dcbf7",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Repeat turn downs until 0",
+        "func": "// What is the volume currently?\ncurrent_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume > msg.last_volume_set) {\n    // If the volume is greater than what was last set, assume someone\n    // is fighting the system trying to keep the volume up\n    return null\n}\n\n// What is the volume supposed to be?\ndesired_volume = 0\n\n// If we haven't gotten down to the desired volume\nif (current_volume > desired_volume) {\n    currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's a Master room speaker\n        if (participant.player_name == msg.playerName) {\n            // Reduce its volume by 1\n            participant.volume--;\n            msg.last_volume_set = participant.volume\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n    \n    // Set the delay for the next turn down to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 1000\n    return msg\n}\n\n// We're done, everything is as it should be",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 220,
+        "wires": [
+            [
+                "b2ce538e032e4961",
+                "4a3bdf6826669285",
+                "6de7fcb07c82a9ce"
+            ]
+        ]
+    },
+    {
+        "id": "a05a696cfafb0ca6",
+        "type": "sonos-universal",
+        "z": "95cf961539320dd3",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.get.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Get a volume",
+        "x": 450,
+        "y": 220,
+        "wires": [
+            [
+                "3da544b5240dcbf7"
+            ]
+        ]
+    },
+    {
+        "id": "b2ce538e032e4961",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "Delay",
+        "pauseType": "delayv",
+        "timeout": "20",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "e6f8d0150f8d5cca"
+            ]
+        ]
+    },
+    {
+        "id": "4a3bdf6826669285",
+        "type": "link out",
+        "z": "95cf961539320dd3",
+        "name": "Set Volumes and Mute",
+        "mode": "link",
+        "links": [
+            "34bd02b0a6ce0a3f"
+        ],
+        "x": 855,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "54ff6f652649f649",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Use normal volume set to apply",
+        "info": "",
+        "x": 1010,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "5bc361a44ae4f4fe",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 340,
+        "y": 40,
+        "wires": [
+            [
+                "ca6d0e931ce891e2"
+            ]
+        ]
+    },
+    {
+        "id": "e6f8d0150f8d5cca",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "a05a696cfafb0ca6"
+            ]
+        ]
     },
     {
         "id": "a99efe1134ae512d",
