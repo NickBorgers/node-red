@@ -254,7 +254,7 @@ music:
         default_volume: 35
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        default_volume: 42
+        default_volume: 40
         leave_muted_if: []
       - player_name: "Guest Bathroom"
         default_volume: 30
@@ -275,7 +275,7 @@ music:
         volume_multiplier: 0.8
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/4.m4a"
-        volume_multiplier: 1.14
+        volume_multiplier: 1.05
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/5.m4a"
         volume_multiplier: 1.38
