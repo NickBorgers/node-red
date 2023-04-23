@@ -10645,12 +10645,11 @@
         "domain": "fan",
         "service": "oscillate",
         "areaId": [
-            "living_room_2"
+            "guest_suite",
+            "living_room_2",
+            "master_bedroom"
         ],
-        "deviceId": [
-            "ed5d2ae45ff8b4ff56c110761e112648",
-            "95e3a0a837f68e8c4eb54bc6afc7da25"
-        ],
+        "deviceId": [],
         "entityId": [],
         "data": "{\"oscillating\": \"on\"}",
         "dataType": "jsonata",
@@ -10658,8 +10657,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 450,
-        "y": 300,
+        "x": 510,
+        "y": 280,
         "wires": [
             []
         ]
@@ -11014,9 +11013,9 @@
         "id": "db1966bfa72a10da",
         "type": "comment",
         "z": "6a064f420a191bf8",
-        "name": "Reset Oscillation when Caroline Leaves",
+        "name": "Set fan speeds based on day phase and presence",
         "info": "",
-        "x": 170,
+        "x": 210,
         "y": 420,
         "wires": []
     },
@@ -12116,8 +12115,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1450,
-        "y": 320,
+        "x": 1650,
+        "y": 360,
         "wires": [
             [
                 "adc754d173d18011"
@@ -12139,8 +12138,8 @@
             "8292bb8f30d17629"
         ],
         "uncaught": false,
-        "x": 690,
-        "y": 320,
+        "x": 890,
+        "y": 360,
         "wires": [
             [
                 "c838778390ca81b8"
@@ -12164,8 +12163,8 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 880,
-        "y": 320,
+        "x": 1080,
+        "y": 360,
         "wires": [
             [
                 "e137a7a92df1509a"
@@ -12189,8 +12188,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1040,
-        "y": 320,
+        "x": 1240,
+        "y": 360,
         "wires": [
             [
                 "a649f7d60ee87e24"
@@ -12207,8 +12206,8 @@
             "6016baf9f8808810",
             "caa6aa12e7dda2e1"
         ],
-        "x": 1595,
-        "y": 320,
+        "x": 1795,
+        "y": 360,
         "wires": []
     },
     {
@@ -12233,8 +12232,8 @@
         "z": "6a064f420a191bf8",
         "name": "Handle Dyson Communication Errors",
         "info": "",
-        "x": 750,
-        "y": 280,
+        "x": 950,
+        "y": 320,
         "wires": []
     },
     {
@@ -12256,8 +12255,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1220,
-        "y": 320,
+        "x": 1420,
+        "y": 360,
         "wires": [
             [
                 "9487045d442fbd6a"
@@ -12641,6 +12640,57 @@
         "wires": [
             [
                 "67c5137b0466f356"
+            ]
+        ]
+    },
+    {
+        "id": "4d52600e1ec8c9ea",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "3d96ef25996d1dd1",
+        "name": "Reset",
+        "triggerOnInit": false,
+        "x": 70,
+        "y": 620,
+        "wires": [
+            [
+                "23755656ed766d1e",
+                "3d5f80903bf0d5a5"
+            ]
+        ]
+    },
+    {
+        "id": "c2f98e5cab73fa1d",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Reset with trigger",
+        "info": "",
+        "x": 100,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3d5f80903bf0d5a5",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 340,
+        "wires": [
+            [
+                "2d3889f3b872a383"
             ]
         ]
     }
