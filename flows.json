@@ -70,6 +70,14 @@
         "env": []
     },
     {
+        "id": "0d2150a703bedcd6",
+        "type": "tab",
+        "label": "Nagging",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "b2cc5799.eea9d",
         "type": "homekit-bridge",
         "bridgeName": "NodeRed1",
@@ -3339,7 +3347,7 @@
         "y": 340,
         "wires": [
             [
-                "5aae9e2ba1aaac07"
+                "8c780ce574114c79"
             ]
         ]
     },
@@ -3388,7 +3396,7 @@
         "name": "Check during evening",
         "props": [],
         "repeat": "",
-        "crontab": "*/30 18-23 * * *",
+        "crontab": "*/15 20-23 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
@@ -3592,25 +3600,6 @@
         "y": 460,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "5aae9e2ba1aaac07",
-        "type": "function",
-        "z": "499c53680d148fb0",
-        "name": "Proceed if event starts within 11.5 hours",
-        "func": "const now = new Date()\nconst event = new Date(parseInt(msg.next_event_start))\n\ntime_until_event_start = event - now\n\n// Calculate ten hours\nten_hours_in_ms = (1000 * 60 * 60 * 11.5)\n\nif (time_until_event_start < ten_hours_in_ms) {\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1060,
-        "y": 340,
-        "wires": [
-            [
-                "8c780ce574114c79"
-            ]
         ]
     },
     {
@@ -12748,6 +12737,208 @@
         "wires": [
             [
                 "67c5137b0466f356"
+            ]
+        ]
+    },
+    {
+        "id": "44cda3a058c5f5cc",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Is Caroline Home?",
+        "func": "if (global.get(\"state\").isCarolineHome.value) {\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 60,
+        "wires": [
+            [
+                "07129761ac46de86"
+            ]
+        ]
+    },
+    {
+        "id": "c847b6e97b66948b",
+        "type": "get-shared-state",
+        "z": "0d2150a703bedcd6",
+        "state": "e3cb7570.0dbb48",
+        "name": "Nick Home",
+        "triggerOnInit": true,
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "9d7681a097b04acc"
+            ]
+        ]
+    },
+    {
+        "id": "9d7681a097b04acc",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "Is Nick no longer home?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 60,
+        "wires": [
+            [
+                "4d866f7c2e888ea3"
+            ]
+        ]
+    },
+    {
+        "id": "652153416240f8b4",
+        "type": "delay",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "day",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "7cb519ff000e094a"
+            ]
+        ]
+    },
+    {
+        "id": "4d866f7c2e888ea3",
+        "type": "delay",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "20",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 60,
+        "wires": [
+            [
+                "44cda3a058c5f5cc"
+            ]
+        ]
+    },
+    {
+        "id": "76ee9a333fd011df",
+        "type": "ttsultimate",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "voice": "en-US",
+        "ssml": false,
+        "sonosipaddress": "10.212.100.226",
+        "sonosvolume": "30",
+        "sonoshailing": "Hailing_ComputerCall.mp3",
+        "config": "89337ebbba16965d",
+        "property": "payload",
+        "propertyType": {},
+        "rules": [],
+        "playertype": "sonos",
+        "speakingrate": "1",
+        "speakingpitch": "0",
+        "unmuteIfMuted": true,
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a58f3514bc59d688",
+        "type": "link call",
+        "z": "0d2150a703bedcd6",
+        "name": "Reset Music",
+        "links": [
+            "b1f2b5145a191585"
+        ],
+        "timeout": "30",
+        "x": 750,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b58fbbef7b0455c",
+        "type": "catch",
+        "z": "0d2150a703bedcd6",
+        "name": "Catch TTS Error",
+        "scope": [
+            "76ee9a333fd011df"
+        ],
+        "uncaught": false,
+        "x": 580,
+        "y": 180,
+        "wires": [
+            [
+                "a58f3514bc59d688"
+            ]
+        ]
+    },
+    {
+        "id": "7cb519ff000e094a",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "notification_message = \"Caroline, have you selected an EMDR pratctitioner?\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "76ee9a333fd011df"
+            ]
+        ]
+    },
+    {
+        "id": "07129761ac46de86",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Stop if anyone asleep",
+        "func": "if (global.get(\"state\").isAnyoneAsleep.value) {\n    return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 60,
+        "wires": [
+            [
+                "652153416240f8b4"
             ]
         ]
     },
