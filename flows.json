@@ -742,6 +742,22 @@
         "unit": ""
     },
     {
+        "id": "b7959b8b695cb2e3",
+        "type": "shared-state",
+        "name": "currentClimate",
+        "lbl": "Current Climate",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "obj",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -10669,10 +10685,10 @@
         "id": "5c736f9253fa9ba2",
         "type": "get-shared-state",
         "z": "6a064f420a191bf8",
-        "state": "efc87f0de00a2d36",
-        "name": "Day Phase",
+        "state": "b7959b8b695cb2e3",
+        "name": "Current Climate",
         "triggerOnInit": true,
-        "x": 80,
+        "x": 100,
         "y": 460,
         "wires": [
             [
@@ -10895,7 +10911,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Send fan speed messages",
-        "func": "// Get full climateConfig\nclimateConfig = global.get(\"state\").climateConfig.value.climate\n// Get current day phase\ndayPhase = global.get(\"state\").dayPhase.value\n\ncurrentFanConfig = climateConfig[dayPhase].fans\n\ncurrentFanConfig.forEach(function(thisFanConfig) {\n   if (thisFanConfig.area == \"Master Suite\"){\n       msg.payload = {\"percentage\": thisFanConfig.percentage}\n       node.send([msg, null, null])\n   }\n   if (thisFanConfig.area == \"Living Room\"){\n       msg.payload = {\"percentage\": thisFanConfig.percentage}\n       node.send([null, msg, null])\n   }\n   if (thisFanConfig.area == \"Guest Suite\"){\n       msg.payload = {\"percentage\": thisFanConfig.percentage}\n       node.send([null, null, msg])\n   }\n});",
+        "func": "// Get climate data\ncurrentClimate = global.get(\"state\").currentClimate.value\n\nfunction calculateFanSpeed(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  rawFanSpeed = Math.sqrt((heatIndex-67)*6)\n  if (isNaN(rawFanSpeed)) {\n      rawFanSpeed = 2\n  }\n  actualFanSpeed = Math.max(2,rawFanSpeed) // Min fan speed of 2 when we're here\n  actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  fanSpeedAsPercentage = Math.round(actualFanSpeed*10)\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Suite\nmasterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed()\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([msg, null, null])\n\n// Handle Guest Suite\nguestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, msg, null])\n\n// Handle Living Room\nlivingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex)\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, null, msg])\n",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -11015,9 +11031,9 @@
         "id": "db1966bfa72a10da",
         "type": "comment",
         "z": "6a064f420a191bf8",
-        "name": "Set fan speeds based on day phase and presence",
+        "name": "Set fan speeds based on presence and climate",
         "info": "",
-        "x": 210,
+        "x": 200,
         "y": 420,
         "wires": []
     },
@@ -12711,7 +12727,8 @@
         "y": 1320,
         "wires": [
             [
-                "02049bc0fd4e568d"
+                "02049bc0fd4e568d",
+                "dc9b616a983b60a1"
             ]
         ]
     },
@@ -12733,5 +12750,18 @@
                 "67c5137b0466f356"
             ]
         ]
+    },
+    {
+        "id": "dc9b616a983b60a1",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "b7959b8b695cb2e3",
+        "name": "Current Climate",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1160,
+        "y": 1380,
+        "wires": []
     }
 ]
