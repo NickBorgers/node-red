@@ -12838,7 +12838,7 @@
         "voice": "en-US",
         "ssml": false,
         "sonosipaddress": "10.212.100.226",
-        "sonosvolume": "20",
+        "sonosvolume": "30",
         "sonoshailing": "Hailing_ComputerCall.mp3",
         "config": "89337ebbba16965d",
         "property": "payload",
