@@ -7786,106 +7786,6 @@
         ]
     },
     {
-        "id": "864447bb.cf7f48",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "",
-        "server": "b63f730b24581cdc",
-        "command_name": "ⓘ Get consumables status",
-        "command": "get_consumable",
-        "commandType": "vacuum_cmd",
-        "payload": "arguments",
-        "payloadType": "vacuum_payload",
-        "coordinates": "[\n   [22200,23500,28000,28000,1]\n]",
-        "fan_speed": "",
-        "homekit_stop_to_dock": true,
-        "x": 320,
-        "y": 580,
-        "wires": [
-            [
-                "c70e06b3.d015b8",
-                "77bd766e.767268",
-                "d041e6c2.155ac8",
-                "628cbf8b.7e6d1"
-            ]
-        ]
-    },
-    {
-        "id": "c70e06b3.d015b8",
-        "type": "function",
-        "z": "45c21b8b98ae2f01",
-        "name": "MainBrush",
-        "func": "msg.payload = (100-(msg.payload[0]['main_brush_work_time']/1080000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\n\n\nmsg.payload = {\n    \"FilterChangeIndication\":msg.payload<20?1:0,\n    \"FilterLifeLevel\":msg.payload\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 530,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "77bd766e.767268",
-        "type": "function",
-        "z": "45c21b8b98ae2f01",
-        "name": "SideBrush",
-        "func": "msg.payload = (100-(msg.payload[0]['side_brush_work_time']/720000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"FilterChangeIndication\":msg.payload<20?1:0,\n    \"FilterLifeLevel\":msg.payload\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 690,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d041e6c2.155ac8",
-        "type": "function",
-        "z": "45c21b8b98ae2f01",
-        "name": "MainFilter",
-        "func": "msg.payload = (100-(msg.payload[0]['filter_work_time']/540000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"FilterChangeIndication\":msg.payload<20?1:0,\n    \"FilterLifeLevel\":msg.payload\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 840,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "628cbf8b.7e6d1",
-        "type": "function",
-        "z": "45c21b8b98ae2f01",
-        "name": "Sensors",
-        "func": "msg.payload = (100-(msg.payload[0]['sensor_dirty_time']/108000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"FilterChangeIndication\":msg.payload<20?1:0,\n    \"FilterLifeLevel\":msg.payload\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 980,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f0a1ec111362b20b",
-        "type": "inject",
-        "z": "45c21b8b98ae2f01",
-        "name": "Trigger",
-        "props": [],
-        "repeat": "86400",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 120,
-        "y": 580,
-        "wires": [
-            [
-                "864447bb.cf7f48"
-            ]
-        ]
-    },
-    {
         "id": "66648323963fb7f3",
         "type": "get-shared-state",
         "z": "45c21b8b98ae2f01",
@@ -8408,16 +8308,6 @@
                 "14fafc9f6d18a633"
             ]
         ]
-    },
-    {
-        "id": "b5d50edc1b2efd6c",
-        "type": "comment",
-        "z": "45c21b8b98ae2f01",
-        "name": "Monitor Vacuum condition",
-        "info": "",
-        "x": 130,
-        "y": 520,
-        "wires": []
     },
     {
         "id": "0abf6234b7590992",
@@ -10900,7 +10790,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Send fan speed messages",
-        "func": "// Get climate data\ncurrentClimate = global.get(\"state\").currentClimate.value\n\nfunction calculateFanSpeed(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  rawFanSpeed = Math.sqrt((heatIndex-67)*6)\n  if (isNaN(rawFanSpeed)) {\n      rawFanSpeed = 2\n  }\n  actualFanSpeed = Math.max(2,rawFanSpeed) // Min fan speed of 2 when we're here\n  actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  fanSpeedAsPercentage = Math.round(actualFanSpeed*10)\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Suite\nmasterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed()\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([msg, null, null])\n\n// Handle Guest Suite\nguestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, msg, null])\n\n// Handle Living Room\nlivingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex)\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, null, msg])\n",
+        "func": "// Get climate data\ncurrentClimate = global.get(\"state\").currentClimate.value\n\n// Handle Master Suite\ndesiredFanSpeed = currentClimate[\"Master Bedroom\"][\"fan speed\"]\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([msg, null, null])\n\n// Handle Living Room\ndesiredFanSpeed = currentClimate[\"Living Room Center\"][\"fan speed\"]\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, msg, null])\n\n// Handle Guest Suite\ndesiredFanSpeed = currentClimate[\"Bedroom\"][\"fan speed\"]\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, null, msg])\n",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -10913,10 +10803,10 @@
                 "a78adf1024effbae"
             ],
             [
-                "b460a2f7c87f3795"
+                "8677bb871d025c89"
             ],
             [
-                "8292bb8f30d17629"
+                "0e7095f3697a1233"
             ]
         ]
     },
@@ -10941,7 +10831,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 870,
+        "x": 1030,
         "y": 460,
         "wires": [
             []
@@ -10968,7 +10858,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 870,
+        "x": 1030,
         "y": 500,
         "wires": [
             []
@@ -10995,7 +10885,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 870,
+        "x": 1030,
         "y": 540,
         "wires": [
             []
@@ -11074,7 +10964,8 @@
         "y": 380,
         "wires": [
             [
-                "d6780dc3d1f346a0"
+                "d6780dc3d1f346a0",
+                "2d3889f3b872a383"
             ]
         ]
     },
@@ -11640,7 +11531,7 @@
         "logger": "e98cb8b7d7a02f27",
         "complete": "payload",
         "loglevel": "info",
-        "x": 1310,
+        "x": 1530,
         "y": 1320,
         "wires": []
     },
@@ -12716,8 +12607,7 @@
         "y": 1320,
         "wires": [
             [
-                "02049bc0fd4e568d",
-                "dc9b616a983b60a1"
+                "9c17512707c3eacc"
             ]
         ]
     },
@@ -12732,11 +12622,123 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1160,
+        "x": 1380,
         "y": 1320,
         "wires": [
             [
                 "67c5137b0466f356"
+            ]
+        ]
+    },
+    {
+        "id": "dc9b616a983b60a1",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "b7959b8b695cb2e3",
+        "name": "Current Climate",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1380,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "d15e2659196fc1ca",
+        "type": "inject",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1460,
+        "y": 320,
+        "wires": [
+            [
+                "9487045d442fbd6a"
+            ]
+        ]
+    },
+    {
+        "id": "9c17512707c3eacc",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "Set fan speeds",
+        "func": "currentClimate = msg.payload\n\nfunction calculateFanSpeed(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  rawFanSpeed = Math.sqrt((heatIndex-67)*3)\n  if (isNaN(rawFanSpeed)) {\n      rawFanSpeed = 2\n  }\n  actualFanSpeed = Math.max(2,rawFanSpeed) // Min fan speed of 2 when we're here\n  actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nmasterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed()\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nguestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nlivingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 1320,
+        "wires": [
+            [
+                "02049bc0fd4e568d",
+                "dc9b616a983b60a1"
+            ]
+        ]
+    },
+    {
+        "id": "8677bb871d025c89",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 500,
+        "wires": [
+            [
+                "b460a2f7c87f3795"
+            ]
+        ]
+    },
+    {
+        "id": "0e7095f3697a1233",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 540,
+        "wires": [
+            [
+                "8292bb8f30d17629"
             ]
         ]
     },
@@ -12943,16 +12945,475 @@
         ]
     },
     {
-        "id": "dc9b616a983b60a1",
-        "type": "set-shared-state",
-        "z": "6a064f420a191bf8",
-        "state": "b7959b8b695cb2e3",
-        "name": "Current Climate",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1160,
-        "y": 1380,
+        "id": "48499f70f7e241ea",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "SideBrush",
+        "func": "msg.payload = (100-(msg.payload[0]['side_brush_work_time']/720000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 580,
+        "wires": [
+            [
+                "0dd36d9179a45057"
+            ]
+        ]
+    },
+    {
+        "id": "4a9057efbf51d7a8",
+        "type": "miio-roborock-command",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "server": "b63f730b24581cdc",
+        "command_name": "ⓘ Get consumables status",
+        "command": "get_consumable",
+        "commandType": "vacuum_cmd",
+        "payload": "arguments",
+        "payloadType": "vacuum_payload",
+        "coordinates": "[\n   [22200,23500,28000,28000,1]\n]",
+        "fan_speed": "",
+        "homekit_stop_to_dock": true,
+        "x": 220,
+        "y": 500,
+        "wires": [
+            [
+                "51534bf8c71afd93",
+                "48499f70f7e241ea",
+                "fbdd5450095d64c1",
+                "70f88ee57574292e"
+            ]
+        ]
+    },
+    {
+        "id": "51534bf8c71afd93",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "MainBrush",
+        "func": "msg.payload = (100-(msg.payload[0]['main_brush_work_time']/1080000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\n\n\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "c38596ac1f7c9a51"
+            ]
+        ]
+    },
+    {
+        "id": "fbdd5450095d64c1",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "MainFilter",
+        "func": "msg.payload = (100-(msg.payload[0]['filter_work_time']/540000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 540,
+        "wires": [
+            [
+                "a5b5cddbfa15e10f"
+            ]
+        ]
+    },
+    {
+        "id": "70f88ee57574292e",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Sensors",
+        "func": "msg.payload = (100-(msg.payload[0]['sensor_dirty_time']/108000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 500,
+        "wires": [
+            [
+                "41cdf9984d90bb63"
+            ]
+        ]
+    },
+    {
+        "id": "ade63541efa85ad9",
+        "type": "comment",
+        "z": "0d2150a703bedcd6",
+        "name": "Monitor Vacuum condition",
+        "info": "",
+        "x": 150,
+        "y": 260,
         "wires": []
+    },
+    {
+        "id": "2082f109d24fd5df",
+        "type": "get-shared-state",
+        "z": "0d2150a703bedcd6",
+        "state": "e3cb7570.0dbb48",
+        "name": "Nick Home",
+        "triggerOnInit": false,
+        "x": 100,
+        "y": 400,
+        "wires": [
+            [
+                "d2b122d332817454"
+            ]
+        ]
+    },
+    {
+        "id": "d2b122d332817454",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "Is Nick now home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 400,
+        "wires": [
+            [
+                "f58432cd44c4ee58"
+            ]
+        ]
+    },
+    {
+        "id": "f58432cd44c4ee58",
+        "type": "delay",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "20",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "29ed3433950d1217"
+            ]
+        ]
+    },
+    {
+        "id": "29ed3433950d1217",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Stop if anyone asleep",
+        "func": "if (global.get(\"state\").isAnyoneAsleep.value) {\n    return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "4a9057efbf51d7a8"
+            ]
+        ]
+    },
+    {
+        "id": "146375e5084782cc",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "notification_message = \"Nick, the Vacuum filter needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 540,
+        "wires": [
+            [
+                "66a52590c9317bed"
+            ]
+        ]
+    },
+    {
+        "id": "ca79f8be6dbfd91d",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "notification_message = \"Nick, the Vacuum side brush needs replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 580,
+        "wires": [
+            [
+                "66a52590c9317bed"
+            ]
+        ]
+    },
+    {
+        "id": "3a8501bdb465f149",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "notification_message = \"Nick, the Vacuum sensors need cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 500,
+        "wires": [
+            [
+                "66a52590c9317bed"
+            ]
+        ]
+    },
+    {
+        "id": "bd29751017d59409",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "notification_message = \"Nick, the Vacuum main brush need replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 460,
+        "wires": [
+            [
+                "66a52590c9317bed"
+            ]
+        ]
+    },
+    {
+        "id": "c38596ac1f7c9a51",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "If NeedAction",
+        "property": "payload.NeedAction",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 460,
+        "wires": [
+            [
+                "bd29751017d59409"
+            ]
+        ]
+    },
+    {
+        "id": "41cdf9984d90bb63",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "If NeedAction",
+        "property": "payload.NeedAction",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 500,
+        "wires": [
+            [
+                "3a8501bdb465f149"
+            ]
+        ]
+    },
+    {
+        "id": "a5b5cddbfa15e10f",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "If NeedAction",
+        "property": "payload.NeedAction",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 540,
+        "wires": [
+            [
+                "146375e5084782cc"
+            ]
+        ]
+    },
+    {
+        "id": "0dd36d9179a45057",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "If NeedAction",
+        "property": "payload.NeedAction",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "ca79f8be6dbfd91d"
+            ]
+        ]
+    },
+    {
+        "id": "31193921b3a643b8",
+        "type": "inject",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 440,
+        "y": 340,
+        "wires": [
+            [
+                "29ed3433950d1217"
+            ]
+        ]
+    },
+    {
+        "id": "66a52590c9317bed",
+        "type": "delay",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 160,
+        "y": 640,
+        "wires": [
+            [
+                "c9bd838ac0165bad"
+            ]
+        ]
+    },
+    {
+        "id": "c9bd838ac0165bad",
+        "type": "ttsultimate",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "voice": "en-GB",
+        "ssml": false,
+        "sonosipaddress": "10.212.100.231",
+        "sonosvolume": "25",
+        "sonoshailing": "Hailing_ComputerCall.mp3",
+        "config": "89337ebbba16965d",
+        "property": "payload",
+        "propertyType": {},
+        "rules": [],
+        "playertype": "sonos",
+        "speakingrate": "1",
+        "speakingpitch": "0",
+        "unmuteIfMuted": true,
+        "x": 330,
+        "y": 640,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e0383b358de144da",
+        "type": "link call",
+        "z": "0d2150a703bedcd6",
+        "name": "Reset Music",
+        "links": [
+            "b1f2b5145a191585"
+        ],
+        "timeout": "30",
+        "x": 510,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b705ee2179e2857b",
+        "type": "catch",
+        "z": "0d2150a703bedcd6",
+        "name": "Catch TTS Error",
+        "scope": [
+            "c9bd838ac0165bad"
+        ],
+        "uncaught": false,
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "e0383b358de144da"
+            ]
+        ]
     }
 ]
