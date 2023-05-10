@@ -13089,7 +13089,7 @@
         "y": 400,
         "wires": [
             [
-                "f58432cd44c4ee58"
+                "c7bf946f9d0edb67"
             ]
         ]
     },
@@ -13110,7 +13110,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 450,
+        "x": 610,
         "y": 400,
         "wires": [
             [
@@ -13129,7 +13129,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
+        "x": 800,
         "y": 400,
         "wires": [
             [
@@ -13376,7 +13376,7 @@
         "playertype": "sonos",
         "speakingrate": "1",
         "speakingpitch": "0",
-        "unmuteIfMuted": true,
+        "unmuteIfMuted": false,
         "x": 330,
         "y": 640,
         "wires": [
@@ -13413,6 +13413,31 @@
         "wires": [
             [
                 "e0383b358de144da"
+            ]
+        ]
+    },
+    {
+        "id": "c7bf946f9d0edb67",
+        "type": "delay",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "20",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "day",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "f58432cd44c4ee58"
             ]
         ]
     }
