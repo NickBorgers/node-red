@@ -40,19 +40,19 @@ music:
       # Instrumental Melodic House and Techno
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:62CFZGi01r81y81tSuj155
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Instrumental Techno Mix
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1EIgBWjkyfXHmo
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Instrumental House Mix
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1EIhris6SwzGuN
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Epic Classical
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1E4vSnB7GD9Gct
-        volume_multiplier: 1
+        volume_multiplier: 1.0
   day:
     participants:
       - player_name: "Nook Speaker"
@@ -95,31 +95,31 @@ music:
       # Kygo Radio
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Chill Tracks
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX6VdMW310YC7
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Lounge - Soft House
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX82pCGH5USnM
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Caroline's country playlist
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:5Wyuc2BN76JyKioxcaY7ud
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Summer Party
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX5Ozry5U6G0d
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Lowkey tech
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Owl City
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
-        volume_multiplier: 1
+        volume_multiplier: 1.0
   evening:
     participants:
       - player_name: "Nook Speaker"
@@ -166,7 +166,7 @@ music:
       # Jazz in the background
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWV7EzJMK2FUI
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # This is Hilary Hahn
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWV15rjiWJsBI
@@ -174,7 +174,7 @@ music:
       # Blowin' in the wind radio
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1E8Q7fAfKoKDtW
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Calming Classical (Needs much higher volumes for parity)
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWVFeEut75IAL
@@ -182,7 +182,7 @@ music:
       # Chilled Jazz
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX2vYju3i0lNX
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Instrumental Classical
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:5fSuIObNY9SB8gUMt1xrsB
@@ -229,15 +229,15 @@ music:
       # Floating Through Space
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX1n9whBbBKoL
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Ambient Relaxation
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       # Sleep
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1DWZd79rJ6a7lp
-        volume_multiplier: 1
+        volume_multiplier: 1.0
   sleep:
     participants:
       - player_name: "Nook Speaker"
@@ -272,7 +272,7 @@ music:
         volume_multiplier: 1.32
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/3.m4a"
-        volume_multiplier: 1
+        volume_multiplier: 1.0
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/4.m4a"
         volume_multiplier: 1.32
