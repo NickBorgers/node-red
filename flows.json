@@ -2486,8 +2486,7 @@
             [
                 "a78b91dcc37bee92",
                 "8409a48850c82e37",
-                "03d49e6e6a6a882d",
-                "c0e040aaba90066e"
+                "03d49e6e6a6a882d"
             ],
             [],
             []
@@ -3190,52 +3189,6 @@
                 "91bfd1cbe0c7c95b"
             ]
         ]
-    },
-    {
-        "id": "c0e040aaba90066e",
-        "type": "file in",
-        "z": "634c78c80eb9f37e",
-        "name": "Read climate config file",
-        "filename": "/data/projects/node-red/configs/climate_config.yaml",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "utf8",
-        "allProps": false,
-        "x": 630,
-        "y": 160,
-        "wires": [
-            [
-                "950b27ce0e1df41e"
-            ]
-        ]
-    },
-    {
-        "id": "950b27ce0e1df41e",
-        "type": "yaml",
-        "z": "634c78c80eb9f37e",
-        "property": "payload",
-        "name": "Convert to JSON",
-        "x": 860,
-        "y": 160,
-        "wires": [
-            [
-                "742f79ea2723fc83"
-            ]
-        ]
-    },
-    {
-        "id": "742f79ea2723fc83",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "611761b9dd5c9c4c",
-        "name": "Climate Config",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1050,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "f16bcb4bfea89461",
