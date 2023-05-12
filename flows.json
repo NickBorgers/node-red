@@ -12981,7 +12981,9 @@
                 "51534bf8c71afd93",
                 "48499f70f7e241ea",
                 "fbdd5450095d64c1",
-                "70f88ee57574292e"
+                "70f88ee57574292e",
+                "c0dd2975e62cd6d5",
+                "64869cc62da96045"
             ]
         ]
     },
@@ -13139,13 +13141,13 @@
         "type": "function",
         "z": "0d2150a703bedcd6",
         "name": "Generate Notification Message",
-        "func": "notification_message = \"Nick, the Vacuum filter needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "func": "var notification_message = \"Nick, the Vacuum filter needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
+        "x": 910,
         "y": 540,
         "wires": [
             [
@@ -13158,13 +13160,13 @@
         "type": "function",
         "z": "0d2150a703bedcd6",
         "name": "Generate Notification Message",
-        "func": "notification_message = \"Nick, the Vacuum side brush needs replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "func": "var notification_message = \"Nick, the Vacuum side brush needs replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
+        "x": 910,
         "y": 580,
         "wires": [
             [
@@ -13177,13 +13179,13 @@
         "type": "function",
         "z": "0d2150a703bedcd6",
         "name": "Generate Notification Message",
-        "func": "notification_message = \"Nick, the Vacuum sensors need cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "func": "var notification_message = \"Nick, the Vacuum sensors need cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
+        "x": 910,
         "y": 500,
         "wires": [
             [
@@ -13196,13 +13198,13 @@
         "type": "function",
         "z": "0d2150a703bedcd6",
         "name": "Generate Notification Message",
-        "func": "notification_message = \"Nick, the Vacuum main brush need replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "func": "var notification_message = \"Nick, the Vacuum main brush need replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 890,
+        "x": 910,
         "y": 460,
         "wires": [
             [
@@ -13225,7 +13227,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 660,
+        "x": 680,
         "y": 460,
         "wires": [
             [
@@ -13248,7 +13250,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 660,
+        "x": 680,
         "y": 500,
         "wires": [
             [
@@ -13271,7 +13273,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 660,
+        "x": 680,
         "y": 540,
         "wires": [
             [
@@ -13294,7 +13296,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 660,
+        "x": 680,
         "y": 580,
         "wires": [
             [
@@ -13349,7 +13351,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 160,
-        "y": 640,
+        "y": 800,
         "wires": [
             [
                 "c9bd838ac0165bad"
@@ -13364,7 +13366,7 @@
         "voice": "en-GB",
         "ssml": false,
         "sonosipaddress": "10.212.100.231",
-        "sonosvolume": "25",
+        "sonosvolume": "35",
         "sonoshailing": "Hailing_ComputerCall.mp3",
         "config": "89337ebbba16965d",
         "property": "payload",
@@ -13375,7 +13377,7 @@
         "speakingpitch": "0",
         "unmuteIfMuted": false,
         "x": 330,
-        "y": 640,
+        "y": 800,
         "wires": [
             [],
             []
@@ -13391,7 +13393,7 @@
         ],
         "timeout": "30",
         "x": 510,
-        "y": 700,
+        "y": 860,
         "wires": [
             []
         ]
@@ -13406,7 +13408,7 @@
         ],
         "uncaught": false,
         "x": 340,
-        "y": 700,
+        "y": 860,
         "wires": [
             [
                 "e0383b358de144da"
@@ -13435,6 +13437,128 @@
         "wires": [
             [
                 "f58432cd44c4ee58"
+            ]
+        ]
+    },
+    {
+        "id": "c0dd2975e62cd6d5",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Cleaning Brush",
+        "func": "msg.payload = (1-msg.payload[0]['cleaning_brush_work_times']/300)*100\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 620,
+        "wires": [
+            [
+                "b1ae4a58f4238008"
+            ]
+        ]
+    },
+    {
+        "id": "64869cc62da96045",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Strainer",
+        "func": "msg.payload = (1 - msg.payload[0]['strainer_work_times'] / 150) * 100\n\nnode.status({ fill: \"grey\", shape: \"ring\", text: msg.payload + '%' })\nmsg.payload = {\n    \"NeedAction\": msg.payload < 10 ? true : false,\n    \"LifePercentage\": msg.payload\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 660,
+        "wires": [
+            [
+                "0d7ccd7fab777dc7"
+            ]
+        ]
+    },
+    {
+        "id": "b1ae4a58f4238008",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "If NeedAction",
+        "property": "payload.NeedAction",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 620,
+        "wires": [
+            [
+                "af26683f9fb13f07"
+            ]
+        ]
+    },
+    {
+        "id": "0d7ccd7fab777dc7",
+        "type": "switch",
+        "z": "0d2150a703bedcd6",
+        "name": "If NeedAction",
+        "property": "payload.NeedAction",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 660,
+        "wires": [
+            [
+                "4a4ea37fb228c4c2"
+            ]
+        ]
+    },
+    {
+        "id": "af26683f9fb13f07",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "var notification_message = \"Nick, the Vacuum mop brush needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 620,
+        "wires": [
+            [
+                "66a52590c9317bed"
+            ]
+        ]
+    },
+    {
+        "id": "4a4ea37fb228c4c2",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "var notification_message = \"Nick, the Vacuum mop strainer needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 660,
+        "wires": [
+            [
+                "66a52590c9317bed"
             ]
         ]
     }
