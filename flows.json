@@ -766,6 +766,38 @@
         "unit": ""
     },
     {
+        "id": "08c52a991942a7aa",
+        "type": "shared-state",
+        "name": "livingRoomACshouldBeOn",
+        "lbl": "Living Room AC Should Be On",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "4a83bd328e3c306c",
+        "type": "shared-state",
+        "name": "guestACshouldBeOn",
+        "lbl": "Guest AC Should Be On",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -5301,7 +5333,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Set music type based on conditions",
-        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If anyone is asleep, set to sleep\nif (global.get(\"state\").isAnyoneAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\ndayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was the last person waking up, kick off some music\n    if (msg.topic == \"isAnyoneAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If noone is asleep then day starts\n    if (global.get(\"state\").isAnyoneAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    // Override for when sleep sounds get started a little early\n    if (global.get(\"state\").musicPlaybackType.value == \"sleep\") {\n        return null\n    }\n    msg.payload = \"winddown\"\n    return msg\n}\n",
+        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If anyone is asleep, set to sleep\nif (global.get(\"state\").isAnyoneAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was the last person waking up, kick off some music\n    if (msg.topic == \"isAnyoneAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If noone is asleep then day starts\n    if (global.get(\"state\").isAnyoneAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    // Override for when sleep sounds get started a little early\n    if (global.get(\"state\").musicPlaybackType.value == \"sleep\") {\n        return null\n    }\n    msg.payload = \"winddown\"\n    return msg\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7666,6 +7698,31 @@
         "wires": [
             [
                 "86d4e21e11d6bf10"
+            ]
+        ]
+    },
+    {
+        "id": "f4bbf697e8ddc7a7",
+        "type": "inject",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Make Airplay Playback",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "airplay",
+        "payloadType": "str",
+        "x": 543,
+        "y": 393,
+        "wires": [
+            [
+                "b14e74697315444e"
             ]
         ]
     },
@@ -12671,6 +12728,801 @@
         "wires": [
             [
                 "75cb9283e2cb7aba"
+            ]
+        ]
+    },
+    {
+        "id": "902dfb48658fd611",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Turn on Living Room AC",
+        "info": "",
+        "x": 1470,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "fa177a2f8694c073",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Attempt to turn on Living Room AC",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [
+            "976892c582b219e60eca4999160766ab"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1740,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed1742cec93fac73",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "If off",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.bot_9e34",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1510,
+        "y": 620,
+        "wires": [
+            [
+                "fa177a2f8694c073",
+                "3d917b799be6150d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3d917b799be6150d",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "25-45s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "25",
+        "randomLast": "45",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1660,
+        "y": 600,
+        "wires": [
+            [
+                "fabcead77e3591e1"
+            ]
+        ]
+    },
+    {
+        "id": "f6772590709ef74c",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Turn off Living Room AC",
+        "info": "",
+        "x": 1470,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "71e828e9617b7a2c",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Attempt to turn off Living Room AC",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [
+            "976892c582b219e60eca4999160766ab"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1760,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6374dee333986e72",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "If on",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.bot_9e34",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1510,
+        "y": 840,
+        "wires": [
+            [
+                "71e828e9617b7a2c",
+                "e9b232bf32f2ca3b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e9b232bf32f2ca3b",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "25-45s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "25",
+        "randomLast": "45",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1680,
+        "y": 820,
+        "wires": [
+            [
+                "87687191a56e851f"
+            ]
+        ]
+    },
+    {
+        "id": "3f0b9c3fdf5197b2",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "1dd96a4a.9d6316",
+        "name": "Anyone Home",
+        "triggerOnInit": false,
+        "x": 1530,
+        "y": 1040,
+        "wires": [
+            [
+                "fc669c2282e5df78"
+            ]
+        ]
+    },
+    {
+        "id": "c57823b5d434c78c",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Turn off AC if noone home",
+        "info": "",
+        "x": 1570,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "d70c4bc95f9385ff",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "08c52a991942a7aa",
+        "name": "Living Room AC Should Be On",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 2010,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "e1134de8d6482091",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "4a83bd328e3c306c",
+        "name": "Guest AC Should Be On",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1990,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "7e104033ec105a6a",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "08c52a991942a7aa",
+        "name": "Living Room AC Should Be On",
+        "triggerOnInit": true,
+        "x": 1490,
+        "y": 760,
+        "wires": [
+            [
+                "4ec4ca2107da1189"
+            ]
+        ]
+    },
+    {
+        "id": "0df63c667f048458",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "08c52a991942a7aa",
+        "name": "Living Room AC Should Be On",
+        "triggerOnInit": true,
+        "x": 1490,
+        "y": 540,
+        "wires": [
+            [
+                "0c0e0393b9cc3045"
+            ]
+        ]
+    },
+    {
+        "id": "fabcead77e3591e1",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "If should be on",
+        "func": "// If it should be on, keep trying\nif (global.get(\"state\").livingRoomACshouldBeOn.value == true) {\n    return msg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1860,
+        "y": 540,
+        "wires": [
+            [
+                "ed1742cec93fac73"
+            ]
+        ]
+    },
+    {
+        "id": "87687191a56e851f",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "If should be off",
+        "func": "// If it should be on, keep trying\nif (global.get(\"state\").livingRoomACshouldBeOn.value == false) {\n    return msg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1860,
+        "y": 760,
+        "wires": [
+            [
+                "6374dee333986e72"
+            ]
+        ]
+    },
+    {
+        "id": "2efb89e0d3ea0ecb",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Turn on Guest AC",
+        "info": "",
+        "x": 2170,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "efb9f89e7555f2a1",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Attempt to turn on Guest AC",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [
+            "2d9c298906a7c479954d6e2d2d6bce1c"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 2440,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87d2b7a51daad76d",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "If off",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.bot_cc1e",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 2230,
+        "y": 620,
+        "wires": [
+            [
+                "efb9f89e7555f2a1",
+                "0cf5f5a23e6429e1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0cf5f5a23e6429e1",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "25-45s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "25",
+        "randomLast": "45",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2380,
+        "y": 600,
+        "wires": [
+            [
+                "bdab2a6d8c59fef4"
+            ]
+        ]
+    },
+    {
+        "id": "aa24a7174927d84b",
+        "type": "comment",
+        "z": "6a064f420a191bf8",
+        "name": "Turn off Guest AC",
+        "info": "",
+        "x": 2170,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "084d3c54d275edfd",
+        "type": "api-call-service",
+        "z": "6a064f420a191bf8",
+        "name": "Attempt to turn off Guest AC",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [
+            "2d9c298906a7c479954d6e2d2d6bce1c"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 2460,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "064b582f7524cfc3",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "If on",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.bot_cc1e",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 2230,
+        "y": 840,
+        "wires": [
+            [
+                "084d3c54d275edfd",
+                "efe7cdfaa707a946"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "efe7cdfaa707a946",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "10-20s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "10",
+        "randomLast": "20",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2400,
+        "y": 820,
+        "wires": [
+            [
+                "2635d766e9f56b29"
+            ]
+        ]
+    },
+    {
+        "id": "6d7a1508cc6297d2",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "4a83bd328e3c306c",
+        "name": "Guest AC Should Be On",
+        "triggerOnInit": true,
+        "x": 2190,
+        "y": 760,
+        "wires": [
+            [
+                "807d0cdf0126752f"
+            ]
+        ]
+    },
+    {
+        "id": "9eb7bb3f0d899d71",
+        "type": "get-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "4a83bd328e3c306c",
+        "name": "Guest AC Should Be On",
+        "triggerOnInit": true,
+        "x": 2190,
+        "y": 540,
+        "wires": [
+            [
+                "3ec7309f228b802a"
+            ]
+        ]
+    },
+    {
+        "id": "bdab2a6d8c59fef4",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "If should be on",
+        "func": "// If it should be on, keep trying\nif (global.get(\"state\").guestACshouldBeOn.value == true) {\n    return msg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2540,
+        "y": 540,
+        "wires": [
+            [
+                "87d2b7a51daad76d"
+            ]
+        ]
+    },
+    {
+        "id": "2635d766e9f56b29",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "If should be off",
+        "func": "// If it should be on, keep trying\nif (global.get(\"state\").guestACshouldBeOn.value == false) {\n    return msg\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2540,
+        "y": 760,
+        "wires": [
+            [
+                "064b582f7524cfc3"
+            ]
+        ]
+    },
+    {
+        "id": "077e145c74dfe531",
+        "type": "inject",
+        "z": "6a064f420a191bf8",
+        "name": "AC On",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 1768.5,
+        "y": 1140,
+        "wires": [
+            [
+                "d70c4bc95f9385ff",
+                "e1134de8d6482091"
+            ]
+        ]
+    },
+    {
+        "id": "4f2603c8661f7d90",
+        "type": "inject",
+        "z": "6a064f420a191bf8",
+        "name": "AC Off",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 1770,
+        "y": 1180,
+        "wires": [
+            [
+                "d70c4bc95f9385ff",
+                "e1134de8d6482091"
+            ]
+        ]
+    },
+    {
+        "id": "fc669c2282e5df78",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "Not Home",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1690,
+        "y": 1040,
+        "wires": [
+            [
+                "d70c4bc95f9385ff",
+                "e1134de8d6482091"
+            ]
+        ]
+    },
+    {
+        "id": "807d0cdf0126752f",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "1-10s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "10",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2370,
+        "y": 760,
+        "wires": [
+            [
+                "2635d766e9f56b29"
+            ]
+        ]
+    },
+    {
+        "id": "3ec7309f228b802a",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "1-10s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "10",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2370,
+        "y": 540,
+        "wires": [
+            [
+                "bdab2a6d8c59fef4"
+            ]
+        ]
+    },
+    {
+        "id": "0c0e0393b9cc3045",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "1-10s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "10",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1690,
+        "y": 540,
+        "wires": [
+            [
+                "fabcead77e3591e1"
+            ]
+        ]
+    },
+    {
+        "id": "4ec4ca2107da1189",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "1-10s",
+        "pauseType": "random",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "10",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1690,
+        "y": 760,
+        "wires": [
+            [
+                "87687191a56e851f"
             ]
         ]
     },
