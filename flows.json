@@ -5026,7 +5026,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Build master music message",
-        "func": "// Music type is set by variable\nmusicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n} else {\n    musicPlaylistNumbers = {}\n}\n// If this type has a number already, use it; otherwise create it as 0\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nmusicConfig = global.get(\"state\").musicConfig.value.music\n// Get the overall object for this type of music\nmusicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nmusicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n// Generate a list of players to group for playback based on the config\nplayers = \"\"\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n        }\n    });\n    // Mute all players being engaged in this group\n    muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nleadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nplayMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\n\ncurrentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nincrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg ] ",
+        "func": "// Music type is set by variable\nvar musicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nvar musicPlaylistNumbers = {}\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n}\n// If this type has a number already, use it; otherwise create it as 0\nvar thisPlaylistNumber\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nvar musicConfig = global.get(\"state\").musicConfig.value.music\n// Get the overall object for this type of music\nvar musicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nvar musicToPlay = {}\nif (thisPlaylistNumber in musicTypeObject[\"playback_options\"]) {\n    musicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n} else {\n    musicToPlay.volume_multiplier = 1\n}\n// Generate a list of players to group for playback based on the config\nvar players = \"\"\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n        }\n    });\n    // Mute all players being engaged in this group\n    var muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nvar leadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nvar playMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\n\nvar currentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nvar incrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg ] ",
         "outputs": 4,
         "noerr": 0,
         "initialize": "",
@@ -5240,7 +5240,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
+        "x": 1970,
         "y": 80,
         "wires": [
             [
@@ -6509,7 +6509,7 @@
         "y": 80,
         "wires": [
             [
-                "8b2c1a1d7bbcb289"
+                "4f197c88344aa51e"
             ]
         ]
     },
@@ -7718,13 +7718,274 @@
         "topic": "",
         "payload": "airplay",
         "payloadType": "str",
-        "x": 543,
-        "y": 393,
+        "x": 460,
+        "y": 400,
         "wires": [
             [
                 "b14e74697315444e"
             ]
         ]
+    },
+    {
+        "id": "4f197c88344aa51e",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "If no URI, skip play set",
+        "property": "uri",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1720,
+        "y": 80,
+        "wires": [
+            [
+                "8b2c1a1d7bbcb289"
+            ],
+            [
+                "d6f678177a40f732",
+                "c90b3784ee35f15c"
+            ]
+        ]
+    },
+    {
+        "id": "c90b3784ee35f15c",
+        "type": "debug",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2100,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b8624a9798508f86",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Prepare for Airplay",
+        "info": "",
+        "x": 850,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "053acfa1369f7077",
+        "type": "change",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 460,
+        "wires": [
+            [
+                "0c06b3ab431b4a5d"
+            ]
+        ]
+    },
+    {
+        "id": "d1dd67e097547adc",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1040,
+        "y": 400,
+        "wires": [
+            [
+                "40ad98fa1f9d1c37"
+            ]
+        ]
+    },
+    {
+        "id": "faaa22a4567a2a1a",
+        "type": "inject",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 830,
+        "y": 460,
+        "wires": [
+            [
+                "053acfa1369f7077"
+            ]
+        ]
+    },
+    {
+        "id": "0c06b3ab431b4a5d",
+        "type": "homekit-service",
+        "z": "90f5fe8cb80ae6a7",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Airplay",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 400,
+        "wires": [
+            [
+                "d1dd67e097547adc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "40ad98fa1f9d1c37",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1190,
+        "y": 400,
+        "wires": [
+            [
+                "053acfa1369f7077",
+                "f9e2c99c1e6e529e"
+            ]
+        ]
+    },
+    {
+        "id": "f9e2c99c1e6e529e",
+        "type": "change",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set airplay",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "airplay",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1350,
+        "y": 400,
+        "wires": [
+            [
+                "5d25445d1b3dde4d"
+            ]
+        ]
+    },
+    {
+        "id": "5d25445d1b3dde4d",
+        "type": "set-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1340,
+        "y": 460,
+        "wires": []
     },
     {
         "id": "d389488a08d98ed3",
@@ -13261,15 +13522,15 @@
         "id": "efe7cdfaa707a946",
         "type": "delay",
         "z": "6a064f420a191bf8",
-        "name": "10-20s",
+        "name": "25-45s",
         "pauseType": "random",
         "timeout": "30",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
-        "randomFirst": "10",
-        "randomLast": "20",
+        "randomFirst": "25",
+        "randomLast": "45",
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
