@@ -282,3 +282,34 @@ music:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/6.m4a"
         volume_multiplier: 1.18
+  sonos:
+    participants:
+      - player_name: "Living Room"
+        default_volume: 9
+        leave_muted_if:
+          - variable: isGuestAsleep
+            value: true
+      - player_name: "Nook Speaker"
+        default_volume: 11
+        leave_muted_if: []
+      - player_name: "Guest Bathroom"
+        default_volume: 9
+        leave_muted_if:
+          - variable: isGuestAsleep
+            value: true
+      - player_name: "Master Bedroom"
+        default_volume: 12
+        leave_muted_if:
+          - variable: isMasterAsleep
+            value: true
+      - player_name: "Master Bathroom"
+        default_volume: 9
+        leave_muted_if:
+          - variable: isMasterAsleep
+            value: true
+      - player_name: "Guest Bedroom"
+        default_volume: 8
+        leave_muted_if:
+          - variable: isGuestAsleep
+            value: true
+    playback_options: []
