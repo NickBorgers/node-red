@@ -282,7 +282,7 @@ music:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/6.m4a"
         volume_multiplier: 1.18
-  sonos:
+  airplay:
     participants:
       - player_name: "Living Room"
         default_volume: 9
