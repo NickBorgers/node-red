@@ -7751,27 +7751,9 @@
                 "8b2c1a1d7bbcb289"
             ],
             [
-                "d6f678177a40f732",
-                "c90b3784ee35f15c"
+                "d6f678177a40f732"
             ]
         ]
-    },
-    {
-        "id": "c90b3784ee35f15c",
-        "type": "debug",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2100,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "b8624a9798508f86",
@@ -11634,7 +11616,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1100,
+        "x": 1260,
         "y": 900,
         "wires": []
     },
@@ -11647,7 +11629,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1140,
+        "x": 1300,
         "y": 840,
         "wires": []
     },
@@ -11660,7 +11642,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1130,
+        "x": 1290,
         "y": 780,
         "wires": []
     },
@@ -11673,7 +11655,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1120,
+        "x": 1280,
         "y": 720,
         "wires": []
     },
@@ -11686,7 +11668,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1130,
+        "x": 1290,
         "y": 960,
         "wires": []
     },
@@ -11699,7 +11681,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1140,
+        "x": 1300,
         "y": 1020,
         "wires": []
     },
@@ -11712,7 +11694,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1150,
+        "x": 1310,
         "y": 1080,
         "wires": []
     },
@@ -11725,7 +11707,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1110,
+        "x": 1270,
         "y": 1140,
         "wires": []
     },
@@ -11734,7 +11716,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Build indoor humidity and temp report",
-        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Window\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            //report[\"Bedroom\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Window\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            //report[\"Bedroom\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
+        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            report[\"Bedroom\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            report[\"Bedroom\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12392,7 +12374,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1110,
+        "x": 1270,
         "y": 1200,
         "wires": []
     },
@@ -12468,7 +12450,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1100,
+        "x": 1260,
         "y": 1260,
         "wires": []
     },
@@ -12998,7 +12980,7 @@
         "z": "6a064f420a191bf8",
         "name": "Turn on Living Room AC",
         "info": "",
-        "x": 1470,
+        "x": 1870,
         "y": 500,
         "wires": []
     },
@@ -13023,7 +13005,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1740,
+        "x": 2140,
         "y": 660,
         "wires": [
             []
@@ -13065,7 +13047,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1510,
+        "x": 1910,
         "y": 620,
         "wires": [
             [
@@ -13092,7 +13074,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1660,
+        "x": 2060,
         "y": 600,
         "wires": [
             [
@@ -13106,7 +13088,7 @@
         "z": "6a064f420a191bf8",
         "name": "Turn off Living Room AC",
         "info": "",
-        "x": 1470,
+        "x": 1870,
         "y": 720,
         "wires": []
     },
@@ -13131,7 +13113,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1760,
+        "x": 2160,
         "y": 880,
         "wires": [
             []
@@ -13173,7 +13155,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1510,
+        "x": 1910,
         "y": 840,
         "wires": [
             [
@@ -13200,7 +13182,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1680,
+        "x": 2080,
         "y": 820,
         "wires": [
             [
@@ -13215,7 +13197,7 @@
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
         "triggerOnInit": false,
-        "x": 1530,
+        "x": 1930,
         "y": 1040,
         "wires": [
             [
@@ -13229,7 +13211,7 @@
         "z": "6a064f420a191bf8",
         "name": "Turn off AC if noone home",
         "info": "",
-        "x": 1570,
+        "x": 1970,
         "y": 1000,
         "wires": []
     },
@@ -13242,7 +13224,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 2010,
+        "x": 2410,
         "y": 1140,
         "wires": []
     },
@@ -13255,7 +13237,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1990,
+        "x": 2390,
         "y": 1180,
         "wires": []
     },
@@ -13266,7 +13248,7 @@
         "state": "08c52a991942a7aa",
         "name": "Living Room AC Should Be On",
         "triggerOnInit": true,
-        "x": 1490,
+        "x": 1890,
         "y": 760,
         "wires": [
             [
@@ -13281,7 +13263,7 @@
         "state": "08c52a991942a7aa",
         "name": "Living Room AC Should Be On",
         "triggerOnInit": true,
-        "x": 1490,
+        "x": 1890,
         "y": 540,
         "wires": [
             [
@@ -13300,7 +13282,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1860,
+        "x": 2260,
         "y": 540,
         "wires": [
             [
@@ -13319,7 +13301,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1860,
+        "x": 2260,
         "y": 760,
         "wires": [
             [
@@ -13333,7 +13315,7 @@
         "z": "6a064f420a191bf8",
         "name": "Turn on Guest AC",
         "info": "",
-        "x": 2170,
+        "x": 2570,
         "y": 500,
         "wires": []
     },
@@ -13358,7 +13340,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 2440,
+        "x": 2840,
         "y": 660,
         "wires": [
             []
@@ -13400,7 +13382,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 2230,
+        "x": 2630,
         "y": 620,
         "wires": [
             [
@@ -13427,7 +13409,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2380,
+        "x": 2780,
         "y": 600,
         "wires": [
             [
@@ -13441,7 +13423,7 @@
         "z": "6a064f420a191bf8",
         "name": "Turn off Guest AC",
         "info": "",
-        "x": 2170,
+        "x": 2570,
         "y": 720,
         "wires": []
     },
@@ -13466,7 +13448,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 2460,
+        "x": 2860,
         "y": 880,
         "wires": [
             []
@@ -13508,7 +13490,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 2230,
+        "x": 2630,
         "y": 840,
         "wires": [
             [
@@ -13535,7 +13517,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2400,
+        "x": 2800,
         "y": 820,
         "wires": [
             [
@@ -13550,7 +13532,7 @@
         "state": "4a83bd328e3c306c",
         "name": "Guest AC Should Be On",
         "triggerOnInit": true,
-        "x": 2190,
+        "x": 2590,
         "y": 760,
         "wires": [
             [
@@ -13565,7 +13547,7 @@
         "state": "4a83bd328e3c306c",
         "name": "Guest AC Should Be On",
         "triggerOnInit": true,
-        "x": 2190,
+        "x": 2590,
         "y": 540,
         "wires": [
             [
@@ -13584,7 +13566,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2540,
+        "x": 2940,
         "y": 540,
         "wires": [
             [
@@ -13603,7 +13585,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2540,
+        "x": 2940,
         "y": 760,
         "wires": [
             [
@@ -13628,7 +13610,7 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 1768.5,
+        "x": 2168.5,
         "y": 1140,
         "wires": [
             [
@@ -13654,7 +13636,7 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 1770,
+        "x": 2170,
         "y": 1180,
         "wires": [
             [
@@ -13678,7 +13660,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1690,
+        "x": 2090,
         "y": 1040,
         "wires": [
             [
@@ -13704,7 +13686,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2370,
+        "x": 2770,
         "y": 760,
         "wires": [
             [
@@ -13729,7 +13711,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2370,
+        "x": 2770,
         "y": 540,
         "wires": [
             [
@@ -13754,7 +13736,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1690,
+        "x": 2090,
         "y": 540,
         "wires": [
             [
@@ -13779,12 +13761,182 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1690,
+        "x": 2090,
         "y": 760,
         "wires": [
             [
                 "87687191a56e851f"
             ]
+        ]
+    },
+    {
+        "id": "bfa871a51e5fcda5",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab453badbf5fe4c4",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d5408786353832f",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02d6a5ffc6a61428",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c3fe0d182e4971a",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f54fe9bf1991c13",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cb5da233c70e8d14",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a95fda7ae0b2941",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69850a93d4111cd9",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a3f8f7803751084",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1260,
+        "wires": [
+            []
         ]
     },
     {
