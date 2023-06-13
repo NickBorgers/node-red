@@ -4585,9 +4585,7 @@
         "debugenabled": false,
         "domain": "remote",
         "service": "send_command",
-        "areaId": [
-            "living_room"
-        ],
+        "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
         ],
@@ -4618,9 +4616,7 @@
         "debugenabled": false,
         "domain": "remote",
         "service": "send_command",
-        "areaId": [
-            "living_room"
-        ],
+        "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
         ],
@@ -4812,9 +4808,7 @@
         "debugenabled": false,
         "domain": "remote",
         "service": "send_command",
-        "areaId": [
-            "living_room"
-        ],
+        "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
         ],
@@ -4870,9 +4864,7 @@
         "debugenabled": false,
         "domain": "remote",
         "service": "send_command",
-        "areaId": [
-            "living_room"
-        ],
+        "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
         ],
@@ -4928,9 +4920,7 @@
         "debugenabled": false,
         "domain": "remote",
         "service": "send_command",
-        "areaId": [
-            "living_room"
-        ],
+        "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
         ],
