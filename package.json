@@ -2,7 +2,16 @@
     "name": "node-red",
     "description": "A Node-RED Project",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-contrib-home-assistant-websocket": "~0.45.0",
+        "node-red-contrib-homekit-bridged": "~1.4.3",
+        "node-red-contrib-log-elk": "~1.2.4",
+        "node-red-contrib-miio-roborock": "~2.3.4",
+        "node-red-contrib-sonos-plus": "~6.4.0",
+        "node-red-contrib-state": "~1.5.1",
+        "node-red-contrib-sunevents": "~3.0.3",
+        "node-red-contrib-tts-ultimate": "~1.0.52"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flows.json",
