@@ -1,8 +1,8 @@
 ---
 schedule:
   # Sunday
-  - begin_wake: "11:30"
-    wake: "12:00"
+  - begin_wake: "09:30"
+    wake: "10:00"
     dusk: "19:00"
     winddown: "21:30"
     stop_screens: "21:45"
