@@ -313,3 +313,15 @@ music:
           - variable: isGuestAsleep
             value: true
     playback_options: []
+  sex:
+    participants:
+      - player_name: "Master Bathroom"
+        default_volume: 15
+        leave_muted_if: []
+      - player_name: "Master Bedroom"
+        default_volume: 25
+        leave_muted_if: []
+    playback_options:
+      - command: group.queue.urispotify
+        uri: spotify:user:spotify:playlist:6JynmyHkOPxeTryinNymBi
+        volume_multiplier: 1.0
