@@ -9,7 +9,7 @@ This repo contains my home automations which are executed on [Node Red](https://
 
 These are public in case they are interesting or even useful to someone else, so that I can ask help from other home automation enthusiasts, and show off a bit.
 
-[All Node Red Modules used are incidentally listed here](.automated-rendering/node-red/package.json) as part of enabling the automation for generating screenshots; basically just need the nodes so they can render.
+[All Node Red Modules used are incidentally listed here](package.json) as part of the Node Red project.
 
 ### Components
 ```mermaid
@@ -92,6 +92,13 @@ Responding to the occupants of the home requires tracking state, largely facilit
 We're working on sleep hygiene right now and have enslisted the home automation to help. 
 
 ![Sleep Hygiene](https://nickborgers.github.io/node-red/Sleep%20Hygiene.png)
+
+### TV Monitoring and Manipulation
+We display art on the TV, so like for it to come on in the mornings and evenings.
+
+When we watch something on the TV we want the nearby speakers to mute. So, we monitor what's going on with the TV itself and the associated Apple TV to drive some automations.
+
+![TV Monitoring and Manipulation](https://nickborgers.github.io/node-red/TV%20Monitoring%20and%20Manipulation.png)
 
 ### Calendar
 Verbal alerts are played for us based on calendar events. Home Assistant is actually integrated with our calendars, and this automation checks those calendars and notifies us if we should really be going to be bed instead of watching that next YouTube video or whatever.
