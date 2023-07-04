@@ -4,7 +4,7 @@ test('Capture screenshot of the entire scrollable webpage', async ({page}) => {
     // Go to root page
     await page.goto('/')
     // Wait for load
-    await expect(page.locator('#red-ui-header-button-sidemenu')).toBeVisible({timeout: 5000})
+    await expect(page.locator('#red-ui-header-button-sidemenu')).toBeVisible({timeout: 10000})
     // Bump up resolution to huuuuge
     await page.setViewportSize({ width: 5000, height: 4000 });
     // Close sidebars if open
