@@ -116,9 +116,7 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379,
-        "w": 1352,
-        "h": 322
+        "y": 379
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -137,9 +135,7 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819,
-        "w": 832,
-        "h": 142
+        "y": 819
     },
     {
         "id": "c48cec27c550ff16",
@@ -168,9 +164,7 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859,
-        "w": 872,
-        "h": 402
+        "y": 859
     },
     {
         "id": "4b656d74411ea89c",
@@ -199,9 +193,7 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979,
-        "w": 1212,
-        "h": 282
+        "y": 979
     },
     {
         "id": "39e525a9dd77b708",
@@ -235,9 +227,7 @@
             "4f197c88344aa51e"
         ],
         "x": 894,
-        "y": 39,
-        "w": 1472,
-        "h": 302
+        "y": 39
     },
     {
         "id": "b2cc5799.eea9d",
@@ -2131,7 +2121,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1780,
+        "x": 2000,
         "y": 340,
         "wires": []
     },
@@ -2356,7 +2346,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1720,
+        "x": 1940,
         "y": 400,
         "wires": []
     },
@@ -2381,7 +2371,7 @@
         "y": 340,
         "wires": [
             [
-                "940899f761329f39"
+                "0d1e38ea9c5ba81d"
             ]
         ]
     },
@@ -2433,7 +2423,7 @@
         "y": 400,
         "wires": [
             [
-                "de691be683f352ac"
+                "bac76e4b8e2c0d4f"
             ]
         ]
     },
@@ -2649,6 +2639,44 @@
         "wires": [
             [
                 "4db9c19db8e3a4e7"
+            ]
+        ]
+    },
+    {
+        "id": "bac76e4b8e2c0d4f",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Do we have guests?",
+        "func": "// If we don't have guests, do the thing\nif (global.get(\"state\").isHaveGuests.value == true) {\n    return msg;\n}\n// Otherwise don't do anything\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1740,
+        "y": 400,
+        "wires": [
+            [
+                "de691be683f352ac"
+            ]
+        ]
+    },
+    {
+        "id": "0d1e38ea9c5ba81d",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Do we have guests?",
+        "func": "// If we don't have guests, do the thing\nif (global.get(\"state\").isHaveGuests.value == true) {\n    return msg;\n}\n// Otherwise don't do anything\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 340,
+        "wires": [
+            [
+                "940899f761329f39"
             ]
         ]
     },
