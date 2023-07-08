@@ -116,7 +116,9 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379
+        "y": 379,
+        "w": 1352,
+        "h": 322
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -135,7 +137,9 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819
+        "y": 819,
+        "w": 832,
+        "h": 142
     },
     {
         "id": "c48cec27c550ff16",
@@ -164,7 +168,9 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859
+        "y": 859,
+        "w": 872,
+        "h": 402
     },
     {
         "id": "4b656d74411ea89c",
@@ -193,7 +199,9 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979
+        "y": 979,
+        "w": 1212,
+        "h": 282
     },
     {
         "id": "39e525a9dd77b708",
@@ -226,8 +234,10 @@
             "15448e0eedc040e8",
             "4f197c88344aa51e"
         ],
-        "x": 894,
-        "y": 39
+        "x": 774,
+        "y": 39,
+        "w": 1472,
+        "h": 302
     },
     {
         "id": "b2cc5799.eea9d",
@@ -4832,7 +4842,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Put provided URI into queue",
-        "x": 1500,
+        "x": 1380,
         "y": 180,
         "wires": [
             [
@@ -4851,7 +4861,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Start Playing",
-        "x": 2070,
+        "x": 1950,
         "y": 180,
         "wires": [
             [
@@ -4870,7 +4880,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set to Repeat this playlist forever",
-        "x": 1700,
+        "x": 1580,
         "y": 240,
         "wires": [
             [
@@ -4889,7 +4899,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Clear existing Queue",
-        "x": 1600,
+        "x": 1480,
         "y": 120,
         "wires": [
             [
@@ -4908,7 +4918,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
+        "x": 580,
         "y": 100,
         "wires": [
             [
@@ -4938,7 +4948,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1310,
+        "x": 1190,
         "y": 300,
         "wires": []
     },
@@ -4963,7 +4973,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Create playback group",
-        "x": 1220,
+        "x": 1100,
         "y": 120,
         "wires": [
             [
@@ -5126,7 +5136,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2230,
+        "x": 2110,
         "y": 120,
         "wires": [
             [
@@ -5569,7 +5579,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set this playlist to shuffle",
-        "x": 1970,
+        "x": 1850,
         "y": 240,
         "wires": [
             [
@@ -5634,7 +5644,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Mute Participant",
-        "x": 1440,
+        "x": 1320,
         "y": 240,
         "wires": [
             []
@@ -5651,7 +5661,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Skip first track",
-        "x": 2180,
+        "x": 2060,
         "y": 240,
         "wires": [
             [
@@ -5686,7 +5696,7 @@
         "g": "39e525a9dd77b708",
         "name": "Message here specifies playerName coordinator, but includes all as participants",
         "info": "",
-        "x": 1400,
+        "x": 1280,
         "y": 80,
         "wires": []
     },
@@ -5736,7 +5746,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
+        "x": 1610,
         "y": 180,
         "wires": [
             [
@@ -5946,7 +5956,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1230,
+        "x": 1110,
         "y": 180,
         "wires": []
     },
@@ -6165,7 +6175,7 @@
         "topic": "",
         "payload": "{}",
         "payloadType": "json",
-        "x": 1040,
+        "x": 920,
         "y": 300,
         "wires": [
             [
@@ -6256,7 +6266,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1400,
+        "x": 1280,
         "y": 120,
         "wires": [
             [
@@ -6282,7 +6292,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1170,
+        "x": 1050,
         "y": 240,
         "wires": [
             [
@@ -6308,7 +6318,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1790,
+        "x": 1670,
         "y": 120,
         "wires": [
             [
@@ -6334,7 +6344,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1910,
+        "x": 1790,
         "y": 180,
         "wires": [
             [
@@ -6411,7 +6421,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 370,
+        "x": 390,
         "y": 100,
         "wires": [
             [
@@ -6888,7 +6898,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1290,
+        "x": 1170,
         "y": 240,
         "wires": [
             [
@@ -6946,7 +6956,7 @@
         "links": [
             "8a79fe3b400b6c66"
         ],
-        "x": 675,
+        "x": 555,
         "y": 220,
         "wires": []
     },
@@ -6968,7 +6978,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1030,
+        "x": 910,
         "y": 120,
         "wires": [
             [
@@ -7060,7 +7070,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1980,
+        "x": 1860,
         "y": 120,
         "wires": [
             [
@@ -7291,7 +7301,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Vigourously Stop Playback",
         "info": "",
-        "x": 770,
+        "x": 650,
         "y": 260,
         "wires": []
     },
@@ -7544,7 +7554,8 @@
         "y": 1360,
         "wires": [
             [
-                "49cfb3c78c5b995b"
+                "49cfb3c78c5b995b",
+                "69e15e68770a8d9a"
             ]
         ]
     },
@@ -7560,6 +7571,47 @@
         "x": 1470,
         "y": 1420,
         "wires": []
+    },
+    {
+        "id": "c3775f614d985c03",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "confignode": "80cf2bfc253ff8c2",
+        "command": "player.set.volume",
+        "state": "25",
+        "stateType": "num",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Set bedroom volume",
+        "x": 1620,
+        "y": 1480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69e15e68770a8d9a",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1440,
+        "y": 1480,
+        "wires": [
+            [
+                "c3775f614d985c03"
+            ]
+        ]
     },
     {
         "id": "d389488a08d98ed3",
