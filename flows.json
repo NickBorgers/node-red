@@ -8975,41 +8975,12 @@
         ]
     },
     {
-        "id": "d6f6f57a09be0655",
-        "type": "link in",
-        "z": "45c21b8b98ae2f01",
-        "name": "Turn on Master Bath Vacuum",
-        "links": [
-            "514f8a014a8b5060"
-        ],
-        "x": 25,
-        "y": 860,
-        "wires": [
-            [
-                "bb68bf3e759f5cdf"
-            ]
-        ]
-    },
-    {
-        "id": "514f8a014a8b5060",
-        "type": "link out",
-        "z": "45c21b8b98ae2f01",
-        "name": "Turn on Master Bath Vacuum",
-        "mode": "link",
-        "links": [
-            "d6f6f57a09be0655"
-        ],
-        "x": 1215,
-        "y": 600,
-        "wires": []
-    },
-    {
         "id": "fe257a60613c0601",
         "type": "comment",
         "z": "45c21b8b98ae2f01",
-        "name": "Automatically clean master bath after Caroline starts work",
+        "name": "Automatically clean master bath and cat shitolopolis after Caroline starts work",
         "info": "",
-        "x": 230,
+        "x": 290,
         "y": 500,
         "wires": []
     },
@@ -9034,7 +9005,7 @@
         "y": 600,
         "wires": [
             [
-                "514f8a014a8b5060"
+                "f8e1dbc52d4f9672"
             ]
         ]
     },
@@ -9050,6 +9021,249 @@
         "wires": [
             [
                 "9e2abf81ab49f842"
+            ]
+        ]
+    },
+    {
+        "id": "0e7e4ac7d76df94e",
+        "type": "miio-roborock-command",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Cat Shitolopolis",
+        "server": "b63f730b24581cdc",
+        "command_name": "► Start room cleaning",
+        "command": "app_segment_clean",
+        "commandType": "vacuum_cmd",
+        "payload": "21",
+        "payloadType": "num",
+        "coordinates": "",
+        "fan_speed": 100,
+        "voice_pack": null,
+        "homekit_stop_to_dock": false,
+        "x": 680,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e45b9584881bf593",
+        "type": "comment",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Cat Shitolopolis",
+        "info": "",
+        "x": 120,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "efd1b3efbfe849ce",
+        "type": "change",
+        "z": "45c21b8b98ae2f01",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 1040,
+        "wires": [
+            [
+                "e55da89ec2dba611"
+            ]
+        ]
+    },
+    {
+        "id": "f7ad3fcd96886323",
+        "type": "delay",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 980,
+        "wires": [
+            [
+                "0bf7d822c2c3f538"
+            ]
+        ]
+    },
+    {
+        "id": "10dbdaa51dfa2751",
+        "type": "inject",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1040,
+        "wires": [
+            [
+                "efd1b3efbfe849ce"
+            ]
+        ]
+    },
+    {
+        "id": "e55da89ec2dba611",
+        "type": "homekit-service",
+        "z": "45c21b8b98ae2f01",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Clean Cat Shitolopolis",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 160,
+        "y": 980,
+        "wires": [
+            [
+                "f7ad3fcd96886323"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0bf7d822c2c3f538",
+        "type": "switch",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 980,
+        "wires": [
+            [
+                "0e7e4ac7d76df94e",
+                "efd1b3efbfe849ce"
+            ]
+        ]
+    },
+    {
+        "id": "24ee73c170813ea0",
+        "type": "miio-roborock-command",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Master Bath and Cat Shitolopolis",
+        "server": "b63f730b24581cdc",
+        "command_name": "► Start room cleaning",
+        "command": "app_segment_clean",
+        "commandType": "vacuum_cmd",
+        "payload": "payload",
+        "payloadType": "msg",
+        "coordinates": "",
+        "fan_speed": 100,
+        "voice_pack": null,
+        "homekit_stop_to_dock": false,
+        "x": 1540,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f8e1dbc52d4f9672",
+        "type": "change",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[23, 21]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1280,
+        "y": 600,
+        "wires": [
+            [
+                "24ee73c170813ea0"
             ]
         ]
     },
@@ -12345,7 +12559,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Set fan speeds",
-        "func": "currentClimate = msg.payload\n\nfunction getFanSpeedByHeatIndex(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByFormaldehyde(formaldehyde) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPM25(pm25) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = pm25/12\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPollutants(formaldehyde, pm25) {\n  var fanSpeedByFormaldehyde = getFanSpeedByFormaldehyde(formaldehyde)\n  var fanSpeedByPM25 = getFanSpeedByPM25(pm25)\n\n  return Math.max(fanSpeedByFormaldehyde, fanSpeedByPM25)\n}\n\nfunction calculateFanSpeed(heatIndex, formaldehyde, pm25) {\n  var fanSpeedByHeatIndex = getFanSpeedByHeatIndex(heatIndex)\n  var fanSpeedByPollutants = getFanSpeedByPollutants(formaldehyde, pm25)\n\n  var actualFanSpeed = Math.max(fanSpeedByHeatIndex, fanSpeedByPollutants)\n\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
+        "func": "currentClimate = msg.payload\n\nfunction getFanSpeedByHeatIndex(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByFormaldehyde(formaldehyde) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPM25(pm25) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = pm25/10\n  node.warn(rawFanSpeed)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPollutants(formaldehyde, pm25) {\n  var fanSpeedByFormaldehyde = getFanSpeedByFormaldehyde(formaldehyde)\n  var fanSpeedByPM25 = getFanSpeedByPM25(pm25)\n\n  return Math.max(fanSpeedByFormaldehyde, fanSpeedByPM25)\n}\n\nfunction calculateFanSpeed(heatIndex, formaldehyde, pm25) {\n  var fanSpeedByHeatIndex = getFanSpeedByHeatIndex(heatIndex)\n  var fanSpeedByPollutants = getFanSpeedByPollutants(formaldehyde, pm25)\n\n  var actualFanSpeed = Math.max(fanSpeedByHeatIndex, fanSpeedByPollutants)\n\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar masterBedroomFormaldehyde = currentClimate[\"Master Bedroom\"][\"formaldehyde\"]\nvar masterBedroompm25 = currentClimate[\"Master Bedroom\"][\"pm2.5\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex, masterBedroomFormaldehyde, masterBedroompm25)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\nvar livingRoomFormaldehyde = currentClimate[\"Living Room Center\"][\"formaldehyde\"]\nvar livingRoompm25 = currentClimate[\"Living Room Center\"][\"pm2.5\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex, livingRoomFormaldehyde, livingRoompm25)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
