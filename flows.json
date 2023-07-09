@@ -116,7 +116,9 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379
+        "y": 379,
+        "w": 1352,
+        "h": 322
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -135,7 +137,9 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819
+        "y": 819,
+        "w": 832,
+        "h": 142
     },
     {
         "id": "c48cec27c550ff16",
@@ -164,7 +168,9 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859
+        "y": 859,
+        "w": 872,
+        "h": 402
     },
     {
         "id": "4b656d74411ea89c",
@@ -193,7 +199,9 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979
+        "y": 979,
+        "w": 1212,
+        "h": 282
     },
     {
         "id": "39e525a9dd77b708",
@@ -227,7 +235,9 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39
+        "y": 39,
+        "w": 1472,
+        "h": 302
     },
     {
         "id": "b2cc5799.eea9d",
@@ -338,28 +348,28 @@
         "type": "sonos-config",
         "name": "Living Room",
         "serialnum": "",
-        "ipaddress": "living-room.sonos.nickborgers.com"
+        "ipaddress": "sonos-living-room.nickborgers.com"
     },
     {
         "id": "eb483a028b06c90a",
         "type": "sonos-config",
         "name": "Master Bathroom",
         "serialnum": "",
-        "ipaddress": "master-bath.sonos.nickborgers.com"
+        "ipaddress": "sonos-master-bath.nickborgers.com"
     },
     {
         "id": "80cf2bfc253ff8c2",
         "type": "sonos-config",
         "name": "Master Bedroom",
         "serialnum": "",
-        "ipaddress": "master-bedroom.sonos.nickborgers.com"
+        "ipaddress": "sonos-master-bedroom.nickborgers.com"
     },
     {
         "id": "047dcd09c592e040",
         "type": "sonos-config",
         "name": "Nook",
         "serialnum": "",
-        "ipaddress": "nook.sonos.nickborgers.com"
+        "ipaddress": "sonos-nook.nickborgers.com"
     },
     {
         "id": "156ccde543ba4845",
@@ -607,7 +617,7 @@
         "type": "sonos-config",
         "name": "Guest Bedroom",
         "serialnum": "",
-        "ipaddress": "guest-bedroom.sonos.nickborgers.com"
+        "ipaddress": "sonos-guest-bedroom.nickborgers.com"
     },
     {
         "id": "efc87f0de00a2d36",
@@ -2296,7 +2306,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "light.guest_bedroom_lamp",
+        "entityidfilter": "weather.home",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -5053,7 +5063,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "39e525a9dd77b708",
-        "confignode": "eb483a028b06c90a",
+        "confignode": "047dcd09c592e040",
         "command": "household.create.group",
         "state": "",
         "stateType": "str",
@@ -12559,7 +12569,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Set fan speeds",
-        "func": "currentClimate = msg.payload\n\nfunction getFanSpeedByHeatIndex(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByFormaldehyde(formaldehyde) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPM25(pm25) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = pm25/10\n  node.warn(rawFanSpeed)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPollutants(formaldehyde, pm25) {\n  var fanSpeedByFormaldehyde = getFanSpeedByFormaldehyde(formaldehyde)\n  var fanSpeedByPM25 = getFanSpeedByPM25(pm25)\n\n  return Math.max(fanSpeedByFormaldehyde, fanSpeedByPM25)\n}\n\nfunction calculateFanSpeed(heatIndex, formaldehyde, pm25) {\n  var fanSpeedByHeatIndex = getFanSpeedByHeatIndex(heatIndex)\n  var fanSpeedByPollutants = getFanSpeedByPollutants(formaldehyde, pm25)\n\n  var actualFanSpeed = Math.max(fanSpeedByHeatIndex, fanSpeedByPollutants)\n\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar masterBedroomFormaldehyde = currentClimate[\"Master Bedroom\"][\"formaldehyde\"]\nvar masterBedroompm25 = currentClimate[\"Master Bedroom\"][\"pm2.5\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex, masterBedroomFormaldehyde, masterBedroompm25)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\nvar livingRoomFormaldehyde = currentClimate[\"Living Room Center\"][\"formaldehyde\"]\nvar livingRoompm25 = currentClimate[\"Living Room Center\"][\"pm2.5\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex, livingRoomFormaldehyde, livingRoompm25)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
+        "func": "currentClimate = msg.payload\n\nfunction getFanSpeedByHeatIndex(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByFormaldehyde(formaldehyde) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPM25(pm25) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = pm25/10\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPollutants(formaldehyde, pm25) {\n  var fanSpeedByFormaldehyde = getFanSpeedByFormaldehyde(formaldehyde)\n  var fanSpeedByPM25 = getFanSpeedByPM25(pm25)\n\n  return Math.max(fanSpeedByFormaldehyde, fanSpeedByPM25)\n}\n\nfunction calculateFanSpeed(heatIndex, formaldehyde, pm25) {\n  var fanSpeedByHeatIndex = getFanSpeedByHeatIndex(heatIndex)\n  var fanSpeedByPollutants = getFanSpeedByPollutants(formaldehyde, pm25)\n\n  var actualFanSpeed = Math.max(fanSpeedByHeatIndex, fanSpeedByPollutants)\n\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar masterBedroomFormaldehyde = currentClimate[\"Master Bedroom\"][\"formaldehyde\"]\nvar masterBedroompm25 = currentClimate[\"Master Bedroom\"][\"pm2.5\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex, masterBedroomFormaldehyde, masterBedroompm25)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\nvar livingRoomFormaldehyde = currentClimate[\"Living Room Center\"][\"formaldehyde\"]\nvar livingRoompm25 = currentClimate[\"Living Room Center\"][\"pm2.5\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex, livingRoomFormaldehyde, livingRoompm25)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
