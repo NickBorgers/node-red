@@ -116,9 +116,7 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379,
-        "w": 1352,
-        "h": 322
+        "y": 379
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -137,9 +135,7 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819,
-        "w": 832,
-        "h": 142
+        "y": 819
     },
     {
         "id": "c48cec27c550ff16",
@@ -168,9 +164,7 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859,
-        "w": 872,
-        "h": 402
+        "y": 859
     },
     {
         "id": "4b656d74411ea89c",
@@ -199,9 +193,7 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979,
-        "w": 1212,
-        "h": 282
+        "y": 979
     },
     {
         "id": "39e525a9dd77b708",
@@ -235,9 +227,7 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39,
-        "w": 1472,
-        "h": 302
+        "y": 39
     },
     {
         "id": "b2cc5799.eea9d",
@@ -951,6 +941,102 @@
         "tags": "",
         "historyCount": "2",
         "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "095dfa84b601e73c",
+        "type": "shared-state",
+        "name": "formaldehydeOfMasterBedroom",
+        "lbl": "Formaldehyde of Master Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "f3f728cd1ad260ac",
+        "type": "shared-state",
+        "name": "formaldehydeOfLivingRoom",
+        "lbl": "Formaldehyde of Living Room",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "2cd1bb9b8154af43",
+        "type": "shared-state",
+        "name": "formaldehydeOfBedroom",
+        "lbl": "Formaldehyde of Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "3d210964719a1218",
+        "type": "shared-state",
+        "name": "pm25OfMasterBedroom",
+        "lbl": "PM 2.5 of Master Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "ab6403409b952999",
+        "type": "shared-state",
+        "name": "pm25OfLivingRoom",
+        "lbl": "PM 2.5 of Living Room",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "3d29dd9baea8c557",
+        "type": "shared-state",
+        "name": "pm25OfBedroom",
+        "lbl": "PM 2.5 of Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
         "boolType": "bool",
         "boolStrTrue": "",
         "boolStrFalse": "",
@@ -10926,20 +11012,26 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 940,
+        "y": 1140,
         "wires": [
             [
-                "9c377bc17a4aa03a",
                 "a8b85510e85625a1",
-                "2dafe3bdd3ee5d2b",
-                "8938a2be3cfaf03a",
-                "bbaee6b986a4ee5a",
-                "1e71b32d69eb7fe6",
-                "ccf4342cd237b4fe",
-                "d0a15d3cd2962152",
-                "9fe8377df9dba651",
+                "9c377bc17a4aa03a",
+                "414b598fd90ee4de",
                 "9a39ae1dd8b22980",
-                "414b598fd90ee4de"
+                "9fe8377df9dba651",
+                "d0a15d3cd2962152",
+                "ccf4342cd237b4fe",
+                "1e71b32d69eb7fe6",
+                "bbaee6b986a4ee5a",
+                "74a55f2e663011fe",
+                "92d666b35803f2de",
+                "061b203d058d17ea",
+                "0f7dfc87e814fb16",
+                "2c533a8589d2fa9c",
+                "642e635566504ed6",
+                "8938a2be3cfaf03a",
+                "2dafe3bdd3ee5d2b"
             ]
         ]
     },
@@ -11360,14 +11452,14 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Build indoor humidity and temp report",
-        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            report[\"Living Room Window\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            report[\"Living Room Window\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
+        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\nreport[\"Master Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfMasterBedroom.value\nreport[\"Master Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfMasterBedroom.value\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\nreport[\"Living Room Center\"].formaldehyde = global.get(\"state\").formaldehydeOfLivingRoom.value\nreport[\"Living Room Center\"][\"pm2.5\"] = global.get(\"state\").pm25OfLivingRoom.value\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\nreport[\"Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfBedroom.value\nreport[\"Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfBedroom.value\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            report[\"Living Room Window\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            report[\"Living Room Window\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 1320,
+        "y": 1680,
         "wires": [
             [
                 "2ca0e3b65317dcaa"
@@ -11383,7 +11475,7 @@
         "complete": "payload",
         "loglevel": "info",
         "x": 1530,
-        "y": 1320,
+        "y": 1680,
         "wires": []
     },
     {
@@ -11568,31 +11660,6 @@
         "y": 720,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "9c377bc17a4aa03a",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "0",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 720,
-        "wires": [
-            [
-                "156f16e0c85e2816"
-            ]
         ]
     },
     {
@@ -12002,7 +12069,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 520,
-        "y": 1200,
+        "y": 1560,
         "wires": [
             [
                 "8bb8368fdc6c8511"
@@ -12019,7 +12086,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1270,
-        "y": 1200,
+        "y": 1560,
         "wires": []
     },
     {
@@ -12040,7 +12107,7 @@
         "repair": false,
         "outputs": 1,
         "x": 896,
-        "y": 1199,
+        "y": 1559,
         "wires": [
             [
                 "540b66982a79e256"
@@ -12078,7 +12145,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 520,
-        "y": 1260,
+        "y": 1620,
         "wires": [
             [
                 "7fab3cc451e297b5"
@@ -12095,7 +12162,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1260,
-        "y": 1260,
+        "y": 1620,
         "wires": []
     },
     {
@@ -12116,7 +12183,7 @@
         "repair": false,
         "outputs": 1,
         "x": 896,
-        "y": 1259,
+        "y": 1619,
         "wires": [
             [
                 "e02d8abb3fc61b7c"
@@ -12135,7 +12202,7 @@
         "finalize": "",
         "libs": [],
         "x": 800,
-        "y": 1320,
+        "y": 1680,
         "wires": [
             [
                 "13cdd239fd5c641c"
@@ -12205,7 +12272,7 @@
         "finalize": "",
         "libs": [],
         "x": 980,
-        "y": 1320,
+        "y": 1680,
         "wires": [
             [
                 "9c17512707c3eacc"
@@ -12224,7 +12291,7 @@
         "finalize": "",
         "libs": [],
         "x": 1380,
-        "y": 1320,
+        "y": 1680,
         "wires": [
             [
                 "67c5137b0466f356"
@@ -12241,7 +12308,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1380,
-        "y": 1380,
+        "y": 1740,
         "wires": []
     },
     {
@@ -12278,14 +12345,14 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Set fan speeds",
-        "func": "currentClimate = msg.payload\n\nfunction calculateFanSpeed(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex-67)*4)\n  if (isNaN(rawFanSpeed)) {\n      rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2,rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
+        "func": "currentClimate = msg.payload\n\nfunction getFanSpeedByHeatIndex(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByFormaldehyde(formaldehyde) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPM25(pm25) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = pm25/12\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPollutants(formaldehyde, pm25) {\n  var fanSpeedByFormaldehyde = getFanSpeedByFormaldehyde(formaldehyde)\n  var fanSpeedByPM25 = getFanSpeedByPM25(pm25)\n\n  return Math.max(fanSpeedByFormaldehyde, fanSpeedByPM25)\n}\n\nfunction calculateFanSpeed(heatIndex, formaldehyde, pm25) {\n  var fanSpeedByHeatIndex = getFanSpeedByHeatIndex(heatIndex)\n  var fanSpeedByPollutants = getFanSpeedByPollutants(formaldehyde, pm25)\n\n  var actualFanSpeed = Math.max(fanSpeedByHeatIndex, fanSpeedByPollutants)\n\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 1160,
-        "y": 1320,
+        "y": 1680,
         "wires": [
             [
                 "02049bc0fd4e568d",
@@ -12374,56 +12441,6 @@
         "z": "6a064f420a191bf8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "25",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 1320,
-        "wires": [
-            [
-                "5c5b49d9b27da7ce"
-            ]
-        ]
-    },
-    {
-        "id": "2dafe3bdd3ee5d2b",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "18",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 1260,
-        "wires": [
-            [
-                "b801117a19b49b89"
-            ]
-        ]
-    },
-    {
-        "id": "8938a2be3cfaf03a",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
         "timeout": "16",
         "timeoutUnits": "seconds",
         "rate": "1",
@@ -12436,185 +12453,10 @@
         "allowrate": false,
         "outputs": 1,
         "x": 320,
-        "y": 1200,
+        "y": 1680,
         "wires": [
             [
-                "c8d0a2af88c5d967"
-            ]
-        ]
-    },
-    {
-        "id": "bbaee6b986a4ee5a",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "14",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 1140,
-        "wires": [
-            [
-                "921d40799aa20523"
-            ]
-        ]
-    },
-    {
-        "id": "1e71b32d69eb7fe6",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "12",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 1080,
-        "wires": [
-            [
-                "59ac828528febe57"
-            ]
-        ]
-    },
-    {
-        "id": "ccf4342cd237b4fe",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "10",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 1020,
-        "wires": [
-            [
-                "19c242d2027aedf7"
-            ]
-        ]
-    },
-    {
-        "id": "d0a15d3cd2962152",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "8",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 960,
-        "wires": [
-            [
-                "589452f0e043686c"
-            ]
-        ]
-    },
-    {
-        "id": "9fe8377df9dba651",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "6",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 900,
-        "wires": [
-            [
-                "b3fd89c4de936d7c"
-            ]
-        ]
-    },
-    {
-        "id": "9a39ae1dd8b22980",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "4",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 840,
-        "wires": [
-            [
-                "2ec3a969aa01e5c2"
-            ]
-        ]
-    },
-    {
-        "id": "414b598fd90ee4de",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "0",
-        "randomLast": "60",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 780,
-        "wires": [
-            [
-                "75cb9283e2cb7aba"
+                "5c5b49d9b27da7ce"
             ]
         ]
     },
@@ -12766,7 +12608,7 @@
         "finalize": "",
         "libs": [],
         "x": 1070,
-        "y": 1200,
+        "y": 1560,
         "wires": [
             []
         ]
@@ -12783,7 +12625,7 @@
         "finalize": "",
         "libs": [],
         "x": 1070,
-        "y": 1260,
+        "y": 1620,
         "wires": [
             []
         ]
@@ -12835,6 +12677,988 @@
         "wires": [
             [
                 "81b04d253cd97b0f"
+            ]
+        ]
+    },
+    {
+        "id": "7ffee5f7acf9af9b",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.master_bedroom_formaldehyde",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 600,
+        "y": 1200,
+        "wires": [
+            [
+                "3e1fc385282966a6"
+            ]
+        ]
+    },
+    {
+        "id": "f28501062c777ad7",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.living_room_formaldehyde",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 580,
+        "y": 1260,
+        "wires": [
+            [
+                "c4a0909de07e449e"
+            ]
+        ]
+    },
+    {
+        "id": "3e1fc385282966a6",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "095dfa84b601e73c",
+        "name": "Formaldehyde of Master Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1300,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "c4a0909de07e449e",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "f3f728cd1ad260ac",
+        "name": "Formaldehyde of Living Room",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1290,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "c8bb14cd9b95165b",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6560ed9571c25928",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a41f064362f6ce7e",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bca77a051ed012e8",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d61d5bff04d746e1",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.bedroom_formaldehyde",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 580,
+        "y": 1320,
+        "wires": [
+            [
+                "7afa26e69555becd"
+            ]
+        ]
+    },
+    {
+        "id": "7afa26e69555becd",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "2cd1bb9b8154af43",
+        "name": "Formaldehyde of Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1280,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "093094ae923ac228",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ac039cc121b7593",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3e0129b23e14e9f",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.master_bedroom_pm_2_5",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 580,
+        "y": 1380,
+        "wires": [
+            [
+                "32e149a8f27e2be9"
+            ]
+        ]
+    },
+    {
+        "id": "e893b9f94b0f699d",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.living_room_pm_2_5",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 1440,
+        "wires": [
+            [
+                "3144f7e419e7d3f9"
+            ]
+        ]
+    },
+    {
+        "id": "32e149a8f27e2be9",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "3d210964719a1218",
+        "name": "PM 2.5 of Master Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1280,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "3144f7e419e7d3f9",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "ab6403409b952999",
+        "name": "PM 2.5 of Living Room",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1260,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "1e836f4c05fd7c94",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a083542ce826fb5",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68ac5f5c8ce26f54",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "106301f8e0279a16",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3aefd97b68bfe547",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.bedroom_pm_2_5",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 1500,
+        "wires": [
+            [
+                "7e30f9fea98f056c"
+            ]
+        ]
+    },
+    {
+        "id": "7e30f9fea98f056c",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "3d29dd9baea8c557",
+        "name": "PM 2.5 of Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1250,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "9e06959aea976901",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8b0c0501d5e5b562",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c377bc17a4aa03a",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 720,
+        "wires": [
+            [
+                "156f16e0c85e2816"
+            ]
+        ]
+    },
+    {
+        "id": "414b598fd90ee4de",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 780,
+        "wires": [
+            [
+                "75cb9283e2cb7aba"
+            ]
+        ]
+    },
+    {
+        "id": "9a39ae1dd8b22980",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 840,
+        "wires": [
+            [
+                "2ec3a969aa01e5c2"
+            ]
+        ]
+    },
+    {
+        "id": "9fe8377df9dba651",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 900,
+        "wires": [
+            [
+                "b3fd89c4de936d7c"
+            ]
+        ]
+    },
+    {
+        "id": "d0a15d3cd2962152",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "4",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 960,
+        "wires": [
+            [
+                "589452f0e043686c"
+            ]
+        ]
+    },
+    {
+        "id": "ccf4342cd237b4fe",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1020,
+        "wires": [
+            [
+                "19c242d2027aedf7"
+            ]
+        ]
+    },
+    {
+        "id": "1e71b32d69eb7fe6",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "6",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1080,
+        "wires": [
+            [
+                "59ac828528febe57"
+            ]
+        ]
+    },
+    {
+        "id": "bbaee6b986a4ee5a",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "7",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1140,
+        "wires": [
+            [
+                "921d40799aa20523"
+            ]
+        ]
+    },
+    {
+        "id": "74a55f2e663011fe",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "8",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1200,
+        "wires": [
+            [
+                "7ffee5f7acf9af9b"
+            ]
+        ]
+    },
+    {
+        "id": "92d666b35803f2de",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "9",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1260,
+        "wires": [
+            [
+                "f28501062c777ad7"
+            ]
+        ]
+    },
+    {
+        "id": "061b203d058d17ea",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1320,
+        "wires": [
+            [
+                "d61d5bff04d746e1"
+            ]
+        ]
+    },
+    {
+        "id": "0f7dfc87e814fb16",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "11",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1380,
+        "wires": [
+            [
+                "d3e0129b23e14e9f"
+            ]
+        ]
+    },
+    {
+        "id": "2c533a8589d2fa9c",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "12",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1440,
+        "wires": [
+            [
+                "e893b9f94b0f699d"
+            ]
+        ]
+    },
+    {
+        "id": "642e635566504ed6",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "13",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1500,
+        "wires": [
+            [
+                "3aefd97b68bfe547"
+            ]
+        ]
+    },
+    {
+        "id": "8938a2be3cfaf03a",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "14",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1560,
+        "wires": [
+            [
+                "c8d0a2af88c5d967"
+            ]
+        ]
+    },
+    {
+        "id": "2dafe3bdd3ee5d2b",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1620,
+        "wires": [
+            [
+                "b801117a19b49b89"
             ]
         ]
     },
