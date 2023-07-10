@@ -116,9 +116,7 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379,
-        "w": 1352,
-        "h": 322
+        "y": 379
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -137,9 +135,7 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819,
-        "w": 832,
-        "h": 142
+        "y": 819
     },
     {
         "id": "c48cec27c550ff16",
@@ -168,9 +164,7 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859,
-        "w": 872,
-        "h": 402
+        "y": 859
     },
     {
         "id": "4b656d74411ea89c",
@@ -199,9 +193,7 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979,
-        "w": 1212,
-        "h": 282
+        "y": 979
     },
     {
         "id": "39e525a9dd77b708",
@@ -235,9 +227,7 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39,
-        "w": 1472,
-        "h": 302
+        "y": 39
     },
     {
         "id": "b2cc5799.eea9d",
@@ -7804,7 +7794,7 @@
         "type": "function",
         "z": "45c21b8b98ae2f01",
         "name": "Run vaccuum if it's been a while",
-        "func": "lastVaccuumRunTimestamp = global.get(\"state\").lastVacuumingTimestamp.value\n\ntimeSinceLastRun = Date.now() - lastVaccuumRunTimestamp\n\n// Check against constant threshold in seconds\n// 39600000 == 11 hours\nif (timeSinceLastRun > 39600000) {\n    // It's been too long\n    return msg\n}",
+        "func": "var lastVaccuumRunTimestamp = global.get(\"state\").lastVacuumingTimestamp.value\n\nvar timeSinceLastRun = Date.now() - lastVaccuumRunTimestamp\n\n// Check against constant threshold in milliseconds\n// 32400000 == 9 hours\nif (timeSinceLastRun > 32400000) {\n    // It's been too long\n    return msg\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
