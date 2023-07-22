@@ -1046,6 +1046,54 @@
         "unit": ""
     },
     {
+        "id": "93cb5e076b9a47ab",
+        "type": "shared-state",
+        "name": "vocOfMasterBedroom",
+        "lbl": "VOC of Master Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "b726d533a34a65b2",
+        "type": "shared-state",
+        "name": "vocOfLivingRoom",
+        "lbl": "VOC of Living Room",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
+        "id": "498e0ff9684c787f",
+        "type": "shared-state",
+        "name": "vocOfBedroom",
+        "lbl": "VOC of Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -2854,12 +2902,11 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 350,
-        "y": 40,
+        "x": 150,
+        "y": 100,
         "wires": [
             [
-                "f991b8b5b5f73fde",
-                "03d49e6e6a6a882d"
+                "f991b8b5b5f73fde"
             ]
         ]
     },
@@ -3142,11 +3189,13 @@
         "once": false,
         "onceDelay": "900",
         "topic": "",
-        "x": 140,
-        "y": 100,
+        "x": 360,
+        "y": 40,
         "wires": [
             [
-                "f991b8b5b5f73fde"
+                "a78b91dcc37bee92",
+                "03d49e6e6a6a882d",
+                "8409a48850c82e37"
             ]
         ]
     },
@@ -9568,7 +9617,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1510,
+        "x": 1990,
         "y": 380,
         "wires": [
             []
@@ -9741,7 +9790,7 @@
         "y": 380,
         "wires": [
             [
-                "598754ddfd55071d"
+                "e7c8f97a56f5e10c"
             ]
         ]
     },
@@ -10052,6 +10101,60 @@
         "wires": [
             [
                 "a05a696cfafb0ca6"
+            ]
+        ]
+    },
+    {
+        "id": "e7c8f97a56f5e10c",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Ensure lights are white and dim to start",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "master_bedroom"
+        ],
+        "deviceId": [],
+        "entityId": [],
+        "data": "{\"transition\": 0, \"color_temp\": 290, \"brightness_pct\": 1}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1520,
+        "y": 380,
+        "wires": [
+            [
+                "9f1324d760a908d7"
+            ]
+        ]
+    },
+    {
+        "id": "9f1324d760a908d7",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1760,
+        "y": 380,
+        "wires": [
+            [
+                "598754ddfd55071d"
             ]
         ]
     },
@@ -11245,7 +11348,10 @@
                 "2c533a8589d2fa9c",
                 "642e635566504ed6",
                 "8938a2be3cfaf03a",
-                "2dafe3bdd3ee5d2b"
+                "2dafe3bdd3ee5d2b",
+                "cfc5a331173089fe",
+                "f0c952769f734465",
+                "36a677075665f73f"
             ]
         ]
     },
@@ -11665,15 +11771,15 @@
         "id": "5c5b49d9b27da7ce",
         "type": "function",
         "z": "6a064f420a191bf8",
-        "name": "Build indoor humidity and temp report",
-        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\nreport[\"Master Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfMasterBedroom.value\nreport[\"Master Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfMasterBedroom.value\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\nreport[\"Living Room Center\"].formaldehyde = global.get(\"state\").formaldehydeOfLivingRoom.value\nreport[\"Living Room Center\"][\"pm2.5\"] = global.get(\"state\").pm25OfLivingRoom.value\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\nreport[\"Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfBedroom.value\nreport[\"Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfBedroom.value\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            report[\"Living Room Window\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            report[\"Living Room Window\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
+        "name": "Build air condition report",
+        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\nreport[\"Master Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfMasterBedroom.value\nreport[\"Master Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfMasterBedroom.value\nreport[\"Master Bedroom\"][\"voc\"] = global.get(\"state\").vocOfMasterBedroom.value\nnode.warn(\"Completed Master Bedroom\")\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\nreport[\"Living Room Center\"].formaldehyde = global.get(\"state\").formaldehydeOfLivingRoom.value\nreport[\"Living Room Center\"][\"pm2.5\"] = global.get(\"state\").pm25OfLivingRoom.value\nreport[\"Living Room Center\"][\"voc\"] = global.get(\"state\").vocOfLivingRoom.value\nnode.warn(\"Completed Living Room\")\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\nreport[\"Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfBedroom.value\nreport[\"Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfBedroom.value\nreport[\"Bedroom\"][\"voc\"] = global.get(\"state\").vocOfBedroom.value\nnode.warn(\"Completed Bedroom\")\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            report[\"Living Room Window\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            report[\"Living Room Window\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
-        "y": 1680,
+        "x": 510,
+        "y": 1860,
         "wires": [
             [
                 "2ca0e3b65317dcaa"
@@ -11688,8 +11794,8 @@
         "logger": "e98cb8b7d7a02f27",
         "complete": "payload",
         "loglevel": "info",
-        "x": 1530,
-        "y": 1680,
+        "x": 1470,
+        "y": 1860,
         "wires": []
     },
     {
@@ -12283,7 +12389,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 520,
-        "y": 1560,
+        "y": 1740,
         "wires": [
             [
                 "8bb8368fdc6c8511"
@@ -12300,7 +12406,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1270,
-        "y": 1560,
+        "y": 1740,
         "wires": []
     },
     {
@@ -12321,7 +12427,7 @@
         "repair": false,
         "outputs": 1,
         "x": 896,
-        "y": 1559,
+        "y": 1739,
         "wires": [
             [
                 "540b66982a79e256"
@@ -12359,7 +12465,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 520,
-        "y": 1620,
+        "y": 1800,
         "wires": [
             [
                 "7fab3cc451e297b5"
@@ -12376,7 +12482,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1260,
-        "y": 1620,
+        "y": 1800,
         "wires": []
     },
     {
@@ -12397,7 +12503,7 @@
         "repair": false,
         "outputs": 1,
         "x": 896,
-        "y": 1619,
+        "y": 1799,
         "wires": [
             [
                 "e02d8abb3fc61b7c"
@@ -12415,8 +12521,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
-        "y": 1680,
+        "x": 740,
+        "y": 1860,
         "wires": [
             [
                 "13cdd239fd5c641c"
@@ -12485,8 +12591,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 980,
-        "y": 1680,
+        "x": 920,
+        "y": 1860,
         "wires": [
             [
                 "9c17512707c3eacc"
@@ -12504,8 +12610,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1380,
-        "y": 1680,
+        "x": 1320,
+        "y": 1860,
         "wires": [
             [
                 "67c5137b0466f356"
@@ -12521,8 +12627,8 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1380,
-        "y": 1740,
+        "x": 1320,
+        "y": 1920,
         "wires": []
     },
     {
@@ -12559,14 +12665,14 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Set fan speeds",
-        "func": "currentClimate = msg.payload\n\nfunction getFanSpeedByHeatIndex(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByFormaldehyde(formaldehyde) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPM25(pm25) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = pm25/10\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPollutants(formaldehyde, pm25) {\n  var fanSpeedByFormaldehyde = getFanSpeedByFormaldehyde(formaldehyde)\n  var fanSpeedByPM25 = getFanSpeedByPM25(pm25)\n\n  return Math.max(fanSpeedByFormaldehyde, fanSpeedByPM25)\n}\n\nfunction calculateFanSpeed(heatIndex, formaldehyde, pm25) {\n  var fanSpeedByHeatIndex = getFanSpeedByHeatIndex(heatIndex)\n  var fanSpeedByPollutants = getFanSpeedByPollutants(formaldehyde, pm25)\n\n  var actualFanSpeed = Math.max(fanSpeedByHeatIndex, fanSpeedByPollutants)\n\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar masterBedroomFormaldehyde = currentClimate[\"Master Bedroom\"][\"formaldehyde\"]\nvar masterBedroompm25 = currentClimate[\"Master Bedroom\"][\"pm2.5\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex, masterBedroomFormaldehyde, masterBedroompm25)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\nvar livingRoomFormaldehyde = currentClimate[\"Living Room Center\"][\"formaldehyde\"]\nvar livingRoompm25 = currentClimate[\"Living Room Center\"][\"pm2.5\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex, livingRoomFormaldehyde, livingRoompm25)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
+        "func": "currentClimate = msg.payload\n\nfunction getFanSpeedByHeatIndex(heatIndex) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((heatIndex - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByFormaldehyde(formaldehyde) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPM25(pm25) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = pm25/10\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByVOC(voc) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = voc\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  return actualFanSpeed\n}\n\nfunction getFanSpeedByPollutants(formaldehyde, pm25, voc) {\n  var fanSpeedByFormaldehyde = getFanSpeedByFormaldehyde(formaldehyde)\n  var fanSpeedByPM25 = getFanSpeedByPM25(pm25)\n  var fanSpeedByVOC = getFanSpeedByVOC(voc)\n\n  return Math.max(fanSpeedByFormaldehyde, fanSpeedByPM25, fanSpeedByVOC)\n}\n\nfunction calculateFanSpeed(heatIndex, formaldehyde, pm25, voc) {\n  var fanSpeedByHeatIndex = getFanSpeedByHeatIndex(heatIndex)\n  var fanSpeedByPollutants = getFanSpeedByPollutants(formaldehyde, pm25, voc)\n\n  var actualFanSpeed = Math.max(fanSpeedByHeatIndex, fanSpeedByPollutants)\n\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed)*10\n  return fanSpeedAsPercentage;\n}\n\n// Handle Master Bedroom\nvar masterBedroomHeatIndex = currentClimate[\"Master Bedroom\"][\"heat index\"]\nvar masterBedroomFormaldehyde = currentClimate[\"Master Bedroom\"][\"formaldehyde\"]\nvar masterBedroompm25 = currentClimate[\"Master Bedroom\"][\"pm2.5\"]\nvar masterBedroomVoc = currentClimate[\"Master Bedroom\"][\"voc\"]\nvar desiredFanSpeed = calculateFanSpeed(masterBedroomHeatIndex, masterBedroomFormaldehyde, masterBedroompm25, masterBedroomVoc)\ncurrentClimate[\"Master Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Guest Suite\nvar guestSuiteHeatIndex = currentClimate[\"Bedroom\"][\"heat index\"]\nvar guestSuiteFormaldehyde = currentClimate[\"Bedroom\"][\"formaldehyde\"]\nvar guestSuitepm25 = currentClimate[\"Bedroom\"][\"pm2.5\"]\nvar guestSuiteVoc = currentClimate[\"Bedroom\"][\"voc\"]\ndesiredFanSpeed = calculateFanSpeed(guestSuiteHeatIndex, guestSuiteFormaldehyde, guestSuitepm25, guestSuiteVoc)\ncurrentClimate[\"Bedroom\"][\"fan speed\"] = desiredFanSpeed\n\n// Handle Living Room\nvar livingRoomHeatIndex = currentClimate[\"Living Room Center\"][\"heat index\"]\nvar livingRoomFormaldehyde = currentClimate[\"Living Room Center\"][\"formaldehyde\"]\nvar livingRoompm25 = currentClimate[\"Living Room Center\"][\"pm2.5\"]\nvar livingRoomVoc = currentClimate[\"Living Room Center\"][\"voc\"]\ndesiredFanSpeed = calculateFanSpeed(livingRoomHeatIndex, livingRoomFormaldehyde, livingRoompm25, livingRoomVoc)\ncurrentClimate[\"Living Room Center\"][\"fan speed\"] = desiredFanSpeed\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1160,
-        "y": 1680,
+        "x": 1100,
+        "y": 1860,
         "wires": [
             [
                 "02049bc0fd4e568d",
@@ -12655,7 +12761,7 @@
         "z": "6a064f420a191bf8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "16",
+        "timeout": "19",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -12667,7 +12773,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 320,
-        "y": 1680,
+        "y": 1860,
         "wires": [
             [
                 "5c5b49d9b27da7ce"
@@ -12822,7 +12928,7 @@
         "finalize": "",
         "libs": [],
         "x": 1070,
-        "y": 1560,
+        "y": 1740,
         "wires": [
             []
         ]
@@ -12839,7 +12945,7 @@
         "finalize": "",
         "libs": [],
         "x": 1070,
-        "y": 1620,
+        "y": 1800,
         "wires": [
             []
         ]
@@ -13832,6 +13938,347 @@
         "z": "6a064f420a191bf8",
         "name": "",
         "pauseType": "delay",
+        "timeout": "17",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1740,
+        "wires": [
+            [
+                "c8d0a2af88c5d967"
+            ]
+        ]
+    },
+    {
+        "id": "2dafe3bdd3ee5d2b",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "18",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1800,
+        "wires": [
+            [
+                "b801117a19b49b89"
+            ]
+        ]
+    },
+    {
+        "id": "1c851c9f09fd0503",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.master_bedroom_volatile_organic_compounds_index",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 670,
+        "y": 1560,
+        "wires": [
+            [
+                "5a841ddb075218a8"
+            ]
+        ]
+    },
+    {
+        "id": "4f0b977c2fde14e1",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.living_room_volatile_organic_compounds_index_2",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 660,
+        "y": 1620,
+        "wires": [
+            [
+                "0cbc898664c54128"
+            ]
+        ]
+    },
+    {
+        "id": "5a841ddb075218a8",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "93cb5e076b9a47ab",
+        "name": "VOC of Master Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1270,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "0cbc898664c54128",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "b726d533a34a65b2",
+        "name": "VOC of Living Room",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1260,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "9e574a872484ed4a",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c03fdf99e842e38",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f514400be19c3095",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d1f1bd2d138b9cd8",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "056dda3c4db6abca",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.bedroom_volatile_organic_compounds_index",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 640,
+        "y": 1680,
+        "wires": [
+            [
+                "63bf96924cf78021"
+            ]
+        ]
+    },
+    {
+        "id": "63bf96924cf78021",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "498e0ff9684c787f",
+        "name": "VOC of Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1250,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "8c04c1a601a7abfc",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 1680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "22b1c79684e98c7a",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cfc5a331173089fe",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
         "timeout": "14",
         "timeoutUnits": "seconds",
         "rate": "1",
@@ -13847,12 +14294,12 @@
         "y": 1560,
         "wires": [
             [
-                "c8d0a2af88c5d967"
+                "1c851c9f09fd0503"
             ]
         ]
     },
     {
-        "id": "2dafe3bdd3ee5d2b",
+        "id": "f0c952769f734465",
         "type": "delay",
         "z": "6a064f420a191bf8",
         "name": "",
@@ -13872,7 +14319,32 @@
         "y": 1620,
         "wires": [
             [
-                "b801117a19b49b89"
+                "4f0b977c2fde14e1"
+            ]
+        ]
+    },
+    {
+        "id": "36a677075665f73f",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "16",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1680,
+        "wires": [
+            [
+                "056dda3c4db6abca"
             ]
         ]
     },
