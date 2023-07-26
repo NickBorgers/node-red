@@ -269,7 +269,7 @@ music:
     playback_options:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/1.m4a"
-        volume_multiplier: 1.32
+        volume_multiplier: 1.4
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/3.m4a"
         volume_multiplier: 1.0
@@ -278,7 +278,7 @@ music:
         volume_multiplier: 1.32
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/5.m4a"
-        volume_multiplier: 1.71
+        volume_multiplier: 1.6
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/6.m4a"
         volume_multiplier: 1.18
