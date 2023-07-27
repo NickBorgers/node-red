@@ -110,10 +110,10 @@ Changes to state variables which drive behavior are written to an Elasticsearch 
 
 ![Log](https://nickborgers.github.io/node-red/Log.png)
 
-### Climate Control
+### Air Condition
 Configuring the speed of the fans in the home and activating the humidifier in the bedroom when appropriate, plus recording the interior temperature and humidity. These flows have significant issues with being hardcoded to this home.
 
-![Climate Control](https://nickborgers.github.io/node-red/Climate%20Control.png)
+![Climate Control](https://nickborgers.github.io/node-red/Air%20Condition.png)
 
 The data collection bits let me do this in Elasticsearch dashboards:
 <img width="1500" alt="image" src="https://user-images.githubusercontent.com/1139580/225003174-e66e57e9-3c69-4a94-87aa-34923ae7376a.png">
