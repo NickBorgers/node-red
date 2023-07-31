@@ -1094,6 +1094,22 @@
         "unit": ""
     },
     {
+        "id": "6786c1f320a58042",
+        "type": "shared-state",
+        "name": "desiredHumidityOfMasterBedroom",
+        "lbl": "Desired Humidity Master Bedroom",
+        "tags": "",
+        "historyCount": "2",
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -11351,7 +11367,8 @@
                 "2dafe3bdd3ee5d2b",
                 "cfc5a331173089fe",
                 "f0c952769f734465",
-                "36a677075665f73f"
+                "36a677075665f73f",
+                "09360934291defa6"
             ]
         ]
     },
@@ -11772,14 +11789,14 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Build air condition report",
-        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\nreport[\"Master Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfMasterBedroom.value\nreport[\"Master Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfMasterBedroom.value\nreport[\"Master Bedroom\"][\"voc\"] = global.get(\"state\").vocOfMasterBedroom.value\n\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\nreport[\"Living Room Center\"].formaldehyde = global.get(\"state\").formaldehydeOfLivingRoom.value\nreport[\"Living Room Center\"][\"pm2.5\"] = global.get(\"state\").pm25OfLivingRoom.value\nreport[\"Living Room Center\"][\"voc\"] = global.get(\"state\").vocOfLivingRoom.value\n\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\nreport[\"Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfBedroom.value\nreport[\"Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfBedroom.value\nreport[\"Bedroom\"][\"voc\"] = global.get(\"state\").vocOfBedroom.value\n\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            report[\"Living Room Window\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            report[\"Living Room Window\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
+        "func": "// Define shell of report\nreport = {\n    \"Master Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Living Room Window\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Living Room Center\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Bedroom\": {\n        \"temperature\": 0,\n        \"humidity\": 0,\n        \"formaldehyde\": 0,\n        \"pm2.5\": 0,\n        \"voc\": 0\n    },\n    \"Average\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    },\n    \"Outside\": {\n        \"temperature\": 0,\n        \"humidity\": 0\n    }\n}\n// Record Master Bedroom values\nreport[\"Master Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfMasterBedroom.value)\nreport[\"Master Bedroom\"].humidity = global.get(\"state\").humidityOfMasterBedroom.value\nreport[\"Master Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfMasterBedroom.value\nreport[\"Master Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfMasterBedroom.value\nreport[\"Master Bedroom\"][\"voc\"] = global.get(\"state\").vocOfMasterBedroom.value\nreport[\"Master Bedroom\"][\"humidity control\"] = {}\nreport[\"Master Bedroom\"][\"humidity control\"][\"humidifier on\"] = global.get(\"state\").isHumidifierOn.value\nreport[\"Master Bedroom\"][\"humidity control\"][\"desired humidity\"] = global.get(\"state\").desiredHumidityOfMasterBedroom.value\n\n// Record Living Room Window values\nreport[\"Living Room Window\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomWindow.value)\nreport[\"Living Room Window\"].humidity = global.get(\"state\").humidityOfLivingRoomWindow.value\n// Record Living Room Center values\nreport[\"Living Room Center\"].temperature = Math.round(global.get(\"state\").temperatureOfLivingRoomCenter.value)\nreport[\"Living Room Center\"].humidity = global.get(\"state\").humidityOfLivingRoomCenter.value\nreport[\"Living Room Center\"].formaldehyde = global.get(\"state\").formaldehydeOfLivingRoom.value\nreport[\"Living Room Center\"][\"pm2.5\"] = global.get(\"state\").pm25OfLivingRoom.value\nreport[\"Living Room Center\"][\"voc\"] = global.get(\"state\").vocOfLivingRoom.value\n\n// Record Bedroom values\nreport[\"Bedroom\"].temperature = Math.round(global.get(\"state\").temperatureOfBedroom.value)\nreport[\"Bedroom\"].humidity = global.get(\"state\").humidityOfBedroom.value\nreport[\"Bedroom\"].formaldehyde = global.get(\"state\").formaldehydeOfBedroom.value\nreport[\"Bedroom\"][\"pm2.5\"] = global.get(\"state\").pm25OfBedroom.value\nreport[\"Bedroom\"][\"voc\"] = global.get(\"state\").vocOfBedroom.value\n\n// Define function for averaging values\nconst average = array => Math.round(array.reduce((a, b) => a + b) / array.length);\n// Take average temperature\nreport[\"Average\"].temperature = average([\n                                            report[\"Master Bedroom\"].temperature,\n                                            report[\"Living Room Center\"].temperature,\n                                            report[\"Living Room Window\"].temperature\n                                        ])\n// Take average humidity                       \nreport[\"Average\"].humidity = average([\n                                            report[\"Master Bedroom\"].humidity,\n                                            report[\"Living Room Center\"].humidity,\n                                            report[\"Living Room Window\"].humidity\n                                        ])\n\n\n// Record Outside values\nreport[\"Outside\"].temperature = Math.round(global.get(\"state\").temperatureOfOutside.value)\nreport[\"Outside\"].humidity = global.get(\"state\").humidityOfOutside.value\n\nmsg.payload = report\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "2ca0e3b65317dcaa"
@@ -11795,7 +11812,7 @@
         "complete": "payload",
         "loglevel": "info",
         "x": 1470,
-        "y": 1860,
+        "y": 1920,
         "wires": []
     },
     {
@@ -12522,7 +12539,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "13cdd239fd5c641c"
@@ -12592,7 +12609,7 @@
         "finalize": "",
         "libs": [],
         "x": 920,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "9c17512707c3eacc"
@@ -12611,7 +12628,7 @@
         "finalize": "",
         "libs": [],
         "x": 1320,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "67c5137b0466f356"
@@ -12628,7 +12645,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1320,
-        "y": 1920,
+        "y": 1980,
         "wires": []
     },
     {
@@ -12665,14 +12682,14 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Set fan speeds",
-        "func": "var currentAirCondition = msg.payload\n\nfunction determineFanSpeedByHeatIndex(airConditionData) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((airConditionData[\"heat index\"] - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered_fan_speeds\"][\"heat index\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByFormaldehyde(airConditionData) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered_fan_speeds\"][\"formaldehyde\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByPM25(airConditionData) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = airConditionData[\"pm2.5\"]/10\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered_fan_speeds\"][\"pm2.5\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByVOC(airConditionData) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = airConditionData[\"voc\"]\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered_fan_speeds\"][\"voc\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByPollutants(airConditionData) {\n  determineFanSpeedByFormaldehyde(airConditionData)\n  determineFanSpeedByPM25(airConditionData)\n  determineFanSpeedByVOC(airConditionData)\n}\n\nfunction determineFanSpeed(airConditionData) {\n  airConditionData[\"considered_fan_speeds\"] = {}\n\n  determineFanSpeedByHeatIndex(airConditionData)\n  determineFanSpeedByPollutants(airConditionData)\n\n  var actualFanSpeed = Math.max(...Object.values(airConditionData[\"considered_fan_speeds\"]))\n\n  airConditionData[\"fan speed\"] = actualFanSpeed\n}\n\n// Handle Master Bedroom\ndetermineFanSpeed(currentAirCondition[\"Master Bedroom\"])\n\n// Handle Guest Suite\ndetermineFanSpeed(currentAirCondition[\"Bedroom\"])\n\n// Handle Living Room\ndetermineFanSpeed(currentAirCondition[\"Living Room Center\"])\n\nreturn msg;\n",
+        "func": "var currentAirCondition = msg.payload\n\nfunction determineFanSpeedByHeatIndex(airConditionData) {\n  // Totally arbitrary formula reflecting our comfort.\n  var rawFanSpeed = Math.sqrt((airConditionData[\"heat index\"] - 67) * 4)\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered fan speeds\"][\"heat index\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByFormaldehyde(airConditionData) {\n  // I have no idea how to interpret the Formaldehyde/HCHO data right now\n  var rawFanSpeed = 2\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered fan speeds\"][\"formaldehyde\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByPM25(airConditionData) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = airConditionData[\"pm2.5\"]/10\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered fan speeds\"][\"pm2.5\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByVOC(airConditionData) {\n  // Using guidance found in Dyson app\n  var rawFanSpeed = airConditionData[\"voc\"]\n  if (isNaN(rawFanSpeed)) {\n    rawFanSpeed = 2\n  }\n  var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n  var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n  var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n  airConditionData[\"considered fan speeds\"][\"voc\"] = fanSpeedAsPercentage\n}\n\nfunction determineFanSpeedByPollutants(airConditionData) {\n  determineFanSpeedByFormaldehyde(airConditionData)\n  determineFanSpeedByPM25(airConditionData)\n  determineFanSpeedByVOC(airConditionData)\n}\n\nfunction determineFanSpeedByHumidifier(airConditionData) {\n  if (airConditionData.hasOwnProperty(\"humidity control\")) {\n    \n    var desired_humidity = airConditionData[\"humidity control\"][\"desired humidity\"]\n    var current_humidity = airConditionData[\"humidity\"]\n\n    var rawFanSpeed = 2\n\n    if (airConditionData[\"humidity control\"][\"humidifier on\"]) {\n      rawFanSpeed = desired_humidity - current_humidity\n    }\n\n    if (isNaN(rawFanSpeed)) {\n      rawFanSpeed = 2\n    }\n    var actualFanSpeed = Math.max(2, rawFanSpeed) // Min fan speed of 2 when we're here\n    var actualFanSpeed = Math.min(10, actualFanSpeed) // Max possible fan speed of 10\n    var fanSpeedAsPercentage = Math.round(actualFanSpeed) * 10\n    airConditionData[\"considered fan speeds\"][\"humidifier\"] = fanSpeedAsPercentage\n  }\n}\n\nfunction determineFanSpeed(airConditionData) {\n  airConditionData[\"considered fan speeds\"] = {}\n\n  determineFanSpeedByHeatIndex(airConditionData)\n  determineFanSpeedByPollutants(airConditionData)\n  determineFanSpeedByHumidifier(airConditionData)\n\n  var actualFanSpeed = Math.max(...Object.values(airConditionData[\"considered fan speeds\"]))\n\n  airConditionData[\"fan speed\"] = actualFanSpeed\n}\n\n// Handle Master Bedroom\ndetermineFanSpeed(currentAirCondition[\"Master Bedroom\"])\n\n// Handle Guest Suite\ndetermineFanSpeed(currentAirCondition[\"Bedroom\"])\n\n// Handle Living Room\ndetermineFanSpeed(currentAirCondition[\"Living Room Center\"])\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 1100,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "02049bc0fd4e568d",
@@ -12761,7 +12778,7 @@
         "z": "6a064f420a191bf8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "19",
+        "timeout": "20",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -12773,7 +12790,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 320,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "5c5b49d9b27da7ce"
@@ -14345,6 +14362,130 @@
         "wires": [
             [
                 "056dda3c4db6abca"
+            ]
+        ]
+    },
+    {
+        "id": "688e589a15e4d223",
+        "type": "api-current-state",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "humidifier.master_bedroom",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "$entity().attributes.humidity",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 1860,
+        "wires": [
+            [
+                "c9b6b7f3cd472fbf"
+            ]
+        ]
+    },
+    {
+        "id": "b8d5bf8bdd10fc97",
+        "type": "set-shared-state",
+        "z": "6a064f420a191bf8",
+        "state": "6786c1f320a58042",
+        "name": "Desired Humidity Master Bedroom",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1300,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "c9b6b7f3cd472fbf",
+        "type": "switch",
+        "z": "6a064f420a191bf8",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 896,
+        "y": 1859,
+        "wires": [
+            [
+                "b8d5bf8bdd10fc97"
+            ]
+        ]
+    },
+    {
+        "id": "cb70bfcf49dbde98",
+        "type": "function",
+        "z": "6a064f420a191bf8",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "09360934291defa6",
+        "type": "delay",
+        "z": "6a064f420a191bf8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "19",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "0",
+        "randomLast": "60",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 1860,
+        "wires": [
+            [
+                "688e589a15e4d223"
             ]
         ]
     },
