@@ -10583,7 +10583,6 @@
                 "f9d66d0649e9bd11"
             ],
             [
-                "c2ad03f07cca0d64",
                 "2262ccb67c3b1114"
             ]
         ]
@@ -10696,99 +10695,6 @@
         "info": "",
         "x": 170,
         "y": 40,
-        "wires": []
-    },
-    {
-        "id": "c2ad03f07cca0d64",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "12",
-        "rateUnits": "hour",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 720,
-        "y": 200,
-        "wires": [
-            [
-                "9d4699704c3e41b4"
-            ]
-        ]
-    },
-    {
-        "id": "0b4db01d2701a613",
-        "type": "delay",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "hours",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1060,
-        "y": 200,
-        "wires": [
-            [
-                "e6de6db28626e551"
-            ]
-        ]
-    },
-    {
-        "id": "9d4699704c3e41b4",
-        "type": "api-call-service",
-        "z": "6a064f420a191bf8",
-        "name": "Max fan speed",
-        "server": "3ec50562615a9f50",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
-        "areaId": [
-            "master_bedroom"
-        ],
-        "deviceId": [
-            "3a7bab5f23e10f98bb210ea2e7ca54a0"
-        ],
-        "entityId": [
-            "fan.master_bedroom"
-        ],
-        "data": "{\"percentage\": 100}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 900,
-        "y": 200,
-        "wires": [
-            [
-                "0b4db01d2701a613"
-            ]
-        ]
-    },
-    {
-        "id": "bfeccf01f3dd1801",
-        "type": "comment",
-        "z": "6a064f420a191bf8",
-        "name": "Run hard for a little while",
-        "info": "",
-        "x": 750,
-        "y": 160,
         "wires": []
     },
     {
@@ -11238,19 +11144,6 @@
                 "d1b0e83735d42234"
             ]
         ]
-    },
-    {
-        "id": "e6de6db28626e551",
-        "type": "link out",
-        "z": "6a064f420a191bf8",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "caa6aa12e7dda2e1"
-        ],
-        "x": 1155,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "caa6aa12e7dda2e1",
