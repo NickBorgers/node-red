@@ -25,8 +25,8 @@ schedule:
     go_to_bed: "22:30"
     night: "23:30"
   # Wednesday
-  - begin_wake: "08:30"
-    wake: "09:00"
+  - begin_wake: "07:30"
+    wake: "08:00"
     dusk: "19:00"
     winddown: "21:30"
     stop_screens: "21:45"
