@@ -4,4 +4,5 @@
 !.automated-rendering/screenshot-capture/screenshots/index.html
 .automated-rendering/screenshot-capture/test-results/
 .automated-rendering/screenshot-capture/playwright-report/
+.automated-rendering/node-red/package.json
 .DS_Store

@@ -26,7 +26,7 @@ run: build cleanup
 	# Create the node-red container on the backend network
 	docker run -d --user 0:0 -e PORT=80 --network=node-red-backend --name node-red node-red-local
 
-#generate-screenshots: Generate screenshots of each tab in the Node Red project
+#generate-screenshots: @ Generate screenshots of each tab in the Node Red project
 generate-screenshots: build run
 	# Hacky sleep to avoid hitting TCP connection refused against node-red container
 	sleep 1
@@ -40,15 +40,15 @@ generate-screenshots: build run
 	  --name image-magick-auto-crop --entrypoint=mogrify dpokidov/imagemagick -fuzz 27% -trim +repage /screenshots/*.png
 	${MAKE} cleanup
 
-#watch-logs: Watch the logs of a running node-red instance
+#watch-logs: @ Watch the logs of a running node-red instance
 watch-logs:
 	docker logs -f node-red
 
-#interactive-node-red: Get a shell in a running node-red instance
+#interactive-node-red: @ Get a shell in a running node-red instance
 interactive-node-red:
 	docker exec -it node-red bash
 
-#interactive-screenshot-capture: Interactive run the screenshot capture script
+#interactive-screenshot-capture: @ Interactive run the screenshot capture script
 interactive-screenshot-capture:
 	docker run -it --rm --network=node-red-backend \
 	  --mount type=bind,source=${CURDIR}/.automated-rendering/screenshot-capture/,destination=/app/ \
@@ -58,7 +58,7 @@ restart:
 	docker stop node-red
 	docker start node-red
 
-#cleanup: Cleanup any remaining containers
+#cleanup: @ Cleanup any remaining containers
 cleanup:
 	docker stop node-red-proxy || true
 	docker stop node-red || true
@@ -66,7 +66,7 @@ cleanup:
 	docker network rm node-red-backend || true
 	docker network rm node-red-frontend || true
 
-#run-config-tests: Run all available tests of the configuration files
+#run-config-tests: @ Run all available tests of the configuration files
 run-config-tests: run-yamllint-hue run-yamllint-music run-yamllint-schedule run-yamllint-climate run-spotify-validation-music
 
 run-yamllint-hue: build-config-tester
