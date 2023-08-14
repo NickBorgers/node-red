@@ -116,9 +116,7 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379,
-        "w": 1352,
-        "h": 322
+        "y": 379
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -137,9 +135,7 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819,
-        "w": 832,
-        "h": 142
+        "y": 819
     },
     {
         "id": "c48cec27c550ff16",
@@ -168,9 +164,7 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859,
-        "w": 872,
-        "h": 402
+        "y": 859
     },
     {
         "id": "4b656d74411ea89c",
@@ -199,9 +193,7 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979,
-        "w": 1212,
-        "h": 282
+        "y": 979
     },
     {
         "id": "39e525a9dd77b708",
@@ -235,9 +227,7 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39,
-        "w": 1472,
-        "h": 302
+        "y": 39
     },
     {
         "id": "b2cc5799.eea9d",
@@ -2872,8 +2862,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Pull latest config",
-        "x": 340,
-        "y": 100,
+        "x": 260,
+        "y": 140,
         "wires": [
             [
                 "a78b91dcc37bee92",
@@ -2921,15 +2911,15 @@
         "id": "6b334e0185781b32",
         "type": "inject",
         "z": "634c78c80eb9f37e",
-        "name": "Force refresh",
+        "name": "Get latest configs and activate",
         "props": [],
-        "repeat": "",
+        "repeat": "43200",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 150,
-        "y": 100,
+        "x": 190,
+        "y": 80,
         "wires": [
             [
                 "f991b8b5b5f73fde"
@@ -3203,27 +3193,6 @@
         "y": 300,
         "wires": [],
         "icon": "font-awesome/fa-question-circle"
-    },
-    {
-        "id": "37cb22aac1fa4a99",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "props": [],
-        "repeat": "43200",
-        "crontab": "",
-        "once": false,
-        "onceDelay": "900",
-        "topic": "",
-        "x": 360,
-        "y": 40,
-        "wires": [
-            [
-                "a78b91dcc37bee92",
-                "03d49e6e6a6a882d",
-                "8409a48850c82e37"
-            ]
-        ]
     },
     {
         "id": "5c380b83edfd85d6",
@@ -3599,6 +3568,25 @@
         "wires": [
             [
                 "ca1cb228dbf5cd0e"
+            ]
+        ]
+    },
+    {
+        "id": "e7ce8275c4a606f1",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Get Schedule for Day",
+        "props": [],
+        "repeat": "",
+        "crontab": "01 00 * * *",
+        "once": false,
+        "onceDelay": "900",
+        "topic": "",
+        "x": 350,
+        "y": 40,
+        "wires": [
+            [
+                "03d49e6e6a6a882d"
             ]
         ]
     },
