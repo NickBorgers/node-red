@@ -4439,7 +4439,9 @@
         "x": 1730,
         "y": 220,
         "wires": [
-            []
+            [
+                "d13c1bcbd1548e82"
+            ]
         ]
     },
     {
@@ -4447,7 +4449,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick which rooms to apply scenes to",
-        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\ndayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    msg.payload.group_name = thisRoomToActivate.hue_group\n    msg.payload.scene_name = dayPhase\n    msg.payload.dynamic = true\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
+        "func": "var hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    msg.payload.group_name = thisRoomToActivate.hue_group\n    msg.payload.scene_name = dayPhase\n    msg.payload.dynamic = true\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4491,7 +4493,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick rooms whose variables are now true",
-        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\ndayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToTurnOff) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_true) \n        // Is the variable this room cares about true?\n        && global.get(\"state\")[thisRoomToTurnOff.off_if_true].value) {\n            msg.targetArea = thisRoomToTurnOff.hass_area_id\n            node.send(msg)\n        }\n    }\n});",
+        "func": "var hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToTurnOff) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_true) \n        // Is the variable this room cares about true?\n        && global.get(\"state\")[thisRoomToTurnOff.off_if_true].value) {\n            msg.payload.area_id = thisRoomToTurnOff.hass_area_id\n            node.send(msg)\n        }\n    }\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4558,7 +4560,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [],
-        "data": "{\"area_id\": msg.targetArea}",
+        "data": "msg.payload",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -4582,7 +4584,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick every room",
-        "func": "hueConfig = global.get(\"state\").hueConfig.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Pick every single room\n    msg.targetArea = thisRoomToTurnOff.hass_area_id\n    node.send(msg)\n});",
+        "func": "var hueConfig = global.get(\"state\").hueConfig.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Pick every single room\n    msg.payload = {}\n    msg.payload.area_id = thisRoomToTurnOff.hass_area_id\n    node.send(msg)\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4979,6 +4981,94 @@
         "x": 1135,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "d13c1bcbd1548e82",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "Check if we should bump brightness",
+        "func": "// Does this participant even have this attribute?\nif (\"increase_brightness_if_true\" in msg.config) {\n    // If so, is it true?\n    if (global.get(\"state\")[msg.config.increase_brightness_if_true].value) {\n        var area_id = msg.config.hass_area_id\n        msg.payload = {}\n        msg.payload.area_id = area_id\n        msg.payload.brightness_step_pct = 15\n        return msg\n    }\n}\n\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1350,
+        "y": 380,
+        "wires": [
+            [
+                "d7eb8a42c01b70f0"
+            ]
+        ]
+    },
+    {
+        "id": "f0aaaedb87db2709",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn up Brightness",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1750,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "885dc189294d5842",
+        "type": "inject",
+        "z": "16cd74edb3f2c03d",
+        "name": "Force light reset",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1040,
+        "y": 180,
+        "wires": [
+            [
+                "c81034bf2843ebc6"
+            ]
+        ]
+    },
+    {
+        "id": "d7eb8a42c01b70f0",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1580,
+        "y": 380,
+        "wires": [
+            [
+                "f0aaaedb87db2709"
+            ]
+        ]
     },
     {
         "id": "f744b5b41bd0fbe0",
