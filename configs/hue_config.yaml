@@ -3,6 +3,7 @@ rooms:
   - hue_group: Main Living Space
     hass_area_id: living_room
     off_if_true: isEveryoneAsleep
+    increase_brightness_if_true: isHaveGuests
   - hue_group: Nook
     hass_area_id: nook
     off_if_true: isEveryoneAsleep
