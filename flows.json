@@ -116,7 +116,9 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379
+        "y": 379,
+        "w": 1352,
+        "h": 322
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -135,7 +137,9 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819
+        "y": 819,
+        "w": 832,
+        "h": 142
     },
     {
         "id": "c48cec27c550ff16",
@@ -164,7 +168,9 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859
+        "y": 859,
+        "w": 872,
+        "h": 402
     },
     {
         "id": "4b656d74411ea89c",
@@ -193,7 +199,9 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979
+        "y": 979,
+        "w": 1212,
+        "h": 282
     },
     {
         "id": "39e525a9dd77b708",
@@ -227,7 +235,9 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39
+        "y": 39,
+        "w": 1472,
+        "h": 302
     },
     {
         "id": "b2cc5799.eea9d",
@@ -7089,7 +7099,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "For all speakers generate volume 0 msg",
-        "func": "var playerNames = new Set()\n\nvar musicConfig = global.get(\"state\").musicConfig.value.music\n\nObject.values(musicConfig).forEach(function(musicType) {\n    node.warn(musicType)\n    musicType.participants.forEach(function (participant) {\n        playerNames.add(participant.player_name)\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    msg.payload = 0\n    node.send(msg);\n});",
+        "func": "var playerNames = new Set()\n\nvar musicConfig = global.get(\"state\").musicConfig.value.music\n\nObject.values(musicConfig).forEach(function(musicType) {\n    musicType.participants.forEach(function (participant) {\n        playerNames.add(participant.player_name)\n    });\n});\n\nplayerNames.forEach(function(playerName) {\n    msg = {}\n    msg.playerName = playerName\n    msg.payload = 0\n    node.send(msg);\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
