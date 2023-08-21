@@ -116,9 +116,7 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379,
-        "w": 1352,
-        "h": 322
+        "y": 379
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -137,9 +135,7 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819,
-        "w": 832,
-        "h": 142
+        "y": 819
     },
     {
         "id": "c48cec27c550ff16",
@@ -168,9 +164,7 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859,
-        "w": 872,
-        "h": 402
+        "y": 859
     },
     {
         "id": "4b656d74411ea89c",
@@ -199,9 +193,7 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979,
-        "w": 1212,
-        "h": 282
+        "y": 979
     },
     {
         "id": "39e525a9dd77b708",
@@ -235,9 +227,7 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39,
-        "w": 1472,
-        "h": 302
+        "y": 39
     },
     {
         "id": "b2cc5799.eea9d",
@@ -4461,7 +4451,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick which rooms to apply scenes to",
-        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    var scene_name = thisRoomToActivate.hue_group + \" \" + dayPhase \n    msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n    msg.payload.dynamic = true\n    msg.payload.transition = 600\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
+        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    var scene_name = thisRoomToActivate.hue_group + \" \" + dayPhase \n    msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n    msg.payload.dynamic = true\n    msg.payload.transition = 60\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4496,7 +4486,8 @@
         "y": 220,
         "wires": [
             [
-                "7935909ef8708c2f"
+                "7935909ef8708c2f",
+                "38ca5d6d07a52ba5"
             ]
         ]
     },
@@ -5081,6 +5072,23 @@
                 "f0aaaedb87db2709"
             ]
         ]
+    },
+    {
+        "id": "38ca5d6d07a52ba5",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1680,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "f744b5b41bd0fbe0",
