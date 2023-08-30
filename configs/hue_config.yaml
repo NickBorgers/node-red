@@ -11,5 +11,5 @@ rooms:
     hass_area_id: master_bedroom
     off_if_true: isMasterAsleep
   - hue_group: Guest Bedroom
-    hass_area_id: guest_bedroom
+    hass_area_id: guest_suite
     off_if_true: isGuestAsleep
