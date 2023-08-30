@@ -4270,7 +4270,7 @@
         "name": "Anyone Home",
         "triggerOnInit": false,
         "x": 130,
-        "y": 220,
+        "y": 180,
         "wires": [
             [
                 "d2a0c7cb.1bd518"
@@ -4305,7 +4305,7 @@
         "name": "Day Phase",
         "triggerOnInit": false,
         "x": 120,
-        "y": 160,
+        "y": 120,
         "wires": [
             [
                 "d2a0c7cb.1bd518"
@@ -4320,7 +4320,7 @@
         "name": "Master Asleep",
         "triggerOnInit": false,
         "x": 130,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -4357,14 +4357,19 @@
         "type": "inject",
         "z": "16cd74edb3f2c03d",
         "name": "Manually set lights",
-        "props": [],
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "",
+        "topic": "reset",
         "x": 150,
-        "y": 100,
+        "y": 80,
         "wires": [
             [
                 "d2a0c7cb.1bd518",
@@ -4380,7 +4385,7 @@
         "name": "Guest Asleep",
         "triggerOnInit": false,
         "x": 130,
-        "y": 400,
+        "y": 420,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -4395,7 +4400,7 @@
         "name": "Everyone Asleep",
         "triggerOnInit": false,
         "x": 140,
-        "y": 280,
+        "y": 300,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -4410,7 +4415,7 @@
         "name": "Reset",
         "triggerOnInit": false,
         "x": 110,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -4495,7 +4500,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick rooms whose variables are now true",
-        "func": "var hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToTurnOff) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_true) \n        // Is the variable this room cares about true?\n        && global.get(\"state\")[thisRoomToTurnOff.off_if_true].value) {\n            msg.payload.area_id = thisRoomToTurnOff.hass_area_id\n            node.send(msg)\n        }\n    }\n});",
+        "func": "var hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToTurnOff) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_true) \n        // Is the variable this room cares about true?\n        && global.get(\"state\")[thisRoomToTurnOff.off_if_true].value) {\n            msg.payload = {}\n            msg.payload.area_id = thisRoomToTurnOff.hass_area_id\n            node.send(msg)\n        }\n    }\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4541,7 +4546,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 400,
+        "y": 360,
         "wires": [
             [
                 "d2a0c7cb.1bd518",
@@ -5069,6 +5074,21 @@
         "wires": [
             [
                 "f0aaaedb87db2709"
+            ]
+        ]
+    },
+    {
+        "id": "b7c9d24de738f885",
+        "type": "get-shared-state",
+        "z": "16cd74edb3f2c03d",
+        "state": "a5ea3d0a7df352b2",
+        "name": "Have Guests?",
+        "triggerOnInit": false,
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "3e279bdd0682936e"
             ]
         ]
     },
