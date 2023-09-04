@@ -335,5 +335,5 @@ music:
         leave_muted_if: []
     playback_options:
       - command: group.queue.urispotify
-        uri: spotify:user:spotify:track:1ayKVbsT9P0gu32vweLSUn
+        uri: spotify:user:spotify:playlist:1P4M2WQ3qGzRf1UCJZtD6q
         volume_multiplier: 1.0
