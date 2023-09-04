@@ -1,55 +1,55 @@
 ---
 schedule:
-  # Sunday
-  - begin_wake: "09:30"
+  - name: Sunday
+    begin_wake: "09:30"
     wake: "10:00"
     dusk: "19:00"
     winddown: "21:30"
     stop_screens: "21:45"
     go_to_bed: "22:30"
     night: "23:30"
-  # Monday
-  - begin_wake: "07:30"
+  - name: Monday
+    begin_wake: "07:30"
     wake: "08:00"
     dusk: "19:00"
     winddown: "21:30"
     stop_screens: "21:45"
     go_to_bed: "22:30"
     night: "23:30"
-  # Tuesday
-  - begin_wake: "07:30"
+  - name: Tuesday
+    begin_wake: "07:30"
     wake: "08:00"
     dusk: "19:00"
     winddown: "21:30"
     stop_screens: "21:45"
     go_to_bed: "22:30"
     night: "23:30"
-  # Wednesday
-  - begin_wake: "07:30"
+  - name: Wednesday
+    begin_wake: "07:30"
     wake: "08:00"
     dusk: "19:00"
     winddown: "21:30"
     stop_screens: "21:45"
     go_to_bed: "22:30"
     night: "23:30"
-  # Thursday
-  - begin_wake: "07:30"
+  - name: Thursday
+    begin_wake: "07:30"
     wake: "08:00"
     dusk: "19:00"
     winddown: "21:30"
     stop_screens: "21:45"
     go_to_bed: "22:30"
     night: "23:30"
-  # Friday
-  - begin_wake: "07:30"
+  - name: Friday
+    begin_wake: "07:30"
     wake: "08:00"
     dusk: "19:00"
     winddown: "22:00"
     stop_screens: "23:00"
     go_to_bed: "23:59"
     night: "23:59"
-  # Saturday
-  - begin_wake: "09:30"
+  - name: Saturday
+    begin_wake: "09:30"
     wake: "10:00"
     dusk: "19:00"
     winddown: "22:00"
