@@ -116,7 +116,9 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379
+        "y": 379,
+        "w": 1352,
+        "h": 322
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -135,7 +137,9 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819
+        "y": 819,
+        "w": 832,
+        "h": 142
     },
     {
         "id": "c48cec27c550ff16",
@@ -164,7 +168,9 @@
             "390fb9a37ca3a441"
         ],
         "x": 1314,
-        "y": 859
+        "y": 859,
+        "w": 872,
+        "h": 402
     },
     {
         "id": "4b656d74411ea89c",
@@ -193,7 +199,9 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979
+        "y": 979,
+        "w": 1212,
+        "h": 282
     },
     {
         "id": "39e525a9dd77b708",
@@ -227,7 +235,9 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39
+        "y": 39,
+        "w": 1472,
+        "h": 302
     },
     {
         "id": "b2cc5799.eea9d",
@@ -2913,8 +2923,8 @@
         "z": "634c78c80eb9f37e",
         "name": "Get latest configs and activate",
         "props": [],
-        "repeat": "43200",
-        "crontab": "",
+        "repeat": "",
+        "crontab": "01 00 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
@@ -3578,7 +3588,7 @@
         "name": "Get Schedule for Day",
         "props": [],
         "repeat": "",
-        "crontab": "01 00 * * *",
+        "crontab": "05 00 * * *",
         "once": false,
         "onceDelay": "900",
         "topic": "",
@@ -9495,7 +9505,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Identify which time triggers are satisfied",
-        "func": "begin_wake_time = new Date(global.get(\"state\").schedule.value.begin_wake)\nwake_time = new Date(global.get(\"state\").schedule.value.wake)\nstop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\ngo_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nnow = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now > begin_wake_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - begin_wake_time) < ONE_HOUR) {\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now > wake_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - wake_time) < ONE_HOUR) {\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now > stop_screens_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - stop_screens_time) < ONE_HOUR) {\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now > go_to_bed_time) {\n    // Only act if it's been true for less than one hour\n    if ((now - go_to_bed_time) < ONE_HOUR) {\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
+        "func": "var begin_wake_time = new Date(global.get(\"state\").schedule.value.begin_wake)\nvar wake_time = new Date(global.get(\"state\").schedule.value.wake)\nvar stop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\nvar go_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now.getTime() > begin_wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - begin_wake_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - wake_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > stop_screens_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - stop_screens_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > go_to_bed_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - go_to_bed_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9604,9 +9614,7 @@
         "x": 920,
         "y": 460,
         "wires": [
-            [
-                "fa146de078cdbe8d"
-            ]
+            []
         ]
     },
     {
@@ -9690,39 +9698,6 @@
         ]
     },
     {
-        "id": "ac0d047163dd056f",
-        "type": "set-shared-state",
-        "z": "95cf961539320dd3",
-        "state": "b69e9a96.7fc43",
-        "name": "Master Asleep",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 1400,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "fa146de078cdbe8d",
-        "type": "function",
-        "z": "95cf961539320dd3",
-        "d": true,
-        "name": "Ensure master is home and asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\nmsg.payload = false\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1160,
-        "y": 460,
-        "wires": [
-            [
-                "ac0d047163dd056f"
-            ]
-        ]
-    },
-    {
         "id": "598754ddfd55071d",
         "type": "api-call-service",
         "z": "95cf961539320dd3",
@@ -9746,7 +9721,9 @@
         "x": 1990,
         "y": 380,
         "wires": [
-            []
+            [
+                "6bf35b2688ec1674"
+            ]
         ]
     },
     {
@@ -9936,8 +9913,8 @@
         "z": "95cf961539320dd3",
         "name": "Auto Wakeup",
         "info": "",
-        "x": 1390,
-        "y": 420,
+        "x": 1270,
+        "y": 440,
         "wires": []
     },
     {
@@ -10308,6 +10285,71 @@
                 "6de7fcb07c82a9ce"
             ]
         ]
+    },
+    {
+        "id": "6bf35b2688ec1674",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "25",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1270,
+        "y": 480,
+        "wires": [
+            [
+                "b8d397a9ae2bf8a5"
+            ]
+        ]
+    },
+    {
+        "id": "b8d397a9ae2bf8a5",
+        "type": "change",
+        "z": "95cf961539320dd3",
+        "name": "Set wakeup",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "wakeup",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1450,
+        "y": 480,
+        "wires": [
+            [
+                "8c07a2c7f720a6a8"
+            ]
+        ]
+    },
+    {
+        "id": "8c07a2c7f720a6a8",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1660,
+        "y": 480,
+        "wires": []
     },
     {
         "id": "a99efe1134ae512d",
