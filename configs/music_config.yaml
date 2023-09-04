@@ -331,7 +331,7 @@ music:
         default_volume: 25
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        default_volume: 50
+        default_volume: 65
         leave_muted_if: []
     playback_options:
       - command: group.queue.urispotify
