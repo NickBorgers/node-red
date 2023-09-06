@@ -334,6 +334,6 @@ music:
         default_volume: 65
         leave_muted_if: []
     playback_options:
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:1P4M2WQ3qGzRf1UCJZtD6q
+      - command: group.queue.uri
+        uri: "http://rain-sounds.nickborgers.com/birds.m4a"
         volume_multiplier: 1.0
