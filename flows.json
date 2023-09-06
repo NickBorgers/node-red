@@ -161,7 +161,8 @@
             "0637e774c1000926",
             "c1874bfaab1b2bb3",
             "f4bbf697e8ddc7a7",
-            "390fb9a37ca3a441"
+            "390fb9a37ca3a441",
+            "58b3255f64c30baa"
         ],
         "x": 1314,
         "y": 859
@@ -4456,7 +4457,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick which rooms to apply scenes to",
-        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    var scene_name = thisRoomToActivate.hue_group + \" \" + dayPhase \n    msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n    msg.payload.dynamic = true\n    msg.payload.transition = 60\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
+        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    var scene_name = thisRoomToActivate.hue_group + \" \" + dayPhase \n    msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n    msg.payload.dynamic = true\n    msg.payload.transition = 240\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7871,6 +7872,32 @@
         "wires": [
             [
                 "c3775f614d985c03"
+            ]
+        ]
+    },
+    {
+        "id": "58b3255f64c30baa",
+        "type": "inject",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "c48cec27c550ff16",
+        "name": "Make Birds Playback",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "wakeup",
+        "payloadType": "str",
+        "x": 1920,
+        "y": 1220,
+        "wires": [
+            [
+                "b14e74697315444e"
             ]
         ]
     },
