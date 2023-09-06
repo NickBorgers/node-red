@@ -328,10 +328,10 @@ music:
   wakeup:
     participants:
       - player_name: "Master Bathroom"
-        default_volume: 25
+        default_volume: 20
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        default_volume: 65
+        default_volume: 50
         leave_muted_if: []
     playback_options:
       - command: group.queue.uri
