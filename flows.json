@@ -116,7 +116,9 @@
             "64fb15a8a7187bb5"
         ],
         "x": 634,
-        "y": 379
+        "y": 379,
+        "w": 1352,
+        "h": 322
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -135,7 +137,9 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 819
+        "y": 819,
+        "w": 832,
+        "h": 142
     },
     {
         "id": "c48cec27c550ff16",
@@ -165,7 +169,9 @@
             "58b3255f64c30baa"
         ],
         "x": 1314,
-        "y": 859
+        "y": 859,
+        "w": 872,
+        "h": 402
     },
     {
         "id": "4b656d74411ea89c",
@@ -194,7 +200,9 @@
             "8887203cd9731ca8"
         ],
         "x": 34,
-        "y": 979
+        "y": 979,
+        "w": 1212,
+        "h": 282
     },
     {
         "id": "39e525a9dd77b708",
@@ -228,7 +236,9 @@
             "4f197c88344aa51e"
         ],
         "x": 774,
-        "y": 39
+        "y": 39,
+        "w": 1472,
+        "h": 302
     },
     {
         "id": "b2cc5799.eea9d",
@@ -6999,7 +7009,7 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
         "name": "Repeat turn ups until done",
-        "func": "// What is the volume currently?\ncurrent_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume < msg.last_volume_set) {\n    // If the volume is less than what was last set, assume someone\n    // is fighting the system trying to turn down the volume\n    return null\n}\n\n// What is the volume supposed to be?\ndesired_volume = msg.desired_volume\n\n// If we haven't gotten up to the desired volume\nif (current_volume < desired_volume) {\n    // The new set volume is current + 1\n    new_volume = current_volume + 1\n    // This new volume is the payload\n    msg.payload = new_volume\n    // Separately save off the value we're setting\n    msg.last_volume_set = new_volume\n    // Set the delay for the next turn up to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 1000\n    // Send the change\n    node.send(msg)\n}\n\n// We're done, everything is as it should be",
+        "func": "// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume < msg.last_volume_set) {\n    // If the volume is less than what was last set, assume someone\n    // is fighting the system trying to turn down the volume\n    return null\n}\n\n// What is the volume supposed to be?\nvar desired_volume = msg.desired_volume\n\n// If we haven't gotten up to the desired volume\nif (current_volume < desired_volume) {\n    // The new set volume is current + 1\n    var new_volume = current_volume + 1\n    // This new volume is the payload\n    msg.payload = new_volume\n    // Separately save off the value we're setting\n    msg.last_volume_set = new_volume\n    // Set the delay for the next turn up to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 250\n    // Send the change\n    node.send(msg)\n}\n\n// We're done, everything is as it should be",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
