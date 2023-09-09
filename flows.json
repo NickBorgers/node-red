@@ -10361,7 +10361,7 @@
         "y": 480,
         "wires": [
             [
-                "8c07a2c7f720a6a8"
+                "097c01da17685547"
             ]
         ]
     },
@@ -10374,9 +10374,28 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1660,
+        "x": 1940,
         "y": 480,
         "wires": []
+    },
+    {
+        "id": "097c01da17685547",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Ensure master is home and asleep",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 480,
+        "wires": [
+            [
+                "8c07a2c7f720a6a8"
+            ]
+        ]
     },
     {
         "id": "a99efe1134ae512d",
