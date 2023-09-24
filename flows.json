@@ -197,11 +197,14 @@
             "1147be5849344bdf",
             "7e52276e5e6c0bf5",
             "54a9e604802ef8f4",
-            "8887203cd9731ca8"
+            "8887203cd9731ca8",
+            "a09f36d49c661b1e",
+            "933a6be2ef3624b6",
+            "82963b85104708c0"
         ],
         "x": 34,
         "y": 979,
-        "w": 1212,
+        "w": 1232,
         "h": 282
     },
     {
@@ -5681,8 +5684,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get participants",
-        "x": 660,
-        "y": 1060,
+        "x": 620,
+        "y": 1020,
         "wires": [
             [
                 "1400bc1a11781043"
@@ -5700,8 +5703,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get Volume",
-        "x": 1070,
-        "y": 1060,
+        "x": 1030,
+        "y": 1020,
         "wires": [
             [
                 "bb35db542533564d"
@@ -5714,14 +5717,14 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
         "name": "Iterate over players",
-        "func": "msg.payload.forEach(function(participant) {\n    msg.payload = null\n    msg.playerName = participant.playerName\n    if ([ \"Living Room\", \"Guest Bathroom\", \"Guest Bedroom\" ].indexOf(msg.playerName) > -1) {\n        node.send(msg)\n    }\n});",
+        "func": "msg.payload.forEach(function(participant) {\n    msg.payload = null\n    msg.playerName = participant.playerName\n    if ([ \"Living Room\", \"Guest Bathroom\", \"Guest Bedroom\" ].indexOf(msg.playerName) > -1) {\n        node.send(msg)\n        console.debug(`Kicking ${msg.playerName} for pooper's button`)\n    }\n});",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 870,
-        "y": 1060,
+        "x": 830,
+        "y": 1020,
         "wires": [
             [
                 "222f41b3e4fc44cd"
@@ -5734,14 +5737,14 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
         "name": "Create Adjusted Volume",
-        "func": "msg.originalVolume = msg.payload\n\nnew_based_on_percentage = Math.floor(msg.payload * 1.3)\nnew_based_on_minimum = msg.payload + 7\n\nmsg.payload = Math.max(new_based_on_percentage, new_based_on_minimum)\nreturn msg",
+        "func": "msg.originalVolume = msg.payload\n\nvar new_based_on_percentage = Math.floor(msg.payload * 1.3)\nvar new_based_on_minimum = msg.payload + 7\n\nmsg.payload = Math.max(new_based_on_percentage, new_based_on_minimum)\n\nconsole.debug(`${msg.playerName} volume was ${msg.originalVolume}, bumping to ${msg.payload}`)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
-        "y": 1140,
+        "x": 670,
+        "y": 1100,
         "wires": [
             [
                 "da8a13699f936fa8"
@@ -5759,8 +5762,8 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Set Higher Volume",
-        "x": 950,
-        "y": 1140,
+        "x": 910,
+        "y": 1100,
         "wires": [
             [
                 "827e944640382a04"
@@ -5778,11 +5781,12 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Resume volume",
-        "x": 980,
-        "y": 1220,
+        "x": 960,
+        "y": 1160,
         "wires": [
             [
-                "4123044d0c15479d"
+                "4123044d0c15479d",
+                "a09f36d49c661b1e"
             ]
         ]
     },
@@ -5794,10 +5798,10 @@
         "name": "Bring back original volume",
         "rules": [
             {
-                "t": "move",
-                "p": "originalVolume",
+                "t": "set",
+                "p": "payload",
                 "pt": "msg",
-                "to": "payload",
+                "to": "originalVolume",
                 "tot": "msg"
             }
         ],
@@ -5806,8 +5810,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 740,
-        "y": 1220,
+        "x": 720,
+        "y": 1160,
         "wires": [
             [
                 "b5802a0f996c0d73"
@@ -5832,8 +5836,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1150,
-        "y": 1140,
+        "x": 1110,
+        "y": 1100,
         "wires": [
             [
                 "1f57ca5d204495b8"
@@ -6150,7 +6154,7 @@
         "characteristicProperties": "{}",
         "waitForSetupMsg": false,
         "outputs": 2,
-        "x": 340,
+        "x": 460,
         "y": 1220,
         "wires": [
             [
@@ -6186,11 +6190,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
+        "x": 880,
         "y": 1220,
         "wires": [
             [
-                "519ba9e8deaad0cb"
+                "82963b85104708c0"
             ]
         ]
     },
@@ -6330,7 +6334,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 140,
+        "x": 300,
         "y": 1220,
         "wires": [
             [
@@ -6506,7 +6510,7 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
         "name": "Check if pooper's button",
-        "func": "// If this was anything BUT the pooper's button\nif(msg.payload.event.id != \"poopers_button_button\") {\n    // Do nothing\n    return null\n}\n// If this was anything BUT a short release\nif(msg.payload.event.type != \"short_release\") {\n    // Do nothing\n    return null\n}\n\n// Ok, it was a short release of the pooper's button\nreturn msg",
+        "func": "// If this was anything BUT the pooper's button\nif(msg.payload.event.id != \"poopers_button_button\") {\n    // Do nothing\n    return null\n}\n// If this was anything BUT a short release\nif(msg.payload.event.type != \"short_release\") {\n    // Do nothing\n    return null\n}\n\nconsole.debug(\"Pooper's button was pressed\")\n\n// Ok, it was a short release of the pooper's button\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6516,7 +6520,7 @@
         "y": 1160,
         "wires": [
             [
-                "7e52276e5e6c0bf5"
+                "933a6be2ef3624b6"
             ]
         ]
     },
@@ -7908,6 +7912,76 @@
         "wires": [
             [
                 "b14e74697315444e"
+            ]
+        ]
+    },
+    {
+        "id": "a09f36d49c661b1e",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "Log restoration",
+        "func": "console.debug(`${msg.playerName} volume restored to ${msg.originalVolume}`)",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "933a6be2ef3624b6",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 1220,
+        "wires": [
+            [
+                "7e52276e5e6c0bf5"
+            ]
+        ]
+    },
+    {
+        "id": "82963b85104708c0",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1040,
+        "y": 1220,
+        "wires": [
+            [
+                "519ba9e8deaad0cb"
             ]
         ]
     },
