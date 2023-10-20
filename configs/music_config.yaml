@@ -120,6 +120,10 @@ music:
       - command: group.queue.urispotify
         uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
         volume_multiplier: 1.0
+      # Blockheady Instrumental
+      - command: group.queue.urispotify
+        uri: spotify:user:spotify:playlist:7hw5bkUl4xLPDCymveIfnK
+        volume_multiplier: 1.0
   evening:
     participants:
       - player_name: "Nook Speaker"
