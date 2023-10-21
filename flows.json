@@ -5187,14 +5187,14 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Build master music message",
-        "func": "console.debug(\"Preparing for music playback\")\n// Music type is set by variable\nvar musicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nvar musicPlaylistNumbers = {}\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n}\n// If this type has a number already, use it; otherwise create it as 0\nvar thisPlaylistNumber\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nvar musicConfig = global.get(\"state\").musicConfig.value.music\n// Get the overall object for this type of music\nvar musicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nvar musicToPlay = {}\nif (thisPlaylistNumber in musicTypeObject[\"playback_options\"]) {\n    musicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n} else {\n    musicToPlay.volume_multiplier = 1\n}\n// Generate a comma-separate list of players to group for playback based on the config\nvar players = \"\"\n// Generate an array list of players for preparation\nvar player_array = []\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\nconsole.debug(\"Collected all configuration needed for music playback\")\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    console.debug(\"Processing \" + participant.player_name)\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // Add it to the array\n    player_array.push(participant.player_name)\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n            console.debug(\"Calculated volume of \" + playbackParticipant.volume + \" for \" + participant.player_name)\n        }\n    });\n    // Mute all players being engaged in this group\n    var muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nvar leadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nvar playMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\nconsole.debug(\"Will play \" + musicToPlay.command + \" with uri \" + musicToPlay.uri)\n\nvar currentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nvar incrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\n// Build message to ensure full stoppage on engaged players\nvar stopMsg = {}\nstopMsg.payload = player_array\n\n// playMsg kicks of buidling playback group and starting playback\n// currentlyPlayingMusic just publishes/saves what we're going to play\n// The null is the individual mute messages we already sent\n// incrementMsg kicks the playlist number variable\n// stopMsg is the list of players for stopping any exisitng playback\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg, stopMsg ] ",
+        "func": "console.debug(\"Preparing for music playback\")\n// Music type is set by variable\nvar musicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nvar musicPlaylistNumbers = {}\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n}\n// If this type has a number already, use it; otherwise create it as 0\nvar thisPlaylistNumber\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nvar musicConfig = global.get(\"state\").musicConfig.value.music\n// Get the overall object for this type of music\nvar musicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nvar musicToPlay = {}\nif (thisPlaylistNumber in musicTypeObject[\"playback_options\"]) {\n    musicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n} else {\n    musicToPlay.volume_multiplier = 1\n}\n// Generate a comma-separate list of players to group for playback based on the config\nvar players = \"\"\n// Generate an array list of players for preparation\nvar player_array = []\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\nconsole.debug(\"Collected all configuration needed for music playback\")\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    console.debug(\"Processing \" + participant.player_name)\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // Add it to the array\n    player_array.push(participant.player_name)\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n            console.debug(\"Calculated volume of \" + playbackParticipant.volume + \" for \" + participant.player_name)\n        }\n    });\n    // Mute all players being engaged in this group\n    var muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nvar leadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nvar playMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\nconsole.debug(\"Will play \" + musicToPlay.command + \" with uri \" + musicToPlay.uri)\n\nvar currentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.type = musicType\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nvar incrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\n// Build message to ensure full stoppage on engaged players\nvar stopMsg = {}\nstopMsg.payload = player_array\n\n// playMsg kicks of buidling playback group and starting playback\n// currentlyPlayingMusic just publishes/saves what we're going to play\n// The null is the individual mute messages we already sent\n// incrementMsg kicks the playlist number variable\n// stopMsg is the list of players for stopping any exisitng playback\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg, stopMsg ] ",
         "outputs": 5,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 100,
+        "x": 600,
+        "y": 160,
         "wires": [
             [
                 "15448e0eedc040e8"
@@ -5367,7 +5367,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Check if non-null mode",
-        "func": "var musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's something other than none/nothing\nif (musicPlaybackType) {\n    return [ msg, null ]\n}\nvar blankMsg = {}\n// Otherwise just stop current playback\nreturn [null, blankMsg ]",
+        "func": "var musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's something other than none/nothing\nif (musicPlaybackType) {\n    console.debug(\"Sending message to begin playback of \" + musicPlaybackType)\n    return [ msg, null ]\n}\nvar blankMsg = {}\n// Otherwise just stop current playback\nconsole.debug(\"Sending blank playback message\")\nreturn [null, blankMsg ]",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -5427,10 +5427,10 @@
         "name": "Music Playback Type",
         "triggerOnInit": false,
         "x": 140,
-        "y": 100,
+        "y": 80,
         "wires": [
             [
-                "551ddc8702a7c82e"
+                "595573f8f9ee970d"
             ]
         ]
     },
@@ -6277,7 +6277,7 @@
         "y": 520,
         "wires": [
             [
-                "d6f678177a40f732"
+                "dc86ccb8622b2b62"
             ]
         ]
     },
@@ -6531,7 +6531,7 @@
         "g": "39e525a9dd77b708",
         "name": "",
         "pauseType": "delay",
-        "timeout": "2",
+        "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -6609,8 +6609,8 @@
         "g": "39e525a9dd77b708",
         "name": "",
         "pauseType": "delay",
-        "timeout": "750",
-        "timeoutUnits": "milliseconds",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -6620,7 +6620,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1790,
+        "x": 1780,
         "y": 180,
         "wires": [
             [
@@ -6698,7 +6698,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 390,
-        "y": 100,
+        "y": 140,
         "wires": [
             [
                 "2af7ad02c544ef24"
@@ -6858,7 +6858,8 @@
         "name": "Set Volumes and Mute",
         "links": [
             "9cf90b7812a7ab73",
-            "4a3bdf6826669285"
+            "4a3bdf6826669285",
+            "84ed0aab23753b90"
         ],
         "x": 505,
         "y": 400,
@@ -7982,6 +7983,262 @@
         "wires": [
             [
                 "519ba9e8deaad0cb"
+            ]
+        ]
+    },
+    {
+        "id": "301b282a622e2935",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Prepare for Airplay",
+        "info": "",
+        "x": 150,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "115769f7632575d2",
+        "type": "change",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 1580,
+        "wires": [
+            [
+                "6181daaf361adf67"
+            ]
+        ]
+    },
+    {
+        "id": "f9061fcc35da0b37",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 1520,
+        "wires": [
+            [
+                "8f8b48fd31690863"
+            ]
+        ]
+    },
+    {
+        "id": "eb6436f411b5ea19",
+        "type": "inject",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1580,
+        "wires": [
+            [
+                "115769f7632575d2"
+            ]
+        ]
+    },
+    {
+        "id": "6181daaf361adf67",
+        "type": "homekit-service",
+        "z": "90f5fe8cb80ae6a7",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Volume Restore",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 1520,
+        "wires": [
+            [
+                "f9061fcc35da0b37"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8f8b48fd31690863",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 1520,
+        "wires": [
+            [
+                "115769f7632575d2",
+                "84ed0aab23753b90"
+            ]
+        ]
+    },
+    {
+        "id": "84ed0aab23753b90",
+        "type": "link out",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "34bd02b0a6ce0a3f"
+        ],
+        "x": 595,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "302ac9fe9d41e10f",
+        "type": "inject",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Turn off pooper's button",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "{\"On\": false}",
+        "payloadType": "json",
+        "x": 270,
+        "y": 1280,
+        "wires": [
+            [
+                "519ba9e8deaad0cb"
+            ]
+        ]
+    },
+    {
+        "id": "dc86ccb8622b2b62",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 580,
+        "wires": [
+            [
+                "d6f678177a40f732"
+            ]
+        ]
+    },
+    {
+        "id": "595573f8f9ee970d",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Prevent re-activation of already active music",
+        "func": "var musicPlaybackType = msg.payload\n\nvar currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\nif (currentlyPlayingMusic) {\n    if (currentlyPlayingMusic.type == musicPlaybackType) {\n        console.debug(\"Double activation of already-playing musicType, ignore\")\n        return null\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 60,
+        "wires": [
+            [
+                "551ddc8702a7c82e"
             ]
         ]
     },
@@ -10443,6 +10700,7 @@
         "id": "8c07a2c7f720a6a8",
         "type": "set-shared-state",
         "z": "95cf961539320dd3",
+        "d": true,
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": true,
@@ -11263,7 +11521,7 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Send fan speed messages",
-        "func": "// Get climate data\nvar currentClimate = global.get(\"state\").currentClimate.value\n\n// Handle Master Suite\nvar desiredFanSpeed = currentClimate[\"Master Bedroom\"][\"fan speed\"]\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([msg, null, null])\n\n// Handle Living Room\nvar desiredFanSpeed = currentClimate[\"Living Room Center\"][\"fan speed\"]\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, msg, null])\n\n// Handle Guest Suite\nvar desiredFanSpeed = currentClimate[\"Bedroom\"][\"fan speed\"]\nmsg.payload = {\"percentage\": desiredFanSpeed}\nnode.send([null, null, msg])\n",
+        "func": "console.debug(\"Preparing to set fan speeds, msg.topic was \" + msg.topic)\n\n// Get climate data\nvar currentClimate = global.get(\"state\").currentClimate.value\n\n// Handle Master Suite\nvar desiredFanSpeed = currentClimate[\"Master Bedroom\"][\"fan speed\"]\nmsg.payload = {\"percentage\": desiredFanSpeed}\nconsole.debug(\"Setting Master Suite fan speed to \" + desiredFanSpeed)\nnode.send([msg, null, null])\n\n// Handle Living Room\nvar desiredFanSpeed = currentClimate[\"Living Room Center\"][\"fan speed\"]\nmsg.payload = { \"percentage\": desiredFanSpeed }\nconsole.debug(\"Setting Living Room fan speed to \" + desiredFanSpeed)\nnode.send([null, msg, null])\n\n// Handle Guest Suite\nvar desiredFanSpeed = currentClimate[\"Bedroom\"][\"fan speed\"]\nmsg.payload = { \"percentage\": desiredFanSpeed }\nconsole.debug(\"Setting Bedroom fan speed to \" + desiredFanSpeed)\nnode.send([null, null, msg])\n",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -15526,7 +15784,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 510,
+        "x": 690,
         "y": 80,
         "wires": [
             [
@@ -15557,7 +15815,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 830,
+        "x": 1010,
         "y": 80,
         "wires": [
             [
@@ -15582,7 +15840,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 680,
+        "x": 860,
         "y": 80,
         "wires": [
             [
@@ -15607,7 +15865,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 980,
+        "x": 1160,
         "y": 80,
         "wires": [
             [
@@ -15638,7 +15896,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1130,
+        "x": 1310,
         "y": 80,
         "wires": [
             [
@@ -15663,7 +15921,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 680,
+        "x": 860,
         "y": 140,
         "wires": [
             [
@@ -15694,7 +15952,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 830,
+        "x": 1010,
         "y": 140,
         "wires": [
             [
@@ -15719,7 +15977,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 980,
+        "x": 1160,
         "y": 140,
         "wires": [
             [
@@ -15750,7 +16008,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1130,
+        "x": 1310,
         "y": 140,
         "wires": [
             []
@@ -15771,7 +16029,7 @@
         "y": 80,
         "wires": [
             [
-                "0266ff67bd766f59"
+                "5570d8ac9cfc7879"
             ]
         ]
     },
@@ -16462,6 +16720,31 @@
         "wires": [
             [
                 "86d4e21e11d6bf10"
+            ]
+        ]
+    },
+    {
+        "id": "5570d8ac9cfc7879",
+        "type": "delay",
+        "z": "164999f348401406",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "8",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "0266ff67bd766f59"
             ]
         ]
     }
