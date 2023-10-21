@@ -236,7 +236,8 @@
             "395f431b6a94ecc2",
             "f20a5ab810409235",
             "15448e0eedc040e8",
-            "4f197c88344aa51e"
+            "4f197c88344aa51e",
+            "9b110d97536acc44"
         ],
         "x": 774,
         "y": 39,
@@ -2362,27 +2363,17 @@
         "z": "d7a3510d.e93d98",
         "name": "Guest Bedroom Lamp Off for 1 minute",
         "server": "3ec50562615a9f50",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "light.guest_bedroom_lamp",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
+        "version": 5,
         "outputs": 2,
-        "output_only_on_state_change": true,
+        "exposeAsEntityConfig": "",
+        "entityId": "light.guest_bedroom_lamp",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
         "for": "1",
         "forType": "num",
         "forUnits": "minutes",
@@ -2453,27 +2444,17 @@
         "z": "d7a3510d.e93d98",
         "name": "Guest Bedroom Lamp On for 1 minute",
         "server": "3ec50562615a9f50",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "light.guest_bedroom_lamp",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
+        "version": 5,
         "outputs": 2,
-        "output_only_on_state_change": true,
+        "exposeAsEntityConfig": "",
+        "entityId": "light.guest_bedroom_lamp",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "on",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
         "for": "50",
         "forType": "num",
         "forUnits": "seconds",
@@ -2654,27 +2635,17 @@
         "z": "d7a3510d.e93d98",
         "name": "Master Bedroom Lights Off for 1 minute",
         "server": "3ec50562615a9f50",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "light.master_bedroom",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
+        "version": 5,
         "outputs": 2,
-        "output_only_on_state_change": true,
+        "exposeAsEntityConfig": "",
+        "entityId": "light.master_bedroom",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
         "for": "1",
         "forType": "num",
         "forUnits": "minutes",
@@ -5187,7 +5158,7 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Build master music message",
-        "func": "console.debug(\"Preparing for music playback\")\n// Music type is set by variable\nvar musicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nvar musicPlaylistNumbers = {}\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n}\n// If this type has a number already, use it; otherwise create it as 0\nvar thisPlaylistNumber\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nvar musicConfig = global.get(\"state\").musicConfig.value.music\n// Get the overall object for this type of music\nvar musicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nvar musicToPlay = {}\nif (thisPlaylistNumber in musicTypeObject[\"playback_options\"]) {\n    musicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n} else {\n    musicToPlay.volume_multiplier = 1\n}\n// Generate a comma-separate list of players to group for playback based on the config\nvar players = \"\"\n// Generate an array list of players for preparation\nvar player_array = []\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\nconsole.debug(\"Collected all configuration needed for music playback\")\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    console.debug(\"Processing \" + participant.player_name)\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // Add it to the array\n    player_array.push(participant.player_name)\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n            console.debug(\"Calculated volume of \" + playbackParticipant.volume + \" for \" + participant.player_name)\n        }\n    });\n    // Mute all players being engaged in this group\n    var muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nvar leadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nvar playMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\nconsole.debug(\"Will play \" + musicToPlay.command + \" with uri \" + musicToPlay.uri)\n\nvar currentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.type = musicType\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nvar incrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\n// Build message to ensure full stoppage on engaged players\nvar stopMsg = {}\nstopMsg.payload = player_array\n\n// playMsg kicks of buidling playback group and starting playback\n// currentlyPlayingMusic just publishes/saves what we're going to play\n// The null is the individual mute messages we already sent\n// incrementMsg kicks the playlist number variable\n// stopMsg is the list of players for stopping any exisitng playback\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg, stopMsg ] ",
+        "func": "console.debug(\"Preparing for music playback\")\n// Music type is set by variable\nvar musicType = global.get(\"state\").musicPlaybackType.value\n// We use an object variable or tracking which # playlist in the type\nvar musicPlaylistNumbers = {}\nif (typeof global.get(\"state\").musicPlaylistNumbers != \"undefined\") {\n    musicPlaylistNumbers = global.get(\"state\").musicPlaylistNumbers.value\n}\n// If this type has a number already, use it; otherwise create it as 0\nvar thisPlaylistNumber\nif (musicType in musicPlaylistNumbers) {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType]\n} else {\n    thisPlaylistNumber = musicPlaylistNumbers[musicType] = 0\n}\n\n// Get full musicConfig\nvar musicConfig = global.get(\"state\").musicConfig.value.music\n// Get the overall object for this type of music\nvar musicTypeObject = musicConfig[musicType]\n// Get the specifics for this playback option of the music type\nvar musicToPlay = {}\nif (thisPlaylistNumber in musicTypeObject[\"playback_options\"]) {\n    musicToPlay = musicTypeObject[\"playback_options\"][thisPlaylistNumber]\n} else {\n    musicToPlay.volume_multiplier = 1\n}\n// Generate a comma-separate list of players to group for playback based on the config\nvar players = \"\"\n// Generate an array list of players for preparation\nvar player_array = []\n// Blanket copy the music type's definition of participants onto the individual playback option\nmusicToPlay[\"participants\"] = musicTypeObject[\"participants\"]\nconsole.debug(\"Collected all configuration needed for music playback\")\n// Iterate over all participants in this music playback type\nmusicTypeObject[\"participants\"].forEach(function(participant, index) {\n    console.debug(\"Processing \" + participant.player_name)\n    // Take the name of this player participants and add it to the list of all participants\n    players = players + participant.player_name + \",\"\n    // Add it to the array\n    player_array.push(participant.player_name)\n    // The specific playback option's volume varies based on a multiplier\n    musicToPlay[\"participants\"].forEach(function(playbackParticipant) {\n        if (playbackParticipant.player_name == participant.player_name) {\n            // Determine appropriate volume for this participant using:\n            //  * default from playback type for this speaker\n            //  * multiplier for this playback option\n            playbackParticipant.volume = Math.round(participant.default_volume * musicToPlay.volume_multiplier)\n            console.debug(\"Calculated volume of \" + playbackParticipant.volume + \" for \" + participant.player_name)\n        }\n    });\n    // Mute all players being engaged in this group\n    var muteMsg = {}\n    muteMsg.payload = \"on\"\n    muteMsg.playerName = participant.player_name\n    node.send([null, null, muteMsg, null])\n});\n// Strip last comma\nplayers = players.replace(/,$/, ''); \n\n// Get lead player\nvar leadPlayerName = musicToPlay.participants[0].player_name\n\n// Playback is initiated by building the group and providing instructions to lead player\nvar playMsg = {}\nplayMsg.payload = players\nplayMsg.playerName = leadPlayerName\nplayMsg.command = musicToPlay.command \nplayMsg.uri = musicToPlay.uri\nconsole.debug(\"To play type \" + musicType + \" music, will play \" + musicToPlay.command + \" with uri \" + musicToPlay.uri)\n\nvar currentlyPlayingMusic = {}\ncurrentlyPlayingMusic.payload = musicToPlay\ncurrentlyPlayingMusic.payload.type = musicType\ncurrentlyPlayingMusic.payload.leadPlayer = leadPlayerName\n\n// Need a new playlist numbers object\nvar incrementMsg = {}\n// If this playlist number for the given type of music would exceed the number of options, roll it over\nif ((musicPlaylistNumbers[musicType] + 1) >= musicConfig[musicType][\"playback_options\"].length) {\n    musicPlaylistNumbers[musicType] = 0\n} else {\n    // Otherwise increment it\n    musicPlaylistNumbers[musicType] = musicPlaylistNumbers[musicType] + 1\n}\nincrementMsg.payload = musicPlaylistNumbers\n\n// Build message to ensure full stoppage on engaged players\nvar stopMsg = {}\nstopMsg.payload = player_array\n\n// playMsg kicks of buidling playback group and starting playback\n// currentlyPlayingMusic just publishes/saves what we're going to play\n// The null is the individual mute messages we already sent\n// incrementMsg kicks the playlist number variable\n// stopMsg is the list of players for stopping any exisitng playback\nreturn [ playMsg, currentlyPlayingMusic, null, incrementMsg, stopMsg ] ",
         "outputs": 5,
         "noerr": 0,
         "initialize": "",
@@ -6466,20 +6437,10 @@
         "g": "4b656d74411ea89c",
         "name": "Sense if there's a Hue event",
         "server": "3ec50562615a9f50",
-        "version": 2,
+        "version": 3,
+        "exposeAsEntityConfig": "",
         "eventType": "hue_event",
-        "exposeToHomeAssistant": false,
         "eventData": "",
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
         "waitForRunning": true,
         "outputProperties": [
             {
@@ -7259,7 +7220,8 @@
         "y": 120,
         "wires": [
             [
-                "fa5a15fef36b436f"
+                "fa5a15fef36b436f",
+                "9b110d97536acc44"
             ]
         ]
     },
@@ -8241,6 +8203,24 @@
                 "551ddc8702a7c82e"
             ]
         ]
+    },
+    {
+        "id": "9b110d97536acc44",
+        "type": "debug",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "39e525a9dd77b708",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 80,
+        "wires": []
     },
     {
         "id": "d389488a08d98ed3",
@@ -16104,27 +16084,17 @@
         "z": "164999f348401406",
         "name": "Sense if Apple TV is playing",
         "server": "3ec50562615a9f50",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "media_player.big_beautiful_oled",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "playing",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
+        "version": 5,
         "outputs": 2,
-        "output_only_on_state_change": true,
+        "exposeAsEntityConfig": "",
+        "entityId": "media_player.big_beautiful_oled",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "playing",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
         "for": "0",
         "forType": "num",
         "forUnits": "minutes",
@@ -16156,27 +16126,17 @@
         "z": "164999f348401406",
         "name": "Sense if Apple TV is not playing",
         "server": "3ec50562615a9f50",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "media_player.big_beautiful_oled",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "playing",
-        "halt_if_type": "str",
-        "halt_if_compare": "is_not",
+        "version": 5,
         "outputs": 2,
-        "output_only_on_state_change": true,
+        "exposeAsEntityConfig": "",
+        "entityId": "media_player.big_beautiful_oled",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "playing",
+        "ifStateType": "str",
+        "ifStateOperator": "is_not",
+        "outputOnlyOnStateChange": true,
         "for": "0",
         "forType": "num",
         "forUnits": "minutes",
@@ -16231,27 +16191,17 @@
         "z": "164999f348401406",
         "name": "Sense if TV is on",
         "server": "3ec50562615a9f50",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "remote.sony_xr_65a80k",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
+        "version": 5,
         "outputs": 2,
-        "output_only_on_state_change": true,
+        "exposeAsEntityConfig": "",
+        "entityId": "remote.sony_xr_65a80k",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "on",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
         "for": "0",
         "forType": "num",
         "forUnits": "minutes",
@@ -16296,27 +16246,17 @@
         "z": "164999f348401406",
         "name": "Sense if TV is off",
         "server": "3ec50562615a9f50",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "remote.sony_xr_65a80k",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
+        "version": 5,
         "outputs": 2,
-        "output_only_on_state_change": true,
+        "exposeAsEntityConfig": "",
+        "entityId": "remote.sony_xr_65a80k",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
         "for": "0",
         "forType": "num",
         "forUnits": "minutes",
