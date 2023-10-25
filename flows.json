@@ -10670,7 +10670,6 @@
         "id": "8c07a2c7f720a6a8",
         "type": "set-shared-state",
         "z": "95cf961539320dd3",
-        "d": true,
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": true,
@@ -16382,7 +16381,7 @@
         "type": "function",
         "z": "164999f348401406",
         "name": "Is AppleTV Playing?",
-        "func": "isAppleTVPlaying = global.get(\"state\").isAppleTVPlaying.value\n\nmsg.payload = isAppleTVPlaying\n\nreturn msg",
+        "func": "var isAppleTVPlaying = global.get(\"state\").isAppleTVPlaying.value\n\nmsg.payload = isAppleTVPlaying\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -16511,37 +16510,14 @@
         "id": "5dbf67f588125af7",
         "type": "get-shared-state",
         "z": "164999f348401406",
-        "state": "d9abb6b3441e0c2a",
-        "name": "Is TV Playing?",
+        "state": "9784d6c488d7a77e",
+        "name": "Is TV On?",
         "triggerOnInit": false,
-        "x": 110,
+        "x": 100,
         "y": 460,
         "wires": [
             [
-                "451dbae691313c19"
-            ]
-        ]
-    },
-    {
-        "id": "451dbae691313c19",
-        "type": "switch",
-        "z": "164999f348401406",
-        "name": "If TV Playing",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 270,
-        "y": 460,
-        "wires": [
-            [
-                "645726f28db704e6"
+                "7c0965a153bce37d"
             ]
         ]
     },
@@ -16675,6 +16651,44 @@
         "wires": [
             [
                 "0266ff67bd766f59"
+            ]
+        ]
+    },
+    {
+        "id": "0db9d9c2e4013026",
+        "type": "inject",
+        "z": "164999f348401406",
+        "name": "",
+        "props": [],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "x": 100,
+        "y": 520,
+        "wires": [
+            [
+                "7c0965a153bce37d"
+            ]
+        ]
+    },
+    {
+        "id": "7c0965a153bce37d",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "If TV is on",
+        "func": "var isTVon = global.get(\"state\").isTVon.value\n\nmsg = {}\nif (isTVon) {\n    // Send message and try to activate soundbar\n    return msg\n} else {\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 460,
+        "wires": [
+            [
+                "645726f28db704e6"
             ]
         ]
     }
