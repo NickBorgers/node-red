@@ -10635,7 +10635,6 @@
         "id": "b8d397a9ae2bf8a5",
         "type": "change",
         "z": "95cf961539320dd3",
-        "d": true,
         "name": "Set wakeup",
         "rules": [
             {
