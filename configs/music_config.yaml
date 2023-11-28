@@ -246,9 +246,7 @@ music:
     participants:
       - player_name: "Nook Speaker"
         default_volume: 40
-        leave_muted_if:
-          - variable: isHaveGuests
-            value: false
+        leave_muted_if: []
       - player_name: "Living Room"
         default_volume: 20
         leave_muted_if:
