@@ -116,9 +116,7 @@
             "64fb15a8a7187bb5"
         ],
         "x": 654,
-        "y": 459,
-        "w": 1352,
-        "h": 322
+        "y": 459
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -137,9 +135,7 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 899,
-        "w": 832,
-        "h": 142
+        "y": 899
     },
     {
         "id": "c48cec27c550ff16",
@@ -169,9 +165,7 @@
             "58b3255f64c30baa"
         ],
         "x": 1314,
-        "y": 939,
-        "w": 872,
-        "h": 402
+        "y": 939
     },
     {
         "id": "4b656d74411ea89c",
@@ -203,9 +197,7 @@
             "82963b85104708c0"
         ],
         "x": 34,
-        "y": 1059,
-        "w": 1232,
-        "h": 282
+        "y": 1059
     },
     {
         "id": "b2cc5799.eea9d",
@@ -3382,7 +3374,7 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Phase Decider",
-        "func": "sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nnow = new Date()\n// Get the hour\nthis_hour = now.getHours()\n// Get the minute\nthis_minute = now.getMinutes()\n\n// Get override times\ndusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nwinddown_time = new Date(global.get(\"state\").schedule.value.winddown)\nnight_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > winddown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
+        "func": "var sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nvar now = new Date()\n// Get the hour\nvar this_hour = now.getHours()\n// Get the minute\nvar this_minute = now.getMinutes()\n\n// Get override times\nvar dusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nvar winddown_time = new Date(global.get(\"state\").schedule.value.winddown)\nvar night_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    // If it's after the dusk override time go with dusk\n    if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    // Otherwise, freeze us at sunset\n    } else {\n        msg.payload = \"sunset\"\n    }\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time\n    if (now > night_time) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > winddown_time) {\n        msg.payload = \"winddown\"\n    // If it's after dusk time\n    } else if (now > dusk_time) {\n        msg.payload = \"dusk\"\n    } else {\n    // If it's not dusk time yet, just stick with sunset\n        msg.payload = \"sunset\"\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
