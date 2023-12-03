@@ -116,7 +116,9 @@
             "64fb15a8a7187bb5"
         ],
         "x": 654,
-        "y": 459
+        "y": 459,
+        "w": 1352,
+        "h": 322
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -135,7 +137,9 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 899
+        "y": 899,
+        "w": 832,
+        "h": 142
     },
     {
         "id": "c48cec27c550ff16",
@@ -165,7 +169,9 @@
             "58b3255f64c30baa"
         ],
         "x": 1314,
-        "y": 939
+        "y": 939,
+        "w": 872,
+        "h": 402
     },
     {
         "id": "4b656d74411ea89c",
@@ -197,7 +203,9 @@
             "82963b85104708c0"
         ],
         "x": 34,
-        "y": 1059
+        "y": 1059,
+        "w": 1232,
+        "h": 282
     },
     {
         "id": "b2cc5799.eea9d",
@@ -16543,8 +16551,8 @@
             }
         ],
         "queue": "none",
-        "x": 440,
-        "y": 460,
+        "x": 300,
+        "y": 520,
         "wires": [
             []
         ]
@@ -16553,12 +16561,12 @@
         "id": "4b461b04a68e6f6e",
         "type": "catch",
         "z": "164999f348401406",
-        "name": "Ignore errors from HASS Soundbar call",
+        "name": "Ignore Soundbar call",
         "scope": [
             "645726f28db704e6"
         ],
         "uncaught": false,
-        "x": 370,
+        "x": 490,
         "y": 520,
         "wires": [
             []
@@ -16647,37 +16655,62 @@
         ]
     },
     {
-        "id": "0db9d9c2e4013026",
-        "type": "inject",
-        "z": "164999f348401406",
-        "name": "",
-        "props": [],
-        "repeat": "10",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "10",
-        "topic": "",
-        "x": 100,
-        "y": 520,
-        "wires": [
-            [
-                "7c0965a153bce37d"
-            ]
-        ]
-    },
-    {
         "id": "7c0965a153bce37d",
         "type": "function",
         "z": "164999f348401406",
-        "name": "If TV is on",
-        "func": "var isTVon = global.get(\"state\").isTVon.value\n\nmsg = {}\nif (isTVon) {\n    // Send message and try to activate soundbar\n    return msg\n} else {\n    return null;\n}",
+        "name": "If TV has been turned on",
+        "func": "var isTVon = global.get(\"state\").isTVon.value\n\nmsg = {\"payload\": \"whatever\"}\nif (isTVon) {\n    // Send message and try to activate soundbar\n    return msg\n} else {\n    return null;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
+        "x": 290,
         "y": 460,
+        "wires": [
+            [
+                "4055c81fd7da87eb"
+            ]
+        ]
+    },
+    {
+        "id": "4055c81fd7da87eb",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "Repeat 10 times",
+        "func": "for (let i = 0; i < 10; i++) {\n    node.send(msg)\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [
+                "9d85e338bb7616e4"
+            ]
+        ]
+    },
+    {
+        "id": "9d85e338bb7616e4",
+        "type": "delay",
+        "z": "164999f348401406",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 120,
+        "y": 520,
         "wires": [
             [
                 "645726f28db704e6"
