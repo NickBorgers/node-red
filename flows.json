@@ -9390,7 +9390,7 @@
         "type": "function",
         "z": "45c21b8b98ae2f01",
         "name": "If everyone is awake and bedroom door closed",
-        "func": "if (global.get(\"state\").isMasterAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestBedroomDoorOpen.value == true) {\n    return null\n}\n\n// don't run this if we have guests b/c the signal will be less reliable\nif (global.get(\"state\").isHaveGuests.value == true) {\n    return null\n}\n// Only run this during the day\nif (global.get(\"state\").dayPhase.value != \"day\") {\n    return null\n}\n// Onl run this if Nick is gone\nif (global.get(\"state\").isNickHome.value == true) {\n    return null\n}\n\nmsg.payload = {\"On\": true}\n\nreturn msg",
+        "func": "if (global.get(\"state\").isMasterAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestAsleep.value == true) {\n    return null\n}\nif (global.get(\"state\").isGuestBedroomDoorOpen.value == true) {\n    return null\n}\n\n// don't run this if we have guests b/c the signal will be less reliable\nif (global.get(\"state\").isHaveGuests.value == true) {\n    return null\n}\n// Only run this during the day\nif (global.get(\"state\").dayPhase.value != \"day\") {\n    return null\n}\n// Only run this if Nick is gone\nif (global.get(\"state\").isNickHome.value == true) {\n    return null\n}\n// Only run this if Someone is home though; or whole house cleaning should supersede\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\n\nmsg.payload = {\"On\": true}\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
