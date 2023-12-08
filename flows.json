@@ -4566,7 +4566,8 @@
         "y": 460,
         "wires": [
             [
-                "d4e0576749b87d16"
+                "d4e0576749b87d16",
+                "38e66f87fa924f52"
             ]
         ]
     },
@@ -4893,7 +4894,8 @@
         "wires": [
             [
                 "6e7492c93999c36c",
-                "54078ecde99da032"
+                "54078ecde99da032",
+                "38e66f87fa924f52"
             ]
         ]
     },
@@ -5030,6 +5032,263 @@
             [
                 "3e279bdd0682936e"
             ]
+        ]
+    },
+    {
+        "id": "38e66f87fa924f52",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn off Christmas Tree",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.christmas_tree"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 990,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "744205d987216a52",
+        "type": "homekit-service",
+        "z": "16cd74edb3f2c03d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Christmas Tree",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 120,
+        "y": 840,
+        "wires": [
+            [
+                "24e9a86f6ef237d7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a7f6b62ed3480f3d",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 900,
+        "wires": [
+            [
+                "744205d987216a52"
+            ]
+        ]
+    },
+    {
+        "id": "24e9a86f6ef237d7",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Move on to value",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 840,
+        "wires": [
+            [
+                "3a58ce5706edc9df"
+            ]
+        ]
+    },
+    {
+        "id": "c48609019e991911",
+        "type": "inject",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 900,
+        "wires": [
+            [
+                "a7f6b62ed3480f3d"
+            ]
+        ]
+    },
+    {
+        "id": "3a58ce5706edc9df",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 840,
+        "wires": [
+            [
+                "a7f6b62ed3480f3d",
+                "87c36e5948fb7493"
+            ]
+        ]
+    },
+    {
+        "id": "87c36e5948fb7493",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 840,
+        "wires": [
+            [
+                "66a7133c326a29d9"
+            ]
+        ]
+    },
+    {
+        "id": "6a16930c8658d389",
+        "type": "comment",
+        "z": "16cd74edb3f2c03d",
+        "name": "Christmas Tree",
+        "info": "",
+        "x": 100,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "66a7133c326a29d9",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn On Christmas Tree",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.christmas_tree"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 850,
+        "y": 840,
+        "wires": [
+            []
         ]
     },
     {
