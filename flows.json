@@ -5365,7 +5365,7 @@
         "entityId": [
             "light.christmas_tree"
         ],
-        "data": "{\"brightness\":100}",
+        "data": "{\"brightness_pct\":100,\"transition\": 240}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -5392,7 +5392,7 @@
         "entityId": [
             "light.christmas_tree"
         ],
-        "data": "{\"brightness\":50}",
+        "data": "{\"brightness_pct\":50,\"transition\": 240}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -5419,7 +5419,7 @@
         "entityId": [
             "light.christmas_tree"
         ],
-        "data": "{\"brightness\":20}",
+        "data": "{\"brightness_pct\":20,\"transition\": 240}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
