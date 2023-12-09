@@ -4233,7 +4233,10 @@
         "wires": [
             [
                 "1ee8dd5329aad550",
-                "f9cd25793f40ac96"
+                "f9cd25793f40ac96",
+                "7753f747909284c6",
+                "b1cfafb2bd2bd19f",
+                "b1b49ef0c57b3e81"
             ]
         ]
     },
@@ -4902,14 +4905,14 @@
         "id": "f9cd25793f40ac96",
         "type": "function",
         "z": "16cd74edb3f2c03d",
-        "name": "If morning or evening",
-        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"morning\" || dayPhase == \"evening\") {\n    return msg;\n}",
+        "name": "If morning or dusk",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"morning\" || dayPhase == \"dusk\") {\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1000,
+        "x": 990,
         "y": 260,
         "wires": [
             [
@@ -4942,7 +4945,7 @@
         "finalize": "",
         "libs": [],
         "x": 1350,
-        "y": 380,
+        "y": 460,
         "wires": [
             [
                 "d7eb8a42c01b70f0"
@@ -4969,7 +4972,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1750,
-        "y": 380,
+        "y": 460,
         "wires": [
             []
         ]
@@ -5011,7 +5014,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1580,
-        "y": 380,
+        "y": 460,
         "wires": [
             [
                 "f0aaaedb87db2709"
@@ -5286,6 +5289,144 @@
         "queue": "none",
         "x": 850,
         "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7753f747909284c6",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "If sunset",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"sunset\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 300,
+        "wires": [
+            [
+                "80b69f2b1e048b8d"
+            ]
+        ]
+    },
+    {
+        "id": "b1cfafb2bd2bd19f",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "If dusk",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"dusk\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 340,
+        "wires": [
+            [
+                "529e7ec5c577e8a3"
+            ]
+        ]
+    },
+    {
+        "id": "b1b49ef0c57b3e81",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "If winddown",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"winddown\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 380,
+        "wires": [
+            [
+                "205c08e95dbca68c"
+            ]
+        ]
+    },
+    {
+        "id": "80b69f2b1e048b8d",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Christmas Tree Full Brightness",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.christmas_tree"
+        ],
+        "data": "{\"brightness\":100}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1190,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "529e7ec5c577e8a3",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Christmas Tree Moderate Brightness",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.christmas_tree"
+        ],
+        "data": "{\"brightness\":50}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1210,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "205c08e95dbca68c",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Christmas Tree Low Brightness",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.christmas_tree"
+        ],
+        "data": "{\"brightness\":20}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1190,
+        "y": 380,
         "wires": [
             []
         ]
