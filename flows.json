@@ -5281,7 +5281,7 @@
         "entityId": [
             "light.christmas_tree"
         ],
-        "data": "",
+        "data": "{\"brightness_pct\":100,\"transition\": 240}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
