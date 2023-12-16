@@ -19,12 +19,12 @@ A[Node Red] --> |Websockets| B[Home Assistant]
 A --> C[Sonos]
 A --> D[Elasticsearch]
 A --> G[HomeKit]
-A --> J[Roborock Vacuum]
 B --> E[Phillips Hue]
 B --> F[Dyson]
 B --> H[Apple TV]
 B --> I[Bravia TV]
 B --> K[Google Calendar]
+B --> J[Roborock Vacuum]
 ```
 
 ### Taking a look at the nodes interactively
