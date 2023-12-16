@@ -609,13 +609,6 @@
         "logdebug": false
     },
     {
-        "id": "b63f730b24581cdc",
-        "type": "miio-roborock-server",
-        "name": "Vacuum",
-        "ip": "10.212.100.101",
-        "polling": "10"
-    },
-    {
         "id": "9784d6c488d7a77e",
         "type": "shared-state",
         "name": "isTVon",
@@ -8604,29 +8597,6 @@
         ]
     },
     {
-        "id": "d389488a08d98ed3",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Start Vacuuming",
-        "server": "b63f730b24581cdc",
-        "command_name": "► Start",
-        "command": "app_start",
-        "commandType": "vacuum_cmd",
-        "payload": "payload",
-        "payloadType": "msg",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 780,
-        "y": 280,
-        "wires": [
-            [
-                "a153aee19cd0e1dd"
-            ]
-        ]
-    },
-    {
         "id": "66648323963fb7f3",
         "type": "get-shared-state",
         "z": "45c21b8b98ae2f01",
@@ -8708,7 +8678,7 @@
         "y": 280,
         "wires": [
             [
-                "d389488a08d98ed3"
+                "199290e9b902581e"
             ]
         ]
     },
@@ -8727,30 +8697,7 @@
         "y": 360,
         "wires": [
             [
-                "1aa5da490ac08911"
-            ]
-        ]
-    },
-    {
-        "id": "1aa5da490ac08911",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Stop Vacuuming",
-        "server": "b63f730b24581cdc",
-        "command_name": "◼ Stop",
-        "command": "app_stop",
-        "commandType": "vacuum_cmd",
-        "payload": "payload",
-        "payloadType": "msg",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 580,
-        "y": 380,
-        "wires": [
-            [
-                "3d7ba466a8638421"
+                "f2b43e68a12b2e8d"
             ]
         ]
     },
@@ -8798,7 +8745,7 @@
         "y": 240,
         "wires": [
             [
-                "d389488a08d98ed3"
+                "199290e9b902581e"
             ]
         ]
     },
@@ -8827,7 +8774,7 @@
         "y": 320,
         "wires": [
             [
-                "1aa5da490ac08911"
+                "f2b43e68a12b2e8d"
             ]
         ]
     },
@@ -8880,7 +8827,7 @@
         "y": 420,
         "wires": [
             [
-                "1aa5da490ac08911"
+                "f2b43e68a12b2e8d"
             ]
         ]
     },
@@ -8907,73 +8854,6 @@
             [
                 "3ddae2dbb6c714dd"
             ]
-        ]
-    },
-    {
-        "id": "0fda931bf6487d0e",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Dock",
-        "server": "b63f730b24581cdc",
-        "command_name": "Dock",
-        "command": "app_charge",
-        "commandType": "vacuum_cmd",
-        "payload": "payload",
-        "payloadType": "msg",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 870,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3d7ba466a8638421",
-        "type": "delay",
-        "z": "45c21b8b98ae2f01",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 740,
-        "y": 380,
-        "wires": [
-            [
-                "0fda931bf6487d0e"
-            ]
-        ]
-    },
-    {
-        "id": "92ec058fd4c3696a",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Clean Kitchen",
-        "server": "b63f730b24581cdc",
-        "command_name": "► Start room cleaning",
-        "command": "app_segment_clean",
-        "commandType": "vacuum_cmd",
-        "payload": "20",
-        "payloadType": "num",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 1440,
-        "y": 820,
-        "wires": [
-            []
         ]
     },
     {
@@ -9145,8 +9025,8 @@
         "y": 820,
         "wires": [
             [
-                "92ec058fd4c3696a",
-                "14fafc9f6d18a633"
+                "14fafc9f6d18a633",
+                "3a7d329041cf4f53"
             ]
         ]
     },
@@ -9320,29 +9200,8 @@
         "wires": [
             [
                 "1cc2997adf18efd4",
-                "d389488a08d98ed3"
+                "199290e9b902581e"
             ]
-        ]
-    },
-    {
-        "id": "f38ee7a3c51b0389",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Clean Entryway",
-        "server": "b63f730b24581cdc",
-        "command_name": "► Start room cleaning",
-        "command": "app_segment_clean",
-        "commandType": "vacuum_cmd",
-        "payload": "17",
-        "payloadType": "num",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 1440,
-        "y": 980,
-        "wires": [
-            []
         ]
     },
     {
@@ -9514,30 +9373,9 @@
         "y": 980,
         "wires": [
             [
-                "f38ee7a3c51b0389",
-                "70dd2750ef69c883"
+                "70dd2750ef69c883",
+                "d873646ace25c532"
             ]
-        ]
-    },
-    {
-        "id": "02edb1b65217113e",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Clean Master Bath",
-        "server": "b63f730b24581cdc",
-        "command_name": "► Start room cleaning",
-        "command": "app_segment_clean",
-        "commandType": "vacuum_cmd",
-        "payload": "23",
-        "payloadType": "num",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 670,
-        "y": 820,
-        "wires": [
-            []
         ]
     },
     {
@@ -9709,8 +9547,8 @@
         "y": 820,
         "wires": [
             [
-                "02edb1b65217113e",
-                "e6178b09c2ead93b"
+                "e6178b09c2ead93b",
+                "4e3b10f64aa201c4"
             ]
         ]
     },
@@ -9929,27 +9767,6 @@
         ]
     },
     {
-        "id": "0e7e4ac7d76df94e",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Clean Cat Shitolopolis",
-        "server": "b63f730b24581cdc",
-        "command_name": "► Start room cleaning",
-        "command": "app_segment_clean",
-        "commandType": "vacuum_cmd",
-        "payload": "21",
-        "payloadType": "num",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 680,
-        "y": 980,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "e45b9584881bf593",
         "type": "comment",
         "z": "45c21b8b98ae2f01",
@@ -10118,30 +9935,9 @@
         "y": 980,
         "wires": [
             [
-                "0e7e4ac7d76df94e",
-                "efd1b3efbfe849ce"
+                "efd1b3efbfe849ce",
+                "de7181d560028c31"
             ]
-        ]
-    },
-    {
-        "id": "24ee73c170813ea0",
-        "type": "miio-roborock-command",
-        "z": "45c21b8b98ae2f01",
-        "name": "Clean Master Bath and Cat Shitolopolis",
-        "server": "b63f730b24581cdc",
-        "command_name": "► Start room cleaning",
-        "command": "app_segment_clean",
-        "commandType": "vacuum_cmd",
-        "payload": "payload",
-        "payloadType": "msg",
-        "coordinates": "",
-        "fan_speed": 100,
-        "voice_pack": null,
-        "homekit_stop_to_dock": false,
-        "x": 1540,
-        "y": 600,
-        "wires": [
-            []
         ]
     },
     {
@@ -10167,8 +9963,228 @@
         "y": 600,
         "wires": [
             [
-                "24ee73c170813ea0"
+                "407e2c42473be662"
             ]
+        ]
+    },
+    {
+        "id": "f2b43e68a12b2e8d",
+        "type": "api-call-service",
+        "z": "45c21b8b98ae2f01",
+        "name": "Dock Vacuum",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "vacuum",
+        "service": "return_to_base",
+        "areaId": [],
+        "deviceId": [
+            "f4ea622f68a4dad33922e5e74f3a4063"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 580,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "199290e9b902581e",
+        "type": "api-call-service",
+        "z": "45c21b8b98ae2f01",
+        "name": "Start Cleaning",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "vacuum",
+        "service": "start",
+        "areaId": [],
+        "deviceId": [
+            "f4ea622f68a4dad33922e5e74f3a4063"
+        ],
+        "entityId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 780,
+        "y": 280,
+        "wires": [
+            [
+                "a153aee19cd0e1dd"
+            ]
+        ]
+    },
+    {
+        "id": "4e3b10f64aa201c4",
+        "type": "api-call-service",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Master Bath",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "vacuum",
+        "service": "send_command",
+        "areaId": [],
+        "deviceId": [
+            "f4ea622f68a4dad33922e5e74f3a4063"
+        ],
+        "entityId": [],
+        "data": "{\"command\":\"app_segment_clean\",\"params\":[{\"segments\":[18],\"repeat\":2}]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7bf086516770bcb1",
+        "type": "inject",
+        "z": "45c21b8b98ae2f01",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1200,
+        "y": 700,
+        "wires": [
+            [
+                "407e2c42473be662"
+            ]
+        ]
+    },
+    {
+        "id": "de7181d560028c31",
+        "type": "api-call-service",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Cat Shitolopolis",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "vacuum",
+        "service": "send_command",
+        "areaId": [],
+        "deviceId": [
+            "f4ea622f68a4dad33922e5e74f3a4063"
+        ],
+        "entityId": [],
+        "data": "{\"command\":\"app_segment_clean\",\"params\":[{\"segments\":[16],\"repeat\":2}]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3a7d329041cf4f53",
+        "type": "api-call-service",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Kitchen",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "vacuum",
+        "service": "send_command",
+        "areaId": [],
+        "deviceId": [
+            "f4ea622f68a4dad33922e5e74f3a4063"
+        ],
+        "entityId": [],
+        "data": "{\"command\":\"app_segment_clean\",\"params\":[{\"segments\":[21],\"repeat\":2}]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1440,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d873646ace25c532",
+        "type": "api-call-service",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Entryway",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "vacuum",
+        "service": "send_command",
+        "areaId": [],
+        "deviceId": [
+            "f4ea622f68a4dad33922e5e74f3a4063"
+        ],
+        "entityId": [],
+        "data": "{\"command\":\"app_segment_clean\",\"params\":[{\"segments\":[22],\"repeat\":2}]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1440,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "407e2c42473be662",
+        "type": "api-call-service",
+        "z": "45c21b8b98ae2f01",
+        "name": "Clean Master Bathroom and Cat Shitolopolis",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "vacuum",
+        "service": "send_command",
+        "areaId": [],
+        "deviceId": [
+            "f4ea622f68a4dad33922e5e74f3a4063"
+        ],
+        "entityId": [],
+        "data": "{\"command\":\"app_segment_clean\",\"params\":[{\"segments\":[16,18],\"repeat\":2}]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1550,
+        "y": 600,
+        "wires": [
+            []
         ]
     },
     {
@@ -15501,109 +15517,6 @@
         ]
     },
     {
-        "id": "48499f70f7e241ea",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "SideBrush",
-        "func": "msg.payload = (100-(msg.payload[0]['side_brush_work_time']/720000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 490,
-        "y": 580,
-        "wires": [
-            [
-                "0dd36d9179a45057"
-            ]
-        ]
-    },
-    {
-        "id": "4a9057efbf51d7a8",
-        "type": "miio-roborock-command",
-        "z": "0d2150a703bedcd6",
-        "name": "",
-        "server": "b63f730b24581cdc",
-        "command_name": "ⓘ Get consumables status",
-        "command": "get_consumable",
-        "commandType": "vacuum_cmd",
-        "payload": "arguments",
-        "payloadType": "vacuum_payload",
-        "coordinates": "[\n   [22200,23500,28000,28000,1]\n]",
-        "fan_speed": "",
-        "homekit_stop_to_dock": true,
-        "x": 220,
-        "y": 500,
-        "wires": [
-            [
-                "51534bf8c71afd93",
-                "48499f70f7e241ea",
-                "fbdd5450095d64c1",
-                "70f88ee57574292e",
-                "c0dd2975e62cd6d5",
-                "64869cc62da96045"
-            ]
-        ]
-    },
-    {
-        "id": "51534bf8c71afd93",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "MainBrush",
-        "func": "msg.payload = (100-(msg.payload[0]['main_brush_work_time']/1080000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\n\n\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 490,
-        "y": 460,
-        "wires": [
-            [
-                "c38596ac1f7c9a51"
-            ]
-        ]
-    },
-    {
-        "id": "fbdd5450095d64c1",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "MainFilter",
-        "func": "msg.payload = (100-(msg.payload[0]['filter_work_time']/540000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 540,
-        "wires": [
-            [
-                "a5b5cddbfa15e10f"
-            ]
-        ]
-    },
-    {
-        "id": "70f88ee57574292e",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Sensors",
-        "func": "msg.payload = (100-(msg.payload[0]['sensor_dirty_time']/108000*100)).toFixed(1);\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 500,
-        "wires": [
-            [
-                "41cdf9984d90bb63"
-            ]
-        ]
-    },
-    {
         "id": "ade63541efa85ad9",
         "type": "comment",
         "z": "0d2150a703bedcd6",
@@ -15612,514 +15525,6 @@
         "x": 150,
         "y": 260,
         "wires": []
-    },
-    {
-        "id": "2082f109d24fd5df",
-        "type": "get-shared-state",
-        "z": "0d2150a703bedcd6",
-        "state": "e3cb7570.0dbb48",
-        "name": "Nick Home",
-        "triggerOnInit": false,
-        "x": 100,
-        "y": 400,
-        "wires": [
-            [
-                "d2b122d332817454"
-            ]
-        ]
-    },
-    {
-        "id": "d2b122d332817454",
-        "type": "switch",
-        "z": "0d2150a703bedcd6",
-        "name": "Is Nick now home",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 270,
-        "y": 400,
-        "wires": [
-            [
-                "c7bf946f9d0edb67"
-            ]
-        ]
-    },
-    {
-        "id": "f58432cd44c4ee58",
-        "type": "delay",
-        "z": "0d2150a703bedcd6",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "20",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 610,
-        "y": 400,
-        "wires": [
-            [
-                "29ed3433950d1217"
-            ]
-        ]
-    },
-    {
-        "id": "29ed3433950d1217",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Stop if anyone asleep",
-        "func": "if (global.get(\"state\").isAnyoneAsleep.value) {\n    return null;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 800,
-        "y": 400,
-        "wires": [
-            [
-                "4a9057efbf51d7a8"
-            ]
-        ]
-    },
-    {
-        "id": "146375e5084782cc",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Generate Notification Message",
-        "func": "var notification_message = \"Nick, the Vacuum filter needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 540,
-        "wires": [
-            [
-                "66a52590c9317bed"
-            ]
-        ]
-    },
-    {
-        "id": "ca79f8be6dbfd91d",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Generate Notification Message",
-        "func": "var notification_message = \"Nick, the Vacuum side brush needs replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 580,
-        "wires": [
-            [
-                "66a52590c9317bed"
-            ]
-        ]
-    },
-    {
-        "id": "3a8501bdb465f149",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Generate Notification Message",
-        "func": "var notification_message = \"Nick, the Vacuum sensors need cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 500,
-        "wires": [
-            [
-                "66a52590c9317bed"
-            ]
-        ]
-    },
-    {
-        "id": "bd29751017d59409",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Generate Notification Message",
-        "func": "var notification_message = \"Nick, the Vacuum main brush need replacement\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 460,
-        "wires": [
-            [
-                "66a52590c9317bed"
-            ]
-        ]
-    },
-    {
-        "id": "c38596ac1f7c9a51",
-        "type": "switch",
-        "z": "0d2150a703bedcd6",
-        "name": "If NeedAction",
-        "property": "payload.NeedAction",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 460,
-        "wires": [
-            [
-                "bd29751017d59409"
-            ]
-        ]
-    },
-    {
-        "id": "41cdf9984d90bb63",
-        "type": "switch",
-        "z": "0d2150a703bedcd6",
-        "name": "If NeedAction",
-        "property": "payload.NeedAction",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 500,
-        "wires": [
-            [
-                "3a8501bdb465f149"
-            ]
-        ]
-    },
-    {
-        "id": "a5b5cddbfa15e10f",
-        "type": "switch",
-        "z": "0d2150a703bedcd6",
-        "name": "If NeedAction",
-        "property": "payload.NeedAction",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 540,
-        "wires": [
-            [
-                "146375e5084782cc"
-            ]
-        ]
-    },
-    {
-        "id": "0dd36d9179a45057",
-        "type": "switch",
-        "z": "0d2150a703bedcd6",
-        "name": "If NeedAction",
-        "property": "payload.NeedAction",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 580,
-        "wires": [
-            [
-                "ca79f8be6dbfd91d"
-            ]
-        ]
-    },
-    {
-        "id": "31193921b3a643b8",
-        "type": "inject",
-        "z": "0d2150a703bedcd6",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 440,
-        "y": 340,
-        "wires": [
-            [
-                "29ed3433950d1217"
-            ]
-        ]
-    },
-    {
-        "id": "66a52590c9317bed",
-        "type": "delay",
-        "z": "0d2150a703bedcd6",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "20",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 160,
-        "y": 800,
-        "wires": [
-            [
-                "c9bd838ac0165bad"
-            ]
-        ]
-    },
-    {
-        "id": "c9bd838ac0165bad",
-        "type": "ttsultimate",
-        "z": "0d2150a703bedcd6",
-        "name": "",
-        "voice": "en-GB",
-        "ssml": false,
-        "sonosipaddress": "10.212.100.231",
-        "sonosvolume": "40",
-        "sonoshailing": "Hailing_ComputerCall.mp3",
-        "config": "89337ebbba16965d",
-        "property": "payload",
-        "propertyType": {},
-        "rules": [],
-        "playertype": "sonos",
-        "speakingrate": "1",
-        "speakingpitch": "0",
-        "unmuteIfMuted": false,
-        "x": 330,
-        "y": 800,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "e0383b358de144da",
-        "type": "link call",
-        "z": "0d2150a703bedcd6",
-        "name": "Reset Music",
-        "links": [
-            "b1f2b5145a191585"
-        ],
-        "timeout": "30",
-        "x": 510,
-        "y": 860,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b705ee2179e2857b",
-        "type": "catch",
-        "z": "0d2150a703bedcd6",
-        "name": "Catch TTS Error",
-        "scope": [
-            "c9bd838ac0165bad"
-        ],
-        "uncaught": false,
-        "x": 340,
-        "y": 860,
-        "wires": [
-            [
-                "e0383b358de144da"
-            ]
-        ]
-    },
-    {
-        "id": "c7bf946f9d0edb67",
-        "type": "delay",
-        "z": "0d2150a703bedcd6",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "20",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "day",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 450,
-        "y": 400,
-        "wires": [
-            [
-                "f58432cd44c4ee58"
-            ]
-        ]
-    },
-    {
-        "id": "c0dd2975e62cd6d5",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Cleaning Brush",
-        "func": "msg.payload = (1-msg.payload[0]['cleaning_brush_work_times']/300)*100\n\nnode.status({fill:\"grey\",shape:\"ring\",text:msg.payload+'%'})\nmsg.payload = {\n    \"NeedAction\":msg.payload<10?true:false,\n    \"LifePercentage\":msg.payload\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 500,
-        "y": 620,
-        "wires": [
-            [
-                "b1ae4a58f4238008"
-            ]
-        ]
-    },
-    {
-        "id": "64869cc62da96045",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Strainer",
-        "func": "msg.payload = (1 - msg.payload[0]['strainer_work_times'] / 150) * 100\n\nnode.status({ fill: \"grey\", shape: \"ring\", text: msg.payload + '%' })\nmsg.payload = {\n    \"NeedAction\": msg.payload < 10 ? true : false,\n    \"LifePercentage\": msg.payload\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 660,
-        "wires": [
-            [
-                "0d7ccd7fab777dc7"
-            ]
-        ]
-    },
-    {
-        "id": "b1ae4a58f4238008",
-        "type": "switch",
-        "z": "0d2150a703bedcd6",
-        "name": "If NeedAction",
-        "property": "payload.NeedAction",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 620,
-        "wires": [
-            [
-                "af26683f9fb13f07"
-            ]
-        ]
-    },
-    {
-        "id": "0d7ccd7fab777dc7",
-        "type": "switch",
-        "z": "0d2150a703bedcd6",
-        "name": "If NeedAction",
-        "property": "payload.NeedAction",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 660,
-        "wires": [
-            [
-                "4a4ea37fb228c4c2"
-            ]
-        ]
-    },
-    {
-        "id": "af26683f9fb13f07",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Generate Notification Message",
-        "func": "var notification_message = \"Nick, the Vacuum mop brush needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 620,
-        "wires": [
-            [
-                "66a52590c9317bed"
-            ]
-        ]
-    },
-    {
-        "id": "4a4ea37fb228c4c2",
-        "type": "function",
-        "z": "0d2150a703bedcd6",
-        "name": "Generate Notification Message",
-        "func": "var notification_message = \"Nick, the Vacuum mop strainer needs cleaning\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 910,
-        "y": 660,
-        "wires": [
-            [
-                "66a52590c9317bed"
-            ]
-        ]
     },
     {
         "id": "0266ff67bd766f59",
