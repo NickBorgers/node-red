@@ -116,7 +116,9 @@
             "64fb15a8a7187bb5"
         ],
         "x": 654,
-        "y": 459
+        "y": 459,
+        "w": 1352,
+        "h": 322
     },
     {
         "id": "5b09580d85cd2e6c",
@@ -135,7 +137,9 @@
             "d57cd408292923c8"
         ],
         "x": 394,
-        "y": 899
+        "y": 899,
+        "w": 832,
+        "h": 142
     },
     {
         "id": "c48cec27c550ff16",
@@ -165,7 +169,9 @@
             "58b3255f64c30baa"
         ],
         "x": 1314,
-        "y": 939
+        "y": 939,
+        "w": 872,
+        "h": 402
     },
     {
         "id": "4b656d74411ea89c",
@@ -197,7 +203,9 @@
             "82963b85104708c0"
         ],
         "x": 34,
-        "y": 1059
+        "y": 1059,
+        "w": 1232,
+        "h": 282
     },
     {
         "id": "b2cc5799.eea9d",
@@ -7279,7 +7287,7 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
         "name": "Repeat turn ups until done",
-        "func": "console.debug(\"Processing fade in for \" + msg.playerName)\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume < msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade in for \" + msg.playerName)\n    // If the volume is less than what was last set, assume someone\n    // is fighting the system trying to turn down the volume\n    console.debug(\"Terminating fade in for \" + msg.playerName)\n    return null\n}\n\n// What is the volume supposed to be?\nvar desired_volume = msg.desired_volume\n\n// If we haven't gotten up to the desired volume\nif (current_volume < desired_volume) {\n    console.debug(\"Still need to turn up \" + msg.playerName)\n    console.debug(\"Current volume \" + current_volume)\n    console.debug(\"Desired volume \" + desired_volume)\n    // The new set volume is current + 1\n    var new_volume = current_volume + 1\n    console.debug(\"Adjusted volume setting for \" + msg.playerName)\n    // This new volume is the payload\n    msg.payload = new_volume\n    // Separately save off the value we're setting\n    msg.last_volume_set = new_volume\n    // Set the delay for the next turn up to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 250\n    console.debug(\"Sending turn up messages for \" + msg.playerName)\n    // Send the change\n    return msg\n}\nconsole.debug(\"Completed fade in for \" + msg.playerName)\nconsole.debug(\"Current volume \" + current_volume)\n// We're done, everything is as it should be",
+        "func": "console.debug(\"Processing fade in for \" + msg.playerName)\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume < msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade in for \" + msg.playerName)\n    // If the volume is less than what was last set, assume someone\n    // is fighting the system trying to turn down the volume\n    console.debug(\"Terminating fade in for \" + msg.playerName)\n    return null\n}\n\n// What is the volume supposed to be?\nvar allParticipantSpeakers = global.get(\"state\").currentlyPlayingMusic.value.participants\nallParticipantSpeakers.forEach(function (aParticipantSpeaker) {\n    // If this is the config for the speaker we're setting volume for\n    if (aParticipantSpeaker.player_name == msg.playerName) {\n        // Read desired volume from this config, NOT what we were originally told\n        var desired_volume = aParticipantSpeaker.volume\n    }\n});\n\nif (typeof desired_volume === 'undefined') {\n    var desired_volume = msg.desired_volume\n}\n\n// If we haven't gotten up to the desired volume\nif (current_volume < desired_volume) {\n    console.debug(\"Still need to turn up \" + msg.playerName)\n    console.debug(\"Current volume \" + current_volume)\n    console.debug(\"Desired volume \" + desired_volume)\n    // The new set volume is current + 1\n    var new_volume = current_volume + 1\n    console.debug(\"Adjusted volume setting for \" + msg.playerName)\n    // This new volume is the payload\n    msg.payload = new_volume\n    // Separately save off the value we're setting\n    msg.last_volume_set = new_volume\n    // Set the delay for the next turn up to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 250\n    console.debug(\"Sending turn up messages for \" + msg.playerName)\n    // Send the change\n    return msg\n}\nconsole.debug(\"Completed fade in for \" + msg.playerName)\nconsole.debug(\"Current volume \" + current_volume)\n// We're done, everything is as it should be",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10212,7 +10220,7 @@
         "y": 100,
         "wires": [
             [
-                "ca6d0e931ce891e2"
+                "e08bfb353c156eb6"
             ]
         ]
     },
@@ -10713,7 +10721,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 1130,
         "y": 100,
         "wires": [
             [
@@ -10731,7 +10739,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
-        "x": 790,
+        "x": 1370,
         "y": 100,
         "wires": [
             [
@@ -10750,7 +10758,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
+        "x": 660,
         "y": 160,
         "wires": [
             [
@@ -10770,7 +10778,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1030,
+        "x": 1510,
         "y": 160,
         "wires": []
     },
@@ -10791,7 +10799,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 960,
+        "x": 1540,
         "y": 100,
         "wires": [
             [
@@ -10810,7 +10818,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
+        "x": 1050,
         "y": 220,
         "wires": [
             [
@@ -10832,7 +10840,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
-        "x": 450,
+        "x": 850,
         "y": 220,
         "wires": [
             [
@@ -10857,7 +10865,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 130,
+        "x": 530,
         "y": 220,
         "wires": [
             [
@@ -10874,7 +10882,7 @@
         "links": [
             "34bd02b0a6ce0a3f"
         ],
-        "x": 855,
+        "x": 1255,
         "y": 220,
         "wires": []
     },
@@ -10884,7 +10892,7 @@
         "z": "95cf961539320dd3",
         "name": "Use normal volume set to apply",
         "info": "",
-        "x": 1010,
+        "x": 1410,
         "y": 220,
         "wires": []
     },
@@ -10892,7 +10900,7 @@
         "id": "5bc361a44ae4f4fe",
         "type": "inject",
         "z": "95cf961539320dd3",
-        "name": "",
+        "name": "Trigger",
         "props": [
             {
                 "p": "payload"
@@ -10909,11 +10917,11 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 340,
+        "x": 350,
         "y": 40,
         "wires": [
             [
-                "ca6d0e931ce891e2"
+                "e08bfb353c156eb6"
             ]
         ]
     },
@@ -10934,7 +10942,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 280,
+        "x": 680,
         "y": 220,
         "wires": [
             [
@@ -11013,7 +11021,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 830,
+        "x": 1310,
         "y": 160,
         "wires": [
             [
@@ -11102,6 +11110,121 @@
         "wires": [
             [
                 "8c07a2c7f720a6a8"
+            ]
+        ]
+    },
+    {
+        "id": "ec628f54ff3683fb",
+        "type": "ttsultimate",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "voice": "en-US",
+        "ssml": false,
+        "sonosipaddress": "10.212.100.227",
+        "sonosvolume": "30",
+        "sonoshailing": "0",
+        "config": "89337ebbba16965d",
+        "property": "payload",
+        "propertyType": {},
+        "rules": [],
+        "playertype": "sonos",
+        "speakingrate": "1",
+        "speakingpitch": "0",
+        "unmuteIfMuted": true,
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [
+                "38d1aa796e6b88c5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "89c1d2a03ec52517",
+        "type": "link call",
+        "z": "95cf961539320dd3",
+        "name": "Reset Music",
+        "links": [
+            "b1f2b5145a191585"
+        ],
+        "timeout": "30",
+        "x": 910,
+        "y": 40,
+        "wires": [
+            [
+                "38d1aa796e6b88c5"
+            ]
+        ]
+    },
+    {
+        "id": "1ca8abad4ced181a",
+        "type": "catch",
+        "z": "95cf961539320dd3",
+        "name": "Catch TTS Error",
+        "scope": [
+            "ec628f54ff3683fb"
+        ],
+        "uncaught": false,
+        "x": 720,
+        "y": 40,
+        "wires": [
+            [
+                "89c1d2a03ec52517"
+            ]
+        ]
+    },
+    {
+        "id": "e08bfb353c156eb6",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Generate message",
+        "func": "var notification_message = \"Cuddle now\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 100,
+        "wires": [
+            [
+                "ec628f54ff3683fb"
+            ]
+        ]
+    },
+    {
+        "id": "ac4482db16ab66b6",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Cuddle notification",
+        "info": "",
+        "x": 510,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "38d1aa796e6b88c5",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 100,
+        "wires": [
+            [
+                "ca6d0e931ce891e2"
             ]
         ]
     },
