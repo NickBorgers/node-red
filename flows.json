@@ -15643,11 +15643,223 @@
         "id": "ade63541efa85ad9",
         "type": "comment",
         "z": "0d2150a703bedcd6",
-        "name": "Monitor Vacuum condition",
+        "name": "Remind us to close windows if it will rain",
         "info": "",
-        "x": 150,
+        "x": 200,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "aa9b0e9f0b29a182",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "To check or not to check?",
+        "func": "var musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's winddown or sleep definitely notify\nif (musicPlaybackType == \"winddown\" ||\n    musicPlaybackType == \"sleep\"\n    ) {\n    return msg\n}\n\n// Otherwise ignore",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "21bdd26ad7a80f0f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "843e63ed650ed48e",
+        "type": "get-shared-state",
+        "z": "0d2150a703bedcd6",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": false,
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "aa9b0e9f0b29a182"
+            ]
+        ]
+    },
+    {
+        "id": "95611df7270d871b",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Check forecast",
+        "func": "var forecastData = msg.payload.forecast\n\nconsole.debug(\"Based on forecast data of:\")\nconsole.debug(forecastData)\n\nconst riskOfRain = forecastData.slice(0, 10).some(item => item.precipitation > 0.25);\n\nif (riskOfRain) {\n    console.debug(\"Concluded there is a risk of rain in the next 10 hours\")\n    return msg\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 320,
+        "wires": [
+            [
+                "e9898046b0d46645"
+            ]
+        ]
+    },
+    {
+        "id": "16a9d498b030b3a6",
+        "type": "inject",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "21bdd26ad7a80f0f"
+            ]
+        ]
+    },
+    {
+        "id": "21bdd26ad7a80f0f",
+        "type": "api-call-service",
+        "z": "0d2150a703bedcd6",
+        "name": "Get forecast",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "weather",
+        "service": "get_forecast",
+        "areaId": [],
+        "deviceId": [
+            "9d0992a8b17d4545aeb007e2274f3d1e"
+        ],
+        "entityId": [],
+        "data": "{\"type\": \"hourly\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "queue": "none",
+        "x": 570,
+        "y": 320,
+        "wires": [
+            [
+                "95611df7270d871b"
+            ]
+        ]
+    },
+    {
+        "id": "040a0d2d8452c13e",
+        "type": "catch",
+        "z": "0d2150a703bedcd6",
+        "name": "Catch TTS Error",
+        "scope": [
+            "b8b874928838b516"
+        ],
+        "uncaught": false,
+        "x": 600,
+        "y": 480,
+        "wires": [
+            [
+                "4e898657536fbb37"
+            ]
+        ]
+    },
+    {
+        "id": "4e898657536fbb37",
+        "type": "link call",
+        "z": "0d2150a703bedcd6",
+        "name": "Reset Music",
+        "links": [
+            "b1f2b5145a191585"
+        ],
+        "timeout": "30",
+        "x": 770,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8b874928838b516",
+        "type": "ttsultimate",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "voice": "en-US",
+        "ssml": false,
+        "sonosipaddress": "10.212.100.226",
+        "sonosvolume": "30",
+        "sonoshailing": "0",
+        "config": "89337ebbba16965d",
+        "property": "payload",
+        "propertyType": {},
+        "rules": [],
+        "playertype": "sonos",
+        "speakingrate": "1",
+        "speakingpitch": "0",
+        "unmuteIfMuted": true,
+        "x": 590,
+        "y": 420,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8cbb9fc23a88c3c0",
+        "type": "function",
+        "z": "0d2150a703bedcd6",
+        "name": "Generate Notification Message",
+        "func": "var notification_message = \"It may rain tonight, better close the windows\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 420,
+        "wires": [
+            [
+                "b8b874928838b516"
+            ]
+        ]
+    },
+    {
+        "id": "e9898046b0d46645",
+        "type": "delay",
+        "z": "0d2150a703bedcd6",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "12",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 420,
+        "wires": [
+            [
+                "8cbb9fc23a88c3c0"
+            ]
+        ]
     },
     {
         "id": "0266ff67bd766f59",
