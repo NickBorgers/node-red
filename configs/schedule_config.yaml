@@ -1,5 +1,5 @@
 schedule:
--   begin_wake: 10:30
+-   begin_wake: '9:30'
     dusk: '18:00'
     go_to_bed: '22:30'
     name: Sunday
@@ -7,7 +7,7 @@ schedule:
     stop_screens: '21:45'
     wake: '10:00'
     winddown: '21:30'
--   begin_wake: 07:45
+-   begin_wake: '10:30'
     dusk: '18:00'
     go_to_bed: '22:30'
     name: Monday
