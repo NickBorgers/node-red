@@ -16600,7 +16600,8 @@
         "y": 460,
         "wires": [
             [
-                "f505bd0ac65893f2"
+                "f505bd0ac65893f2",
+                "a1ac6d48e59dc03c"
             ]
         ]
     },
@@ -16847,5 +16848,18 @@
                 "645726f28db704e6"
             ]
         ]
+    },
+    {
+        "id": "a1ac6d48e59dc03c",
+        "type": "set-shared-state",
+        "z": "164999f348401406",
+        "state": "e1e1553b9b6a27c9",
+        "name": "Is Apple TV Playing?",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1020,
+        "y": 520,
+        "wires": []
     }
 ]
