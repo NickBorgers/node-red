@@ -1081,6 +1081,22 @@
         "unit": ""
     },
     {
+        "id": "50613c29969588a5",
+        "type": "shared-state",
+        "name": "masterLightsOff",
+        "lbl": "Master Lights Off",
+        "tags": "",
+        "historyCount": "0",
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": ""
+    },
+    {
         "id": "ee6f66f1.a3f1d",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -10812,8 +10828,9 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Repeat turn downs until 0",
-        "func": "console.debug(\"Processing fade out for \" + msg.playerName)\n\n// Is sleep music still playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType != \"sleep\") {\n    console.debug(\"Canceling fade out for \" + msg.playerName)\n    // Bail out completely because not sleep anymore\n    return [null, null]\n}\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume > msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade out for \" + msg.playerName)\n    // If the volume is greater than what was last set, assume someone\n    // is fighting the system trying to keep the volume up\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            participant.volume = current_volume\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n\n    console.debug(\"Terminating fade out for \" + msg.playerName)\n    return [msg, null]\n}\n\n// What is the volume supposed to be?\nvar desired_volume = 0\n\n// If we haven't gotten down to the desired volume\nif (current_volume > desired_volume) {\n    console.debug(\"Still need to turn down \" + msg.playerName)\n    currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            console.debug(\"Found volume config for \" + msg.playerName)\n            participant.volume = current_volume\n            // Reduce its volume by 1\n            participant.volume--;\n            msg.last_volume_set = participant.volume\n            console.debug(\"Adjusted volume config for \" + msg.playerName)\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n    \n    // Set the delay for the next turn down to be greater if volume is lower\n    msg.delay = (60 - current_volume) * 1000\n    console.debug(\"Sending turn down messages for \" + msg.playerName)\n    return [msg, msg]\n}\nconsole.debug(\"Completed fade out for \" + msg.playerName)\n// We're done, everything is as it should be",
+        "func": "console.debug(\"Processing fade out for \" + msg.playerName)\n\n// Is master light still on?\nvar isMasterLightOff = global.get(\"state\").isMasterLightOff.value\nif (isMasterLightOff) {\n    console.debug(\"Master light turned off; abort!\")\n    return [null, null]\n}\n\n// Is sleep music still playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType != \"sleep\") {\n    console.debug(\"Canceling fade out for \" + msg.playerName)\n    // Bail out completely because not sleep anymore\n    return [null, null]\n}\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume > msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade out for \" + msg.playerName)\n    // If the volume is greater than what was last set, assume someone\n    // is fighting the system trying to keep the volume up\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            participant.volume = current_volume\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n\n    console.debug(\"Terminating fade out for \" + msg.playerName)\n    return [msg, null]\n}\n\n// What is the volume supposed to be?\nvar desired_volume = 0\n\n// If we haven't gotten down to the desired volume\nif (current_volume > desired_volume) {\n    console.debug(\"Still need to turn down \" + msg.playerName)\n    currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            console.debug(\"Found volume config for \" + msg.playerName)\n            participant.volume = current_volume\n            // Reduce its volume by 1\n            participant.volume--;\n            msg.last_volume_set = participant.volume\n            console.debug(\"Adjusted volume config for \" + msg.playerName)\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n    \n    // Set the delay for the next turn down to be greater if volume is lower\n    msg.delay = (60 - current_volume) * 1000\n    console.debug(\"Sending turn down messages for \" + msg.playerName)\n    return [msg, msg]\n}\nconsole.debug(\"Completed fade out for \" + msg.playerName)\n// We're done, everything is as it should be",
         "outputs": 2,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -11099,8 +11116,9 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Ensure master is home and asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nreturn msg;",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\n// Is master light still on?\nvar isMasterLightOff = global.get(\"state\").isMasterLightOff.value\nif (isMasterLightOff) {\n    console.debug(\"Master light turned off; abort!\")\n    return null\n}\n\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -11225,6 +11243,168 @@
         "wires": [
             [
                 "ca6d0e931ce891e2"
+            ]
+        ]
+    },
+    {
+        "id": "dcd4c0c7fc94cfc3",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "50613c29969588a5",
+        "name": "Master Lights Off",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 570,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "0e047d1f7a9084e6",
+        "type": "server-state-changed",
+        "z": "95cf961539320dd3",
+        "name": "Master Bedroom Lights Off",
+        "server": "3ec50562615a9f50",
+        "version": 5,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entityId": "light.master_bedroom",
+        "entityIdType": "exact",
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 780,
+        "wires": [
+            [
+                "f7759613c21fcde5"
+            ],
+            [
+                "fe739b9a0665932d"
+            ]
+        ]
+    },
+    {
+        "id": "77a7cc78dea4aec9",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "info": "",
+        "x": 100,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "81d3079d50bf1c36",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1200,
+        "y": 340,
+        "wires": [
+            [
+                "e7c8f97a56f5e10c"
+            ]
+        ]
+    },
+    {
+        "id": "f7759613c21fcde5",
+        "type": "change",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 760,
+        "wires": [
+            [
+                "dcd4c0c7fc94cfc3"
+            ]
+        ]
+    },
+    {
+        "id": "fe739b9a0665932d",
+        "type": "change",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 800,
+        "wires": [
+            [
+                "dcd4c0c7fc94cfc3"
             ]
         ]
     },
