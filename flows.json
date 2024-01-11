@@ -11116,7 +11116,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Ensure master is home and asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\n// Is master light still on?\nvar isMasterLightOff = global.get(\"state\").isMasterLightOff.value\nif (isMasterLightOff) {\n    console.debug(\"Master light turned off; abort!\")\n    return null\n}\n\nreturn msg;",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\n// Is master light still on?\nvar isMasterLightsOff = global.get(\"state\").isMasterLightsOff.value\nif (isMasterLightsOff) {\n    console.debug(\"Master light turned off; abort!\")\n    return null\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
