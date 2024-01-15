@@ -2951,7 +2951,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1370,
+        "x": 890,
         "y": 340,
         "wires": []
     },
@@ -2959,7 +2959,7 @@
         "id": "7939e475c30ab6f5",
         "type": "inject",
         "z": "634c78c80eb9f37e",
-        "name": "Manually set to Night",
+        "name": "Manually set to Winddown",
         "props": [
             {
                 "p": "payload"
@@ -2970,13 +2970,13 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "night",
+        "payload": "winddown",
         "payloadType": "str",
-        "x": 1200,
-        "y": 400,
+        "x": 150,
+        "y": 580,
         "wires": [
             [
-                "09657a19ee07783e"
+                "cec5fcf493bb58c1"
             ]
         ]
     },
@@ -2997,11 +2997,11 @@
         "topic": "",
         "payload": "dusk",
         "payloadType": "str",
-        "x": 940,
-        "y": 400,
+        "x": 140,
+        "y": 540,
         "wires": [
             [
-                "09657a19ee07783e"
+                "cec5fcf493bb58c1"
             ]
         ]
     },
@@ -3022,11 +3022,11 @@
         "topic": "",
         "payload": "sunset",
         "payloadType": "str",
-        "x": 680,
-        "y": 400,
+        "x": 140,
+        "y": 500,
         "wires": [
             [
-                "09657a19ee07783e"
+                "cec5fcf493bb58c1"
             ]
         ]
     },
@@ -3066,11 +3066,11 @@
         "topic": "",
         "payload": "day",
         "payloadType": "str",
-        "x": 430,
-        "y": 400,
+        "x": 130,
+        "y": 460,
         "wires": [
             [
-                "09657a19ee07783e"
+                "cec5fcf493bb58c1"
             ]
         ]
     },
@@ -3087,7 +3087,8 @@
         "wires": [
             [
                 "f826979d9173e4f6"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -3107,11 +3108,11 @@
         "topic": "",
         "payload": "morning",
         "payloadType": "str",
-        "x": 160,
-        "y": 400,
+        "x": 140,
+        "y": 420,
         "wires": [
             [
-                "09657a19ee07783e"
+                "cec5fcf493bb58c1"
             ]
         ]
     },
@@ -3158,7 +3159,7 @@
         "name": "Reset mechanism available through Homekit",
         "info": "",
         "x": 210,
-        "y": 640,
+        "y": 700,
         "wires": []
     },
     {
@@ -3205,7 +3206,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 130,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "45230be763c062ae"
@@ -3223,7 +3224,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 850,
-        "y": 680,
+        "y": 740,
         "wires": []
     },
     {
@@ -3246,7 +3247,7 @@
         "to": "",
         "reg": false,
         "x": 310,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "fc6d53171a0a2eef"
@@ -3280,7 +3281,7 @@
         "to": "",
         "reg": false,
         "x": 300,
-        "y": 740,
+        "y": 800,
         "wires": [
             [
                 "1b9873d4c1d781ca"
@@ -3305,7 +3306,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 680,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "aa9dca0548480ae1"
@@ -3334,7 +3335,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 740,
+        "y": 800,
         "wires": [
             [
                 "392367f1059edf8f"
@@ -3347,8 +3348,8 @@
         "z": "634c78c80eb9f37e",
         "name": "Home day phase, largely based on sun event",
         "info": "",
-        "x": 210,
-        "y": 480,
+        "x": 490,
+        "y": 520,
         "wires": [],
         "icon": "font-awesome/fa-question-circle"
     },
@@ -3359,8 +3360,8 @@
         "state": "174c278f.609ec8",
         "name": "Sun Event",
         "triggerOnInit": true,
-        "x": 100,
-        "y": 520,
+        "x": 380,
+        "y": 560,
         "wires": [
             [
                 "6acc06089b237d56"
@@ -3378,8 +3379,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 170,
-        "y": 580,
+        "x": 450,
+        "y": 620,
         "wires": [
             [
                 "6acc06089b237d56"
@@ -3397,8 +3398,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 520,
+        "x": 700,
+        "y": 560,
         "wires": [
             [
                 "cec5fcf493bb58c1"
@@ -3415,7 +3416,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 610,
-        "y": 520,
+        "y": 420,
         "wires": []
     },
     {
@@ -3436,7 +3437,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 500,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "05dc4cb847d1d054",
@@ -3544,6 +3545,31 @@
         "wires": [
             [
                 "03d49e6e6a6a882d"
+            ]
+        ]
+    },
+    {
+        "id": "497ec41233eeac9c",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "Manually set to Night",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "night",
+        "payloadType": "str",
+        "x": 140,
+        "y": 620,
+        "wires": [
+            [
+                "cec5fcf493bb58c1"
             ]
         ]
     },
@@ -4399,8 +4425,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1730,
-        "y": 220,
+        "x": 1770,
+        "y": 280,
         "wires": [
             [
                 "d13c1bcbd1548e82"
@@ -4418,8 +4444,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1290,
-        "y": 220,
+        "x": 1330,
+        "y": 280,
         "wires": [
             [
                 "1e0d8022cef2ed62"
@@ -4443,8 +4469,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1530,
-        "y": 220,
+        "x": 1570,
+        "y": 280,
         "wires": [
             [
                 "7935909ef8708c2f"
@@ -4855,12 +4881,7 @@
         "y": 220,
         "wires": [
             [
-                "c81034bf2843ebc6",
-                "db2d8c82785df7b4",
-                "bab582a44090fd16",
-                "7753f747909284c6",
-                "b1cfafb2bd2bd19f",
-                "b1b49ef0c57b3e81"
+                "cb5e9ad34e76e9ce"
             ]
         ]
     },
@@ -4928,8 +4949,8 @@
         "links": [
             "9d79d6cd3f994b75"
         ],
-        "x": 1425,
-        "y": 340,
+        "x": 1465,
+        "y": 400,
         "wires": []
     },
     {
@@ -4943,8 +4964,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1350,
-        "y": 280,
+        "x": 1390,
+        "y": 340,
         "wires": [
             [
                 "d7eb8a42c01b70f0"
@@ -4970,8 +4991,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1750,
-        "y": 280,
+        "x": 1790,
+        "y": 340,
         "wires": [
             []
         ]
@@ -4991,7 +5012,7 @@
         "y": 180,
         "wires": [
             [
-                "c81034bf2843ebc6"
+                "cb5e9ad34e76e9ce"
             ]
         ]
     },
@@ -5012,8 +5033,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1580,
-        "y": 280,
+        "x": 1620,
+        "y": 340,
         "wires": [
             [
                 "f0aaaedb87db2709"
@@ -5303,8 +5324,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 420,
+        "x": 1300,
+        "y": 480,
         "wires": [
             [
                 "80b69f2b1e048b8d"
@@ -5322,8 +5343,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1250,
-        "y": 460,
+        "x": 1290,
+        "y": 520,
         "wires": [
             [
                 "529e7ec5c577e8a3",
@@ -5344,12 +5365,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1270,
-        "y": 500,
+        "x": 1310,
+        "y": 560,
         "wires": [
             [
-                "205c08e95dbca68c",
-                "eef377dbfc7cea0a"
+                "205c08e95dbca68c"
             ]
         ]
     },
@@ -5374,10 +5394,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1490,
-        "y": 420,
+        "x": 1530,
+        "y": 480,
         "wires": [
-            []
+            [
+                "186f08f43f5df8cb"
+            ]
         ]
     },
     {
@@ -5401,10 +5423,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1510,
-        "y": 460,
+        "x": 1550,
+        "y": 520,
         "wires": [
-            []
+            [
+                "8322a07bebf93f56"
+            ]
         ]
     },
     {
@@ -5428,10 +5452,13 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1490,
-        "y": 500,
+        "x": 1530,
+        "y": 580,
         "wires": [
-            []
+            [
+                "eef377dbfc7cea0a",
+                "8322a07bebf93f56"
+            ]
         ]
     },
     {
@@ -5443,8 +5470,8 @@
         "virtualenv": "/data/pythonvenv/pybravia/venv",
         "continuous": false,
         "stdInData": false,
-        "x": 1750,
-        "y": 500,
+        "x": 1790,
+        "y": 580,
         "wires": [
             []
         ]
@@ -5458,8 +5485,8 @@
         "virtualenv": "/data/pythonvenv/pybravia/venv",
         "continuous": false,
         "stdInData": false,
-        "x": 1790,
-        "y": 460,
+        "x": 1830,
+        "y": 520,
         "wires": [
             []
         ]
@@ -5476,8 +5503,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
-        "y": 340,
+        "x": 1300,
+        "y": 400,
         "wires": [
             [
                 "b47a5d8324f29a71",
@@ -5497,8 +5524,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1250,
-        "y": 380,
+        "x": 1290,
+        "y": 440,
         "wires": [
             [
                 "186f08f43f5df8cb"
@@ -5514,8 +5541,8 @@
         "virtualenv": "/data/pythonvenv/pybravia/venv",
         "continuous": false,
         "stdInData": false,
-        "x": 1710,
-        "y": 380,
+        "x": 1750,
+        "y": 440,
         "wires": [
             []
         ]
@@ -5537,11 +5564,92 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1520,
-        "y": 380,
+        "x": 1560,
+        "y": 440,
         "wires": [
             [
-                "ebe5066a577884aa"
+                "ebe5066a577884aa",
+                "8322a07bebf93f56"
+            ]
+        ]
+    },
+    {
+        "id": "471118ec3815948a",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "If night",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"night\") {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1290,
+        "y": 600,
+        "wires": [
+            [
+                "205c08e95dbca68c"
+            ]
+        ]
+    },
+    {
+        "id": "8322a07bebf93f56",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1800,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d021b8107e548b90",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "cb5e9ad34e76e9ce",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Mixer",
+        "rules": [],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 280,
+        "wires": [
+            [
+                "d021b8107e548b90",
+                "c81034bf2843ebc6",
+                "db2d8c82785df7b4",
+                "bab582a44090fd16",
+                "7753f747909284c6",
+                "b1cfafb2bd2bd19f",
+                "b1b49ef0c57b3e81",
+                "471118ec3815948a"
             ]
         ]
     },
