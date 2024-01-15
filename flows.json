@@ -4249,11 +4249,7 @@
         "y": 220,
         "wires": [
             [
-                "1ee8dd5329aad550",
-                "f9cd25793f40ac96",
-                "7753f747909284c6",
-                "b1cfafb2bd2bd19f",
-                "b1b49ef0c57b3e81"
+                "1ee8dd5329aad550"
             ]
         ]
     },
@@ -4541,7 +4537,7 @@
         ],
         "queue": "none",
         "x": 980,
-        "y": 460,
+        "y": 480,
         "wires": [
             []
         ]
@@ -4583,7 +4579,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 770,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "d4e0576749b87d16",
@@ -4859,7 +4855,12 @@
         "y": 220,
         "wires": [
             [
-                "c81034bf2843ebc6"
+                "c81034bf2843ebc6",
+                "db2d8c82785df7b4",
+                "bab582a44090fd16",
+                "7753f747909284c6",
+                "b1cfafb2bd2bd19f",
+                "b1b49ef0c57b3e81"
             ]
         ]
     },
@@ -4919,25 +4920,6 @@
         ]
     },
     {
-        "id": "f9cd25793f40ac96",
-        "type": "function",
-        "z": "16cd74edb3f2c03d",
-        "name": "If morning or dusk",
-        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"morning\" || dayPhase == \"dusk\") {\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 990,
-        "y": 260,
-        "wires": [
-            [
-                "b47a5d8324f29a71"
-            ]
-        ]
-    },
-    {
         "id": "b47a5d8324f29a71",
         "type": "link out",
         "z": "16cd74edb3f2c03d",
@@ -4946,8 +4928,8 @@
         "links": [
             "9d79d6cd3f994b75"
         ],
-        "x": 1135,
-        "y": 260,
+        "x": 1425,
+        "y": 340,
         "wires": []
     },
     {
@@ -4962,7 +4944,7 @@
         "finalize": "",
         "libs": [],
         "x": 1350,
-        "y": 460,
+        "y": 280,
         "wires": [
             [
                 "d7eb8a42c01b70f0"
@@ -4989,7 +4971,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1750,
-        "y": 460,
+        "y": 280,
         "wires": [
             []
         ]
@@ -5031,7 +5013,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1580,
-        "y": 460,
+        "y": 280,
         "wires": [
             [
                 "f0aaaedb87db2709"
@@ -5075,7 +5057,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 990,
-        "y": 520,
+        "y": 540,
         "wires": [
             []
         ]
@@ -5321,8 +5303,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 960,
-        "y": 300,
+        "x": 1260,
+        "y": 420,
         "wires": [
             [
                 "80b69f2b1e048b8d"
@@ -5340,11 +5322,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 950,
-        "y": 340,
+        "x": 1250,
+        "y": 460,
         "wires": [
             [
-                "529e7ec5c577e8a3"
+                "529e7ec5c577e8a3",
+                "2dc0a26d5e093a32",
+                "b47a5d8324f29a71",
+                "186f08f43f5df8cb"
             ]
         ]
     },
@@ -5359,11 +5344,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 970,
-        "y": 380,
+        "x": 1270,
+        "y": 500,
         "wires": [
             [
-                "205c08e95dbca68c"
+                "205c08e95dbca68c",
+                "eef377dbfc7cea0a"
             ]
         ]
     },
@@ -5388,8 +5374,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1190,
-        "y": 300,
+        "x": 1490,
+        "y": 420,
         "wires": [
             []
         ]
@@ -5415,8 +5401,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1210,
-        "y": 340,
+        "x": 1510,
+        "y": 460,
         "wires": [
             []
         ]
@@ -5442,10 +5428,121 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1190,
+        "x": 1490,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eef377dbfc7cea0a",
+        "type": "pythonshell in",
+        "z": "16cd74edb3f2c03d",
+        "name": "Min TV Brightness",
+        "pyfile": "/data/pythonvenv/pybravia/min_brightness.py",
+        "virtualenv": "/data/pythonvenv/pybravia/venv",
+        "continuous": false,
+        "stdInData": false,
+        "x": 1750,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2dc0a26d5e093a32",
+        "type": "pythonshell in",
+        "z": "16cd74edb3f2c03d",
+        "name": "Mid TV Brightness",
+        "pyfile": "/data/pythonvenv/pybravia/mid_brightness.py",
+        "virtualenv": "/data/pythonvenv/pybravia/venv",
+        "continuous": false,
+        "stdInData": false,
+        "x": 1790,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db2d8c82785df7b4",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "If morning",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"morning\") {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 340,
+        "wires": [
+            [
+                "b47a5d8324f29a71",
+                "186f08f43f5df8cb"
+            ]
+        ]
+    },
+    {
+        "id": "bab582a44090fd16",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "If day",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"day\") {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 380,
+        "wires": [
+            [
+                "186f08f43f5df8cb"
+            ]
+        ]
+    },
+    {
+        "id": "ebe5066a577884aa",
+        "type": "pythonshell in",
+        "z": "16cd74edb3f2c03d",
+        "name": "High TV Brightness",
+        "pyfile": "/data/pythonvenv/pybravia/max_brightness.py",
+        "virtualenv": "/data/pythonvenv/pybravia/venv",
+        "continuous": false,
+        "stdInData": false,
+        "x": 1710,
         "y": 380,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "186f08f43f5df8cb",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1520,
+        "y": 380,
+        "wires": [
+            [
+                "ebe5066a577884aa"
+            ]
         ]
     },
     {
