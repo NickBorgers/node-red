@@ -1287,6 +1287,7 @@
         "state": "99455ccf.2c8498",
         "name": "Caroline Home",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 160,
         "y": 300,
         "wires": [
@@ -1302,6 +1303,7 @@
         "state": "e3cb7570.0dbb48",
         "name": "Nick Home",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 140,
         "y": 360,
         "wires": [
@@ -1514,6 +1516,7 @@
         "state": "99455ccf.2c8498",
         "name": "Caroline Home",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 160,
         "y": 200,
         "wires": [
@@ -1556,6 +1559,7 @@
         "state": "e3cb7570.0dbb48",
         "name": "Nick Home",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 140,
         "y": 140,
         "wires": [
@@ -1598,6 +1602,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 520,
         "wires": [
@@ -1819,6 +1824,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 780,
         "wires": [
@@ -1834,6 +1840,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 840,
         "wires": [
@@ -1959,6 +1966,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 660,
         "wires": [
@@ -2146,6 +2154,7 @@
         "state": "a5ea3d0a7df352b2",
         "name": "Have Guests?",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 1210,
         "y": 660,
         "wires": [
@@ -2223,6 +2232,7 @@
         "state": "8c8dbb69a0c4c67f",
         "name": "Is Master Bedroom Door Open?",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 1290,
         "y": 280,
         "wires": [
@@ -2251,6 +2261,7 @@
         "state": "3e3052d11dc41010",
         "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 1290,
         "y": 340,
         "wires": [
@@ -2279,6 +2290,7 @@
         "state": "a5ea3d0a7df352b2",
         "name": "Have Guests?",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 830,
         "y": 820,
         "wires": [
@@ -2561,6 +2573,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 830,
         "y": 880,
         "wires": [
@@ -2689,6 +2702,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 830,
         "y": 940,
         "wires": [
@@ -2717,6 +2731,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 900,
         "wires": [
@@ -2732,6 +2747,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 960,
         "wires": [
@@ -3360,6 +3376,7 @@
         "state": "174c278f.609ec8",
         "name": "Sun Event",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 380,
         "y": 560,
         "wires": [
@@ -4252,6 +4269,7 @@
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 130,
         "y": 180,
         "wires": [
@@ -4286,6 +4304,7 @@
         "state": "efc87f0de00a2d36",
         "name": "Day Phase",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 120,
         "y": 120,
         "wires": [
@@ -4301,6 +4320,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 130,
         "y": 360,
         "wires": [
@@ -4326,6 +4346,7 @@
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 110,
         "y": 580,
         "wires": [
@@ -4366,6 +4387,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 130,
         "y": 420,
         "wires": [
@@ -4381,6 +4403,7 @@
         "state": "60c1725bc2519ee0",
         "name": "Everyone Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 140,
         "y": 300,
         "wires": [
@@ -4396,6 +4419,7 @@
         "state": "3d96ef25996d1dd1",
         "name": "Reset",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 110,
         "y": 480,
         "wires": [
@@ -5048,6 +5072,7 @@
         "state": "a5ea3d0a7df352b2",
         "name": "Have Guests?",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 130,
         "y": 240,
         "wires": [
@@ -5927,6 +5952,7 @@
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 140,
         "y": 80,
         "wires": [
@@ -5954,6 +5980,7 @@
         "state": "efc87f0de00a2d36",
         "name": "Day Phase",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 1400,
         "y": 1040,
         "wires": [
@@ -5996,6 +6023,7 @@
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 1410,
         "y": 1100,
         "wires": [
@@ -6031,6 +6059,7 @@
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 90,
         "y": 920,
         "wires": [
@@ -6543,6 +6572,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 110,
         "y": 520,
         "wires": [
@@ -6558,6 +6588,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 110,
         "y": 580,
         "wires": [
@@ -6889,6 +6920,7 @@
         "state": "3d96ef25996d1dd1",
         "name": "Reset",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 90,
         "y": 220,
         "wires": [
@@ -6905,6 +6937,7 @@
         "state": "26ccc92b36b23b99",
         "name": "Anyone Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 1420,
         "y": 1220,
         "wires": [
@@ -6920,6 +6953,7 @@
         "state": "d9abb6b3441e0c2a",
         "name": "Is TV Playing?",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 110,
         "y": 640,
         "wires": [
@@ -7237,6 +7271,7 @@
         "state": "3e3052d11dc41010",
         "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 170,
         "y": 700,
         "wires": [
@@ -7534,6 +7569,7 @@
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 1420,
         "y": 880,
         "wires": [
@@ -8793,6 +8829,7 @@
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 110,
         "y": 320,
         "wires": [
@@ -8994,6 +9031,7 @@
         "state": "60c1725bc2519ee0",
         "name": "Everyone Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 100,
         "y": 420,
         "wires": [
@@ -9774,6 +9812,7 @@
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 90,
         "y": 540,
         "wires": [
@@ -9789,6 +9828,7 @@
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 90,
         "y": 600,
         "wires": [
@@ -9804,6 +9844,7 @@
         "state": "3e3052d11dc41010",
         "name": "Is Guest Bedroom Door Open?",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 150,
         "y": 660,
         "wires": [
@@ -9948,6 +9989,7 @@
         "state": "efc87f0de00a2d36",
         "name": "Day Phase",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 500,
         "y": 720,
         "wires": [
@@ -11592,7 +11634,8 @@
         "z": "9e0490d1fc323107",
         "state": "99455ccf.2c8498",
         "name": "Caroline Home",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 160,
         "y": 80,
         "wires": [
@@ -11607,7 +11650,8 @@
         "z": "9e0490d1fc323107",
         "state": "b74697c734ad5557",
         "name": "Currently Playing Music",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 180,
         "y": 160,
         "wires": [
@@ -11622,7 +11666,8 @@
         "z": "9e0490d1fc323107",
         "state": "60c1725bc2519ee0",
         "name": "Everyone Asleep",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 160,
         "y": 240,
         "wires": [
@@ -11637,7 +11682,8 @@
         "z": "9e0490d1fc323107",
         "state": "156ccde543ba4845",
         "name": "Guest Asleep",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 280,
         "wires": [
@@ -11652,7 +11698,8 @@
         "z": "9e0490d1fc323107",
         "state": "a5ea3d0a7df352b2",
         "name": "Have Guests?",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 320,
         "wires": [
@@ -11667,7 +11714,8 @@
         "z": "9e0490d1fc323107",
         "state": "86b433f8beadaac5",
         "name": "Hue Config",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 360,
         "wires": [
@@ -11682,7 +11730,8 @@
         "z": "9e0490d1fc323107",
         "state": "3e3052d11dc41010",
         "name": "Is Guest Bedroom Door Open?",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 210,
         "y": 400,
         "wires": [
@@ -11697,7 +11746,8 @@
         "z": "9e0490d1fc323107",
         "state": "8c8dbb69a0c4c67f",
         "name": "Is Master Bedroom Door Open?",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 210,
         "y": 440,
         "wires": [
@@ -11712,7 +11762,8 @@
         "z": "9e0490d1fc323107",
         "state": "efc87f0de00a2d36",
         "name": "Day Phase",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 140,
         "y": 200,
         "wires": [
@@ -11727,7 +11778,8 @@
         "z": "9e0490d1fc323107",
         "state": "9784d6c488d7a77e",
         "name": "Is TV On?",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 140,
         "y": 480,
         "wires": [
@@ -11742,7 +11794,8 @@
         "z": "9e0490d1fc323107",
         "state": "d9abb6b3441e0c2a",
         "name": "Is TV Playing?",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 520,
         "wires": [
@@ -11776,7 +11829,8 @@
         "z": "9e0490d1fc323107",
         "state": "e498a23d75394b05",
         "name": "Last Vaccuming Timestamp",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 200,
         "y": 560,
         "wires": [
@@ -11791,7 +11845,8 @@
         "z": "9e0490d1fc323107",
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 600,
         "wires": [
@@ -11806,7 +11861,8 @@
         "z": "9e0490d1fc323107",
         "state": "e4f5bf03444063a0",
         "name": "Music Config",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 150,
         "y": 640,
         "wires": [
@@ -11821,7 +11877,8 @@
         "z": "9e0490d1fc323107",
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 180,
         "y": 680,
         "wires": [
@@ -11836,7 +11893,8 @@
         "z": "9e0490d1fc323107",
         "state": "659fd61043193a4d",
         "name": "Music Playlist Numbers",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 180,
         "y": 720,
         "wires": [
@@ -11851,7 +11909,8 @@
         "z": "9e0490d1fc323107",
         "state": "e3cb7570.0dbb48",
         "name": "Nick Home",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 140,
         "y": 760,
         "wires": [
@@ -11866,7 +11925,8 @@
         "z": "9e0490d1fc323107",
         "state": "3d96ef25996d1dd1",
         "name": "Reset",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 130,
         "y": 800,
         "wires": [
@@ -11881,7 +11941,8 @@
         "z": "9e0490d1fc323107",
         "state": "f4fbefedb919c3c1",
         "name": "Schedule",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 140,
         "y": 840,
         "wires": [
@@ -11896,7 +11957,8 @@
         "z": "9e0490d1fc323107",
         "state": "174c278f.609ec8",
         "name": "Sun Event",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 140,
         "y": 880,
         "wires": [
@@ -11911,7 +11973,8 @@
         "z": "9e0490d1fc323107",
         "state": "611761b9dd5c9c4c",
         "name": "Climate Config",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 160,
         "y": 120,
         "wires": [
@@ -11926,7 +11989,8 @@
         "z": "9e0490d1fc323107",
         "state": "1ce72a9fb27d8577",
         "name": "Is Humdifier On?",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 380,
         "y": 80,
         "wires": [
@@ -11941,7 +12005,8 @@
         "z": "9e0490d1fc323107",
         "state": "26ccc92b36b23b99",
         "name": "Anyone Asleep",
-        "triggerOnInit": false,
+        "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 380,
         "y": 120,
         "wires": [
@@ -11957,6 +12022,7 @@
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 120,
         "y": 80,
         "wires": [
@@ -12056,6 +12122,7 @@
         "state": "99455ccf.2c8498",
         "name": "Caroline Home",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 100,
         "y": 300,
         "wires": [
@@ -12143,6 +12210,7 @@
         "state": "b7959b8b695cb2e3",
         "name": "Current Climate",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 100,
         "y": 460,
         "wires": [
@@ -12158,6 +12226,7 @@
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 90,
         "y": 520,
         "wires": [
@@ -12474,6 +12543,7 @@
         "state": "60c1725bc2519ee0",
         "name": "Everyone Asleep",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 100,
         "y": 360,
         "wires": [
@@ -13846,6 +13916,7 @@
         "state": "3d96ef25996d1dd1",
         "name": "Reset",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 70,
         "y": 620,
         "wires": [
@@ -15807,7 +15878,8 @@
         "z": "0d2150a703bedcd6",
         "state": "e3cb7570.0dbb48",
         "name": "Nick Home",
-        "triggerOnInit": true,
+        "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 100,
         "y": 60,
         "wires": [
@@ -16022,6 +16094,7 @@
         "state": "8c211e55da1f4c7f",
         "name": "Music Playback Type",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 140,
         "y": 320,
         "wires": [
@@ -16919,6 +16992,7 @@
         "state": "9784d6c488d7a77e",
         "name": "Is TV On?",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "x": 680,
         "y": 460,
         "wires": [
@@ -16991,6 +17065,7 @@
         "state": "9784d6c488d7a77e",
         "name": "Is TV On?",
         "triggerOnInit": false,
+        "triggerOnChange": true,
         "x": 100,
         "y": 460,
         "wires": [
