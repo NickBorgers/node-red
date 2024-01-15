@@ -3,14 +3,14 @@
     "description": "A Node-RED Project",
     "version": "0.0.1",
     "dependencies": {
-        "node-red": "3.0.2",
-        "node-red-contrib-home-assistant-websocket": "~0.62.2",
-        "node-red-contrib-homekit-bridged": "~1.4.3",
-        "node-red-contrib-log-elk": "~1.2.4",
+        "node-red-contrib-home-assistant-websocket": "~0.62.3",
+        "node-red-contrib-homekit-bridged": "~1.6.0",
+        "node-red-contrib-log-elk": "~1.2.8",
+        "node-red-contrib-pythonshell": "~1.5.4",
         "node-red-contrib-sonos-plus": "~6.7.3",
-        "node-red-contrib-state": "~1.5.1",
-        "node-red-contrib-sunevents": "~3.0.3",
-        "node-red-contrib-tts-ultimate": "~1.0.52"
+        "node-red-contrib-state": "~1.6.1",
+        "node-red-contrib-sunevents": "~3.1.1",
+        "node-red-contrib-tts-ultimate": "~2.0.5"
     },
     "node-red": {
         "settings": {
