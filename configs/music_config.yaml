@@ -248,7 +248,7 @@ music:
         default_volume: 40
         leave_muted_if:
           - variable: isMasterAsleep
-            value: true
+            value: false
       - player_name: "Living Room"
         default_volume: 20
         leave_muted_if:
@@ -258,12 +258,12 @@ music:
         default_volume: 35
         leave_muted_if:
           - variable: isMasterAsleep
-            value: true
+            value: false
       - player_name: "Master Bedroom"
         default_volume: 38
         leave_muted_if:
           - variable: isMasterAsleep
-            value: true
+            value: false
       - player_name: "Guest Bathroom"
         default_volume: 30
         leave_muted_if:
