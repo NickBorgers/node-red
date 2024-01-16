@@ -5373,9 +5373,7 @@
         "wires": [
             [
                 "529e7ec5c577e8a3",
-                "2dc0a26d5e093a32",
-                "b47a5d8324f29a71",
-                "186f08f43f5df8cb"
+                "b47a5d8324f29a71"
             ]
         ]
     },
@@ -5422,9 +5420,7 @@
         "x": 1530,
         "y": 480,
         "wires": [
-            [
-                "186f08f43f5df8cb"
-            ]
+            []
         ]
     },
     {
@@ -5478,38 +5474,6 @@
         "x": 1530,
         "y": 580,
         "wires": [
-            [
-                "eef377dbfc7cea0a"
-            ]
-        ]
-    },
-    {
-        "id": "eef377dbfc7cea0a",
-        "type": "pythonshell in",
-        "z": "16cd74edb3f2c03d",
-        "name": "Min TV Brightness",
-        "pyfile": "/data/pythonvenv/pybravia/min_brightness.py",
-        "virtualenv": "/data/pythonvenv/pybravia/venv",
-        "continuous": false,
-        "stdInData": false,
-        "x": 1790,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "2dc0a26d5e093a32",
-        "type": "pythonshell in",
-        "z": "16cd74edb3f2c03d",
-        "name": "Mid TV Brightness",
-        "pyfile": "/data/pythonvenv/pybravia/mid_brightness.py",
-        "virtualenv": "/data/pythonvenv/pybravia/venv",
-        "continuous": false,
-        "stdInData": false,
-        "x": 1830,
-        "y": 520,
-        "wires": [
             []
         ]
     },
@@ -5529,8 +5493,7 @@
         "y": 400,
         "wires": [
             [
-                "b47a5d8324f29a71",
-                "186f08f43f5df8cb"
+                "b47a5d8324f29a71"
             ]
         ]
     },
@@ -5549,49 +5512,7 @@
         "x": 1290,
         "y": 440,
         "wires": [
-            [
-                "186f08f43f5df8cb"
-            ]
-        ]
-    },
-    {
-        "id": "ebe5066a577884aa",
-        "type": "pythonshell in",
-        "z": "16cd74edb3f2c03d",
-        "name": "High TV Brightness",
-        "pyfile": "/data/pythonvenv/pybravia/max_brightness.py",
-        "virtualenv": "/data/pythonvenv/pybravia/venv",
-        "continuous": false,
-        "stdInData": false,
-        "x": 1750,
-        "y": 440,
-        "wires": [
             []
-        ]
-    },
-    {
-        "id": "186f08f43f5df8cb",
-        "type": "delay",
-        "z": "16cd74edb3f2c03d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1560,
-        "y": 440,
-        "wires": [
-            [
-                "ebe5066a577884aa"
-            ]
         ]
     },
     {
@@ -16827,8 +16748,8 @@
         "z": "164999f348401406",
         "name": "Force TV to use soundbar b/c TV is dumb and picks the wrong one every time",
         "info": "",
-        "x": 310,
-        "y": 420,
+        "x": 870,
+        "y": 740,
         "wires": []
     },
     {
@@ -17067,7 +16988,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 100,
-        "y": 460,
+        "y": 780,
         "wires": [
             [
                 "7c0965a153bce37d"
@@ -17104,8 +17025,8 @@
             }
         ],
         "queue": "none",
-        "x": 300,
-        "y": 520,
+        "x": 860,
+        "y": 780,
         "wires": [
             []
         ]
@@ -17119,8 +17040,8 @@
             "645726f28db704e6"
         ],
         "uncaught": false,
-        "x": 490,
-        "y": 520,
+        "x": 1050,
+        "y": 780,
         "wires": [
             []
         ]
@@ -17219,10 +17140,11 @@
         "finalize": "",
         "libs": [],
         "x": 290,
-        "y": 460,
+        "y": 780,
         "wires": [
             [
-                "4055c81fd7da87eb"
+                "4055c81fd7da87eb",
+                "4d2029fb32a45055"
             ]
         ]
     },
@@ -17238,7 +17160,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 460,
+        "y": 780,
         "wires": [
             [
                 "9d85e338bb7616e4"
@@ -17262,8 +17184,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 120,
-        "y": 520,
+        "x": 680,
+        "y": 780,
         "wires": [
             [
                 "645726f28db704e6"
@@ -17282,5 +17204,224 @@
         "x": 1020,
         "y": 520,
         "wires": []
+    },
+    {
+        "id": "e0af77ac35cce120",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "If sunset",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"sunset\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 940,
+        "wires": [
+            [
+                "99b9ef0d3f0d81be"
+            ]
+        ]
+    },
+    {
+        "id": "0a17c0c951958cfd",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "If dusk",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"dusk\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 980,
+        "wires": [
+            [
+                "3d0c5a13411d2035"
+            ]
+        ]
+    },
+    {
+        "id": "d709cf9c8ea857ab",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "If winddown",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"winddown\") {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1020,
+        "wires": [
+            [
+                "2277fe9e3535e6ed"
+            ]
+        ]
+    },
+    {
+        "id": "2277fe9e3535e6ed",
+        "type": "pythonshell in",
+        "z": "164999f348401406",
+        "name": "Min TV Brightness",
+        "pyfile": "/data/pythonvenv/pybravia/min_brightness.py",
+        "virtualenv": "/data/pythonvenv/pybravia/venv",
+        "continuous": false,
+        "stdInData": false,
+        "x": 550,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d0c5a13411d2035",
+        "type": "pythonshell in",
+        "z": "164999f348401406",
+        "name": "Mid TV Brightness",
+        "pyfile": "/data/pythonvenv/pybravia/mid_brightness.py",
+        "virtualenv": "/data/pythonvenv/pybravia/venv",
+        "continuous": false,
+        "stdInData": false,
+        "x": 550,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c07a12d630fd3111",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "If morning",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"morning\") {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 860,
+        "wires": [
+            [
+                "99b9ef0d3f0d81be"
+            ]
+        ]
+    },
+    {
+        "id": "b6cec15c51ac4565",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "If day",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"day\") {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 900,
+        "wires": [
+            [
+                "99b9ef0d3f0d81be"
+            ]
+        ]
+    },
+    {
+        "id": "99b9ef0d3f0d81be",
+        "type": "pythonshell in",
+        "z": "164999f348401406",
+        "name": "High TV Brightness",
+        "pyfile": "/data/pythonvenv/pybravia/max_brightness.py",
+        "virtualenv": "/data/pythonvenv/pybravia/venv",
+        "continuous": false,
+        "stdInData": false,
+        "x": 550,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3a4d427c37935390",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "If night",
+        "func": "var dayPhase = global.get(\"state\").dayPhase.value\n\nif (dayPhase == \"night\") {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1060,
+        "wires": [
+            [
+                "2277fe9e3535e6ed"
+            ]
+        ]
+    },
+    {
+        "id": "4d2029fb32a45055",
+        "type": "change",
+        "z": "164999f348401406",
+        "name": "Aggregate",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 130,
+        "y": 860,
+        "wires": [
+            [
+                "510b89d93a1d134d"
+            ]
+        ]
+    },
+    {
+        "id": "510b89d93a1d134d",
+        "type": "delay",
+        "z": "164999f348401406",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 140,
+        "y": 920,
+        "wires": [
+            [
+                "c07a12d630fd3111",
+                "b6cec15c51ac4565",
+                "e0af77ac35cce120",
+                "0a17c0c951958cfd",
+                "d709cf9c8ea857ab",
+                "3a4d427c37935390"
+            ]
+        ]
     }
 ]
