@@ -16748,7 +16748,7 @@
         "z": "164999f348401406",
         "name": "Force TV to use soundbar b/c TV is dumb and picks the wrong one every time",
         "info": "",
-        "x": 870,
+        "x": 790,
         "y": 740,
         "wires": []
     },
@@ -17025,7 +17025,7 @@
             }
         ],
         "queue": "none",
-        "x": 860,
+        "x": 780,
         "y": 780,
         "wires": [
             []
@@ -17040,7 +17040,7 @@
             "645726f28db704e6"
         ],
         "uncaught": false,
-        "x": 1050,
+        "x": 970,
         "y": 780,
         "wires": [
             []
@@ -17132,14 +17132,15 @@
         "id": "7c0965a153bce37d",
         "type": "function",
         "z": "164999f348401406",
-        "name": "If TV has been turned on",
+        "name": "If TV is on",
         "func": "var isTVon = global.get(\"state\").isTVon.value\n\nmsg = {\"payload\": \"whatever\"}\nif (isTVon) {\n    // Send message and try to activate soundbar\n    return msg\n} else {\n    return null;\n}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 290,
+        "x": 240,
         "y": 780,
         "wires": [
             [
@@ -17159,7 +17160,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 420,
         "y": 780,
         "wires": [
             [
@@ -17184,7 +17185,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 680,
+        "x": 600,
         "y": 780,
         "wires": [
             [
@@ -17400,7 +17401,7 @@
         "z": "164999f348401406",
         "name": "",
         "pauseType": "delay",
-        "timeout": "10",
+        "timeout": "20",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -17433,7 +17434,7 @@
         "timeout": "10",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "5",
+        "nbRateUnits": "10",
         "rateUnits": "second",
         "randomFirst": "1",
         "randomLast": "5",
@@ -17443,6 +17444,22 @@
         "outputs": 1,
         "x": 120,
         "y": 920,
+        "wires": [
+            [
+                "510b89d93a1d134d"
+            ]
+        ]
+    },
+    {
+        "id": "ea865c85a09d3a02",
+        "type": "get-shared-state",
+        "z": "164999f348401406",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 1040,
         "wires": [
             [
                 "510b89d93a1d134d"
