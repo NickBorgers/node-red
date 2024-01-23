@@ -10866,7 +10866,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1130,
+        "x": 1270,
         "y": 100,
         "wires": [
             [
@@ -10884,7 +10884,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
-        "x": 1370,
+        "x": 1510,
         "y": 100,
         "wires": [
             [
@@ -10944,7 +10944,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1540,
+        "x": 1680,
         "y": 100,
         "wires": [
             [
@@ -11278,47 +11278,15 @@
         "speakingrate": "1",
         "speakingpitch": "0",
         "unmuteIfMuted": true,
+        "elevenlabsStability": "",
+        "elevenlabsSimilarity_boost": "",
         "x": 710,
         "y": 100,
         "wires": [
             [
-                "38d1aa796e6b88c5"
+                "fa073067dec5e147"
             ],
             []
-        ]
-    },
-    {
-        "id": "89c1d2a03ec52517",
-        "type": "link call",
-        "z": "95cf961539320dd3",
-        "name": "Reset Music",
-        "links": [
-            "b1f2b5145a191585"
-        ],
-        "timeout": "30",
-        "x": 910,
-        "y": 40,
-        "wires": [
-            [
-                "38d1aa796e6b88c5"
-            ]
-        ]
-    },
-    {
-        "id": "1ca8abad4ced181a",
-        "type": "catch",
-        "z": "95cf961539320dd3",
-        "name": "Catch TTS Error",
-        "scope": [
-            "ec628f54ff3683fb"
-        ],
-        "uncaught": false,
-        "x": 720,
-        "y": 40,
-        "wires": [
-            [
-                "89c1d2a03ec52517"
-            ]
         ]
     },
     {
@@ -11326,8 +11294,9 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Generate message",
-        "func": "var notification_message = \"Cuddle now\"\n\nmsg.payload = notification_message\n\nreturn msg;",
-        "outputs": 1,
+        "func": "\n// If both of us are home\nif (global.get(\"state\").isNickHome.value && global.get(\"state\").isCarolineHome.value) {\n    // Direct us to cuddle\n    var notification_message = \"Cuddles\"\n    msg.payload = notification_message\n    return [msg, null];\n} else {\n    // Otherwise bypass TTS step\n    return [null, msg];\n}\n\n",
+        "outputs": 2,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -11337,6 +11306,9 @@
         "wires": [
             [
                 "ec628f54ff3683fb"
+            ],
+            [
+                "38d1aa796e6b88c5"
             ]
         ]
     },
@@ -11367,7 +11339,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 900,
+        "x": 1040,
         "y": 100,
         "wires": [
             [
@@ -11448,9 +11420,9 @@
         "id": "77a7cc78dea4aec9",
         "type": "comment",
         "z": "95cf961539320dd3",
-        "name": "",
+        "name": "Cancel auto-wake",
         "info": "",
-        "x": 100,
+        "x": 130,
         "y": 740,
         "wires": []
     },
@@ -11534,6 +11506,65 @@
         "wires": [
             [
                 "dcd4c0c7fc94cfc3"
+            ]
+        ]
+    },
+    {
+        "id": "89c1d2a03ec52517",
+        "type": "link call",
+        "z": "95cf961539320dd3",
+        "name": "Reset Music",
+        "links": [
+            "b1f2b5145a191585"
+        ],
+        "timeout": "30",
+        "x": 910,
+        "y": 40,
+        "wires": [
+            [
+                "fa073067dec5e147"
+            ]
+        ]
+    },
+    {
+        "id": "1ca8abad4ced181a",
+        "type": "catch",
+        "z": "95cf961539320dd3",
+        "name": "Catch TTS Error",
+        "scope": [
+            "ec628f54ff3683fb"
+        ],
+        "uncaught": false,
+        "x": 720,
+        "y": 40,
+        "wires": [
+            [
+                "89c1d2a03ec52517"
+            ]
+        ]
+    },
+    {
+        "id": "fa073067dec5e147",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 100,
+        "wires": [
+            [
+                "38d1aa796e6b88c5"
             ]
         ]
     },
