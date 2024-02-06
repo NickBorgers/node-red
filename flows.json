@@ -11294,7 +11294,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Generate message",
-        "func": "\n// If both of us are home\nif (global.get(\"state\").isNickHome.value && global.get(\"state\").isCarolineHome.value) {\n    // Direct us to cuddle\n    var notification_message = \"Cuddles\"\n    msg.payload = notification_message\n    return [msg, null];\n} else {\n    // Otherwise bypass TTS step\n    return [null, msg];\n}\n\n",
+        "func": "\n// If both of us are home\nif (global.get(\"state\").isNickHome.value && global.get(\"state\").isCarolineHome.value) {\n    console.debug(\"Both are home, tell them to cuddle\")\n    // Direct us to cuddle\n    var notification_message = \"Cuddles\"\n    msg.payload = notification_message\n    return [msg, null];\n} else {\n    console.debug(\"Only one is home, cuddle is not possible\")\n    // Otherwise bypass TTS step\n    return [null, msg];\n}\n\n",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -17175,8 +17175,7 @@
         "y": 780,
         "wires": [
             [
-                "4055c81fd7da87eb",
-                "4d2029fb32a45055"
+                "4055c81fd7da87eb"
             ]
         ]
     },
@@ -17195,7 +17194,8 @@
         "y": 780,
         "wires": [
             [
-                "9d85e338bb7616e4"
+                "9d85e338bb7616e4",
+                "4d2029fb32a45055"
             ]
         ]
     },
