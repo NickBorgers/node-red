@@ -11268,7 +11268,7 @@
         "voice": "en-US",
         "ssml": false,
         "sonosipaddress": "10.212.100.227",
-        "sonosvolume": "30",
+        "sonosvolume": "40",
         "sonoshailing": "0",
         "config": "89337ebbba16965d",
         "property": "payload",
