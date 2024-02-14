@@ -113,7 +113,8 @@
             "2ac64818b1503ff5",
             "18aa5fb312ee3408",
             "b1b296e25475539b",
-            "64fb15a8a7187bb5"
+            "64fb15a8a7187bb5",
+            "2c7306185576189a"
         ],
         "x": 654,
         "y": 459,
@@ -198,13 +199,13 @@
             "7e52276e5e6c0bf5",
             "54a9e604802ef8f4",
             "8887203cd9731ca8",
-            "a09f36d49c661b1e",
             "933a6be2ef3624b6",
-            "82963b85104708c0"
+            "dc5db439632d9364",
+            "9a58aa7993ee54bc"
         ],
         "x": 34,
         "y": 1059,
-        "w": 1232,
+        "w": 1172,
         "h": 282
     },
     {
@@ -6236,8 +6237,7 @@
         "y": 1240,
         "wires": [
             [
-                "4123044d0c15479d",
-                "a09f36d49c661b1e"
+                "9a58aa7993ee54bc"
             ]
         ]
     },
@@ -6638,11 +6638,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 880,
+        "x": 660,
         "y": 1300,
         "wires": [
             [
-                "82963b85104708c0"
+                "519ba9e8deaad0cb"
             ]
         ]
     },
@@ -6666,7 +6666,8 @@
         "y": 1220,
         "wires": [
             [
-                "a16d6614f34882e1"
+                "a16d6614f34882e1",
+                "4123044d0c15479d"
             ]
         ]
     },
@@ -7269,8 +7270,7 @@
         "name": "Set Volumes and Mute",
         "links": [
             "9cf90b7812a7ab73",
-            "4a3bdf6826669285",
-            "84ed0aab23753b90"
+            "4a3bdf6826669285"
         ],
         "x": 505,
         "y": 400,
@@ -8326,24 +8326,6 @@
         ]
     },
     {
-        "id": "a09f36d49c661b1e",
-        "type": "function",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Log restoration",
-        "func": "console.debug(`${msg.playerName} volume restored to ${msg.originalVolume}`)",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1160,
-        "y": 1240,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "933a6be2ef3624b6",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
@@ -8366,32 +8348,6 @@
         "wires": [
             [
                 "7e52276e5e6c0bf5"
-            ]
-        ]
-    },
-    {
-        "id": "82963b85104708c0",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1040,
-        "y": 1300,
-        "wires": [
-            [
-                "519ba9e8deaad0cb"
             ]
         ]
     },
@@ -8576,7 +8532,7 @@
         "name": "link out 1",
         "mode": "link",
         "links": [
-            "34bd02b0a6ce0a3f"
+            "5374a17b2d4ccaee"
         ],
         "x": 595,
         "y": 1600,
@@ -8740,6 +8696,95 @@
         "wires": [
             [
                 "1e239bb03f0d826f"
+            ]
+        ]
+    },
+    {
+        "id": "2c7306185576189a",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "42abe9d54fa46266",
+        "name": "Reset volumes to defaults",
+        "func": "console.debug(\"Reset all speaker volumes to default configured values\")\n\n// By default, move to set volume and appropriately unmute all players in current playback\nvar config = global.get(\"state\").currentlyPlayingMusic.value\nvar participants = config.participants\n\n// Iterate over our targets and kick off setting their volume and mute state\nparticipants.forEach(function(participant) {\n\n    if (participant.volume != participant.default_volume) {\n        console.debug(participant.name + \" volume was \" + participant.volume + \" not the default of \" + participant.default_volume + \" so configuring it back to that default.\")\n        participant.volume = participant.default_volume\n    }\n    \n});\n\nconfig.participants = participants\n\nreturn config",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 720,
+        "wires": [
+            [
+                "d6f678177a40f732"
+            ]
+        ]
+    },
+    {
+        "id": "5374a17b2d4ccaee",
+        "type": "link in",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Reset volumes to defaults",
+        "links": [
+            "84ed0aab23753b90",
+            "b1c715f0b5055288",
+            "dc5db439632d9364"
+        ],
+        "x": 615,
+        "y": 720,
+        "wires": [
+            [
+                "2c7306185576189a"
+            ]
+        ]
+    },
+    {
+        "id": "613afda7a20728cf",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Allow calling from other flows",
+        "info": "",
+        "x": 460,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "dc5db439632d9364",
+        "type": "link out",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "link out 3",
+        "mode": "link",
+        "links": [
+            "5374a17b2d4ccaee"
+        ],
+        "x": 1135,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "9a58aa7993ee54bc",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1060,
+        "y": 1300,
+        "wires": [
+            [
+                "dc5db439632d9364"
             ]
         ]
     },
@@ -10957,8 +11002,8 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Repeat turn downs until 0",
-        "func": "console.debug(\"Processing fade out for \" + msg.playerName)\n\n// Is master light still on?\nvar isMasterLightsOff = global.get(\"state\").isMasterLightsOff.value\nif (isMasterLightsOff) {\n    console.debug(\"Master light turned off; abort!\")\n    return [null, null]\n}\n\n// Is sleep music still playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType != \"sleep\") {\n    console.debug(\"Canceling fade out for \" + msg.playerName)\n    // Bail out completely because not sleep anymore\n    return [null, null]\n}\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\n/*\nif (current_volume > msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade out for \" + msg.playerName)\n    // If the volume is greater than what was last set, assume someone\n    // is fighting the system trying to keep the volume up\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            participant.volume = current_volume\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n\n    console.debug(\"Terminating fade out for \" + msg.playerName)\n    return [msg, null]\n}*/\n\n// What is the volume supposed to be?\nvar desired_volume = 0\n\n// If we haven't gotten down to the desired volume\nif (current_volume > desired_volume) {\n    console.debug(\"Still need to turn down \" + msg.playerName)\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            console.debug(\"Found volume config for \" + msg.playerName)\n            participant.volume = current_volume\n            // Reduce its volume by 1\n            participant.volume--;\n            msg.last_volume_set = participant.volume\n            console.debug(\"Adjusted volume config for \" + msg.playerName)\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n    \n    // Set the delay for the next turn down to be greater if volume is lower\n    msg.delay = (60 - current_volume) * 1000\n    console.debug(\"Sending turn down messages for \" + msg.playerName)\n    return [msg, msg]\n}\nconsole.debug(\"Completed fade out for \" + msg.playerName)\n// We're done, everything is as it should be",
-        "outputs": 2,
+        "func": "console.debug(\"Processing fade out for \" + msg.playerName)\n\n// Is master light still on?\nvar isMasterLightsOff = global.get(\"state\").isMasterLightsOff.value\nif (isMasterLightsOff) {\n    console.debug(\"Master light turned off; abort!\")\n    var resetMsg = {}\n    return [null, null, resetMsg]\n}\n\n// Is sleep music still playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType != \"sleep\") {\n    console.debug(\"Canceling fade out for \" + msg.playerName)\n    // Bail out completely because not sleep anymore\n    return [null, null, null]\n}\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\n/*\nif (current_volume > msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade out for \" + msg.playerName)\n    // If the volume is greater than what was last set, assume someone\n    // is fighting the system trying to keep the volume up\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            participant.volume = current_volume\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n\n    console.debug(\"Terminating fade out for \" + msg.playerName)\n    return [msg, null, null]\n}*/\n\n// What is the volume supposed to be?\nvar desired_volume = 0\n\n// If we haven't gotten down to the desired volume\nif (current_volume > desired_volume) {\n    console.debug(\"Still need to turn down \" + msg.playerName)\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            console.debug(\"Found volume config for \" + msg.playerName)\n            participant.volume = current_volume\n            // Reduce its volume by 1\n            participant.volume--;\n            msg.last_volume_set = participant.volume\n            console.debug(\"Adjusted volume config for \" + msg.playerName)\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n    \n    // Set the delay for the next turn down to be greater if volume is lower\n    msg.delay = (60 - current_volume) * 1000\n    console.debug(\"Sending turn down messages for \" + msg.playerName)\n    return [msg, msg, null]\n}\nconsole.debug(\"Completed fade out for \" + msg.playerName)\n// We're done, everything is as it should be",
+        "outputs": 3,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
@@ -10973,6 +11018,9 @@
             ],
             [
                 "b2ce538e032e4961"
+            ],
+            [
+                "b1c715f0b5055288"
             ]
         ]
     },
@@ -11567,6 +11615,29 @@
                 "38d1aa796e6b88c5"
             ]
         ]
+    },
+    {
+        "id": "b1c715f0b5055288",
+        "type": "link out",
+        "z": "95cf961539320dd3",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "5374a17b2d4ccaee"
+        ],
+        "x": 1255,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "fee3a0db91eb009f",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Bring back the rain!",
+        "info": "",
+        "x": 1370,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "a99efe1134ae512d",
