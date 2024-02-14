@@ -7270,7 +7270,9 @@
         "name": "Set Volumes and Mute",
         "links": [
             "9cf90b7812a7ab73",
-            "4a3bdf6826669285"
+            "4a3bdf6826669285",
+            "dc5db439632d9364",
+            "84ed0aab23753b90"
         ],
         "x": 505,
         "y": 400,
@@ -8532,7 +8534,7 @@
         "name": "link out 1",
         "mode": "link",
         "links": [
-            "5374a17b2d4ccaee"
+            "34bd02b0a6ce0a3f"
         ],
         "x": 595,
         "y": 1600,
@@ -8726,9 +8728,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Reset volumes to defaults",
         "links": [
-            "84ed0aab23753b90",
-            "b1c715f0b5055288",
-            "dc5db439632d9364"
+            "b1c715f0b5055288"
         ],
         "x": 615,
         "y": 720,
@@ -8756,7 +8756,7 @@
         "name": "link out 3",
         "mode": "link",
         "links": [
-            "5374a17b2d4ccaee"
+            "34bd02b0a6ce0a3f"
         ],
         "x": 1135,
         "y": 1240,
