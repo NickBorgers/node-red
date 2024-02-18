@@ -6541,7 +6541,8 @@
         "y": 860,
         "wires": [
             [
-                "f9f43e5b15149e43"
+                "f9f43e5b15149e43",
+                "42b63b9f501f348d"
             ]
         ]
     },
@@ -8787,6 +8788,20 @@
                 "dc5db439632d9364"
             ]
         ]
+    },
+    {
+        "id": "42b63b9f501f348d",
+        "type": "set-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "b74697c734ad5557",
+        "name": "Currently Playing Music",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 870,
+        "y": 820,
+        "wires": []
     },
     {
         "id": "66648323963fb7f3",
