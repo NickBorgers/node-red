@@ -3,34 +3,34 @@ music:
   morning:
     participants:
       - player_name: "Nook Speaker"
-        default_volume: 11
+        base_volume: 11
         leave_muted_if: []
       - player_name: "Living Room"
-        default_volume: 9
+        base_volume: 9
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Guest Bathroom"
-        default_volume: 9
+        base_volume: 9
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Master Bedroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Master Bathroom"
-        default_volume: 9
+        base_volume: 9
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Guest Bedroom"
-        default_volume: 8
+        base_volume: 8
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
@@ -56,34 +56,34 @@ music:
   day:
     participants:
       - player_name: "Nook Speaker"
-        default_volume: 10
+        base_volume: 10
         leave_muted_if: []
       - player_name: "Living Room"
-        default_volume: 11
+        base_volume: 11
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Guest Bathroom"
-        default_volume: 10
+        base_volume: 10
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Master Bedroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Master Bathroom"
-        default_volume: 10
+        base_volume: 10
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Guest Bedroom"
-        default_volume: 10
+        base_volume: 10
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
@@ -127,34 +127,34 @@ music:
   evening:
     participants:
       - player_name: "Nook Speaker"
-        default_volume: 13
+        base_volume: 13
         leave_muted_if: []
       - player_name: "Living Room"
-        default_volume: 15
+        base_volume: 15
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Guest Bathroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Master Bedroom"
-        default_volume: 15
+        base_volume: 15
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Master Bathroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Guest Bedroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
@@ -194,34 +194,34 @@ music:
   winddown:
     participants:
       - player_name: "Nook Speaker"
-        default_volume: 15
+        base_volume: 15
         leave_muted_if: []
       - player_name: "Living Room"
-        default_volume: 15
+        base_volume: 15
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Guest Bathroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
       - player_name: "Master Bedroom"
-        default_volume: 15
+        base_volume: 15
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Master Bathroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Guest Bedroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
@@ -245,28 +245,28 @@ music:
   sleep:
     participants:
       - player_name: "Nook Speaker"
-        default_volume: 40
+        base_volume: 40
         leave_muted_if:
           - variable: isMasterAsleep
             value: false
       - player_name: "Living Room"
-        default_volume: 20
+        base_volume: 20
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
       - player_name: "Master Bathroom"
-        default_volume: 35
+        base_volume: 35
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        default_volume: 38
+        base_volume: 38
         leave_muted_if: []
       - player_name: "Guest Bathroom"
-        default_volume: 30
+        base_volume: 30
         leave_muted_if:
           - variable: isHaveGuests
             value: false
       - player_name: "Guest Bedroom"
-        default_volume: 25
+        base_volume: 25
         leave_muted_if:
           - variable: isHaveGuests
             value: false
@@ -289,30 +289,30 @@ music:
   airplay:
     participants:
       - player_name: "Living Room"
-        default_volume: 9
+        base_volume: 9
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
       - player_name: "Nook Speaker"
-        default_volume: 11
+        base_volume: 11
         leave_muted_if: []
       - player_name: "Guest Bathroom"
-        default_volume: 9
+        base_volume: 9
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
       - player_name: "Master Bedroom"
-        default_volume: 12
+        base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Master Bathroom"
-        default_volume: 9
+        base_volume: 9
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
       - player_name: "Guest Bedroom"
-        default_volume: 8
+        base_volume: 8
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
@@ -320,10 +320,10 @@ music:
   sex:
     participants:
       - player_name: "Master Bathroom"
-        default_volume: 15
+        base_volume: 15
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        default_volume: 25
+        base_volume: 25
         leave_muted_if: []
     playback_options:
       - command: group.queue.urispotify
@@ -332,10 +332,10 @@ music:
   wakeup:
     participants:
       - player_name: "Master Bathroom"
-        default_volume: 20
+        base_volume: 20
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        default_volume: 50
+        base_volume: 50
         leave_muted_if: []
     playback_options:
       # Ambient Relaxation
