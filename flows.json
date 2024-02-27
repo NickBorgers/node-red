@@ -5646,7 +5646,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "15448e0eedc040e8"
@@ -5712,8 +5712,9 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
         "name": "Create participant-specific message",
-        "func": "// By default, move to set volume and appropriately unmute all players in current playback\nvar targets = global.get(\"state\").currentlyPlayingMusic.value.participants\n// If we were given a single specific target though, downscope\nif (\"target\" in msg) {\n    console.debug(\"Setting volume and mute state for specific speaker: \" + msg.target)\n    var specificTarget = []\n    targets.forEach(function(participant) {\n        if (participant.player_name == msg.target) {\n            specificTarget = [participant]\n        }\n    });\n    if (specificTarget.length == 0) {\n        node.warn(\"Asked to reset volume and mute state of unrecognized player: \" + msg.target)\n        return null\n    }\n    targets = specificTarget\n} else {\n    console.debug(\"Setting volume and mute state for all speakers\")\n}\n\n// Iterate over our targets and kick off setting their volume and mute state\ntargets.forEach(function(target) {\n    var participantSpecificMsg = {}\n    participantSpecificMsg.playerName = target.player_name\n    participantSpecificMsg.payload = target.volume\n    if (\"leave_muted_if\" in target) {\n        participantSpecificMsg.leave_muted_if = target.leave_muted_if\n    }\n    node.send(participantSpecificMsg);\n});\n\nreturn null",
+        "func": "// By default, move to set volume and appropriately unmute all players in current playback\nvar targets = global.get(\"state\").currentlyPlayingMusic.value.participants\nvar type = global.get(\"state\").currentlyPlayingMusic.value.type\n// If we were given a single specific target though, downscope\nif (\"target\" in msg) {\n    console.debug(\"Setting volume and mute state for specific speaker: \" + msg.target)\n    var specificTarget = []\n    targets.forEach(function(participant) {\n        if (participant.player_name == msg.target) {\n            specificTarget = [participant]\n        }\n    });\n    if (specificTarget.length == 0) {\n        node.warn(\"Asked to reset volume and mute state of unrecognized player: \" + msg.target)\n        return null\n    }\n    targets = specificTarget\n} else {\n    console.debug(\"Setting volume and mute state for all speakers\")\n}\n\n// Iterate over our targets and kick off setting their volume and mute state\ntargets.forEach(function(target) {\n    var participantSpecificMsg = {}\n    participantSpecificMsg.playerName = target.player_name\n    participantSpecificMsg.payload = target.volume\n    if (\"leave_muted_if\" in target) {\n        participantSpecificMsg.leave_muted_if = target.leave_muted_if\n    }\n    participantSpecificMsg.starting_type = type\n    node.send(participantSpecificMsg);\n});\n\nreturn null",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -5817,8 +5818,9 @@
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "name": "Check if non-null mode",
-        "func": "var musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's something other than none/nothing\nif (musicPlaybackType) {\n    console.debug(\"Sending message to begin playback of \" + musicPlaybackType)\n    return [ msg, null ]\n}\nvar blankMsg = {}\n// Otherwise just stop current playback\nconsole.debug(\"Sending blank playback message\")\nreturn [null, blankMsg ]",
+        "func": "var musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's something other than none/nothing\nif (musicPlaybackType) {\n    console.debug(\"Sending message to begin playback of \" + musicPlaybackType)\n    return [ msg, null ]\n}\nvar blankMsg = {\"payload\": null}\n// Otherwise just stop current playback\nconsole.debug(\"Sending blank playback message\")\nreturn [null, blankMsg ]",
         "outputs": 2,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -5830,7 +5832,8 @@
                 "c1a50671a5ed2076"
             ],
             [
-                "1d6d18eb04f69a2b"
+                "1d6d18eb04f69a2b",
+                "42b63b9f501f348d"
             ]
         ]
     },
@@ -6542,8 +6545,7 @@
         "y": 860,
         "wires": [
             [
-                "f9f43e5b15149e43",
-                "42b63b9f501f348d"
+                "f9f43e5b15149e43"
             ]
         ]
     },
@@ -7429,8 +7431,9 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
         "name": "Repeat turn ups until done",
-        "func": "console.debug(\"Processing fade in for \" + msg.playerName)\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume < msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade in for \" + msg.playerName)\n    // If the volume is less than what was last set, assume someone\n    // is fighting the system trying to turn down the volume\n    console.debug(\"Terminating fade in for \" + msg.playerName)\n    return null\n}\n\n// What is the volume supposed to be?\nvar allParticipantSpeakers = global.get(\"state\").currentlyPlayingMusic.value.participants\nallParticipantSpeakers.forEach(function (aParticipantSpeaker) {\n    // If this is the config for the speaker we're setting volume for\n    if (aParticipantSpeaker.player_name == msg.playerName) {\n        // Read desired volume from this config, NOT what we were originally told\n        var desired_volume = aParticipantSpeaker.volume\n    }\n});\n\nif (typeof desired_volume === 'undefined') {\n    var desired_volume = msg.desired_volume\n}\n\n// If we haven't gotten up to the desired volume\nif (current_volume < desired_volume) {\n    console.debug(\"Still need to turn up \" + msg.playerName)\n    console.debug(\"Current volume \" + current_volume)\n    console.debug(\"Desired volume \" + desired_volume)\n    // The new set volume is current + 1\n    var new_volume = current_volume + 1\n    console.debug(\"Adjusted volume setting for \" + msg.playerName)\n    // This new volume is the payload\n    msg.payload = new_volume\n    // Separately save off the value we're setting\n    msg.last_volume_set = new_volume\n    // Set the delay for the next turn up to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 250\n    console.debug(\"Sending turn up messages for \" + msg.playerName)\n    // Send the change\n    return msg\n}\nconsole.debug(\"Completed fade in for \" + msg.playerName)\nconsole.debug(\"Current volume \" + current_volume)\n// We're done, everything is as it should be",
+        "func": "console.debug(\"Processing fade in for \" + msg.playerName)\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\nif (current_volume < msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade in for \" + msg.playerName)\n    // If the volume is less than what was last set, assume someone\n    // is fighting the system trying to turn down the volume\n    console.debug(\"Terminating fade in for \" + msg.playerName)\n    return null\n}\n\n// Check for a change in music playback type\nvar starting_type = msg.starting_type\nvar current_type = global.get(\"state\").currentlyPlayingMusic.value.type\nif (starting_type != current_type) {\n    console.debug(\"Found that music playback type has changed for \" + msg.playerName)\n    // We have done weird things with volume by applying settings after the type has changed\n    console.debug(\"Terminating fade in for \" + msg.playerName)\n    return null\n}\n\n// What is the volume supposed to be?\nvar allParticipantSpeakers = global.get(\"state\").currentlyPlayingMusic.value.participants\nallParticipantSpeakers.forEach(function (aParticipantSpeaker) {\n    // If this is the config for the speaker we're setting volume for\n    if (aParticipantSpeaker.player_name == msg.playerName) {\n        // Read desired volume from this config, NOT what we were originally told\n        var desired_volume = aParticipantSpeaker.volume\n    }\n});\n\nif (typeof desired_volume === 'undefined') {\n    var desired_volume = msg.desired_volume\n}\n\n// If we haven't gotten up to the desired volume\nif (current_volume < desired_volume) {\n    console.debug(\"Still need to turn up \" + msg.playerName)\n    console.debug(\"Current volume \" + current_volume)\n    console.debug(\"Desired volume \" + desired_volume)\n    // The new set volume is current + 1\n    var new_volume = current_volume + 1\n    console.debug(\"Adjusted volume setting for \" + msg.playerName)\n    // This new volume is the payload\n    msg.payload = new_volume\n    // Separately save off the value we're setting\n    msg.last_volume_set = new_volume\n    // Set the delay for the next turn up to be greater if volume is lower\n    msg.delay = (100 - current_volume) * 250\n    console.debug(\"Sending turn up messages for \" + msg.playerName)\n    // Send the change\n    return msg\n}\nconsole.debug(\"Completed fade in for \" + msg.playerName)\nconsole.debug(\"Current volume \" + current_volume)\n// We're done, everything is as it should be",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -7648,8 +7651,8 @@
         "links": [
             "8a79fe3b400b6c66"
         ],
-        "x": 555,
-        "y": 220,
+        "x": 685,
+        "y": 200,
         "wires": []
     },
     {
@@ -7989,9 +7992,9 @@
         "id": "2056bb683597d209",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Vigourously Stop Playback",
+        "name": "Vigorously Stop Playback",
         "info": "",
-        "x": 650,
+        "x": 630,
         "y": 260,
         "wires": []
     },
@@ -8800,8 +8803,8 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 870,
-        "y": 820,
+        "x": 510,
+        "y": 220,
         "wires": []
     },
     {
@@ -12075,8 +12078,9 @@
         "type": "function",
         "z": "6a064f420a191bf8",
         "name": "Humidifiy or not to humidifiy?",
-        "func": "musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's day or evening there's no point in humidifying\nif (musicPlaybackType == \"morning\" ||\n    musicPlaybackType == \"day\" ||\n    musicPlaybackType == \"evening\"\n    ) {\n    return [msg, null]\n}\n// If it's winddown or sleep definitely humidify\nif (musicPlaybackType == \"winddown\" ||\n    musicPlaybackType == \"sleep\"\n    ) {\n    return [null, msg]\n}\n// Otherwise, not so clear so do nothing\nreturn [null, null]",
+        "func": "var musicPlaybackType = global.get(\"state\").musicPlaybackType.value\n\n// If it's day or evening there's no point in humidifying\nif (musicPlaybackType == \"morning\" ||\n    musicPlaybackType == \"day\" ||\n    musicPlaybackType == \"evening\"\n    ) {\n    console.debug(\"Yes humidify!\")\n    return [msg, null]\n}\n// If it's winddown or sleep definitely humidify\nif (musicPlaybackType == \"winddown\" ||\n    musicPlaybackType == \"sleep\"\n    ) {\n    console.debug(\"No, don't humidify!\")\n    return [null, msg]\n}\n// Otherwise, not so clear so do nothing\nconsole.debug(\"Don't change humidification state\")\nreturn [null, null]",
         "outputs": 2,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
