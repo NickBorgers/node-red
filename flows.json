@@ -17580,11 +17580,31 @@
         "name": "Day Phase",
         "triggerOnInit": false,
         "triggerOnChange": true,
-        "x": 140,
-        "y": 1040,
+        "x": 100,
+        "y": 1080,
         "wires": [
             [
-                "4d2029fb32a45055"
+                "25f3c6d985873f57"
+            ]
+        ]
+    },
+    {
+        "id": "25f3c6d985873f57",
+        "type": "function",
+        "z": "164999f348401406",
+        "name": "Repeat 3 times",
+        "func": "for (let i = 0; i < 3; i++) {\n    node.send(msg)\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 1020,
+        "wires": [
+            [
+                "891dcc09a057ebce"
             ]
         ]
     }
