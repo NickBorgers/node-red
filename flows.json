@@ -17299,7 +17299,7 @@
         "id": "4055c81fd7da87eb",
         "type": "function",
         "z": "164999f348401406",
-        "name": "Repeat 10 times",
+        "name": "Repeat 3 times",
         "func": "for (let i = 0; i < 3; i++) {\n    node.send(msg)\n}",
         "outputs": 1,
         "timeout": "",
