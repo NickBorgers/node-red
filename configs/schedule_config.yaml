@@ -1,5 +1,5 @@
 schedule:
--   begin_wake: '8:15'
+-   begin_wake: '8:00'
     dusk: '18:00'
     go_to_bed: '22:30'
     name: Sunday
