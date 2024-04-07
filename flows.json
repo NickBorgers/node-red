@@ -16831,7 +16831,7 @@
         "y": 280,
         "wires": [
             [
-                "5e0f976532de47d8"
+                "664cfc7887a2380f"
             ],
             []
         ]
@@ -16845,7 +16845,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 940,
+        "x": 1060,
         "y": 300,
         "wires": []
     },
@@ -16886,7 +16886,7 @@
         "y": 340,
         "wires": [
             [
-                "5e0f976532de47d8"
+                "664cfc7887a2380f"
             ],
             []
         ]
@@ -17282,7 +17282,7 @@
         "type": "function",
         "z": "164999f348401406",
         "name": "If TV is on",
-        "func": "var isTVon = global.get(\"state\").isTVon.value\n\nmsg = {\"payload\": \"whatever\"}\nif (isTVon) {\n    // Send message and try to activate soundbar\n    return msg\n} else {\n    return null;\n}",
+        "func": "var isTVon = global.get(\"state\").isTVon.value\n\nmsg = {\"payload\": \"whatever\"}\nif (isTVon) {\n    // Send message and try to activate soundbar\n    return msg\n} else {\n    return;\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -17290,26 +17290,6 @@
         "finalize": "",
         "libs": [],
         "x": 240,
-        "y": 780,
-        "wires": [
-            [
-                "4055c81fd7da87eb"
-            ]
-        ]
-    },
-    {
-        "id": "4055c81fd7da87eb",
-        "type": "function",
-        "z": "164999f348401406",
-        "name": "Repeat 3 times",
-        "func": "for (let i = 0; i < 3; i++) {\n    node.send(msg)\n}",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
         "y": 780,
         "wires": [
             [
@@ -17367,7 +17347,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
+        "x": 800,
         "y": 940,
         "wires": [
             [
@@ -17386,7 +17366,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 790,
         "y": 980,
         "wires": [
             [
@@ -17405,7 +17385,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
+        "x": 810,
         "y": 1020,
         "wires": [
             [
@@ -17422,7 +17402,7 @@
         "virtualenv": "/data/pythonvenv/pybravia/venv",
         "continuous": false,
         "stdInData": false,
-        "x": 650,
+        "x": 1030,
         "y": 1040,
         "wires": [
             []
@@ -17437,7 +17417,7 @@
         "virtualenv": "/data/pythonvenv/pybravia/venv",
         "continuous": false,
         "stdInData": false,
-        "x": 650,
+        "x": 1030,
         "y": 980,
         "wires": [
             []
@@ -17455,7 +17435,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
+        "x": 800,
         "y": 860,
         "wires": [
             [
@@ -17475,7 +17455,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 790,
         "y": 900,
         "wires": [
             [
@@ -17492,7 +17472,7 @@
         "virtualenv": "/data/pythonvenv/pybravia/venv",
         "continuous": false,
         "stdInData": false,
-        "x": 650,
+        "x": 1030,
         "y": 900,
         "wires": [
             []
@@ -17510,7 +17490,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 790,
         "y": 1060,
         "wires": [
             [
@@ -17537,7 +17517,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 130,
+        "x": 590,
         "y": 960,
         "wires": [
             [
@@ -17571,7 +17551,7 @@
         "y": 880,
         "wires": [
             [
-                "4d2029fb32a45055"
+                "b5e6f338698bf74a"
             ]
         ]
     },
@@ -17608,6 +17588,56 @@
         "wires": [
             [
                 "891dcc09a057ebce"
+            ]
+        ]
+    },
+    {
+        "id": "b5e6f338698bf74a",
+        "type": "delay",
+        "z": "164999f348401406",
+        "name": "desync from soundbar calls",
+        "pauseType": "random",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 960,
+        "wires": [
+            [
+                "4d2029fb32a45055"
+            ]
+        ]
+    },
+    {
+        "id": "664cfc7887a2380f",
+        "type": "delay",
+        "z": "164999f348401406",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 300,
+        "wires": [
+            [
+                "5e0f976532de47d8"
             ]
         ]
     }
