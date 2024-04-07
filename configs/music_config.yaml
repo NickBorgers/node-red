@@ -320,10 +320,10 @@ music:
   sex:
     participants:
       - player_name: "Master Bathroom"
-        base_volume: 15
+        base_volume: 18
         leave_muted_if: []
       - player_name: "Master Bedroom"
-        base_volume: 25
+        base_volume: 18
         leave_muted_if: []
     playback_options:
       - command: group.queue.urispotify
