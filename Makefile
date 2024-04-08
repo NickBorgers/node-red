@@ -29,7 +29,7 @@ run: build cleanup
 #generate-screenshots: @ Generate screenshots of each tab in the Node Red project
 generate-screenshots: build run
 	# Hacky sleep to avoid hitting TCP connection refused against node-red container
-	sleep 1
+	sleep 3
 	# Start our "test" which pulls the screenshots out of the node-red container
 	docker run --rm --network=node-red-backend \
 	  --mount type=bind,source=${CURDIR}/.automated-rendering/screenshot-capture/screenshots/,destination=/app/screenshots/ \
