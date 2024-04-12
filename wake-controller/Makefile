@@ -7,3 +7,7 @@ help:
 #build: @ Build this container image
 build:
 	docker build -t node-red-wake-controller .
+
+#run: @ Run the wake controller
+run: build
+	docker run --name wake-controller --rm -p 8080:80 node-red-wake-controller
