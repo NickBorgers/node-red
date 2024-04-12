@@ -10459,8 +10459,9 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Identify which time triggers are satisfied",
-        "func": "var begin_wake_time = new Date(global.get(\"state\").schedule.value.begin_wake)\nvar wake_time = new Date(global.get(\"state\").schedule.value.wake)\nvar stop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\nvar go_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now.getTime() > begin_wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - begin_wake_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - wake_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > stop_screens_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - stop_screens_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > go_to_bed_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - go_to_bed_time.getTime()) < ONE_HOUR) {\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
+        "func": "var begin_wake_time = new Date(global.get(\"state\").schedule.value.begin_wake)\nvar wake_time = new Date(global.get(\"state\").schedule.value.wake)\nvar stop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\nvar go_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now.getTime() > begin_wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - begin_wake_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to begin_wake based on begin_wake time of: \" + begin_wake_time)\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - wake_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to wake based on wake time of: \" + wake_time)\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > stop_screens_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - stop_screens_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to stop_screens based on stop_screens time of: \" + stop_screens_time)\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > go_to_bed_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - go_to_bed_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to go_to_bed based on go_to_bed time of: \" + go_to_bed_time)\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -10544,7 +10545,8 @@
         "wires": [
             [
                 "abd63eda68fd8674",
-                "933b06632a61b4c2"
+                "933b06632a61b4c2",
+                "ef27dde2b088e134"
             ]
         ]
     },
@@ -10568,7 +10570,9 @@
         "x": 920,
         "y": 460,
         "wires": [
-            []
+            [
+                "ef27dde2b088e134"
+            ]
         ]
     },
     {
@@ -10592,7 +10596,8 @@
         "y": 540,
         "wires": [
             [
-                "1085fc2a0db788a3"
+                "1085fc2a0db788a3",
+                "ef27dde2b088e134"
             ]
         ]
     },
@@ -10618,7 +10623,8 @@
         "wires": [
             [
                 "1085fc2a0db788a3",
-                "a2593542cdd2ef2f"
+                "a2593542cdd2ef2f",
+                "ef27dde2b088e134"
             ]
         ]
     },
@@ -11659,6 +11665,24 @@
         "x": 1370,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "ef27dde2b088e134",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Debug log",
+        "func": "console.debug(\"Actually starting sleep hygience step of: \" + msg.topic)",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 300,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "a99efe1134ae512d",
