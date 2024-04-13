@@ -2,6 +2,9 @@
 music:
   morning:
     participants:
+      - player_name: "Nook"
+        base_volume: 11
+        leave_muted_if: []
       - player_name: "Living Room"
         base_volume: 9
         leave_muted_if:
@@ -52,6 +55,9 @@ music:
         volume_multiplier: 1.0
   day:
     participants:
+      - player_name: "Nook"
+        base_volume: 10
+        leave_muted_if: []
       - player_name: "Living Room"
         base_volume: 11
         leave_muted_if:
@@ -120,6 +126,9 @@ music:
         volume_multiplier: 1.0
   evening:
     participants:
+      - player_name: "Nook"
+        base_volume: 13
+        leave_muted_if: []
       - player_name: "Living Room"
         base_volume: 15
         leave_muted_if:
@@ -184,6 +193,9 @@ music:
         volume_multiplier: 1.0
   winddown:
     participants:
+      - player_name: "Nook"
+        base_volume: 15
+        leave_muted_if: []
       - player_name: "Living Room"
         base_volume: 15
         leave_muted_if:
@@ -232,6 +244,11 @@ music:
         volume_multiplier: 1.0
   sleep:
     participants:
+      - player_name: "Nook"
+        base_volume: 40
+        leave_muted_if:
+          - variable: isMasterAsleep
+            value: false
       - player_name: "Living Room"
         base_volume: 20
         leave_muted_if:
@@ -276,6 +293,9 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
+      - player_name: "Nook"
+        base_volume: 11
+        leave_muted_if: []
       - player_name: "Guest Bathroom"
         base_volume: 9
         leave_muted_if:
