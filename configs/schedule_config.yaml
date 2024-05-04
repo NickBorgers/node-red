@@ -47,7 +47,7 @@ schedule:
     stop_screens: '23:00'
     wake: 08:00
     winddown: '22:00'
--   begin_wake: '10:00'
+-   begin_wake: 08:20
     dusk: '18:00'
     go_to_bed: '23:59'
     name: Saturday
