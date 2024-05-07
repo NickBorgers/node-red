@@ -249,27 +249,12 @@ music:
         leave_muted_if:
           - variable: isMasterAsleep
             value: false
-      - player_name: "Living Room"
-        base_volume: 20
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
       - player_name: "Master Bathroom"
         base_volume: 35
         leave_muted_if: []
       - player_name: "Master Bedroom"
         base_volume: 38
         leave_muted_if: []
-      - player_name: "Guest Bathroom"
-        base_volume: 30
-        leave_muted_if:
-          - variable: isHaveGuests
-            value: false
-      - player_name: "Guest Bedroom"
-        base_volume: 25
-        leave_muted_if:
-          - variable: isHaveGuests
-            value: false
     playback_options:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/1.m4a"
