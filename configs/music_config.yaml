@@ -2,7 +2,7 @@
 music:
   morning:
     participants:
-      - player_name: "Nook Speaker"
+      - player_name: "Kitchen"
         base_volume: 11
         leave_muted_if: []
       - player_name: "Living Room"
@@ -12,30 +12,24 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Guest Bathroom"
+      - player_name: "Bathroom"
         base_volume: 9
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
-      - player_name: "Master Bathroom"
+      - player_name: "Dining Room"
         base_volume: 9
-        leave_muted_if:
-          - variable: isMasterAsleep
-            value: true
-      - player_name: "Guest Bedroom"
+        leave_muted_if: []
+      - player_name: "Office"
         base_volume: 8
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-          - variable: isGuestBedroomDoorOpen
-            value: false
+        leave_muted_if: []
     playback_options:
       # Instrumental Melodic House and Techno
       - command: group.queue.urispotify
@@ -55,7 +49,7 @@ music:
         volume_multiplier: 1.0
   day:
     participants:
-      - player_name: "Nook Speaker"
+      - player_name: "Kitchen"
         base_volume: 10
         leave_muted_if: []
       - player_name: "Living Room"
@@ -65,32 +59,24 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Guest Bathroom"
+      - player_name: "Bathroom"
         base_volume: 10
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
-      - player_name: "Master Bathroom"
+      - player_name: "Dining Room"
         base_volume: 10
-        leave_muted_if:
-          - variable: isMasterAsleep
-            value: true
-      - player_name: "Guest Bedroom"
+        leave_muted_if: []
+      - player_name: "Office"
         base_volume: 10
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-          - variable: isGuestBedroomDoorOpen
-            value: false
-          - variable: isNickHome
-            value: false
+        leave_muted_if: []
     playback_options:
       # Kygo Radio
       - command: group.queue.urispotify
@@ -126,7 +112,7 @@ music:
         volume_multiplier: 1.0
   evening:
     participants:
-      - player_name: "Nook Speaker"
+      - player_name: "Kitchen"
         base_volume: 13
         leave_muted_if: []
       - player_name: "Living Room"
@@ -136,32 +122,24 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Guest Bathroom"
+      - player_name: "Bathroom"
         base_volume: 12
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 15
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
-      - player_name: "Master Bathroom"
+      - player_name: "Dining Room"
         base_volume: 12
-        leave_muted_if:
-          - variable: isMasterAsleep
-            value: true
-      - player_name: "Guest Bedroom"
+        leave_muted_if: []
+      - player_name: "Office"
         base_volume: 12
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-          - variable: isGuestBedroomDoorOpen
-            value: false
-          - variable: isNickHome
-            value: false
+        leave_muted_if: []
     playback_options:
       # Instrumental Study
       - command: group.queue.urispotify
@@ -193,7 +171,7 @@ music:
         volume_multiplier: 1.0
   winddown:
     participants:
-      - player_name: "Nook Speaker"
+      - player_name: "Kitchen"
         base_volume: 15
         leave_muted_if: []
       - player_name: "Living Room"
@@ -203,32 +181,24 @@ music:
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Guest Bathroom"
+      - player_name: "Bathroom"
         base_volume: 12
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
           - variable: isTVPlaying
             value: true
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 15
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
-      - player_name: "Master Bathroom"
+      - player_name: "Dining Room"
         base_volume: 12
-        leave_muted_if:
-          - variable: isMasterAsleep
-            value: true
-      - player_name: "Guest Bedroom"
+        leave_muted_if: []
+      - player_name: "Office"
         base_volume: 12
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-          - variable: isGuestBedroomDoorOpen
-            value: false
-          - variable: isNickHome
-            value: false
+        leave_muted_if: []
     playback_options:
       # Floating Through Space
       - command: group.queue.urispotify
@@ -244,7 +214,7 @@ music:
         volume_multiplier: 1.0
   sleep:
     participants:
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 38
         leave_muted_if: []
     playback_options:
@@ -270,36 +240,32 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
-      - player_name: "Nook Speaker"
+      - player_name: "Kitchen"
         base_volume: 11
         leave_muted_if: []
-      - player_name: "Guest Bathroom"
+      - player_name: "Bathroom"
         base_volume: 9
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 12
         leave_muted_if:
           - variable: isMasterAsleep
             value: true
-      - player_name: "Master Bathroom"
+      - player_name: "Dining Room"
         base_volume: 9
-        leave_muted_if:
-          - variable: isMasterAsleep
-            value: true
-      - player_name: "Guest Bedroom"
+        leave_muted_if: []
+      - player_name: "Office"
         base_volume: 8
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
+        leave_muted_if: []
     playback_options: []
   sex:
     participants:
-      - player_name: "Master Bathroom"
+      - player_name: "Dining Room"
         base_volume: 18
         leave_muted_if: []
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 18
         leave_muted_if: []
     playback_options:
@@ -308,10 +274,10 @@ music:
         volume_multiplier: 1.0
   wakeup:
     participants:
-      - player_name: "Master Bathroom"
+      - player_name: "Dining Room"
         base_volume: 20
         leave_muted_if: []
-      - player_name: "Master Bedroom"
+      - player_name: "Primary Bedroom"
         base_volume: 50
         leave_muted_if: []
     playback_options:
