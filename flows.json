@@ -2830,7 +2830,7 @@
         "id": "f991b8b5b5f73fde",
         "type": "exec",
         "z": "634c78c80eb9f37e",
-        "command": "cd /data/projects/node-red/ && GIT_SSH_COMMAND='ssh -i ../.sshkeys/__default_NickBorgersOnLowSecurityNode -o IdentitiesOnly=yes' git pull",
+        "command": "cd /data/projects/NickNodeRed/ && git pull",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
@@ -2855,7 +2855,8 @@
         "type": "file in",
         "z": "634c78c80eb9f37e",
         "name": "Read music config file",
-        "filename": "/data/projects/node-red/configs/music_config.yaml",
+        "filename": "/data/projects/NickNodeRed/configs/music_config.yaml",
+        "filenameType": "str",
         "format": "utf8",
         "chunk": false,
         "sendError": false,
@@ -2920,7 +2921,7 @@
         "type": "file in",
         "z": "634c78c80eb9f37e",
         "name": "Read Hue config file",
-        "filename": "/data/projects/node-red/configs/hue_config.yaml",
+        "filename": "/data/projects/NickNodeRed/configs/hue_config.yaml",
         "filenameType": "str",
         "format": "utf8",
         "chunk": false,
@@ -3471,7 +3472,8 @@
         "type": "file in",
         "z": "634c78c80eb9f37e",
         "name": "Read Schedule config file",
-        "filename": "/data/projects/node-red/configs/schedule_config.yaml",
+        "filename": "/data/projects/NickNodeRed/configs/schedule_config.yaml",
+        "filenameType": "str",
         "format": "utf8",
         "chunk": false,
         "sendError": false,
@@ -7276,7 +7278,6 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Set Volumes and Mute",
         "links": [
-            "9cf90b7812a7ab73",
             "4a3bdf6826669285",
             "dc5db439632d9364",
             "84ed0aab23753b90"
@@ -7634,7 +7635,6 @@
         "g": "5b09580d85cd2e6c",
         "name": "Stop all Music Playback",
         "links": [
-            "37f338bf292f6dfb",
             "1d6d18eb04f69a2b"
         ],
         "x": 435,
@@ -12691,7 +12691,6 @@
         "z": "6a064f420a191bf8",
         "name": "Reset Fan Speeds",
         "links": [
-            "e6de6db28626e551",
             "adc754d173d18011"
         ],
         "x": 405,
