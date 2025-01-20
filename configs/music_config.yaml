@@ -217,6 +217,18 @@ music:
       - player_name: "Primary Bedroom"
         base_volume: 38
         leave_muted_if: []
+      - player_name: "Dining Room"
+        base_volume: 38
+        leave_muted_if: []
+      - player_name: "Living Room"
+        base_volume: 38
+        leave_muted_if: []
+      - player_name: "Kitchen"
+        base_volume: 38
+        leave_muted_if: []
+      - player_name: "Office"
+        base_volume: 38
+        leave_muted_if: []
     playback_options:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/1.m4a"
@@ -233,38 +245,8 @@ music:
       - command: group.queue.uri
         uri: "http://rain-sounds.nickborgers.com/6.m4a"
         volume_multiplier: 1.18
-  airplay:
-    participants:
-      - player_name: "Living Room"
-        base_volume: 9
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-      - player_name: "Kitchen"
-        base_volume: 11
-        leave_muted_if: []
-      - player_name: "Bathroom"
-        base_volume: 9
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-      - player_name: "Primary Bedroom"
-        base_volume: 12
-        leave_muted_if:
-          - variable: isMasterAsleep
-            value: true
-      - player_name: "Dining Room"
-        base_volume: 9
-        leave_muted_if: []
-      - player_name: "Office"
-        base_volume: 8
-        leave_muted_if: []
-    playback_options: []
   sex:
     participants:
-      - player_name: "Dining Room"
-        base_volume: 18
-        leave_muted_if: []
       - player_name: "Primary Bedroom"
         base_volume: 18
         leave_muted_if: []
@@ -274,9 +256,6 @@ music:
         volume_multiplier: 1.0
   wakeup:
     participants:
-      - player_name: "Dining Room"
-        base_volume: 20
-        leave_muted_if: []
       - player_name: "Primary Bedroom"
         base_volume: 50
         leave_muted_if: []
