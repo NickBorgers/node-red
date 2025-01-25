@@ -3,7 +3,7 @@
         "id": "d7a3510d.e93d98",
         "type": "tab",
         "label": "State Tracking",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -18,7 +18,7 @@
         "id": "499c53680d148fb0",
         "type": "tab",
         "label": "Calendar",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -26,7 +26,7 @@
         "id": "16cd74edb3f2c03d",
         "type": "tab",
         "label": "Hue Control",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -41,7 +41,7 @@
         "id": "45c21b8b98ae2f01",
         "type": "tab",
         "label": "Vacuum",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -49,7 +49,7 @@
         "id": "95cf961539320dd3",
         "type": "tab",
         "label": "Sleep Hygiene",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -57,7 +57,7 @@
         "id": "9e0490d1fc323107",
         "type": "tab",
         "label": "Log",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -65,7 +65,7 @@
         "id": "6a064f420a191bf8",
         "type": "tab",
         "label": "Air Condition",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -73,7 +73,7 @@
         "id": "0d2150a703bedcd6",
         "type": "tab",
         "label": "Nagging",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -81,7 +81,7 @@
         "id": "164999f348401406",
         "type": "tab",
         "label": "TV Monitoring and Manipulation",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -348,22 +348,6 @@
         "tags": "",
         "historyCount": "2",
         "dataType": "bool",
-        "boolType": "bool",
-        "boolStrTrue": "",
-        "boolStrFalse": "",
-        "precision": "",
-        "numMin": "",
-        "numMax": "",
-        "unit": ""
-    },
-    {
-        "id": "659fd61043193a4d",
-        "type": "shared-state",
-        "name": "musicPlaylistNumbers",
-        "lbl": "Music Playlist Numbers",
-        "tags": "State,Audio",
-        "historyCount": "10",
-        "dataType": "obj",
         "boolType": "bool",
         "boolStrTrue": "",
         "boolStrFalse": "",
@@ -1096,6 +1080,23 @@
         "numMin": "",
         "numMax": "",
         "unit": ""
+    },
+    {
+        "id": "1ba8ec066e81f1c4",
+        "type": "shared-state",
+        "name": "musicPlaylistNumbers",
+        "lbl": "Music Playlist Numbers",
+        "tags": "State,Audio",
+        "historyCount": 2,
+        "dataType": "obj",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "ee6f66f1.a3f1d",
@@ -2352,8 +2353,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "light.guest_bedroom_lamp",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "off",
@@ -2388,6 +2387,8 @@
                 "valueType": "triggerId"
             }
         ],
+        "entityId": "light.guest_bedroom_lamp",
+        "entityIdType": "exact",
         "x": 1310,
         "y": 100,
         "wires": [
@@ -2433,8 +2434,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "light.guest_bedroom_lamp",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "on",
@@ -2469,6 +2468,8 @@
                 "valueType": "triggerId"
             }
         ],
+        "entityId": "light.guest_bedroom_lamp",
+        "entityIdType": "exact",
         "x": 1310,
         "y": 400,
         "wires": [
@@ -2626,8 +2627,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "light.master_bedroom",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "off",
@@ -2662,6 +2661,8 @@
                 "valueType": "triggerId"
             }
         ],
+        "entityId": "light.master_bedroom",
+        "entityIdType": "exact",
         "x": 1310,
         "y": 160,
         "wires": [
@@ -3152,7 +3153,7 @@
         "once": true,
         "onceDelay": "0.0",
         "topic": "",
-        "payload": "{\"latitude\": 40.76, \"longitude\": -80}",
+        "payload": "{\"latitude\": 32.85486, \"longitude\": -97.50515}",
         "payloadType": "json",
         "x": 200,
         "y": 340,
@@ -4442,8 +4443,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "hue",
-        "service": "activate_scene",
         "areaId": [],
         "deviceId": [],
         "entityId": [
@@ -4455,6 +4454,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "hue",
+        "service": "activate_scene",
         "x": 1770,
         "y": 280,
         "wires": [
@@ -4574,8 +4575,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_off",
         "areaId": [],
         "deviceId": [],
         "entityId": [],
@@ -4592,6 +4591,8 @@
             }
         ],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_off",
         "x": 980,
         "y": 480,
         "wires": [
@@ -4847,8 +4848,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "hue",
-        "service": "hue_activate_scene",
         "areaId": [],
         "deviceId": [],
         "entityId": [],
@@ -4858,6 +4857,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "hue",
+        "service": "hue_activate_scene",
         "x": 1120,
         "y": 680,
         "wires": [
@@ -4923,8 +4924,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "remote",
-        "service": "turn_off",
         "areaId": [
             "living_room"
         ],
@@ -4940,6 +4939,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "remote",
+        "service": "turn_off",
         "x": 530,
         "y": 580,
         "wires": [
@@ -5010,8 +5011,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [],
@@ -5021,6 +5020,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1790,
         "y": 340,
         "wires": [
@@ -5095,8 +5096,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_off",
         "areaId": [],
         "deviceId": [],
         "entityId": [
@@ -5108,6 +5107,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_off",
         "x": 990,
         "y": 540,
         "wires": [
@@ -5325,8 +5326,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
@@ -5338,6 +5337,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 850,
         "y": 840,
         "wires": [
@@ -5410,8 +5411,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
@@ -5423,6 +5422,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1530,
         "y": 480,
         "wires": [
@@ -5437,8 +5438,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
@@ -5450,6 +5449,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1550,
         "y": 520,
         "wires": [
@@ -5464,8 +5465,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
@@ -5477,6 +5476,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1530,
         "y": 580,
         "wires": [
@@ -5674,9 +5675,10 @@
         "id": "e42d1eba960ea3cd",
         "type": "set-shared-state",
         "z": "90f5fe8cb80ae6a7",
-        "state": "659fd61043193a4d",
+        "state": "1ba8ec066e81f1c4",
         "name": "Music Playlist Numbers",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
         "x": 1210,
@@ -5967,10 +5969,12 @@
         "id": "e461ac8aeac7cb0c",
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
+        "d": true,
         "g": "c48cec27c550ff16",
         "name": "Set music type based on conditions",
         "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If anyone is asleep, set to sleep\nif (global.get(\"state\").isAnyoneAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was the last person waking up, kick off some music\n    if (msg.topic == \"isAnyoneAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If noone is asleep then day starts\n    if (global.get(\"state\").isAnyoneAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    // Override for when sleep sounds get started a little early\n    if (global.get(\"state\").musicPlaybackType.value == \"sleep\") {\n        return null\n    }\n    msg.payload = \"winddown\"\n    return msg\n}\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -10195,8 +10199,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "vacuum",
-        "service": "return_to_base",
         "areaId": [],
         "deviceId": [
             "f4ea622f68a4dad33922e5e74f3a4063"
@@ -10208,6 +10210,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "vacuum",
+        "service": "return_to_base",
         "x": 580,
         "y": 380,
         "wires": [
@@ -10222,8 +10226,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "vacuum",
-        "service": "start",
         "areaId": [],
         "deviceId": [
             "f4ea622f68a4dad33922e5e74f3a4063"
@@ -10235,6 +10237,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "vacuum",
+        "service": "start",
         "x": 780,
         "y": 280,
         "wires": [
@@ -10251,8 +10255,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "vacuum",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "f4ea622f68a4dad33922e5e74f3a4063"
@@ -10264,6 +10266,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "vacuum",
+        "service": "send_command",
         "x": 670,
         "y": 820,
         "wires": [
@@ -10307,8 +10311,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "vacuum",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "f4ea622f68a4dad33922e5e74f3a4063"
@@ -10320,6 +10322,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "vacuum",
+        "service": "send_command",
         "x": 680,
         "y": 980,
         "wires": [
@@ -10334,8 +10338,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "vacuum",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "f4ea622f68a4dad33922e5e74f3a4063"
@@ -10347,6 +10349,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "vacuum",
+        "service": "send_command",
         "x": 1440,
         "y": 820,
         "wires": [
@@ -10361,8 +10365,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "vacuum",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "f4ea622f68a4dad33922e5e74f3a4063"
@@ -10374,6 +10376,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "vacuum",
+        "service": "send_command",
         "x": 1440,
         "y": 980,
         "wires": [
@@ -10388,8 +10392,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "vacuum",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "f4ea622f68a4dad33922e5e74f3a4063"
@@ -10401,6 +10403,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "vacuum",
+        "service": "send_command",
         "x": 1550,
         "y": 600,
         "wires": [
@@ -10666,8 +10670,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [
             "master_bedroom"
         ],
@@ -10679,6 +10681,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1990,
         "y": 380,
         "wires": [
@@ -10715,8 +10719,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [
             "living_room",
             "nook"
@@ -10729,6 +10731,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1530,
         "y": 620,
         "wires": [
@@ -10745,8 +10749,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [
             "living_room",
             "nook"
@@ -10759,6 +10761,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1830,
         "y": 620,
         "wires": [
@@ -11180,8 +11184,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
         "areaId": [
             "master_bedroom"
         ],
@@ -11193,6 +11195,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "light",
+        "service": "turn_on",
         "x": 1520,
         "y": 380,
         "wires": [
@@ -11445,8 +11449,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "light.master_bedroom",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "off",
@@ -11481,6 +11483,8 @@
                 "valueType": "triggerId"
             }
         ],
+        "entityId": "light.master_bedroom",
+        "entityIdType": "exact",
         "x": 150,
         "y": 780,
         "wires": [
@@ -11960,7 +11964,7 @@
         "id": "8f0e34f261117ab2",
         "type": "get-shared-state",
         "z": "9e0490d1fc323107",
-        "state": "659fd61043193a4d",
+        "state": "1ba8ec066e81f1c4",
         "name": "Music Playlist Numbers",
         "triggerOnInit": true,
         "triggerOnChange": true,
@@ -12131,8 +12135,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "humidifier",
-        "service": "turn_on",
         "areaId": [
             "master_bedroom"
         ],
@@ -12146,6 +12148,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "humidifier",
+        "service": "turn_on",
         "x": 1060,
         "y": 100,
         "wires": [
@@ -12162,8 +12166,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "humidifier",
-        "service": "turn_off",
         "areaId": [
             "master_bedroom"
         ],
@@ -12177,6 +12179,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "humidifier",
+        "service": "turn_off",
         "x": 1060,
         "y": 40,
         "wires": [
@@ -12252,8 +12256,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "fan",
-        "service": "oscillate",
         "areaId": [
             "guest_suite",
             "living_room_2",
@@ -12267,6 +12269,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "fan",
+        "service": "oscillate",
         "x": 510,
         "y": 280,
         "wires": [
@@ -12438,8 +12442,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
         "areaId": [
             "guest_suite",
             "living_room_2",
@@ -12453,6 +12455,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "fan",
+        "service": "set_percentage",
         "x": 680,
         "y": 620,
         "wires": [
@@ -12479,8 +12483,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
         "areaId": [
             "guest_suite",
             "living_room_2",
@@ -12494,6 +12496,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "fan",
+        "service": "set_percentage",
         "x": 600,
         "y": 440,
         "wires": [
@@ -12533,8 +12537,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
         "areaId": [
             "master_bedroom"
         ],
@@ -12546,6 +12548,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "fan",
+        "service": "set_percentage",
         "x": 1190,
         "y": 460,
         "wires": [
@@ -12560,8 +12564,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
         "areaId": [
             "living_room_2"
         ],
@@ -12573,6 +12575,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "fan",
+        "service": "set_percentage",
         "x": 1190,
         "y": 500,
         "wires": [
@@ -12587,8 +12591,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "fan",
-        "service": "set_percentage",
         "areaId": [
             "guest_suite"
         ],
@@ -12600,6 +12602,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "fan",
+        "service": "set_percentage",
         "x": 1190,
         "y": 540,
         "wires": [
@@ -13489,8 +13493,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "homeassistant",
-        "service": "restart",
         "areaId": [],
         "deviceId": [],
         "entityId": [],
@@ -13500,6 +13502,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "homeassistant",
+        "service": "restart",
         "x": 1650,
         "y": 360,
         "wires": [
@@ -16119,9 +16123,10 @@
         "z": "0d2150a703bedcd6",
         "d": true,
         "name": "Generate Notification Message",
-        "func": "notification_message = \"Caroline, have you selected an EMDR pratctitioner?\"\n\nmsg.payload = notification_message\n\nreturn msg;",
+        "func": "var notification_message = \"Caroline, have you selected an EMDR pratctitioner?\"\n\nmsg.payload = notification_message\n\nreturn msg;",
         "outputs": 1,
-        "noerr": 2,
+        "timeout": "",
+        "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
@@ -16245,8 +16250,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "weather",
-        "service": "get_forecast",
         "areaId": [],
         "deviceId": [
             "9d0992a8b17d4545aeb007e2274f3d1e"
@@ -16265,6 +16268,8 @@
             }
         ],
         "queue": "none",
+        "domain": "weather",
+        "service": "get_forecast",
         "x": 570,
         "y": 320,
         "wires": [
@@ -16383,8 +16388,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "remote",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
@@ -16398,6 +16401,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "remote",
+        "service": "send_command",
         "x": 690,
         "y": 80,
         "wires": [
@@ -16414,8 +16419,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "remote",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
@@ -16429,6 +16432,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "remote",
+        "service": "send_command",
         "x": 1010,
         "y": 80,
         "wires": [
@@ -16495,8 +16500,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "remote",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
@@ -16510,6 +16513,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "remote",
+        "service": "send_command",
         "x": 1310,
         "y": 80,
         "wires": [
@@ -16551,8 +16556,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "remote",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
@@ -16566,6 +16569,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "remote",
+        "service": "send_command",
         "x": 1010,
         "y": 140,
         "wires": [
@@ -16607,8 +16612,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "remote",
-        "service": "send_command",
         "areaId": [],
         "deviceId": [
             "4cb91db5c368ef79e9cd2fafb2e9ac3c"
@@ -16622,6 +16625,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
+        "domain": "remote",
+        "service": "send_command",
         "x": 1310,
         "y": 140,
         "wires": [
@@ -16721,8 +16726,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "media_player.big_beautiful_oled",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "playing",
@@ -16745,6 +16748,8 @@
                 "valueType": "bool"
             }
         ],
+        "entityId": "media_player.big_beautiful_oled",
+        "entityIdType": "exact",
         "x": 180,
         "y": 280,
         "wires": [
@@ -16763,8 +16768,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "media_player.big_beautiful_oled",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "playing",
@@ -16787,6 +16790,8 @@
                 "valueType": "bool"
             }
         ],
+        "entityId": "media_player.big_beautiful_oled",
+        "entityIdType": "exact",
         "x": 190,
         "y": 340,
         "wires": [
@@ -16828,8 +16833,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "remote.sony_xr_65a80k",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "on",
@@ -16852,6 +16855,8 @@
                 "valueType": "bool"
             }
         ],
+        "entityId": "remote.sony_xr_65a80k",
+        "entityIdType": "exact",
         "x": 700,
         "y": 280,
         "wires": [
@@ -16883,8 +16888,6 @@
         "version": 5,
         "outputs": 2,
         "exposeAsEntityConfig": "",
-        "entityId": "remote.sony_xr_65a80k",
-        "entityIdType": "exact",
         "outputInitially": false,
         "stateType": "str",
         "ifState": "off",
@@ -16907,6 +16910,8 @@
                 "valueType": "bool"
             }
         ],
+        "entityId": "remote.sony_xr_65a80k",
+        "entityIdType": "exact",
         "x": 700,
         "y": 340,
         "wires": [
@@ -17177,8 +17182,6 @@
         "server": "3ec50562615a9f50",
         "version": 5,
         "debugenabled": false,
-        "domain": "remote",
-        "service": "send_command",
         "areaId": [
             "living_room"
         ],
@@ -17199,6 +17202,8 @@
             }
         ],
         "queue": "none",
+        "domain": "remote",
+        "service": "send_command",
         "x": 780,
         "y": 780,
         "wires": [
