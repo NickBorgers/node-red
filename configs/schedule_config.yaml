@@ -7,13 +7,13 @@ schedule:
     stop_screens: '21:45'
     wake: '10:00'
     winddown: '21:30'
--   begin_wake: 07:15
+-   begin_wake: 08:45
     dusk: '18:00'
     go_to_bed: '22:30'
     name: Monday
     night: '23:30'
     stop_screens: '21:45'
-    wake: 08:00
+    wake: 09:15
     winddown: '21:30'
 -   begin_wake: 08:45
     dusk: '18:00'
@@ -21,23 +21,23 @@ schedule:
     name: Tuesday
     night: '23:30'
     stop_screens: '21:45'
-    wake: 08:00
+    wake: 09:15
     winddown: '21:30'
--   begin_wake: 09:15
+-   begin_wake: 08:45
     dusk: '18:00'
     go_to_bed: '22:30'
     name: Wednesday
     night: '23:30'
     stop_screens: '21:45'
-    wake: 08:00
+    wake: 09:15
     winddown: '21:30'
--   begin_wake: 09:30
+-   begin_wake: 08:45
     dusk: '18:00'
     go_to_bed: '22:30'
     name: Thursday
     night: '23:30'
     stop_screens: '21:45'
-    wake: 08:00
+    wake: 09:15
     winddown: '21:30'
 -   begin_wake: 08:45
     dusk: '18:00'
@@ -45,9 +45,9 @@ schedule:
     name: Friday
     night: '23:59'
     stop_screens: '23:00'
-    wake: 08:00
+    wake: 09:15
     winddown: '22:00'
--   begin_wake: 08:20
+-   begin_wake: '9:30'
     dusk: '18:00'
     go_to_bed: '23:59'
     name: Saturday
