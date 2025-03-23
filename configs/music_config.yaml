@@ -31,20 +31,16 @@ music:
         leave_muted_if: []
     playback_options:
       # Instrumental Melodic House and Techno
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:62CFZGi01r81y81tSuj155
+      - uri: spotify:user:spotify:playlist:62CFZGi01r81y81tSuj155
         volume_multiplier: 1.0
       # Instrumental Techno Mix
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1EIgBWjkyfXHmo
+      - uri: spotify:user:spotify:playlist:37i9dQZF1EIgBWjkyfXHmo
         volume_multiplier: 1.0
       # Instrumental House Mix
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1EIhris6SwzGuN
+      - uri: spotify:user:spotify:playlist:37i9dQZF1EIhris6SwzGuN
         volume_multiplier: 1.0
       # Epic Classical
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1E4vSnB7GD9Gct
+      - uri: spotify:user:spotify:playlist:37i9dQZF1E4vSnB7GD9Gct
         volume_multiplier: 1.0
   day:
     playback_entity_id: media_player.everywhere
@@ -77,36 +73,28 @@ music:
         leave_muted_if: []
     playback_options:
       # Kygo Radio
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
+      - uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
         volume_multiplier: 1.0
       # Chill Tracks
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX6VdMW310YC7
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX6VdMW310YC7
         volume_multiplier: 1.0
       # Lounge - Soft House
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX82pCGH5USnM
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX82pCGH5USnM
         volume_multiplier: 1.0
       # Caroline's country playlist
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:5Wyuc2BN76JyKioxcaY7ud
+      - uri: spotify:user:spotify:playlist:5Wyuc2BN76JyKioxcaY7ud
         volume_multiplier: 1.0
       # Summer Party
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX5Ozry5U6G0d
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX5Ozry5U6G0d
         volume_multiplier: 1.0
       # Lowkey tech
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
+      - uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
         volume_multiplier: 1.0
       # Owl City
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
+      - uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
         volume_multiplier: 1.0
       # Blockheady Instrumental
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:7hw5bkUl4xLPDCymveIfnK
+      - uri: spotify:user:spotify:playlist:7hw5bkUl4xLPDCymveIfnK
         volume_multiplier: 1.0
   evening:
     playback_entity_id: media_player.everywhere
@@ -139,32 +127,25 @@ music:
         leave_muted_if: []
     playback_options:
       # Instrumental Study
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX9sIqqvKsjG8
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX9sIqqvKsjG8
         volume_multiplier: 1.2
       # Jazz in the background
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DWV7EzJMK2FUI
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DWV7EzJMK2FUI
         volume_multiplier: 1.0
       # This is Hilary Hahn
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DWV15rjiWJsBI
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DWV15rjiWJsBI
         volume_multiplier: 1.5
       # Blowin' in the wind radio
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1E8Q7fAfKoKDtW
+      - uri: spotify:user:spotify:playlist:37i9dQZF1E8Q7fAfKoKDtW
         volume_multiplier: 1.0
       # Calming Classical (Needs much higher volumes for parity)
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DWVFeEut75IAL
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DWVFeEut75IAL
         volume_multiplier: 1.5
       # Chilled Jazz
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX2vYju3i0lNX
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX2vYju3i0lNX
         volume_multiplier: 1.0
       # Instrumental Classical
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:5fSuIObNY9SB8gUMt1xrsB
+      - uri: spotify:user:spotify:playlist:5fSuIObNY9SB8gUMt1xrsB
         volume_multiplier: 1.0
   winddown:
     playback_entity_id: media_player.everywhere
@@ -197,16 +178,13 @@ music:
         leave_muted_if: []
     playback_options:
       # Floating Through Space
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX1n9whBbBKoL
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX1n9whBbBKoL
         volume_multiplier: 1.0
       # Ambient Relaxation
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
         volume_multiplier: 1.0
       # Sleep
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DWZd79rJ6a7lp
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DWZd79rJ6a7lp
         volume_multiplier: 1.0
   sleep:
     playback_entity_id: media_player.everywhere
@@ -227,20 +205,15 @@ music:
         base_volume: 38
         leave_muted_if: []
     playback_options:
-      - command: group.queue.uri
-        uri: "Local Rain Track 1"
+      - uri: "Local Rain Track 1"
         volume_multiplier: 1.4
-      - command: group.queue.uri
-        uri: "Local Rain Track 2"
+      - uri: "Local Rain Track 2"
         volume_multiplier: 1.0
-      - command: group.queue.uri
-        uri: "Local Rain Track 3"
+      - uri: "Local Rain Track 3"
         volume_multiplier: 1.32
-      - command: group.queue.uri
-        uri: "Local Rain Track 4"
+      - uri: "Local Rain Track 4"
         volume_multiplier: 1.6
-      - command: group.queue.uri
-        uri: "Local Rain Track 5"
+      - uri: "Local Rain Track 5"
         volume_multiplier: 1.18
   sex:
     playback_entity_id: media_player.primary_bedroom
@@ -249,8 +222,7 @@ music:
         base_volume: 18
         leave_muted_if: []
     playback_options:
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:1WaopApISE1aAT83aIYKRw
+      - uri: spotify:user:spotify:playlist:1WaopApISE1aAT83aIYKRw
         volume_multiplier: 1.0
   wakeup:
     playback_entity_id: media_player.primary_bedroom
@@ -260,6 +232,5 @@ music:
         leave_muted_if: []
     playback_options:
       # Ambient Relaxation
-      - command: group.queue.urispotify
-        uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
         volume_multiplier: 1.0
