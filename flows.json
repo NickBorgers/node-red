@@ -33,7 +33,7 @@
         "id": "90f5fe8cb80ae6a7",
         "type": "tab",
         "label": "Music",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -82,6 +82,14 @@
         "type": "tab",
         "label": "TV Monitoring and Manipulation",
         "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c90d4a5ca629d0b3",
+        "type": "tab",
+        "label": "Pool Pump",
+        "disabled": false,
         "info": "",
         "env": []
     },
@@ -317,28 +325,28 @@
         "type": "sonos-config",
         "name": "Living Room",
         "serialnum": "",
-        "ipaddress": "sonos-living-room.nickborgers.com"
+        "ipaddress": "sonos-living-room.nickborgers.net"
     },
     {
         "id": "eb483a028b06c90a",
         "type": "sonos-config",
         "name": "Master Bathroom",
         "serialnum": "",
-        "ipaddress": "sonos-master-bath.nickborgers.com"
+        "ipaddress": "sonos-master-bath.nickborgers.net"
     },
     {
         "id": "80cf2bfc253ff8c2",
         "type": "sonos-config",
         "name": "Master Bedroom",
         "serialnum": "",
-        "ipaddress": "sonos-master-bedroom.nickborgers.com"
+        "ipaddress": "sonos-master-bedroom.nickborgers.net"
     },
     {
         "id": "047dcd09c592e040",
         "type": "sonos-config",
         "name": "Nook",
         "serialnum": "",
-        "ipaddress": "sonos-nook.nickborgers.com"
+        "ipaddress": "sonos-nook.nickborgers.net"
     },
     {
         "id": "156ccde543ba4845",
@@ -570,7 +578,7 @@
         "type": "sonos-config",
         "name": "Guest Bedroom",
         "serialnum": "",
-        "ipaddress": "sonos-guest-bedroom.nickborgers.com"
+        "ipaddress": "sonos-guest-bedroom.nickborgers.net"
     },
     {
         "id": "efc87f0de00a2d36",
@@ -1096,6 +1104,23 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "189769065e060549",
+        "type": "shared-state",
+        "name": "outdoorTemperature",
+        "lbl": "Outdoor Temperature",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "F",
         "saveInterval": "0"
     },
     {
@@ -2988,7 +3013,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 890,
+        "x": 970,
         "y": 340,
         "wires": []
     },
@@ -3072,8 +3097,9 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Sun State Summarizer",
-        "func": "// If sunset\nif (\n    msg.payload.sunevent == \"goldenHour\" ||\n    msg.payload.sunevent == \"sunsetStart\" ||\n    msg.payload.sunevent == \"sunset\"\n  ) {\n    // output true\n    msg.payload = \"sunset\"\n}\n// If dusk\nelse if (\n    msg.payload.sunevent == \"dusk\" ||\n    msg.payload.sunevent == \"nauticalDusk\"\n  ) {\n    // output true\n    msg.payload = \"dusk\"\n}\n// If night\nelse if (\n    msg.payload.sunevent == \"night\" ||\n    msg.payload.sunevent == \"nightEnd\" ||\n    msg.payload.sunevent == \"nauticalDawn\" ||\n    msg.payload.sunevent == \"dawn\" ||\n    msg.payload.sunevent == \"nadir\"\n  ) {\n    // output true\n    msg.payload = \"night\"\n}\n// If morning\nelse if (\n    msg.payload.sunevent == \"sunrise\" ||\n    msg.payload.sunevent == \"sunriseEnd\" ||\n    msg.payload.sunevent == \"goldenHourEnd\"\n  ) {\n    // output true\n    msg.payload = \"morning\"\n}\n// If it's not morning, sunset, dusk, or night; assume it's day\nelse {\n    msg.payload = \"day\"\n}\n\n// Check if this is new, if it is send it\nif (global.get(\"state\").sunevent.value != msg.payload) {\n    return msg\n}\nreturn null",
-        "outputs": 1,
+        "func": "// If sunset\nif (\n    msg.payload.sunevent == \"goldenHour\" ||\n    msg.payload.sunevent == \"sunsetStart\" ||\n    msg.payload.sunevent == \"sunset\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"sunset\"\n}\n// If dusk\nelse if (\n    msg.payload.sunevent == \"dusk\" ||\n    msg.payload.sunevent == \"nauticalDusk\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"dusk\"\n}\n// If night\nelse if (\n    msg.payload.sunevent == \"night\" ||\n    msg.payload.sunevent == \"nightEnd\" ||\n    msg.payload.sunevent == \"nauticalDawn\" ||\n    msg.payload.sunevent == \"dawn\" ||\n    msg.payload.sunevent == \"nadir\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"night\"\n}\n// If morning\nelse if (\n    msg.payload.sunevent == \"sunrise\" ||\n    msg.payload.sunevent == \"sunriseEnd\"\n  ) {\n   // set our summarized sun state\n    msg.payload = \"morning\"\n}\n// If end of morning\nelse if (\n  msg.payload.sunevent == \"goldenHourEnd\"\n) {\n    // do something special...\n    // set our summarized sun state\n    msg.payload = \"day\"\n    // and send it to the second output...\n    // which will set it but with a delay\n   return [ null, msg ]\n}\n// If it's not morning, sunset, dusk, or night; assume it's day\nelse {\n    msg.payload = \"day\"\n}\n\n// Check if this is new, if it is send it\nif (global.get(\"state\").sunevent.value != msg.payload) {\n    return [ msg, null ]\n}\nreturn [ null, null ]",
+        "outputs": 2,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -3083,6 +3109,9 @@
         "wires": [
             [
                 "09657a19ee07783e"
+            ],
+            [
+                "9e8bb057c702e878"
             ]
         ]
     },
@@ -3609,6 +3638,113 @@
         "wires": [
             [
                 "cec5fcf493bb58c1"
+            ]
+        ]
+    },
+    {
+        "id": "6fe04f00144089e6",
+        "type": "server-state-changed",
+        "z": "634c78c80eb9f37e",
+        "name": "Outdoor Temperature",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.most_of_house_outdoor_temperature"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "num",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 140,
+        "y": 920,
+        "wires": [
+            [
+                "319263a625fb343c"
+            ]
+        ]
+    },
+    {
+        "id": "810313c481d09374",
+        "type": "comment",
+        "z": "634c78c80eb9f37e",
+        "name": "Get Outdoor Temperature Changes",
+        "info": "",
+        "x": 180,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "319263a625fb343c",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "189769065e060549",
+        "name": "Outdoor Temperature",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 360,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "9e8bb057c702e878",
+        "type": "delay",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "hours",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 400,
+        "wires": [
+            [
+                "09657a19ee07783e"
             ]
         ]
     },
@@ -5754,7 +5890,7 @@
         "id": "fa5a15fef36b436f",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
-        "confignode": "047dcd09c592e040",
+        "confignode": "440f06b05d48d38b",
         "command": "household.create.group",
         "state": "",
         "stateType": "str",
@@ -17857,6 +17993,123 @@
                 "9d85e338bb7616e4",
                 "891dcc09a057ebce"
             ]
+        ]
+    },
+    {
+        "id": "be254fdaec053593",
+        "type": "get-shared-state",
+        "z": "c90d4a5ca629d0b3",
+        "state": "174c278f.609ec8",
+        "name": "Sun Event",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "5ab60c4fdfb101bc"
+            ]
+        ]
+    },
+    {
+        "id": "5ab60c4fdfb101bc",
+        "type": "function",
+        "z": "c90d4a5ca629d0b3",
+        "name": "Set pool pump based on conditions",
+        "func": "var sunevent = global.get(\"state\").sunevent.value\n\nvar outdoorTemperature = global.get(\"state\").outdoorTemperature.value\n// If it's cold outside\nif (outdoorTemperature < 35) {\n    // Turn on the pool pump, no other questions asked\n    console.debug(\"Turning on pool pump because outdoor temperature is: \" + outdoorTemperature)\n    return [msg, null]\n}\n\n// If it's day time\nif (sunevent == \"day\") {\n    // Turn on the pool pump\n    console.debug(\"Turning on pool pump because sunevent is: \" + sunevent)\n    return [msg, null]\n// If it's dusk\n} else if (sunevent == \"dusk\" || sunevent == \"night\") {\n    // Turn off the pool pump\n    console.debug(\"Turning off pool pump because sunevent is: \" + sunevent)\n    return [null, msg]\n}\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 380,
+        "wires": [
+            [
+                "7e1c42d8c3a5c4fa"
+            ],
+            [
+                "4e27db343be5826a"
+            ]
+        ]
+    },
+    {
+        "id": "520c4ab77a6681be",
+        "type": "get-shared-state",
+        "z": "c90d4a5ca629d0b3",
+        "state": "189769065e060549",
+        "name": "Outdoor Temperature",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 240,
+        "y": 420,
+        "wires": [
+            [
+                "5ab60c4fdfb101bc"
+            ]
+        ]
+    },
+    {
+        "id": "7e1c42d8c3a5c4fa",
+        "type": "api-call-service",
+        "z": "c90d4a5ca629d0b3",
+        "name": "Turn on Pool Pump",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.outdoor_smart_plug"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 850,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e27db343be5826a",
+        "type": "api-call-service",
+        "z": "c90d4a5ca629d0b3",
+        "name": "Turn off Pool Pump",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.outdoor_smart_plug"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 850,
+        "y": 420,
+        "wires": [
+            []
         ]
     }
 ]
