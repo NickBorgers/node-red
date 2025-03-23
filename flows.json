@@ -2868,30 +2868,6 @@
         "wires": []
     },
     {
-        "id": "f991b8b5b5f73fde",
-        "type": "exec",
-        "z": "634c78c80eb9f37e",
-        "command": "cd /data/projects/NickNodeRed/ && git pull",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Pull latest config",
-        "x": 260,
-        "y": 140,
-        "wires": [
-            [
-                "a78b91dcc37bee92",
-                "8409a48850c82e37",
-                "03d49e6e6a6a882d"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "a78b91dcc37bee92",
         "type": "file in",
         "z": "634c78c80eb9f37e",
@@ -2940,7 +2916,9 @@
         "y": 80,
         "wires": [
             [
-                "f991b8b5b5f73fde"
+                "03d49e6e6a6a882d",
+                "a78b91dcc37bee92",
+                "8409a48850c82e37"
             ]
         ]
     },
