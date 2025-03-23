@@ -1,6 +1,7 @@
 ---
 music:
   morning:
+    playback_entity_id: media_player.everywhere
     participants:
       - player_name: "Kitchen"
         base_volume: 11
@@ -46,6 +47,7 @@ music:
         uri: spotify:user:spotify:playlist:37i9dQZF1E4vSnB7GD9Gct
         volume_multiplier: 1.0
   day:
+    playback_entity_id: media_player.everywhere
     participants:
       - player_name: "Kitchen"
         base_volume: 10
@@ -107,6 +109,7 @@ music:
         uri: spotify:user:spotify:playlist:7hw5bkUl4xLPDCymveIfnK
         volume_multiplier: 1.0
   evening:
+    playback_entity_id: media_player.everywhere
     participants:
       - player_name: "Kitchen"
         base_volume: 13
@@ -164,6 +167,7 @@ music:
         uri: spotify:user:spotify:playlist:5fSuIObNY9SB8gUMt1xrsB
         volume_multiplier: 1.0
   winddown:
+    playback_entity_id: media_player.everywhere
     participants:
       - player_name: "Kitchen"
         base_volume: 15
@@ -205,6 +209,7 @@ music:
         uri: spotify:user:spotify:playlist:37i9dQZF1DWZd79rJ6a7lp
         volume_multiplier: 1.0
   sleep:
+    playback_entity_id: media_player.everywhere
     participants:
       - player_name: "Primary Bedroom"
         base_volume: 38
@@ -238,6 +243,7 @@ music:
         uri: "http://rain-sounds.nickborgers.com/6.m4a"
         volume_multiplier: 1.18
   sex:
+    playback_entity_id: media_player.primary_bedroom
     participants:
       - player_name: "Primary Bedroom"
         base_volume: 18
@@ -247,6 +253,7 @@ music:
         uri: spotify:user:spotify:playlist:1WaopApISE1aAT83aIYKRw
         volume_multiplier: 1.0
   wakeup:
+    playback_entity_id: media_player.primary_bedroom
     participants:
       - player_name: "Primary Bedroom"
         base_volume: 50
