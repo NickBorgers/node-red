@@ -228,19 +228,19 @@ music:
         leave_muted_if: []
     playback_options:
       - command: group.queue.uri
-        uri: "http://rain-sounds.nickborgers.com/1.m4a"
+        uri: "Local Rain Track 1"
         volume_multiplier: 1.4
       - command: group.queue.uri
-        uri: "http://rain-sounds.nickborgers.com/3.m4a"
+        uri: "Local Rain Track 2"
         volume_multiplier: 1.0
       - command: group.queue.uri
-        uri: "http://rain-sounds.nickborgers.com/4.m4a"
+        uri: "Local Rain Track 3"
         volume_multiplier: 1.32
       - command: group.queue.uri
-        uri: "http://rain-sounds.nickborgers.com/5.m4a"
+        uri: "Local Rain Track 4"
         volume_multiplier: 1.6
       - command: group.queue.uri
-        uri: "http://rain-sounds.nickborgers.com/6.m4a"
+        uri: "Local Rain Track 5"
         volume_multiplier: 1.18
   sex:
     playback_entity_id: media_player.primary_bedroom
