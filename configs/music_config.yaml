@@ -185,19 +185,19 @@ music:
   sleep:
     participants:
       - player_name: "Primary Bedroom"
-        base_volume: 38
+        base_volume: 25
         leave_muted_if: []
       - player_name: "Dining Room"
-        base_volume: 38
+        base_volume: 25
         leave_muted_if: []
       - player_name: "Living Room"
-        base_volume: 38
+        base_volume: 25
         leave_muted_if: []
       - player_name: "Kitchen"
-        base_volume: 38
+        base_volume: 25
         leave_muted_if: []
       - player_name: "Office"
-        base_volume: 38
+        base_volume: 25
         leave_muted_if: []
     playback_options:
       - uri: "Local Rain Track 1"
