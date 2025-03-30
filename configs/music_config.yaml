@@ -10,8 +10,6 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
-          - variable: isTVPlaying
-            value: true
       - player_name: "Kids Bathroom"
         base_volume: 9
         leave_muted_if:
@@ -24,7 +22,9 @@ music:
             value: true
       - player_name: "Dining Room"
         base_volume: 9
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isTVPlaying
+            value: true
       - player_name: "Office"
         base_volume: 8
         leave_muted_if: []
@@ -51,8 +51,6 @@ music:
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
-          - variable: isTVPlaying
-            value: true
       - player_name: "Kids Bathroom"
         base_volume: 10
         leave_muted_if:
@@ -65,7 +63,9 @@ music:
             value: true
       - player_name: "Dining Room"
         base_volume: 10
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isTVPlaying
+            value: true
       - player_name: "Office"
         base_volume: 10
         leave_muted_if: []
@@ -99,13 +99,6 @@ music:
       - player_name: "Kitchen"
         base_volume: 13
         leave_muted_if: []
-      - player_name: "Soundbar"
-        base_volume: 15
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-          - variable: isTVPlaying
-            value: true
       - player_name: "Kids Bathroom"
         base_volume: 12
         leave_muted_if:
@@ -118,7 +111,9 @@ music:
             value: true
       - player_name: "Dining Room"
         base_volume: 12
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isTVPlaying
+            value: true
       - player_name: "Office"
         base_volume: 12
         leave_muted_if: []
@@ -149,13 +144,6 @@ music:
       - player_name: "Kitchen"
         base_volume: 15
         leave_muted_if: []
-      - player_name: "Soundbar"
-        base_volume: 15
-        leave_muted_if:
-          - variable: isGuestAsleep
-            value: true
-          - variable: isTVPlaying
-            value: true
       - player_name: "Kids Bathroom"
         base_volume: 12
         leave_muted_if:
@@ -168,7 +156,9 @@ music:
             value: true
       - player_name: "Dining Room"
         base_volume: 12
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isTVPlaying
+            value: true
       - player_name: "Office"
         base_volume: 12
         leave_muted_if: []
@@ -189,10 +179,9 @@ music:
         leave_muted_if: []
       - player_name: "Dining Room"
         base_volume: 25
-        leave_muted_if: []
-      - player_name: "Soundbar"
-        base_volume: 25
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isTVPlaying
+            value: true
       - player_name: "Kitchen"
         base_volume: 25
         leave_muted_if: []
