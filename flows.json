@@ -194,10 +194,8 @@
             "2a368b2441b8e268",
             "6ff0fe94ad20f2b0",
             "a16d6614f34882e1",
-            "222f41b3e4fc44cd",
             "1400bc1a11781043",
             "bb35db542533564d",
-            "da8a13699f936fa8",
             "b5802a0f996c0d73",
             "1f57ca5d204495b8",
             "827e944640382a04",
@@ -209,7 +207,9 @@
             "8887203cd9731ca8",
             "933a6be2ef3624b6",
             "dc5db439632d9364",
-            "9a58aa7993ee54bc"
+            "9a58aa7993ee54bc",
+            "da8a13699f936fa8",
+            "222f41b3e4fc44cd"
         ],
         "x": 34,
         "y": 1059,
@@ -319,34 +319,6 @@
         "numMin": "",
         "numMax": "",
         "unit": ""
-    },
-    {
-        "id": "7cd072335f421810",
-        "type": "sonos-config",
-        "name": "Living Room",
-        "serialnum": "",
-        "ipaddress": "sonos-living-room.nickborgers.net"
-    },
-    {
-        "id": "eb483a028b06c90a",
-        "type": "sonos-config",
-        "name": "Master Bathroom",
-        "serialnum": "",
-        "ipaddress": "sonos-master-bath.nickborgers.net"
-    },
-    {
-        "id": "80cf2bfc253ff8c2",
-        "type": "sonos-config",
-        "name": "Master Bedroom",
-        "serialnum": "",
-        "ipaddress": "sonos-master-bedroom.nickborgers.net"
-    },
-    {
-        "id": "047dcd09c592e040",
-        "type": "sonos-config",
-        "name": "Nook",
-        "serialnum": "",
-        "ipaddress": "sonos-nook.nickborgers.net"
     },
     {
         "id": "156ccde543ba4845",
@@ -572,13 +544,6 @@
         "purgediratrestart": "leave",
         "ttsservice": "googletranslate",
         "TTSRootFolderPath": ""
-    },
-    {
-        "id": "440f06b05d48d38b",
-        "type": "sonos-config",
-        "name": "Guest Bedroom",
-        "serialnum": "",
-        "ipaddress": "sonos-guest-bedroom.nickborgers.net"
     },
     {
         "id": "efc87f0de00a2d36",
@@ -1122,6 +1087,20 @@
         "numMax": "",
         "unit": "F",
         "saveInterval": "0"
+    },
+    {
+        "id": "5f5c9d95d1284e33",
+        "type": "sonos-config",
+        "name": "Sonos Kitchen",
+        "serialnum": "",
+        "ipaddress": "10.212.100.228"
+    },
+    {
+        "id": "1f2cfb96dccbae53",
+        "type": "sonos-config",
+        "name": "Bedroom",
+        "serialnum": "",
+        "ipaddress": "10.212.100.230"
     },
     {
         "id": "ee6f66f1.a3f1d",
@@ -5784,7 +5763,7 @@
         "id": "ed9bddb805628e39",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
-        "confignode": "eb483a028b06c90a",
+        "confignode": "5f5c9d95d1284e33",
         "command": "group.clear.queue",
         "state": "",
         "stateType": "str",
@@ -5853,24 +5832,6 @@
         "x": 100,
         "y": 40,
         "wires": []
-    },
-    {
-        "id": "fa5a15fef36b436f",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "confignode": "440f06b05d48d38b",
-        "command": "household.create.group",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": false,
-        "name": "Create playback group",
-        "x": 1120,
-        "y": 80,
-        "wires": [
-            [
-                "99b18bfe0abb713d"
-            ]
-        ]
     },
     {
         "id": "d6f678177a40f732",
@@ -6029,6 +5990,13 @@
                 "pt": "msg",
                 "to": "payload.target.entity_id",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.data.enqueue",
+                "pt": "msg",
+                "to": "replace",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -6223,7 +6191,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "5b09580d85cd2e6c",
-        "confignode": "047dcd09c592e040",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.become.standalone",
         "state": "",
         "stateType": "str",
@@ -6242,7 +6210,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "5b09580d85cd2e6c",
-        "confignode": "047dcd09c592e040",
+        "confignode": "5f5c9d95d1284e33",
         "command": "group.clear.queue",
         "state": "",
         "stateType": "str",
@@ -6261,7 +6229,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "5b09580d85cd2e6c",
-        "confignode": "047dcd09c592e040",
+        "confignode": "5f5c9d95d1284e33",
         "command": "group.stop",
         "state": "",
         "stateType": "str",
@@ -6309,7 +6277,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
-        "confignode": "047dcd09c592e040",
+        "confignode": "5f5c9d95d1284e33",
         "command": "group.get.members",
         "state": "",
         "stateType": "str",
@@ -6320,25 +6288,6 @@
         "wires": [
             [
                 "1400bc1a11781043"
-            ]
-        ]
-    },
-    {
-        "id": "222f41b3e4fc44cd",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "confignode": "7cd072335f421810",
-        "command": "player.get.volume",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": true,
-        "name": "Get Volume",
-        "x": 1030,
-        "y": 1100,
-        "wires": [
-            [
-                "bb35db542533564d"
             ]
         ]
     },
@@ -6383,30 +6332,11 @@
         ]
     },
     {
-        "id": "da8a13699f936fa8",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "confignode": "7cd072335f421810",
-        "command": "player.set.volume",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": true,
-        "name": "Set Higher Volume",
-        "x": 910,
-        "y": 1180,
-        "wires": [
-            [
-                "827e944640382a04"
-            ]
-        ]
-    },
-    {
         "id": "b5802a0f996c0d73",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
-        "confignode": "7cd072335f421810",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.set.volume",
         "state": "",
         "stateType": "str",
@@ -6524,7 +6454,7 @@
         "id": "f03b35b35db09355",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
-        "confignode": "047dcd09c592e040",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.set.mutestate",
         "state": "",
         "stateType": "str",
@@ -6582,7 +6512,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
-        "confignode": "047dcd09c592e040",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.set.mutestate",
         "state": "",
         "stateType": "str",
@@ -7380,7 +7310,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
-        "confignode": "80cf2bfc253ff8c2",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.get.volume",
         "state": "",
         "stateType": "str",
@@ -7450,7 +7380,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
-        "confignode": "80cf2bfc253ff8c2",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.set.volume",
         "state": "",
         "stateType": "str",
@@ -7653,7 +7583,7 @@
         "id": "dfd5eadfaffa3982",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
-        "confignode": "80cf2bfc253ff8c2",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.set.volume",
         "state": "",
         "stateType": "str",
@@ -7793,7 +7723,7 @@
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
         "g": "42abe9d54fa46266",
-        "confignode": "80cf2bfc253ff8c2",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.get.volume",
         "state": "",
         "stateType": "str",
@@ -8357,7 +8287,7 @@
         "id": "c3775f614d985c03",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
-        "confignode": "80cf2bfc253ff8c2",
+        "confignode": "1f2cfb96dccbae53",
         "command": "player.set.volume",
         "state": "25",
         "stateType": "num",
@@ -8706,7 +8636,7 @@
         "id": "1e239bb03f0d826f",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
-        "confignode": "047dcd09c592e040",
+        "confignode": "5f5c9d95d1284e33",
         "command": "household.get.groups",
         "state": "",
         "stateType": "str",
@@ -8930,7 +8860,7 @@
         "id": "9a8a0cc9dff87e76",
         "type": "api-call-service",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Shulffe music on player",
+        "name": "Shuffle music on player",
         "server": "3ec50562615a9f50",
         "version": 7,
         "debugenabled": false,
@@ -9041,6 +8971,62 @@
         "wires": [
             [
                 "d6f678177a40f732"
+            ]
+        ]
+    },
+    {
+        "id": "da8a13699f936fa8",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "confignode": "5f5c9d95d1284e33",
+        "command": "player.set.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": true,
+        "name": "Set Higher Volume",
+        "x": 910,
+        "y": 1180,
+        "wires": [
+            [
+                "827e944640382a04"
+            ]
+        ]
+    },
+    {
+        "id": "222f41b3e4fc44cd",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "confignode": "5f5c9d95d1284e33",
+        "command": "player.get.volume",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": true,
+        "name": "Get Volume",
+        "x": 1030,
+        "y": 1100,
+        "wires": [
+            [
+                "bb35db542533564d"
+            ]
+        ]
+    },
+    {
+        "id": "fa5a15fef36b436f",
+        "type": "sonos-universal",
+        "z": "90f5fe8cb80ae6a7",
+        "confignode": "5f5c9d95d1284e33",
+        "command": "household.create.group",
+        "state": "",
+        "stateType": "str",
+        "avoidCheckPlayerAvailability": false,
+        "name": "Create playback group",
+        "x": 1120,
+        "y": 80,
+        "wires": [
+            [
+                "99b18bfe0abb713d"
             ]
         ]
     },
@@ -11225,7 +11211,7 @@
         "id": "7e90140297338312",
         "type": "sonos-universal",
         "z": "95cf961539320dd3",
-        "confignode": "80cf2bfc253ff8c2",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.get.volume",
         "state": "",
         "stateType": "str",
@@ -11330,7 +11316,7 @@
         "id": "a05a696cfafb0ca6",
         "type": "sonos-universal",
         "z": "95cf961539320dd3",
-        "confignode": "80cf2bfc253ff8c2",
+        "confignode": "5f5c9d95d1284e33",
         "command": "player.get.volume",
         "state": "",
         "stateType": "str",
