@@ -5,7 +5,7 @@ music:
       - player_name: "Kitchen"
         base_volume: 11
         leave_muted_if: []
-      - player_name: "Living Room"
+      - player_name: "Soundbar"
         base_volume: 9
         leave_muted_if:
           - variable: isGuestAsleep
@@ -46,7 +46,7 @@ music:
       - player_name: "Kitchen"
         base_volume: 10
         leave_muted_if: []
-      - player_name: "Living Room"
+      - player_name: "Soundbar"
         base_volume: 11
         leave_muted_if:
           - variable: isGuestAsleep
@@ -99,7 +99,7 @@ music:
       - player_name: "Kitchen"
         base_volume: 13
         leave_muted_if: []
-      - player_name: "Living Room"
+      - player_name: "Soundbar"
         base_volume: 15
         leave_muted_if:
           - variable: isGuestAsleep
@@ -149,7 +149,7 @@ music:
       - player_name: "Kitchen"
         base_volume: 15
         leave_muted_if: []
-      - player_name: "Living Room"
+      - player_name: "Soundbar"
         base_volume: 15
         leave_muted_if:
           - variable: isGuestAsleep
@@ -190,7 +190,7 @@ music:
       - player_name: "Dining Room"
         base_volume: 25
         leave_muted_if: []
-      - player_name: "Living Room"
+      - player_name: "Soundbar"
         base_volume: 25
         leave_muted_if: []
       - player_name: "Kitchen"
