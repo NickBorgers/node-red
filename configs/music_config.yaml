@@ -31,15 +31,19 @@ music:
     playback_options:
       # Instrumental Melodic House and Techno
       - uri: spotify:user:spotify:playlist:62CFZGi01r81y81tSuj155
+        media_type: playlist
         volume_multiplier: 1.0
       # Instrumental Techno Mix
       - uri: spotify:user:spotify:playlist:37i9dQZF1EIgBWjkyfXHmo
+        media_type: playlist
         volume_multiplier: 1.0
       # Instrumental House Mix
       - uri: spotify:user:spotify:playlist:37i9dQZF1EIhris6SwzGuN
+        media_type: playlist
         volume_multiplier: 1.0
       # Epic Classical
       - uri: spotify:user:spotify:playlist:37i9dQZF1E4vSnB7GD9Gct
+        media_type: playlist
         volume_multiplier: 1.0
   day:
     participants:
@@ -72,27 +76,35 @@ music:
     playback_options:
       # Kygo Radio
       - uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
+        media_type: playlist
         volume_multiplier: 1.0
       # Chill Tracks
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX6VdMW310YC7
+        media_type: playlist
         volume_multiplier: 1.0
       # Lounge - Soft House
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX82pCGH5USnM
+        media_type: playlist
         volume_multiplier: 1.0
       # Caroline's country playlist
       - uri: spotify:user:spotify:playlist:5Wyuc2BN76JyKioxcaY7ud
+        media_type: playlist
         volume_multiplier: 1.0
       # Summer Party
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX5Ozry5U6G0d
+        media_type: playlist
         volume_multiplier: 1.0
       # Lowkey tech
       - uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
+        media_type: playlist
         volume_multiplier: 1.0
       # Owl City
       - uri: spotify:user:spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
+        media_type: playlist
         volume_multiplier: 1.0
       # Blockheady Instrumental
       - uri: spotify:user:spotify:playlist:7hw5bkUl4xLPDCymveIfnK
+        media_type: playlist
         volume_multiplier: 1.0
   evening:
     participants:
@@ -120,24 +132,31 @@ music:
     playback_options:
       # Instrumental Study
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX9sIqqvKsjG8
+        media_type: playlist
         volume_multiplier: 1.2
       # Jazz in the background
       - uri: spotify:user:spotify:playlist:37i9dQZF1DWV7EzJMK2FUI
+        media_type: playlist
         volume_multiplier: 1.0
       # This is Hilary Hahn
       - uri: spotify:user:spotify:playlist:37i9dQZF1DWV15rjiWJsBI
+        media_type: playlist
         volume_multiplier: 1.5
       # Blowin' in the wind radio
       - uri: spotify:user:spotify:playlist:37i9dQZF1E8Q7fAfKoKDtW
+        media_type: playlist
         volume_multiplier: 1.0
       # Calming Classical (Needs much higher volumes for parity)
       - uri: spotify:user:spotify:playlist:37i9dQZF1DWVFeEut75IAL
+        media_type: playlist
         volume_multiplier: 1.5
       # Chilled Jazz
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX2vYju3i0lNX
+        media_type: playlist
         volume_multiplier: 1.0
       # Instrumental Classical
       - uri: spotify:user:spotify:playlist:5fSuIObNY9SB8gUMt1xrsB
+        media_type: playlist
         volume_multiplier: 1.0
   winddown:
     participants:
@@ -165,12 +184,15 @@ music:
     playback_options:
       # Floating Through Space
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX1n9whBbBKoL
+        media_type: playlist
         volume_multiplier: 1.0
       # Ambient Relaxation
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
+        media_type: playlist
         volume_multiplier: 1.0
       # Sleep
       - uri: spotify:user:spotify:playlist:37i9dQZF1DWZd79rJ6a7lp
+        media_type: playlist
         volume_multiplier: 1.0
   sleep:
     participants:
@@ -190,14 +212,19 @@ music:
         leave_muted_if: []
     playback_options:
       - uri: "Local Rain Track 1"
+        media_type: radio
         volume_multiplier: 1.4
       - uri: "Local Rain Track 2"
+        media_type: radio
         volume_multiplier: 1.0
       - uri: "Local Rain Track 3"
+        media_type: radio
         volume_multiplier: 1.32
       - uri: "Local Rain Track 4"
+        media_type: radio
         volume_multiplier: 1.6
       - uri: "Local Rain Track 5"
+        media_type: radio
         volume_multiplier: 1.18
   sex:
     participants:
@@ -206,6 +233,7 @@ music:
         leave_muted_if: []
     playback_options:
       - uri: spotify:user:spotify:playlist:1WaopApISE1aAT83aIYKRw
+        media_type: playlist
         volume_multiplier: 1.0
   wakeup:
     participants:
@@ -215,4 +243,5 @@ music:
     playback_options:
       # Ambient Relaxation
       - uri: spotify:user:spotify:playlist:37i9dQZF1DX3Ogo9pFvBkY
+        media_type: playlist
         volume_multiplier: 1.0
