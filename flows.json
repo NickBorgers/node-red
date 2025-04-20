@@ -217,30 +217,6 @@
         "h": 282
     },
     {
-        "id": "b2cc5799.eea9d",
-        "type": "homekit-bridge",
-        "bridgeName": "NodeRed1",
-        "pinCode": "169-45-991",
-        "port": "",
-        "advertiser": "bonjour-hap",
-        "allowInsecureRequest": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "customMdnsConfig": false,
-        "mdnsMulticast": true,
-        "mdnsInterface": "",
-        "mdnsPort": "",
-        "mdnsIp": "",
-        "mdnsTtl": "",
-        "mdnsLoopback": true,
-        "mdnsReuseAddr": true,
-        "allowMessagePassthrough": true
-    },
-    {
         "id": "1dd96a4a.9d6316",
         "type": "shared-state",
         "name": "isAnyoneHome",
@@ -1122,7 +1098,24 @@
         "name": "isNickHome",
         "lbl": "Nick Home",
         "tags": "State, Presence",
-        "historyCount": "0",
+        "historyCount": "1",
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "1"
+    },
+    {
+        "id": "b2f3086099f29cf0",
+        "type": "shared-state",
+        "name": "isCarolineHome",
+        "lbl": "Caroline Home",
+        "tags": "State, Presence",
+        "historyCount": "1",
         "dataType": "bool",
         "boolType": "bool",
         "boolStrTrue": "",
@@ -1134,12 +1127,53 @@
         "saveInterval": "0"
     },
     {
-        "id": "b2f3086099f29cf0",
+        "id": "b2cc5799.eea9d",
+        "type": "homekit-bridge",
+        "bridgeName": "NodeRed1",
+        "pinCode": "0225-1452",
+        "port": "",
+        "advertiser": "bonjour-hap",
+        "allowInsecureRequest": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "customMdnsConfig": false,
+        "mdnsMulticast": true,
+        "mdnsInterface": "",
+        "mdnsPort": "",
+        "mdnsIp": "",
+        "mdnsTtl": "",
+        "mdnsLoopback": true,
+        "mdnsReuseAddr": true,
+        "allowMessagePassthrough": true
+    },
+    {
+        "id": "8f52cea1b8ca177c",
         "type": "shared-state",
-        "name": "isCarolineHome",
-        "lbl": "Caroline Home",
+        "name": "isToriHere",
+        "lbl": "Tori Here",
         "tags": "State, Presence",
-        "historyCount": "0",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "9fcddb6cb7581f32",
+        "type": "shared-state",
+        "name": "isAnyOwnerHome",
+        "lbl": "Is Any Owner Home?",
+        "tags": "State, Presence",
+        "historyCount": 2,
         "dataType": "bool",
         "boolType": "bool",
         "boolStrTrue": "",
@@ -1345,7 +1379,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 160,
-        "y": 300,
+        "y": 360,
         "wires": [
             [
                 "8be3694e.cfd798"
@@ -1361,7 +1395,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 140,
-        "y": 360,
+        "y": 420,
         "wires": [
             [
                 "8be3694e.cfd798"
@@ -1380,10 +1414,11 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
-                "f1794f1d.551a68"
+                "c0d3aa76511a7ac9",
+                "c7d35f1cfd1f6346"
             ]
         ]
     },
@@ -1396,8 +1431,8 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 600,
-        "y": 340,
+        "x": 800,
+        "y": 480,
         "wires": []
     },
     {
@@ -1427,7 +1462,7 @@
         "name": "Manage @home variable",
         "info": "",
         "x": 190,
-        "y": 260,
+        "y": 320,
         "wires": []
     },
     {
@@ -1437,7 +1472,7 @@
         "name": "Sleeper Tracking",
         "info": "",
         "x": 100,
-        "y": 440,
+        "y": 560,
         "wires": []
     },
     {
@@ -1447,7 +1482,7 @@
         "name": "Are masters asleep?",
         "info": "",
         "x": 150,
-        "y": 480,
+        "y": 600,
         "wires": []
     },
     {
@@ -1494,7 +1529,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 560,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "d235bec0.ec595"
@@ -1522,7 +1557,7 @@
         "to": "",
         "reg": false,
         "x": 770,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "df524162.b52ae8"
@@ -1539,7 +1574,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 960,
-        "y": 520,
+        "y": 640,
         "wires": []
     },
     {
@@ -1549,7 +1584,7 @@
         "name": "Are Guests Asleep?",
         "info": "",
         "x": 150,
-        "y": 600,
+        "y": 720,
         "wires": []
     },
     {
@@ -1562,7 +1597,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 960,
-        "y": 660,
+        "y": 780,
         "wires": []
     },
     {
@@ -1660,7 +1695,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "494477a5e37d3abe"
@@ -1687,7 +1722,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "d3ddb03d.1dba08"
@@ -1739,7 +1774,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 200,
-        "y": 1080,
+        "y": 1200,
         "wires": [
             [
                 "92a787a17e5a68cc"
@@ -1792,7 +1827,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 200,
-        "y": 1140,
+        "y": 1260,
         "wires": [
             [
                 "38b97ca236e8163d"
@@ -1844,7 +1879,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 560,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "07d850c58997c540"
@@ -1862,7 +1897,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 610,
-        "y": 800,
+        "y": 920,
         "wires": []
     },
     {
@@ -1872,7 +1907,7 @@
         "name": "Manage Asleep variable",
         "info": "",
         "x": 160,
-        "y": 720,
+        "y": 840,
         "wires": []
     },
     {
@@ -1884,7 +1919,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 780,
+        "y": 900,
         "wires": [
             [
                 "ca90adbe07cc8c51"
@@ -1900,7 +1935,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 840,
+        "y": 960,
         "wires": [
             [
                 "ca90adbe07cc8c51"
@@ -1919,7 +1954,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 800,
+        "y": 920,
         "wires": [
             [
                 "6dd5f9bf57603ff8"
@@ -1934,7 +1969,7 @@
         "name": "Door Tracking",
         "info": "",
         "x": 130,
-        "y": 1020,
+        "y": 1140,
         "wires": []
     },
     {
@@ -1958,7 +1993,7 @@
         "to": "",
         "reg": false,
         "x": 450,
-        "y": 1080,
+        "y": 1200,
         "wires": [
             [
                 "74c36bd307050540"
@@ -1985,7 +2020,7 @@
         "to": "",
         "reg": false,
         "x": 770,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "74b1e4364e7efcf2"
@@ -2012,7 +2047,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "b9496f0c3ed2fd10"
@@ -2028,7 +2063,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "05ac5235e80b464e"
@@ -2046,7 +2081,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 710,
-        "y": 1080,
+        "y": 1200,
         "wires": []
     },
     {
@@ -2070,7 +2105,7 @@
         "to": "",
         "reg": false,
         "x": 450,
-        "y": 1140,
+        "y": 1260,
         "wires": [
             [
                 "19ef2aa0c73641ce"
@@ -2088,7 +2123,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 710,
-        "y": 1140,
+        "y": 1260,
         "wires": []
     },
     {
@@ -2135,7 +2170,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 1610,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "ef38dc46cc944eaf"
@@ -2153,7 +2188,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 2000,
-        "y": 660,
+        "y": 720,
         "wires": []
     },
     {
@@ -2176,7 +2211,7 @@
         "to": "",
         "reg": false,
         "x": 1810,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "ad2b0d5d23831af5"
@@ -2203,7 +2238,7 @@
         "to": "",
         "reg": false,
         "x": 1410,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "33941ae1433a1b4e"
@@ -2219,7 +2254,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 1210,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "18b1ebcd18d0855c"
@@ -2233,7 +2268,7 @@
         "name": "Have Guests",
         "info": "",
         "x": 1190,
-        "y": 600,
+        "y": 720,
         "wires": []
     },
     {
@@ -2244,7 +2279,7 @@
         "name": "Sleep Detection",
         "info": "",
         "x": 1220,
-        "y": 60,
+        "y": 120,
         "wires": []
     },
     {
@@ -2261,7 +2296,7 @@
         "finalize": "",
         "libs": [],
         "x": 1650,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "823d1203f1396da2"
@@ -2279,7 +2314,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 2080,
-        "y": 100,
+        "y": 160,
         "wires": []
     },
     {
@@ -2290,7 +2325,7 @@
         "name": "Wake Detection",
         "info": "",
         "x": 1220,
-        "y": 240,
+        "y": 300,
         "wires": []
     },
     {
@@ -2303,7 +2338,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 1290,
-        "y": 280,
+        "y": 340,
         "wires": [
             [
                 "e308dfc1c82afa45"
@@ -2321,7 +2356,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1780,
-        "y": 280,
+        "y": 340,
         "wires": []
     },
     {
@@ -2334,7 +2369,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 1290,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "21aa277aaf073eb4"
@@ -2352,7 +2387,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 2000,
-        "y": 340,
+        "y": 400,
         "wires": []
     },
     {
@@ -2364,7 +2399,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 830,
-        "y": 820,
+        "y": 940,
         "wires": [
             [
                 "0e3907f2e4812720"
@@ -2378,7 +2413,7 @@
         "name": "If we don't have guests, they're asleep if master is asleep",
         "info": "",
         "x": 970,
-        "y": 760,
+        "y": 880,
         "wires": []
     },
     {
@@ -2393,7 +2428,7 @@
         "finalize": "",
         "libs": [],
         "x": 1040,
-        "y": 840,
+        "y": 960,
         "wires": [
             [
                 "d51c49cc4596b1df"
@@ -2410,7 +2445,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1260,
-        "y": 840,
+        "y": 960,
         "wires": []
     },
     {
@@ -2465,7 +2500,7 @@
             }
         ],
         "x": 1310,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "a3b3ee64f48787b9"
@@ -2494,7 +2529,7 @@
         "to": "",
         "reg": false,
         "x": 1910,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "6748f17a07e44567"
@@ -2553,7 +2588,7 @@
             }
         ],
         "x": 1310,
-        "y": 400,
+        "y": 460,
         "wires": [
             [
                 "af1017d8f0817bec"
@@ -2572,7 +2607,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1940,
-        "y": 400,
+        "y": 460,
         "wires": []
     },
     {
@@ -2594,7 +2629,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 1550,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "0d1e38ea9c5ba81d"
@@ -2620,7 +2655,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 1560,
-        "y": 280,
+        "y": 340,
         "wires": [
             [
                 "206aa2d74e27096a"
@@ -2648,7 +2683,7 @@
         "to": "",
         "reg": false,
         "x": 1550,
-        "y": 400,
+        "y": 460,
         "wires": [
             [
                 "bac76e4b8e2c0d4f"
@@ -2664,7 +2699,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 830,
-        "y": 880,
+        "y": 1000,
         "wires": [
             [
                 "0e3907f2e4812720"
@@ -2685,7 +2720,7 @@
         "finalize": "",
         "libs": [],
         "x": 1580,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "8d97a2e3e664cd5b"
@@ -2703,7 +2738,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1940,
-        "y": 160,
+        "y": 220,
         "wires": []
     },
     {
@@ -2758,7 +2793,7 @@
             }
         ],
         "x": 1310,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "e0fd4f80910687d8"
@@ -2787,7 +2822,7 @@
         "to": "",
         "reg": false,
         "x": 1770,
-        "y": 160,
+        "y": 220,
         "wires": [
             [
                 "bef7d2e0ab4b73d9"
@@ -2803,7 +2838,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 830,
-        "y": 940,
+        "y": 1060,
         "wires": [
             [
                 "0e3907f2e4812720"
@@ -2820,7 +2855,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 600,
-        "y": 920,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2832,7 +2867,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 900,
+        "y": 1020,
         "wires": [
             [
                 "acdaab9da7d03657"
@@ -2848,7 +2883,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 960,
+        "y": 1080,
         "wires": [
             [
                 "acdaab9da7d03657"
@@ -2867,7 +2902,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 920,
+        "y": 1040,
         "wires": [
             [
                 "4db9c19db8e3a4e7"
@@ -2887,7 +2922,7 @@
         "finalize": "",
         "libs": [],
         "x": 1740,
-        "y": 400,
+        "y": 460,
         "wires": [
             [
                 "de691be683f352ac"
@@ -2907,10 +2942,223 @@
         "finalize": "",
         "libs": [],
         "x": 1800,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "940899f761329f39"
+            ]
+        ]
+    },
+    {
+        "id": "0adf6a065906d4d5",
+        "type": "homekit-service",
+        "z": "d7a3510d.e93d98",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "b2cc5799.eea9d",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Tori Here",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.4.3",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.4.3",
+        "hardwareRev": "1.4.3",
+        "softwareRev": "1.4.3",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "adaptiveLightingOptionsEnable": false,
+        "adaptiveLightingOptionsCustomTemperatureAdjustment": "",
+        "x": 560,
+        "y": 260,
+        "wires": [
+            [
+                "eeb9d0dc9a291024"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "eeb9d0dc9a291024",
+        "type": "change",
+        "z": "d7a3510d.e93d98",
+        "name": "Move on to value",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.On",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 260,
+        "wires": [
+            [
+                "431aa4587988b418"
+            ]
+        ]
+    },
+    {
+        "id": "431aa4587988b418",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "8f52cea1b8ca177c",
+        "name": "Tori Here",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 980,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2319d1bf2a2df0ac",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "8f52cea1b8ca177c",
+        "name": "Tori Here",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "9deeb670f3d87c0d"
+            ]
+        ]
+    },
+    {
+        "id": "9deeb670f3d87c0d",
+        "type": "change",
+        "z": "d7a3510d.e93d98",
+        "name": "Move value to On",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.On",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "0adf6a065906d4d5"
+            ]
+        ]
+    },
+    {
+        "id": "c0d3aa76511a7ac9",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "9fcddb6cb7581f32",
+        "name": "Is Any Owner Home?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 620,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f9bf3cf2beca0d80",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Is anyone here?",
+        "func": "// If either of us are home, someone is home; otherwise neither of us are home\nmsg.payload = global.get(\"state\").isAnyOwnerHome.value || global.get(\"state\").isToriHere.value\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 480,
+        "wires": [
+            [
+                "f1794f1d.551a68"
+            ]
+        ]
+    },
+    {
+        "id": "b6b27103b0ed410e",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "8f52cea1b8ca177c",
+        "name": "Tori Here",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "f9bf3cf2beca0d80"
+            ]
+        ]
+    },
+    {
+        "id": "c7d35f1cfd1f6346",
+        "type": "delay",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 400,
+        "y": 440,
+        "wires": [
+            [
+                "f9bf3cf2beca0d80"
             ]
         ]
     },
