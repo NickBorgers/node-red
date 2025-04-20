@@ -271,7 +271,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "b69e9a96.7fc43",
@@ -287,7 +288,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "156ccde543ba4845",
@@ -303,7 +305,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "8c211e55da1f4c7f",
@@ -319,7 +322,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "e4f5bf03444063a0",
@@ -335,7 +339,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "b74697c734ad5557",
@@ -351,7 +356,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "86b433f8beadaac5",
@@ -367,7 +373,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "60c1725bc2519ee0",
@@ -383,7 +390,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "8c8dbb69a0c4c67f",
@@ -399,7 +407,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "3e3052d11dc41010",
@@ -415,7 +424,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "a5ea3d0a7df352b2",
@@ -431,7 +441,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "3d96ef25996d1dd1",
@@ -447,7 +458,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "3ec50562615a9f50",
@@ -486,7 +498,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "e498a23d75394b05",
@@ -502,7 +515,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": "s"
+        "unit": "s",
+        "saveInterval": "0"
     },
     {
         "id": "89337ebbba16965d",
@@ -528,7 +542,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "e98cb8b7d7a02f27",
@@ -557,7 +572,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "f4fbefedb919c3c1",
@@ -573,7 +589,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "e1e1553b9b6a27c9",
@@ -589,7 +606,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "611761b9dd5c9c4c",
@@ -605,7 +623,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "816d3fb762a92b71",
@@ -621,7 +640,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "d19054ef0f693509",
@@ -637,7 +657,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "7e0b34e77bae8edb",
@@ -653,7 +674,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "51ddddf9304ec19f",
@@ -669,7 +691,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "4faab2d5448df995",
@@ -685,7 +708,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": "F"
+        "unit": "F",
+        "saveInterval": "0"
     },
     {
         "id": "098765180c8f29ad",
@@ -701,7 +725,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": "F"
+        "unit": "F",
+        "saveInterval": "0"
     },
     {
         "id": "0133e13457d0b692",
@@ -717,7 +742,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": "F"
+        "unit": "F",
+        "saveInterval": "0"
     },
     {
         "id": "60f1a7e39e0a4f1c",
@@ -733,7 +759,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": "F"
+        "unit": "F",
+        "saveInterval": "0"
     },
     {
         "id": "1ce72a9fb27d8577",
@@ -749,7 +776,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "26ccc92b36b23b99",
@@ -782,7 +810,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": "F"
+        "unit": "F",
+        "saveInterval": "0"
     },
     {
         "id": "fdd67c92f6cdbe67",
@@ -798,7 +827,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "b7959b8b695cb2e3",
@@ -814,7 +844,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "08c52a991942a7aa",
@@ -830,7 +861,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "4a83bd328e3c306c",
@@ -846,7 +878,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "095dfa84b601e73c",
@@ -862,7 +895,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "f3f728cd1ad260ac",
@@ -878,7 +912,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "2cd1bb9b8154af43",
@@ -894,7 +929,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "3d210964719a1218",
@@ -910,7 +946,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "ab6403409b952999",
@@ -926,7 +963,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "3d29dd9baea8c557",
@@ -942,7 +980,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "93cb5e076b9a47ab",
@@ -958,7 +997,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "b726d533a34a65b2",
@@ -974,7 +1014,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "498e0ff9684c787f",
@@ -990,7 +1031,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "6786c1f320a58042",
@@ -1006,7 +1048,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "50613c29969588a5",
@@ -1022,7 +1065,8 @@
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": ""
+        "unit": "",
+        "saveInterval": "0"
     },
     {
         "id": "1ba8ec066e81f1c4",
