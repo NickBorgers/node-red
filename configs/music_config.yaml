@@ -213,19 +213,19 @@ music:
     playback_options:
       - uri: "Local Rain Track 1"
         media_type: radio
-        volume_multiplier: 1.4
+        volume_multiplier: 1.3
       - uri: "Local Rain Track 2"
         media_type: radio
-        volume_multiplier: 1.0
+        volume_multiplier: 0.9
       - uri: "Local Rain Track 3"
         media_type: radio
-        volume_multiplier: 1.32
+        volume_multiplier: 1.2
       - uri: "Local Rain Track 4"
         media_type: radio
-        volume_multiplier: 1.6
+        volume_multiplier: 1.4
       - uri: "Local Rain Track 5"
         media_type: radio
-        volume_multiplier: 1.18
+        volume_multiplier: 1.0
   sex:
     participants:
       - player_name: "Bedroom"
