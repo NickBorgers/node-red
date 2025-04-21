@@ -1185,110 +1185,6 @@
         "saveInterval": "0"
     },
     {
-        "id": "ee6f66f1.a3f1d",
-        "type": "homekit-service",
-        "z": "d7a3510d.e93d98",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Nick Home",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 570,
-        "y": 140,
-        "wires": [
-            [
-                "b36f048.1426478"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "e23ac102.8d3f",
-        "type": "homekit-service",
-        "z": "d7a3510d.e93d98",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Caroline Home",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 580,
-        "y": 200,
-        "wires": [
-            [
-                "69314c4a.ac5ad4"
-            ],
-            []
-        ]
-    },
-    {
         "id": "9460cec7.a8b9e8",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -1298,63 +1194,9 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 990,
+        "x": 450,
         "y": 140,
         "wires": []
-    },
-    {
-        "id": "b36f048.1426478",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 790,
-        "y": 140,
-        "wires": [
-            [
-                "9460cec7.a8b9e8"
-            ]
-        ]
-    },
-    {
-        "id": "69314c4a.ac5ad4",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 790,
-        "y": 200,
-        "wires": [
-            [
-                "a413c4b7.cd166"
-            ]
-        ]
     },
     {
         "id": "a413c4b7.cd166",
@@ -1366,7 +1208,7 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1000,
+        "x": 460,
         "y": 200,
         "wires": []
     },
@@ -1599,92 +1441,6 @@
         "x": 960,
         "y": 780,
         "wires": []
-    },
-    {
-        "id": "4d2643c154b00b0a",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "b2f3086099f29cf0",
-        "name": "Caroline Home",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 160,
-        "y": 200,
-        "wires": [
-            [
-                "9394ca10e90da60a"
-            ]
-        ]
-    },
-    {
-        "id": "9394ca10e90da60a",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move value to On",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.On",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 370,
-        "y": 200,
-        "wires": [
-            [
-                "e23ac102.8d3f"
-            ]
-        ]
-    },
-    {
-        "id": "3b2d7059456eab23",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "857635a5cf27b9ea",
-        "name": "Nick Home",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 140,
-        "y": 140,
-        "wires": [
-            [
-                "467d34c94ce60834"
-            ]
-        ]
-    },
-    {
-        "id": "467d34c94ce60834",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move value to On",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.On",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 370,
-        "y": 140,
-        "wires": [
-            [
-                "ee6f66f1.a3f1d"
-            ]
-        ]
     },
     {
         "id": "3bcef5f89ded8641",
@@ -2950,87 +2706,6 @@
         ]
     },
     {
-        "id": "0adf6a065906d4d5",
-        "type": "homekit-service",
-        "z": "d7a3510d.e93d98",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Tori Here",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "adaptiveLightingOptionsEnable": false,
-        "adaptiveLightingOptionsCustomTemperatureAdjustment": "",
-        "x": 560,
-        "y": 260,
-        "wires": [
-            [
-                "eeb9d0dc9a291024"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "eeb9d0dc9a291024",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 790,
-        "y": 260,
-        "wires": [
-            [
-                "431aa4587988b418"
-            ]
-        ]
-    },
-    {
         "id": "431aa4587988b418",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -3040,52 +2715,9 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 980,
+        "x": 440,
         "y": 260,
         "wires": []
-    },
-    {
-        "id": "2319d1bf2a2df0ac",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "8f52cea1b8ca177c",
-        "name": "Tori Here",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 140,
-        "y": 260,
-        "wires": [
-            [
-                "9deeb670f3d87c0d"
-            ]
-        ]
-    },
-    {
-        "id": "9deeb670f3d87c0d",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move value to On",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.On",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 370,
-        "y": 260,
-        "wires": [
-            [
-                "0adf6a065906d4d5"
-            ]
-        ]
     },
     {
         "id": "c0d3aa76511a7ac9",
@@ -3159,6 +2791,180 @@
         "wires": [
             [
                 "f9bf3cf2beca0d80"
+            ]
+        ]
+    },
+    {
+        "id": "81f423fb3210fbf6",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Nick Home from Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.nick_home"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "9460cec7.a8b9e8"
+            ]
+        ]
+    },
+    {
+        "id": "0ca500110affdad8",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Caroline Home from Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.caroline_home"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "a413c4b7.cd166"
+            ]
+        ]
+    },
+    {
+        "id": "cd48c60d4c57f4a7",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Caroline Home from Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.tori_here"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 220,
+        "y": 260,
+        "wires": [
+            [
+                "431aa4587988b418"
             ]
         ]
     },
@@ -3935,7 +3741,7 @@
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "sensor.most_of_house_outdoor_temperature"
+                "sensor.weather_station_temperature"
             ],
             "substring": [],
             "regex": []
@@ -6376,7 +6182,6 @@
         "id": "51870943b81c7c06",
         "type": "get-shared-state",
         "z": "90f5fe8cb80ae6a7",
-        "d": true,
         "g": "c48cec27c550ff16",
         "state": "efc87f0de00a2d36",
         "name": "Day Phase",
@@ -6420,7 +6225,6 @@
         "id": "91e9e187adcc5b04",
         "type": "get-shared-state",
         "z": "90f5fe8cb80ae6a7",
-        "d": true,
         "g": "c48cec27c550ff16",
         "state": "1dd96a4a.9d6316",
         "name": "Anyone Home",
