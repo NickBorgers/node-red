@@ -159,7 +159,6 @@
             "label": true
         },
         "nodes": [
-            "b14e74697315444e",
             "a488c47d3889b063",
             "e7e0cc2eed3b11d7",
             "a210c969fe06f2f8",
@@ -175,7 +174,8 @@
             "c1874bfaab1b2bb3",
             "f4bbf697e8ddc7a7",
             "390fb9a37ca3a441",
-            "58b3255f64c30baa"
+            "58b3255f64c30baa",
+            "b14e74697315444e"
         ],
         "x": 1314,
         "y": 939,
@@ -5988,20 +5988,6 @@
         ]
     },
     {
-        "id": "b14e74697315444e",
-        "type": "set-shared-state",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "c48cec27c550ff16",
-        "state": "8c211e55da1f4c7f",
-        "name": "Music Playback Type",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 2060,
-        "y": 1100,
-        "wires": []
-    },
-    {
         "id": "a488c47d3889b063",
         "type": "inject",
         "z": "90f5fe8cb80ae6a7",
@@ -6147,7 +6133,8 @@
         "y": 134,
         "wires": [
             [
-                "dac8824b72caa8df"
+                "dac8824b72caa8df",
+                "c65ce65a5832c78a"
             ]
         ]
     },
@@ -7041,7 +7028,6 @@
         "id": "0637e774c1000926",
         "type": "get-shared-state",
         "z": "90f5fe8cb80ae6a7",
-        "d": true,
         "g": "c48cec27c550ff16",
         "state": "26ccc92b36b23b99",
         "name": "Anyone Asleep",
@@ -8970,7 +8956,7 @@
         "name": "Play provided identifier on player",
         "server": "3ec50562615a9f50",
         "version": 7,
-        "debugenabled": false,
+        "debugenabled": true,
         "action": "music_assistant.play_media",
         "floorId": [],
         "areaId": [],
@@ -8990,7 +8976,8 @@
         "y": 200,
         "wires": [
             [
-                "b4bd3a8c72acad85"
+                "b4bd3a8c72acad85",
+                "c65ce65a5832c78a"
             ]
         ]
     },
@@ -9198,6 +9185,208 @@
                 "d6f678177a40f732"
             ]
         ]
+    },
+    {
+        "id": "5d8da3c482e12548",
+        "type": "api-call-service",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set Music Playback Type",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_text.set_value",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_text.music_playback_type"
+        ],
+        "labelId": [],
+        "data": "{\"value\": payload}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_text",
+        "service": "set_value",
+        "x": 2150,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b14e74697315444e",
+        "type": "set-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "c48cec27c550ff16",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 2060,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "648979ccf11f80f0",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 1780,
+        "y": 1380,
+        "wires": [
+            [
+                "a8ec80eb8410ab0f"
+            ]
+        ]
+    },
+    {
+        "id": "1bbd05679eecd346",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "b74697c734ad5557",
+        "name": "Currently Playing Music",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 1780,
+        "y": 1440,
+        "wires": [
+            [
+                "e7592486c1249e0f"
+            ]
+        ]
+    },
+    {
+        "id": "e7592486c1249e0f",
+        "type": "change",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Make URI Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.uri",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1990,
+        "y": 1440,
+        "wires": [
+            [
+                "509f8509a430249a"
+            ]
+        ]
+    },
+    {
+        "id": "a9b5069b136cfb3e",
+        "type": "api-call-service",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "Set Music Playback URI",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_text.set_value",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_text.currently_playing_music_uri"
+        ],
+        "labelId": [],
+        "data": "{\"value\": payload}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_text",
+        "service": "set_value",
+        "x": 2350,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8ec80eb8410ab0f",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1960,
+        "y": 1380,
+        "wires": [
+            [
+                "5d8da3c482e12548"
+            ]
+        ]
+    },
+    {
+        "id": "509f8509a430249a",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2160,
+        "y": 1440,
+        "wires": [
+            [
+                "a9b5069b136cfb3e"
+            ]
+        ]
+    },
+    {
+        "id": "c65ce65a5832c78a",
+        "type": "debug",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1480,
+        "y": 380,
+        "wires": []
     },
     {
         "id": "66648323963fb7f3",
