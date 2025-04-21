@@ -139,7 +139,7 @@ music:
         media_type: playlist
         volume_multiplier: 1.0
       # This is Hilary Hahn
-      - uri: spotify:user:spotify:playlist:37i9dQZF1DWV15rjiWJsBI
+      - uri: spotify:user:spotify:playlist:37i9dQZF1DZ06evO3ngxkl
         media_type: playlist
         volume_multiplier: 1.5
       # Blowin' in the wind radio
