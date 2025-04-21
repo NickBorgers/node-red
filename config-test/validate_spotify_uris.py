@@ -8,8 +8,10 @@ with open('music_config.yaml', 'r') as file:
 for music_type in music_config['music']:
     music_type_object = music_config['music'][music_type]
     for playback_option in music_type_object['playback_options']:
-        if playback_option['command'] == 'group.queue.urispotify':
+        if playback_option['media_type'] == 'playlist':
             components = playback_option['uri'].split(':')
+            if components[0] is not 'spotify':
+                pass
             resource = components[len(components)-1]
             response = requests.get('https://open.spotify.com/playlist/' + resource)
             if response.status_code == 200:
