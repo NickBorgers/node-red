@@ -10,7 +10,7 @@ for music_type in music_config['music']:
     for playback_option in music_type_object['playback_options']:
         if playback_option['media_type'] == 'playlist':
             components = playback_option['uri'].split(':')
-            if components[0] is not 'spotify':
+            if components[0] != 'spotify':
                 pass
             resource = components[len(components)-1]
             response = requests.get('https://open.spotify.com/playlist/' + resource)
