@@ -6133,8 +6133,7 @@
         "y": 134,
         "wires": [
             [
-                "dac8824b72caa8df",
-                "c65ce65a5832c78a"
+                "dac8824b72caa8df"
             ]
         ]
     },
@@ -8955,8 +8954,7 @@
         "y": 200,
         "wires": [
             [
-                "b4bd3a8c72acad85",
-                "c65ce65a5832c78a"
+                "b4bd3a8c72acad85"
             ]
         ]
     },
@@ -9238,7 +9236,7 @@
         "y": 1440,
         "wires": [
             [
-                "e7592486c1249e0f"
+                "d21c6cc83df415a2"
             ]
         ]
     },
@@ -9261,7 +9259,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1990,
+        "x": 2130,
         "y": 1440,
         "wires": [
             [
@@ -9294,7 +9292,7 @@
         "blockInputOverrides": false,
         "domain": "input_text",
         "service": "set_value",
-        "x": 2350,
+        "x": 2490,
         "y": 1440,
         "wires": [
             []
@@ -9342,30 +9340,13 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2160,
+        "x": 2300,
         "y": 1440,
         "wires": [
             [
                 "a9b5069b136cfb3e"
             ]
         ]
-    },
-    {
-        "id": "c65ce65a5832c78a",
-        "type": "debug",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1480,
-        "y": 380,
-        "wires": []
     },
     {
         "id": "e461ac8aeac7cb0c",
@@ -9385,6 +9366,29 @@
         "wires": [
             [
                 "b14e74697315444e"
+            ]
+        ]
+    },
+    {
+        "id": "d21c6cc83df415a2",
+        "type": "switch",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "not null",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1960,
+        "y": 1440,
+        "wires": [
+            [
+                "e7592486c1249e0f"
             ]
         ]
     },
