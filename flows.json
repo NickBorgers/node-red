@@ -94,6 +94,14 @@
         "env": []
     },
     {
+        "id": "7097dab4eb91af0f",
+        "type": "tab",
+        "label": "Security",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "42abe9d54fa46266",
         "type": "group",
         "z": "90f5fe8cb80ae6a7",
@@ -165,7 +173,6 @@
             "51870943b81c7c06",
             "df392259e60d18fd",
             "91e9e187adcc5b04",
-            "e461ac8aeac7cb0c",
             "86a9877ef3877d1e",
             "f60ed212caf6af2e",
             "b0a4618460362b3d",
@@ -175,7 +182,8 @@
             "f4bbf697e8ddc7a7",
             "390fb9a37ca3a441",
             "58b3255f64c30baa",
-            "b14e74697315444e"
+            "b14e74697315444e",
+            "e461ac8aeac7cb0c"
         ],
         "x": 1314,
         "y": 939,
@@ -1489,7 +1497,6 @@
         "id": "04cec9c3f2834033",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "isParent": true,
         "hostType": "0",
         "bridge": "b2cc5799.eea9d",
@@ -1721,7 +1728,6 @@
         "id": "3d5eef3f9864a2fa",
         "type": "comment",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "Door Tracking",
         "info": "",
         "x": 130,
@@ -1732,7 +1738,6 @@
         "id": "92a787a17e5a68cc",
         "type": "change",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "Move on to value",
         "rules": [
             {
@@ -1830,7 +1835,6 @@
         "id": "74c36bd307050540",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "state": "8c8dbb69a0c4c67f",
         "name": "Is Master Bedroom Door Open?",
         "triggerOnInit": true,
@@ -2077,7 +2081,6 @@
         "id": "c6a29d3ee318916f",
         "type": "comment",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "Wake Detection",
         "info": "",
         "x": 1220,
@@ -2088,7 +2091,6 @@
         "id": "305a7e035256ae31",
         "type": "get-shared-state",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "state": "8c8dbb69a0c4c67f",
         "name": "Is Master Bedroom Door Open?",
         "triggerOnInit": false,
@@ -2105,7 +2107,6 @@
         "id": "206aa2d74e27096a",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": true,
@@ -2396,7 +2397,6 @@
         "id": "e308dfc1c82afa45",
         "type": "trigger",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "If stays true for 20 seconds",
         "op1": "",
         "op2": "false",
@@ -6226,27 +6226,6 @@
         ]
     },
     {
-        "id": "e461ac8aeac7cb0c",
-        "type": "function",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "c48cec27c550ff16",
-        "name": "Set music type based on conditions",
-        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If anyone is asleep, set to sleep\nif (global.get(\"state\").isAnyoneAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was the last person waking up, kick off some music\n    if (msg.topic == \"isAnyoneAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If noone is asleep then day starts\n    if (global.get(\"state\").isAnyoneAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    // Override for when sleep sounds get started a little early\n    if (global.get(\"state\").musicPlaybackType.value == \"sleep\") {\n        return null\n    }\n    msg.payload = \"winddown\"\n    return msg\n}\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1750,
-        "y": 1100,
-        "wires": [
-            [
-                "b14e74697315444e"
-            ]
-        ]
-    },
-    {
         "id": "199beb67d0b28dd3",
         "type": "get-shared-state",
         "z": "90f5fe8cb80ae6a7",
@@ -6538,10 +6517,10 @@
         "props": [],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "2",
         "topic": "",
-        "x": 1460,
+        "x": 1470,
         "y": 1280,
         "wires": [
             [
@@ -9387,6 +9366,27 @@
         "x": 1480,
         "y": 380,
         "wires": []
+    },
+    {
+        "id": "e461ac8aeac7cb0c",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "c48cec27c550ff16",
+        "name": "Set music type based on conditions",
+        "func": "// Only play music if someone is home\nif (global.get(\"state\").isAnyoneHome.value == false) {\n    msg.payload = \"\"\n    return msg\n}\n// If anyone is asleep, set to sleep\nif (global.get(\"state\").isAnyoneAsleep.value) {\n    msg.payload = \"sleep\"\n    return msg\n}\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\n// If it's day time\nif (dayPhase == \"day\" || dayPhase == \"morning\") {\n    // If what changed was the last person waking up, kick off some music\n    if (msg.topic == \"isAnyoneAsleep\" && msg.payload == false) {\n        // Sunday override\n        var date = new Date();\n        var daynum = date.getDay();\n        // If day is not Sunday\n        if (daynum != 0) {\n            msg.payload = \"morning\"\n            return msg\n        }\n    }\n    // If noone is asleep then day starts\n    if (global.get(\"state\").isAnyoneAsleep.value == false) {\n        msg.payload = \"day\"\n        return msg\n    }\n// If it's sunset\n} else if (dayPhase == \"sunset\"\n        || dayPhase == \"dusk\") {\n    msg.payload = \"evening\"\n    return msg\n} else if (dayPhase == \"winddown\"\n        || dayPhase == \"night\") {\n    // Override for when sleep sounds get started a little early\n    if (global.get(\"state\").musicPlaybackType.value == \"sleep\") {\n        return null\n    }\n    msg.payload = \"winddown\"\n    return msg\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1750,
+        "y": 1100,
+        "wires": [
+            [
+                "b14e74697315444e"
+            ]
+        ]
     },
     {
         "id": "66648323963fb7f3",
@@ -18426,10 +18426,10 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 240,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
-                "5ab60c4fdfb101bc"
+                "11a89c2e6b28babf"
             ]
         ]
     },
@@ -18491,6 +18491,221 @@
         "service": "turn_off",
         "x": 850,
         "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "11a89c2e6b28babf",
+        "type": "delay",
+        "z": "c90d4a5ca629d0b3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 440,
+        "wires": [
+            [
+                "5ab60c4fdfb101bc"
+            ]
+        ]
+    },
+    {
+        "id": "938ddcbfe0b17e2f",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "60c1725bc2519ee0",
+        "name": "Everyone Asleep",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "2b8264f48373257b"
+            ]
+        ]
+    },
+    {
+        "id": "2b8264f48373257b",
+        "type": "switch",
+        "z": "7097dab4eb91af0f",
+        "name": "True?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "f02b1e2c31a4d805"
+            ]
+        ]
+    },
+    {
+        "id": "f02b1e2c31a4d805",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Activate Lockdown",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.lockdown"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 530,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad51cb5370f2f996",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "Initiate Lockdown",
+        "info": "",
+        "x": 130,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e764052f3dd0ffd0",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "1dd96a4a.9d6316",
+        "name": "Anyone Home",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "e35d8dbcfee9933b"
+            ]
+        ]
+    },
+    {
+        "id": "e35d8dbcfee9933b",
+        "type": "switch",
+        "z": "7097dab4eb91af0f",
+        "name": "False?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "f02b1e2c31a4d805"
+            ]
+        ]
+    },
+    {
+        "id": "5f9f0457faed72f3",
+        "type": "server-state-changed",
+        "z": "7097dab4eb91af0f",
+        "name": "Lockdown Enabled",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.lockdown"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "true",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": false,
+        "for": "5",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "b372749f063176b7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b372749f063176b7",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Reset Lockdown Switch",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.lockdown"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 390,
+        "y": 280,
         "wires": [
             []
         ]
