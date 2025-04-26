@@ -1494,58 +1494,6 @@
         ]
     },
     {
-        "id": "04cec9c3f2834033",
-        "type": "homekit-service",
-        "z": "d7a3510d.e93d98",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Master Bedroom Door Open",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 200,
-        "y": 1200,
-        "wires": [
-            [
-                "92a787a17e5a68cc"
-            ],
-            []
-        ]
-    },
-    {
         "id": "394af9bb2a153a77",
         "type": "homekit-service",
         "z": "d7a3510d.e93d98",
@@ -1735,33 +1683,6 @@
         "wires": []
     },
     {
-        "id": "92a787a17e5a68cc",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 450,
-        "y": 1200,
-        "wires": [
-            [
-                "74c36bd307050540"
-            ]
-        ]
-    },
-    {
         "id": "07d850c58997c540",
         "type": "change",
         "z": "d7a3510d.e93d98",
@@ -1840,7 +1761,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 710,
+        "x": 490,
         "y": 1200,
         "wires": []
     },
@@ -3249,6 +3170,52 @@
         "y": 1520,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "8448355327d9536f",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Master Bedroom Door from HA",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.primary_bedroom_door_open"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "5",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "x": 210,
+        "y": 1200,
+        "wires": [
+            [
+                "74c36bd307050540"
+            ]
         ]
     },
     {
@@ -18796,7 +18763,7 @@
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
-        "drop": false,
+        "drop": true,
         "allowrate": false,
         "outputs": 1,
         "x": 430,
