@@ -2816,9 +2816,9 @@
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
-        "for": "0",
+        "for": "5",
         "forType": "num",
-        "forUnits": "minutes",
+        "forUnits": "seconds",
         "ignorePrevStateNull": false,
         "ignorePrevStateUnknown": false,
         "ignorePrevStateUnavailable": false,
@@ -2874,9 +2874,9 @@
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
-        "for": "0",
+        "for": "5",
         "forType": "num",
-        "forUnits": "minutes",
+        "forUnits": "seconds",
         "ignorePrevStateNull": false,
         "ignorePrevStateUnknown": false,
         "ignorePrevStateUnavailable": false,
@@ -2914,7 +2914,7 @@
         "id": "cd48c60d4c57f4a7",
         "type": "server-state-changed",
         "z": "d7a3510d.e93d98",
-        "name": "Caroline Home from Home Assistant",
+        "name": "Tori Home from Home Assistant",
         "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 1,
@@ -2932,9 +2932,9 @@
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
-        "for": "0",
+        "for": "5",
         "forType": "num",
-        "forUnits": "minutes",
+        "forUnits": "seconds",
         "ignorePrevStateNull": false,
         "ignorePrevStateUnknown": false,
         "ignorePrevStateUnavailable": false,
@@ -2960,12 +2960,295 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 220,
+        "x": 210,
         "y": 260,
         "wires": [
             [
                 "431aa4587988b418"
             ]
+        ]
+    },
+    {
+        "id": "04eba44d880d5c87",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Is anyone home?",
+        "func": "// If either of us are home, send the message\nif(global.get(\"state\").isAnyoneHome.value) {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1400,
+        "wires": [
+            [
+                "e6ca64c1d494f341"
+            ]
+        ]
+    },
+    {
+        "id": "aa827191e2a8f089",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Nick Home from Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.nick_home"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "habool",
+        "ifState": "true",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 210,
+        "y": 1400,
+        "wires": [
+            [
+                "04eba44d880d5c87"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b6ff1b596fbd18e6",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Caroline Home from Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.caroline_home"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "habool",
+        "ifState": "true",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 220,
+        "y": 1460,
+        "wires": [
+            [
+                "9c297a10a40dbcfe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8fdd1b4cc79a549c",
+        "type": "comment",
+        "z": "d7a3510d.e93d98",
+        "name": "Notify of someone coming home",
+        "info": "",
+        "x": 190,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "9c297a10a40dbcfe",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Is anyone home?",
+        "func": "// If either of us are home, send the message\nif(global.get(\"state\").isAnyoneHome.value) {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1460,
+        "wires": [
+            [
+                "1820fb2f18721a6d"
+            ]
+        ]
+    },
+    {
+        "id": "e6ca64c1d494f341",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Announce Nick Being Home",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "tts.speak",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "tts.google_translate_en_com"
+        ],
+        "labelId": [],
+        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.kitchen\",\"media_player.dining_room\",\"media_player.soundbar\",\"media_player.kids_bathroom\"],\"message\":\"Nick is home\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "tts",
+        "service": "speak",
+        "x": 700,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1820fb2f18721a6d",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Announce Caroline Being Home",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "tts.speak",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "tts.google_translate_en_com"
+        ],
+        "labelId": [],
+        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.kitchen\",\"media_player.dining_room\",\"media_player.kids_bathroom\",\"media_player.soundbar\",\"media_player.office\"],\"message\":\"Caroline is home\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "tts",
+        "service": "speak",
+        "x": 710,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "df49d2ce498a6b30",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Tori Here from Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.tori_here"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "habool",
+        "ifState": "true",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 210,
+        "y": 1520,
+        "wires": [
+            [
+                "ddb81322077ca954"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ddb81322077ca954",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Is anyone home?",
+        "func": "// If either of us are home, send the message\nif(global.get(\"state\").isAnyoneHome.value) {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1520,
+        "wires": [
+            [
+                "b10962bde014310e"
+            ]
+        ]
+    },
+    {
+        "id": "b10962bde014310e",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Announce Tori Being Here",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "tts.speak",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "tts.google_translate_en_com"
+        ],
+        "labelId": [],
+        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.kitchen\",\"media_player.dining_room\",\"media_player.kids_bathroom\",\"media_player.soundbar\",\"media_player.office\"],\"message\":\"Tori is here\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "tts",
+        "service": "speak",
+        "x": 690,
+        "y": 1520,
+        "wires": [
+            []
         ]
     },
     {
