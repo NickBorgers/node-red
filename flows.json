@@ -49,7 +49,7 @@
         "id": "95cf961539320dd3",
         "type": "tab",
         "label": "Sleep Hygiene",
-        "disabled": true,
+        "disabled": false,
         "info": "",
         "env": []
     },
@@ -324,7 +324,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0"
+        "saveInterval": "10000"
     },
     {
         "id": "b74697c734ad5557",
@@ -3290,6 +3290,7 @@
         "state": "e4f5bf03444063a0",
         "name": "Music Config",
         "triggerOnInit": true,
+        "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
         "x": 1330,
