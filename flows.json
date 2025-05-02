@@ -9232,7 +9232,7 @@
         "blockInputOverrides": false,
         "domain": "media_player",
         "service": "shuffle_set",
-        "x": 1890,
+        "x": 2010,
         "y": 200,
         "wires": [
             [
@@ -9261,7 +9261,7 @@
         "y": 200,
         "wires": [
             [
-                "9a8a0cc9dff87e76"
+                "bdc6ed01088a22fc"
             ]
         ]
     },
@@ -9640,6 +9640,31 @@
         "wires": [
             [
                 "e7592486c1249e0f"
+            ]
+        ]
+    },
+    {
+        "id": "bdc6ed01088a22fc",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1820,
+        "y": 200,
+        "wires": [
+            [
+                "9a8a0cc9dff87e76"
             ]
         ]
     },
