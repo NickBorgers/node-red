@@ -18984,5 +18984,153 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "77dcc0a5d63cbdcd",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "Open Garage Door on Return",
+        "info": "",
+        "x": 160,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6326527cbc95979b",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "857635a5cf27b9ea",
+        "name": "Nick Home",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 160,
+        "y": 440,
+        "wires": [
+            [
+                "2e6192d062141541"
+            ]
+        ]
+    },
+    {
+        "id": "7f5d2ac5891d4983",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "b2f3086099f29cf0",
+        "name": "Caroline Home",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "2e6192d062141541"
+            ]
+        ]
+    },
+    {
+        "id": "2e6192d062141541",
+        "type": "switch",
+        "z": "7097dab4eb91af0f",
+        "name": "True?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 460,
+        "wires": [
+            [
+                "a086a59c08e0599b"
+            ]
+        ]
+    },
+    {
+        "id": "a73e845f0b1181b6",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "If one of us came home",
+        "info": "",
+        "x": 180,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a086a59c08e0599b",
+        "type": "api-current-state",
+        "z": "7097dab4eb91af0f",
+        "name": "Check if the garage is empty",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.garage_door_vehicle_detected",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 540,
+        "y": 460,
+        "wires": [
+            [
+                "d09168bac0fc13e4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d09168bac0fc13e4",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Open the garage",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "cover.open_cover",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "cover.garage_door_door"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "cover",
+        "service": "open_cover",
+        "x": 770,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "008b62310c00d422",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "If the garage is empty (of a vehicle, open it)",
+        "info": "",
+        "x": 580,
+        "y": 400,
+        "wires": []
     }
 ]
