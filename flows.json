@@ -26,7 +26,7 @@
         "id": "16cd74edb3f2c03d",
         "type": "tab",
         "label": "Hue Control",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -1956,7 +1956,6 @@
         "id": "f1aab11be0de5020",
         "type": "comment",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "Sleep Detection",
         "info": "",
         "x": 1220,
@@ -2387,7 +2386,6 @@
         "id": "e0fd4f80910687d8",
         "type": "function",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "Applicability Checks",
         "func": "// Check if anyone is home\nif(global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\n// Check if masters currently considered asleep\nif(global.get(\"state\").isMasterAsleep.value) {\n    // They are, nothing to change here\n    return null\n}\n// Didn't disqualify this, it's what we were waiting for\nreturn msg",
         "outputs": 1,
@@ -2408,7 +2406,6 @@
         "id": "bef7d2e0ab4b73d9",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "state": "b69e9a96.7fc43",
         "name": "Master Asleep",
         "triggerOnInit": true,
@@ -2422,7 +2419,6 @@
         "id": "b6021d4b501820ac",
         "type": "server-state-changed",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "Master Bedroom Lights Off for 1 minute",
         "server": "3ec50562615a9f50",
         "version": 6,
@@ -2482,7 +2478,6 @@
         "id": "8d97a2e3e664cd5b",
         "type": "change",
         "z": "d7a3510d.e93d98",
-        "d": true,
         "name": "Set to True",
         "rules": [
             {
