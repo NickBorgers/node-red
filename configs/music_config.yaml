@@ -238,7 +238,7 @@ music:
   wakeup:
     participants:
       - player_name: "Bedroom"
-        base_volume: 30
+        base_volume: 10
         leave_muted_if: []
     playback_options:
       # Ambient Relaxation
