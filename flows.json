@@ -11603,8 +11603,7 @@
         "action": "light.turn_on",
         "floorId": [],
         "areaId": [
-            "living_room",
-            "nook"
+            "living_room_2"
         ],
         "deviceId": [],
         "entityId": [],
@@ -11637,7 +11636,7 @@
         "action": "light.turn_on",
         "floorId": [],
         "areaId": [
-            "living_room",
+            "living_room_2",
             "nook"
         ],
         "deviceId": [],
@@ -12234,51 +12233,22 @@
         ]
     },
     {
-        "id": "ec628f54ff3683fb",
-        "type": "ttsultimate",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "voice": "en-US",
-        "ssml": false,
-        "sonosipaddress": "10.212.100.227",
-        "sonosvolume": "33",
-        "sonoshailing": "0",
-        "config": "89337ebbba16965d",
-        "property": "payload",
-        "propertyType": {},
-        "rules": [],
-        "playertype": "sonos",
-        "speakingrate": "1",
-        "speakingpitch": "0",
-        "unmuteIfMuted": true,
-        "elevenlabsStability": "",
-        "elevenlabsSimilarity_boost": "",
-        "x": 710,
-        "y": 100,
-        "wires": [
-            [
-                "fa073067dec5e147"
-            ],
-            []
-        ]
-    },
-    {
         "id": "e08bfb353c156eb6",
         "type": "function",
         "z": "95cf961539320dd3",
-        "name": "Generate message",
-        "func": "\n// If both of us are home\nif (global.get(\"state\").isNickHome.value && global.get(\"state\").isCarolineHome.value) {\n    console.debug(\"Both are home, tell them to cuddle\")\n    // Direct us to cuddle\n    var notification_message = \"Time for cuddles\"\n    msg.payload = notification_message\n    return [msg, null];\n} else {\n    console.debug(\"Only one is home, cuddle is not possible\")\n    // Otherwise bypass TTS step\n    return [null, msg];\n}\n\n",
+        "name": "Check if they can cuddle",
+        "func": "\n// If both of us are home\nif (global.get(\"state\").isNickHome.value && global.get(\"state\").isCarolineHome.value) {\n    console.debug(\"Both are home, tell them to cuddle\")\n    // Direct us to cuddle\n    return [msg, null];\n} else {\n    console.debug(\"Only one is home, cuddle is not possible\")\n    // Otherwise bypass TTS step\n    return [null, msg];\n}\n\n",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 490,
         "y": 100,
         "wires": [
             [
-                "ec628f54ff3683fb"
+                "a72f66c9a254e028"
             ],
             [
                 "38d1aa796e6b88c5"
@@ -12585,6 +12555,39 @@
         "y": 300,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "a72f66c9a254e028",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Tell them to cuddle",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "tts.speak",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "tts.google_translate_en_com"
+        ],
+        "labelId": [],
+        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.bedroom\"],\"message\":\"Time to cuddle\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "tts",
+        "service": "speak",
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [
+                "fa073067dec5e147"
+            ]
         ]
     },
     {
