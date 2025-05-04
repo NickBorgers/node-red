@@ -223,9 +223,6 @@ music:
       - uri: "Local Rain Track 4"
         media_type: radio
         volume_multiplier: 1.4
-      - uri: "Local Rain Track 5"
-        media_type: radio
-        volume_multiplier: 1.0
   sex:
     participants:
       - player_name: "Bedroom"
