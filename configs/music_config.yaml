@@ -197,18 +197,18 @@ music:
   sleep:
     participants:
       - player_name: "Bedroom"
-        base_volume: 20
+        base_volume: 13
         leave_muted_if: []
       - player_name: "Dining Room"
-        base_volume: 15
+        base_volume: 8
         leave_muted_if:
           - variable: isTVPlaying
             value: true
       - player_name: "Kitchen"
-        base_volume: 15
+        base_volume: 8
         leave_muted_if: []
       - player_name: "Office"
-        base_volume: 15
+        base_volume: 8
         leave_muted_if: []
     playback_options:
       - uri: "Local Rain Track 1"
@@ -229,7 +229,7 @@ music:
   sex:
     participants:
       - player_name: "Bedroom"
-        base_volume: 18
+        base_volume: 10
         leave_muted_if: []
     playback_options:
       - uri: spotify:playlist:1WaopApISE1aAT83aIYKRw
@@ -238,7 +238,7 @@ music:
   wakeup:
     participants:
       - player_name: "Bedroom"
-        base_volume: 10
+        base_volume: 6
         leave_muted_if: []
     playback_options:
       # Ambient Relaxation
