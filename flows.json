@@ -1036,23 +1036,6 @@
         "saveInterval": "0"
     },
     {
-        "id": "50613c29969588a5",
-        "type": "shared-state",
-        "name": "isMasterLightsOff",
-        "lbl": "Master Lights Off",
-        "tags": "",
-        "historyCount": "0",
-        "dataType": "bool",
-        "boolType": "bool",
-        "boolStrTrue": "",
-        "boolStrFalse": "",
-        "precision": "",
-        "numMin": "",
-        "numMax": "",
-        "unit": "",
-        "saveInterval": "0"
-    },
-    {
         "id": "1ba8ec066e81f1c4",
         "type": "shared-state",
         "name": "musicPlaylistNumbers",
@@ -1183,6 +1166,23 @@
         "tags": "State, Presence",
         "historyCount": 2,
         "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "e305e5abc2f5d281",
+        "type": "shared-state",
+        "name": "isFadeOutInProgress",
+        "lbl": "Fade Out in Progress",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "str",
         "boolType": "bool",
         "boolStrTrue": "",
         "boolStrFalse": "",
@@ -2419,14 +2419,14 @@
         "id": "b6021d4b501820ac",
         "type": "server-state-changed",
         "z": "d7a3510d.e93d98",
-        "name": "Master Bedroom Lights Off for 1 minute",
+        "name": "Primary Suite Lights Off for 1 minute",
         "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "light.master_bedroom"
+                "light.primary_suite"
             ],
             "substring": [],
             "regex": []
@@ -2465,7 +2465,7 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 1310,
+        "x": 1300,
         "y": 220,
         "wires": [
             [
@@ -11564,12 +11564,10 @@
         "blockInputOverrides": false,
         "domain": "light",
         "service": "turn_on",
-        "x": 1990,
-        "y": 380,
+        "x": 1810,
+        "y": 440,
         "wires": [
-            [
-                "6bf35b2688ec1674"
-            ]
+            []
         ]
     },
     {
@@ -11602,11 +11600,11 @@
         "debugenabled": false,
         "action": "light.turn_on",
         "floorId": [],
-        "areaId": [
-            "living_room_2"
-        ],
+        "areaId": [],
         "deviceId": [],
-        "entityId": [],
+        "entityId": [
+            "light.living_room"
+        ],
         "labelId": [],
         "data": "{\"flash\": \"short\"}",
         "dataType": "json",
@@ -11635,12 +11633,11 @@
         "debugenabled": false,
         "action": "light.turn_on",
         "floorId": [],
-        "areaId": [
-            "living_room_2",
-            "nook"
-        ],
+        "areaId": [],
         "deviceId": [],
-        "entityId": [],
+        "entityId": [
+            "light.living_room"
+        ],
         "labelId": [],
         "data": "{\"flash\": \"short\"}",
         "dataType": "json",
@@ -11746,29 +11743,9 @@
         "y": 380,
         "wires": [
             [
-                "e7c8f97a56f5e10c"
+                "6bf35b2688ec1674"
             ]
         ]
-    },
-    {
-        "id": "7096f06620fde73c",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Fade Up Bedroom Lights",
-        "info": "",
-        "x": 1470,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "1a40e8a8fe20fc43",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Auto Wakeup",
-        "info": "",
-        "x": 1270,
-        "y": 440,
-        "wires": []
     },
     {
         "id": "e05bccce05e34da2",
@@ -11825,13 +11802,14 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Create participant-specific message",
-        "func": "// By default, move to set volume and appropriately unmute all players in current playback\nvar speakers = global.get(\"state\").currentlyPlayingMusic.value.participants\n// Iterate over our targets and kick off setting their volume and mute state\nspeakers.forEach(function(target) {\n    var participantSpecificMsg = {}\n    // If this player is in Master suite\n    if (target.player_name.indexOf(\"Master\") > -1) {\n        participantSpecificMsg.playerName = target.player_name\n        node.send(participantSpecificMsg);\n    }\n});\n\nreturn null",
+        "func": "// By default, move to set volume and appropriately unmute all players in current playback\nvar speakers = global.get(\"state\").currentlyPlayingMusic.value.participants\n// Iterate over our targets and kick off setting their volume and mute state\nspeakers.forEach(function(target) {\n    var participantSpecificMsg = {}\n    // If this player is in Bedroom\n    if (target.player_name.indexOf(\"Bedroom\") > -1) {\n        participantSpecificMsg.playerName = target.player_name\n        node.send(participantSpecificMsg);\n    }\n});\n\nreturn null",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1270,
+        "x": 1150,
         "y": 100,
         "wires": [
             [
@@ -11849,7 +11827,7 @@
         "stateType": "str",
         "avoidCheckPlayerAvailability": false,
         "name": "Get a volume",
-        "x": 1510,
+        "x": 1390,
         "y": 100,
         "wires": [
             [
@@ -11888,7 +11866,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1510,
+        "x": 1390,
         "y": 160,
         "wires": []
     },
@@ -11909,7 +11887,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1680,
+        "x": 1560,
         "y": 100,
         "wires": [
             [
@@ -11922,7 +11900,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Repeat turn downs until 0",
-        "func": "console.debug(\"Processing fade out for \" + msg.playerName)\n\n// Is master light still on?\nvar isMasterLightsOff = global.get(\"state\").isMasterLightsOff.value\nif (isMasterLightsOff) {\n    console.debug(\"Master light turned off; abort!\")\n    var resetMsg = {}\n    return [null, null, resetMsg]\n}\n\n// Is sleep music still playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType != \"sleep\") {\n    console.debug(\"Canceling fade out for \" + msg.playerName)\n    // Bail out completely because not sleep anymore\n    return [null, null, null]\n}\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\n/*\nif (current_volume > msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade out for \" + msg.playerName)\n    // If the volume is greater than what was last set, assume someone\n    // is fighting the system trying to keep the volume up\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            participant.volume = current_volume\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n\n    console.debug(\"Terminating fade out for \" + msg.playerName)\n    return [msg, null, null]\n}*/\n\n// What is the volume supposed to be?\nvar desired_volume = 0\n\n// If we haven't gotten down to the desired volume\nif (current_volume > desired_volume) {\n    console.debug(\"Still need to turn down \" + msg.playerName)\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            console.debug(\"Found volume config for \" + msg.playerName)\n            participant.volume = current_volume\n            // Reduce its volume by 1\n            participant.volume--;\n            msg.last_volume_set = participant.volume\n            console.debug(\"Adjusted volume config for \" + msg.playerName)\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n    \n    // Set the delay for the next turn down to be greater if volume is lower\n    msg.delay = (60 - current_volume) * 1000\n    console.debug(\"Sending turn down messages for \" + msg.playerName)\n    return [msg, msg, null]\n}\nconsole.debug(\"Completed fade out for \" + msg.playerName)\n// We're done, everything is as it should be",
+        "func": "console.debug(\"Processing fade out for \" + msg.playerName)\n\n// Has fade out been aborted?\nvar isFadeOutInProgress = global.get(\"state\").isFadeOutInProgress.value\nif (isFadeOutInProgress == false) {\n    console.debug(\"Fadeout aborted; abort!\")\n    var resetMsg = {}\n    return [null, null, resetMsg]\n}\n\n// Is sleep music still playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType != \"sleep\") {\n    console.debug(\"Canceling fade out for \" + msg.playerName)\n    // Bail out completely because not sleep anymore\n    return [null, null, null]\n}\n\n// What is the volume currently?\nvar current_volume = msg.payload\n\n// Check for someone fighting the system\n/*\nif (current_volume > msg.last_volume_set) {\n    console.debug(\"Found someone fighting fade out for \" + msg.playerName)\n    // If the volume is greater than what was last set, assume someone\n    // is fighting the system trying to keep the volume up\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            participant.volume = current_volume\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n\n    console.debug(\"Terminating fade out for \" + msg.playerName)\n    return [msg, null, null]\n}*/\n\n// What is the volume supposed to be?\nvar desired_volume = 0\n\n// If we haven't gotten down to the desired volume\nif (current_volume > desired_volume) {\n    console.debug(\"Still need to turn down \" + msg.playerName)\n    var currentlyPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n    \n    currentlyPlayingMusic.participants.forEach(function(participant) {\n        // If it's this flow's speaker\n        if (participant.player_name == msg.playerName) {\n            console.debug(\"Found volume config for \" + msg.playerName)\n            participant.volume = current_volume\n            // Reduce its volume by 1\n            participant.volume--;\n            msg.last_volume_set = participant.volume\n            console.debug(\"Adjusted volume config for \" + msg.playerName)\n        }\n    });\n    msg.payload = currentlyPlayingMusic\n    \n    // Set the delay for the next turn down to be greater if volume is lower\n    msg.delay = (60 - current_volume) * 1000\n    console.debug(\"Sending turn down messages for \" + msg.playerName)\n    return [msg, msg, null]\n}\nconsole.debug(\"Completed fade out for \" + msg.playerName)\n// We're done, everything is as it should be",
         "outputs": 3,
         "timeout": "",
         "noerr": 0,
@@ -12089,8 +12067,8 @@
         "blockInputOverrides": false,
         "domain": "light",
         "service": "turn_on",
-        "x": 1520,
-        "y": 380,
+        "x": 1340,
+        "y": 440,
         "wires": [
             [
                 "9f1324d760a908d7"
@@ -12114,8 +12092,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1760,
-        "y": 380,
+        "x": 1580,
+        "y": 440,
         "wires": [
             [
                 "598754ddfd55071d"
@@ -12139,7 +12117,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1310,
+        "x": 1190,
         "y": 160,
         "wires": [
             [
@@ -12153,7 +12131,7 @@
         "z": "95cf961539320dd3",
         "name": "",
         "pauseType": "delay",
-        "timeout": "25",
+        "timeout": "15",
         "timeoutUnits": "minutes",
         "rate": "1",
         "nbRateUnits": "1",
@@ -12164,11 +12142,11 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1270,
-        "y": 480,
+        "x": 1430,
+        "y": 380,
         "wires": [
             [
-                "b8d397a9ae2bf8a5"
+                "5d47e9cce1d2133a"
             ]
         ]
     },
@@ -12191,11 +12169,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1450,
-        "y": 480,
+        "x": 1890,
+        "y": 520,
         "wires": [
             [
-                "097c01da17685547"
+                "8c07a2c7f720a6a8"
             ]
         ]
     },
@@ -12208,29 +12186,9 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1940,
-        "y": 480,
+        "x": 2100,
+        "y": 520,
         "wires": []
-    },
-    {
-        "id": "097c01da17685547",
-        "type": "function",
-        "z": "95cf961539320dd3",
-        "name": "Ensure master is home and asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\n\n// Is master light still on?\nvar isMasterLightsOff = global.get(\"state\").isMasterLightsOff.value\nif (isMasterLightsOff) {\n    console.debug(\"Master light turned off; abort!\")\n    return null\n}\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1680,
-        "y": 480,
-        "wires": [
-            [
-                "8c07a2c7f720a6a8"
-            ]
-        ]
     },
     {
         "id": "e08bfb353c156eb6",
@@ -12250,9 +12208,7 @@
             [
                 "a72f66c9a254e028"
             ],
-            [
-                "38d1aa796e6b88c5"
-            ]
+            []
         ]
     },
     {
@@ -12266,55 +12222,17 @@
         "wires": []
     },
     {
-        "id": "38d1aa796e6b88c5",
-        "type": "delay",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1040,
-        "y": 100,
-        "wires": [
-            [
-                "ca6d0e931ce891e2"
-            ]
-        ]
-    },
-    {
-        "id": "dcd4c0c7fc94cfc3",
-        "type": "set-shared-state",
-        "z": "95cf961539320dd3",
-        "state": "50613c29969588a5",
-        "name": "Master Lights Off",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 570,
-        "y": 780,
-        "wires": []
-    },
-    {
         "id": "0e047d1f7a9084e6",
         "type": "server-state-changed",
         "z": "95cf961539320dd3",
-        "name": "Master Bedroom Lights Off",
+        "name": "Bedroom Lights Off",
         "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "light.master_bedroom"
+                "light.primary_suite"
             ],
             "substring": [],
             "regex": []
@@ -12353,15 +12271,14 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 150,
-        "y": 780,
+        "x": 130,
+        "y": 800,
         "wires": [
             [
-                "f7759613c21fcde5"
+                "f54390d17f2562e3",
+                "4ec81821643b7c2a"
             ],
-            [
-                "fe739b9a0665932d"
-            ]
+            []
         ]
     },
     {
@@ -12373,89 +12290,6 @@
         "x": 130,
         "y": 740,
         "wires": []
-    },
-    {
-        "id": "81d3079d50bf1c36",
-        "type": "inject",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1200,
-        "y": 340,
-        "wires": [
-            [
-                "e7c8f97a56f5e10c"
-            ]
-        ]
-    },
-    {
-        "id": "f7759613c21fcde5",
-        "type": "change",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 380,
-        "y": 760,
-        "wires": [
-            [
-                "dcd4c0c7fc94cfc3"
-            ]
-        ]
-    },
-    {
-        "id": "fe739b9a0665932d",
-        "type": "change",
-        "z": "95cf961539320dd3",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 380,
-        "y": 800,
-        "wires": [
-            [
-                "dcd4c0c7fc94cfc3"
-            ]
-        ]
     },
     {
         "id": "89c1d2a03ec52517",
@@ -12512,7 +12346,8 @@
         "y": 100,
         "wires": [
             [
-                "38d1aa796e6b88c5"
+                "ca6d0e931ce891e2",
+                "49384d119cba552b"
             ]
         ]
     },
@@ -12587,6 +12422,226 @@
         "wires": [
             [
                 "fa073067dec5e147"
+            ]
+        ]
+    },
+    {
+        "id": "5d47e9cce1d2133a",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Ensure master is home and asleep and fadeout still in progress",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nif (global.get(\"state\").isFadeOutInProgress.value == false) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1750,
+        "y": 380,
+        "wires": [
+            [
+                "e7c8f97a56f5e10c",
+                "5f02d4d4787a56ea"
+            ]
+        ]
+    },
+    {
+        "id": "aa991d147d43dad4",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Delay for rain fade out",
+        "info": "",
+        "x": 1420,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "94b1c2cddf6fd961",
+        "type": "inject",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "1436fedcf61d1e78"
+            ]
+        ]
+    },
+    {
+        "id": "4ec81821643b7c2a",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Reactivate Sleep Music",
+        "func": "// Is wakup music already playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType == \"wakeup\") {\n    console.debug(\"Lights were just turned off but wakeup is active, go back to rain for sleep\")\n    msg.payload = \"sleep\"\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 820,
+        "wires": [
+            [
+                "74df6bcc6d3a027a"
+            ]
+        ]
+    },
+    {
+        "id": "74df6bcc6d3a027a",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "8c211e55da1f4c7f",
+        "name": "Music Playback Type",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 620,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "225c597d6eeae281",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "e305e5abc2f5d281",
+        "name": "Fade Out in Progress",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1300,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "49384d119cba552b",
+        "type": "change",
+        "z": "95cf961539320dd3",
+        "name": "Set True",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 40,
+        "wires": [
+            [
+                "225c597d6eeae281"
+            ]
+        ]
+    },
+    {
+        "id": "f54390d17f2562e3",
+        "type": "change",
+        "z": "95cf961539320dd3",
+        "name": "Set False",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 760,
+        "wires": [
+            [
+                "d42d12dca957b433"
+            ]
+        ]
+    },
+    {
+        "id": "d42d12dca957b433",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "e305e5abc2f5d281",
+        "name": "Fade Out in Progress",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 560,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "085bcee1a5a890c1",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Ensure master is home and asleep and fadeout still in progress",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isMasterAsleep.value == false) {\n    return null\n}\nif (global.get(\"state\").isFadeOutInProgress.value == false) {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1570,
+        "y": 520,
+        "wires": [
+            [
+                "b8d397a9ae2bf8a5"
+            ]
+        ]
+    },
+    {
+        "id": "5f02d4d4787a56ea",
+        "type": "delay",
+        "z": "95cf961539320dd3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1260,
+        "y": 520,
+        "wires": [
+            [
+                "085bcee1a5a890c1"
             ]
         ]
     },
