@@ -197,7 +197,7 @@ music:
   sleep:
     participants:
       - player_name: "Bedroom"
-        base_volume: 13
+        base_volume: 15
         leave_muted_if: []
       - player_name: "Dining Room"
         base_volume: 8
