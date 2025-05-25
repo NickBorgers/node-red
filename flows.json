@@ -18288,7 +18288,7 @@
         "debugenabled": false,
         "protocol": "http",
         "method": "post",
-        "path": "config/config_entries/entry/78f5ddf87ceabf578245d0843919d429/reload",
+        "path": "config/config_entries/entry/01JQ488J195TKC2EH8057NNY9Q/reload",
         "data": "{}",
         "dataType": "json",
         "responseType": "json",
@@ -18793,7 +18793,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.outdoor_smart_plug"
+            "back_yard_pool_pump"
         ],
         "labelId": [],
         "data": "",
@@ -18824,7 +18824,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.outdoor_smart_plug"
+            "back_yard_pool_pump"
         ],
         "labelId": [],
         "data": "",
@@ -19144,7 +19144,7 @@
         "halt_if_type": "bool",
         "halt_if_compare": "is",
         "entity_id": "binary_sensor.garage_door_vehicle_detected",
-        "state_type": "str",
+        "state_type": "habool",
         "blockInputOverrides": true,
         "outputProperties": [],
         "for": "0",
@@ -19168,6 +19168,7 @@
         "id": "d09168bac0fc13e4",
         "type": "api-call-service",
         "z": "7097dab4eb91af0f",
+        "d": true,
         "name": "Open the garage",
         "server": "3ec50562615a9f50",
         "version": 7,
