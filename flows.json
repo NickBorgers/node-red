@@ -18794,7 +18794,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "back_yard_pool_pump"
+            "switch.back_yard_pool_pump"
         ],
         "labelId": [],
         "data": "",
@@ -18825,7 +18825,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "back_yard_pool_pump"
+            "switch.back_yard_pool_pump"
         ],
         "labelId": [],
         "data": "",
