@@ -4972,8 +4972,8 @@
         "name": "Activate Dynamic Scene",
         "server": "3ec50562615a9f50",
         "version": 7,
-        "debugenabled": true,
-        "action": "scene.turn_on",
+        "debugenabled": false,
+        "action": "hue.activate_scene",
         "floorId": [],
         "areaId": [],
         "deviceId": [],
@@ -4988,13 +4988,32 @@
         "outputProperties": [],
         "queue": "none",
         "blockInputOverrides": false,
-        "domain": "scene",
-        "service": "turn_on",
+        "domain": "hue",
+        "service": "activate_scene",
         "x": 1770,
         "y": 280,
         "wires": [
             [
                 "d13c1bcbd1548e82"
+            ]
+        ]
+    },
+    {
+        "id": "c81034bf2843ebc6",
+        "type": "function",
+        "z": "16cd74edb3f2c03d",
+        "name": "Pick which rooms to apply scenes to",
+        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    var scene_name = thisRoomToActivate.hue_group + \" \" + dayPhase \n    msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n    msg.payload.dynamic = true\n    msg.payload.transition = 240\n    msg.delay = msg.payload.transition*1000\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1330,
+        "y": 280,
+        "wires": [
+            [
+                "1e0d8022cef2ed62"
             ]
         ]
     },
@@ -6108,6 +6127,7 @@
         "y": 280,
         "wires": [
             [
+                "c81034bf2843ebc6",
                 "db2d8c82785df7b4",
                 "bab582a44090fd16",
                 "7753f747909284c6",
@@ -18773,7 +18793,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.back_yard_pool_pump"
+            "back_yard_pool_pump"
         ],
         "labelId": [],
         "data": "",
@@ -18804,7 +18824,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.back_yard_pool_pump"
+            "back_yard_pool_pump"
         ],
         "labelId": [],
         "data": "",
