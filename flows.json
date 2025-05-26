@@ -8028,7 +8028,7 @@
         "z": "90f5fe8cb80ae6a7",
         "name": "Delay",
         "pauseType": "delay",
-        "timeout": "11",
+        "timeout": "12",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "10",
