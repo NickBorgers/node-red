@@ -12502,7 +12502,8 @@
         "y": 820,
         "wires": [
             [
-                "74df6bcc6d3a027a"
+                "74df6bcc6d3a027a",
+                "79e336acfa7479dd"
             ]
         ]
     },
@@ -12644,6 +12645,37 @@
             [
                 "085bcee1a5a890c1"
             ]
+        ]
+    },
+    {
+        "id": "79e336acfa7479dd",
+        "type": "api-call-service",
+        "z": "95cf961539320dd3",
+        "name": "Turn off Primary bathroom lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.primary_bathroom_main_lights"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "light",
+        "service": "turn_off",
+        "x": 650,
+        "y": 880,
+        "wires": [
+            []
         ]
     },
     {
