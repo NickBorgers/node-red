@@ -6,12 +6,12 @@ music:
         base_volume: 9
         leave_muted_if: []
       - player_name: "Soundbar"
-        base_volume: 9
+        base_volume: 10
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
       - player_name: "Kids Bathroom"
-        base_volume: 8
+        base_volume: 7
         leave_muted_if:
           - variable: isTVPlaying
             value: true
@@ -48,10 +48,10 @@ music:
   day:
     participants:
       - player_name: "Kitchen"
-        base_volume: 7
+        base_volume: 9
         leave_muted_if: []
       - player_name: "Soundbar"
-        base_volume: 7
+        base_volume: 10
         leave_muted_if:
           - variable: isGuestAsleep
             value: true
@@ -66,7 +66,7 @@ music:
           - variable: isMasterAsleep
             value: true
       - player_name: "Dining Room"
-        base_volume: 7
+        base_volume: 9
         leave_muted_if:
           - variable: isTVPlaying
             value: true
