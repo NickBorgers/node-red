@@ -12133,7 +12133,7 @@
         "z": "95cf961539320dd3",
         "name": "",
         "pauseType": "delay",
-        "timeout": "15",
+        "timeout": "5",
         "timeoutUnits": "minutes",
         "rate": "1",
         "nbRateUnits": "1",
@@ -12144,7 +12144,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1430,
+        "x": 1420,
         "y": 380,
         "wires": [
             [
@@ -12171,7 +12171,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1890,
+        "x": 1910,
         "y": 520,
         "wires": [
             [
@@ -12188,7 +12188,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 2100,
+        "x": 2120,
         "y": 520,
         "wires": []
     },
@@ -12615,7 +12615,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1570,
+        "x": 1590,
         "y": 520,
         "wires": [
             [
@@ -12629,7 +12629,7 @@
         "z": "95cf961539320dd3",
         "name": "",
         "pauseType": "delay",
-        "timeout": "2",
+        "timeout": "12",
         "timeoutUnits": "minutes",
         "rate": "1",
         "nbRateUnits": "1",
@@ -12640,7 +12640,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1260,
+        "x": 1270,
         "y": 520,
         "wires": [
             [
