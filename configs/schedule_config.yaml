@@ -1,11 +1,11 @@
 schedule:
--   begin_wake: '10:30'
+-   begin_wake: 09:50
     dusk: '20:00'
     go_to_bed: '23:30'
     name: Sunday
     night: '23:00'
     stop_screens: '22:45'
-    wake: '11:00'
+    wake: 10:15
     winddown: '22:15'
 -   begin_wake: 08:50
     dusk: '20:00'
@@ -47,11 +47,11 @@ schedule:
     stop_screens: '23:00'
     wake: 09:15
     winddown: '22:00'
--   begin_wake: '10:30'
+-   begin_wake: 09:50
     dusk: '20:00'
     go_to_bed: '23:59'
     name: Saturday
     night: '23:59'
     stop_screens: '23:00'
-    wake: '11:00'
+    wake: 10:15
     winddown: '22:00'
