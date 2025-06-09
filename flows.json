@@ -19268,5 +19268,143 @@
                 "f02b1e2c31a4d805"
             ]
         ]
+    },
+    {
+        "id": "e8c3de4a526a2ab6",
+        "type": "server-state-changed",
+        "z": "7097dab4eb91af0f",
+        "name": "Doorbell Pressed",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_button.doorbell"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 140,
+        "y": 620,
+        "wires": [
+            [
+                "8686e9c5c467f192",
+                "08f1fa66b3075772"
+            ]
+        ]
+    },
+    {
+        "id": "60f19157de574df4",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "Doorbell Notification",
+        "info": "",
+        "x": 130,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a3377b78cbc04684",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Notify Audibly",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "tts.speak",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "tts.google_translate_en_com"
+        ],
+        "labelId": [],
+        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.bedroom\",\"media_player.kitchen\",\"media_player.dining_room\",\"media_player.soundbar\",\"media_player.kids_bathroom\"],\"message\":\"Doorbell ringing\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "tts",
+        "service": "speak",
+        "x": 500,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8686e9c5c467f192",
+        "type": "delay",
+        "z": "7097dab4eb91af0f",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 620,
+        "wires": [
+            [
+                "a3377b78cbc04684"
+            ]
+        ]
+    },
+    {
+        "id": "08f1fa66b3075772",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.primary_suite",
+            "light.living_room"
+        ],
+        "labelId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 310,
+        "y": 680,
+        "wires": [
+            []
+        ]
     }
 ]
