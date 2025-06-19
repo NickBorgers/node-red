@@ -194,35 +194,25 @@
         "id": "4b656d74411ea89c",
         "type": "group",
         "z": "90f5fe8cb80ae6a7",
-        "name": "Pooper's Button",
+        "name": "Tori Here",
         "style": {
             "label": true
         },
         "nodes": [
             "2a368b2441b8e268",
-            "6ff0fe94ad20f2b0",
             "a16d6614f34882e1",
             "1400bc1a11781043",
             "bb35db542533564d",
-            "b5802a0f996c0d73",
-            "1f57ca5d204495b8",
-            "827e944640382a04",
-            "519ba9e8deaad0cb",
-            "4123044d0c15479d",
             "1147be5849344bdf",
-            "7e52276e5e6c0bf5",
-            "54a9e604802ef8f4",
-            "8887203cd9731ca8",
-            "933a6be2ef3624b6",
-            "dc5db439632d9364",
-            "9a58aa7993ee54bc",
             "da8a13699f936fa8",
-            "222f41b3e4fc44cd"
+            "222f41b3e4fc44cd",
+            "d13325716094a950",
+            "16264ecde9053b53"
         ],
         "x": 34,
         "y": 1059,
-        "w": 1172,
-        "h": 282
+        "w": 1092,
+        "h": 202
     },
     {
         "id": "1dd96a4a.9d6316",
@@ -1180,6 +1170,23 @@
         "type": "shared-state",
         "name": "isFadeOutInProgress",
         "lbl": "Fade Out in Progress",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "str",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "469ca31e4d142f8d",
+        "type": "shared-state",
+        "name": "keepPoolPumpOnFor24Hours",
+        "lbl": "",
         "tags": "",
         "historyCount": 2,
         "dataType": "str",
@@ -6604,26 +6611,6 @@
         "wires": []
     },
     {
-        "id": "6ff0fe94ad20f2b0",
-        "type": "inject",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Bump pooper volumes",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 180,
-        "y": 1140,
-        "wires": [
-            [
-                "a16d6614f34882e1"
-            ]
-        ]
-    },
-    {
         "id": "a16d6614f34882e1",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
@@ -6648,8 +6635,9 @@
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
         "name": "Iterate over players",
-        "func": "msg.payload.forEach(function(participant) {\n    msg.payload = null\n    msg.playerName = participant.playerName\n    if ([ \"Living Room\", \"Guest Bathroom\", \"Guest Bedroom\" ].indexOf(msg.playerName) > -1) {\n        node.send(msg)\n        console.debug(`Kicking ${msg.playerName} for pooper's button`)\n    }\n});",
+        "func": "msg.payload.forEach(function(participant) {\n    msg.payload = null\n    msg.playerName = participant.playerName\n    if ([ \"Bedroom\", \"Kitchen\" ].indexOf(msg.playerName) > -1) {\n        node.send(msg)\n        console.debug(`Kicking ${msg.playerName} for acoustic cover`)\n    }\n});",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -6670,6 +6658,7 @@
         "name": "Create Adjusted Volume",
         "func": "msg.originalVolume = msg.payload\n\nvar new_based_on_percentage = Math.floor(msg.payload * 1.3)\nvar new_based_on_minimum = msg.payload + 7\n\nmsg.payload = Math.max(new_based_on_percentage, new_based_on_minimum)\n\nconsole.debug(`${msg.playerName} volume was ${msg.originalVolume}, bumping to ${msg.payload}`)\n\nreturn msg",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -6679,79 +6668,6 @@
         "wires": [
             [
                 "da8a13699f936fa8"
-            ]
-        ]
-    },
-    {
-        "id": "b5802a0f996c0d73",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "confignode": "5f5c9d95d1284e33",
-        "command": "player.set.volume",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": true,
-        "name": "Resume volume",
-        "x": 960,
-        "y": 1240,
-        "wires": [
-            [
-                "9a58aa7993ee54bc"
-            ]
-        ]
-    },
-    {
-        "id": "1f57ca5d204495b8",
-        "type": "change",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Bring back original volume",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "originalVolume",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 720,
-        "y": 1240,
-        "wires": [
-            [
-                "b5802a0f996c0d73"
-            ]
-        ]
-    },
-    {
-        "id": "827e944640382a04",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "10",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1110,
-        "y": 1180,
-        "wires": [
-            [
-                "1f57ca5d204495b8"
             ]
         ]
     },
@@ -6958,100 +6874,12 @@
         "wires": []
     },
     {
-        "id": "519ba9e8deaad0cb",
-        "type": "homekit-service",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Pooper",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 460,
-        "y": 1300,
-        "wires": [
-            [
-                "1147be5849344bdf"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "4123044d0c15479d",
-        "type": "change",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Turn off",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 660,
-        "y": 1300,
-        "wires": [
-            [
-                "519ba9e8deaad0cb"
-            ]
-        ]
-    },
-    {
         "id": "1147be5849344bdf",
         "type": "switch",
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
-        "name": "If Turned On",
-        "property": "payload.On",
+        "name": "If Arrival",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
@@ -7061,12 +6889,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 470,
-        "y": 1220,
+        "x": 300,
+        "y": 1160,
         "wires": [
             [
-                "a16d6614f34882e1",
-                "4123044d0c15479d"
+                "16264ecde9053b53"
             ]
         ]
     },
@@ -7151,41 +6978,6 @@
         "wires": [
             [
                 "b14e74697315444e"
-            ]
-        ]
-    },
-    {
-        "id": "7e52276e5e6c0bf5",
-        "type": "change",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Turn on",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 300,
-        "y": 1300,
-        "wires": [
-            [
-                "519ba9e8deaad0cb"
             ]
         ]
     },
@@ -7305,61 +7097,6 @@
         "wires": [
             [
                 "e42d1eba960ea3cd"
-            ]
-        ]
-    },
-    {
-        "id": "54a9e604802ef8f4",
-        "type": "server-events",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Sense if there's a Hue event",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "exposeAsEntityConfig": "",
-        "eventType": "hue_event",
-        "eventData": "",
-        "waitForRunning": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "$outputData(\"eventData\").event_type",
-                "valueType": "jsonata"
-            }
-        ],
-        "event_type": "",
-        "x": 200,
-        "y": 1180,
-        "wires": [
-            [
-                "8887203cd9731ca8"
-            ]
-        ]
-    },
-    {
-        "id": "8887203cd9731ca8",
-        "type": "function",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Check if pooper's button",
-        "func": "// If this was anything BUT the pooper's button\nif(msg.payload.event.id != \"poopers_button_button\") {\n    // Do nothing\n    return null\n}\n// If this was anything BUT a short release\nif(msg.payload.event.type != \"short_release\") {\n    // Do nothing\n    return null\n}\n\nconsole.debug(\"Pooper's button was pressed\")\n\n// Ok, it was a short release of the pooper's button\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 190,
-        "y": 1240,
-        "wires": [
-            [
-                "933a6be2ef3624b6"
             ]
         ]
     },
@@ -7644,7 +7381,6 @@
         "name": "Set Volumes and Mute",
         "links": [
             "4a3bdf6826669285",
-            "dc5db439632d9364",
             "84ed0aab23753b90"
         ],
         "x": 505,
@@ -8701,32 +8437,6 @@
         ]
     },
     {
-        "id": "933a6be2ef3624b6",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 140,
-        "y": 1300,
-        "wires": [
-            [
-                "7e52276e5e6c0bf5"
-            ]
-        ]
-    },
-    {
         "id": "301b282a622e2935",
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
@@ -8914,31 +8624,6 @@
         "wires": []
     },
     {
-        "id": "302ac9fe9d41e10f",
-        "type": "inject",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Turn off pooper's button",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "{\"On\": false}",
-        "payloadType": "json",
-        "x": 270,
-        "y": 1360,
-        "wires": [
-            [
-                "519ba9e8deaad0cb"
-            ]
-        ]
-    },
-    {
         "id": "dc86ccb8622b2b62",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
@@ -9122,46 +8807,6 @@
         "wires": []
     },
     {
-        "id": "dc5db439632d9364",
-        "type": "link out",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "link out 3",
-        "mode": "link",
-        "links": [
-            "34bd02b0a6ce0a3f"
-        ],
-        "x": 1135,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "9a58aa7993ee54bc",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "5",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1060,
-        "y": 1300,
-        "wires": [
-            [
-                "dc5db439632d9364"
-            ]
-        ]
-    },
-    {
         "id": "42b63b9f501f348d",
         "type": "set-shared-state",
         "z": "90f5fe8cb80ae6a7",
@@ -9338,9 +8983,7 @@
         "x": 910,
         "y": 1180,
         "wires": [
-            [
-                "827e944640382a04"
-            ]
+            []
         ]
     },
     {
@@ -9662,6 +9305,44 @@
         "wires": [
             [
                 "9a8a0cc9dff87e76"
+            ]
+        ]
+    },
+    {
+        "id": "d13325716094a950",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "state": "8f52cea1b8ca177c",
+        "name": "Tori Here",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 1160,
+        "wires": [
+            [
+                "1147be5849344bdf"
+            ]
+        ]
+    },
+    {
+        "id": "16264ecde9053b53",
+        "type": "function",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "If sleep music playing",
+        "func": "// Is sleep music playing?\nvar musicPlaybackType = global.get(\"state\").musicPlaybackType.value\nif (musicPlaybackType == \"sleep\") {\n    console.debug(\"Turning up sleep music for acoustic cover\")\n    return msg\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 1220,
+        "wires": [
+            [
+                "a16d6614f34882e1"
             ]
         ]
     },
@@ -18760,27 +18441,11 @@
         ]
     },
     {
-        "id": "be254fdaec053593",
-        "type": "get-shared-state",
-        "z": "c90d4a5ca629d0b3",
-        "state": "174c278f.609ec8",
-        "name": "Sun Event",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 200,
-        "y": 360,
-        "wires": [
-            [
-                "5ab60c4fdfb101bc"
-            ]
-        ]
-    },
-    {
         "id": "5ab60c4fdfb101bc",
         "type": "function",
         "z": "c90d4a5ca629d0b3",
         "name": "Set pool pump based on conditions",
-        "func": "var sunevent = global.get(\"state\").sunevent.value\n\nvar outdoorTemperature = global.get(\"state\").outdoorTemperature.value\n// If it's cold outside\nif (outdoorTemperature < 35) {\n    // Turn on the pool pump, no other questions asked\n    console.debug(\"Turning on pool pump because outdoor temperature is: \" + outdoorTemperature)\n    return [msg, null]\n}\n\n// If it's day time\nif (sunevent == \"day\") {\n    // Turn on the pool pump\n    console.debug(\"Turning on pool pump because sunevent is: \" + sunevent)\n    return [msg, null]\n// If it's dusk\n} else if (sunevent == \"sunset\" || sunevent == \"night\") {\n    // Turn off the pool pump\n    console.debug(\"Turning off pool pump because sunevent is: \" + sunevent)\n    return [null, msg]\n}\n",
+        "func": "// Check if temperature is too low - this overrides everything else\nvar outdoorTemperature = global.get(\"state\").outdoorTemperature.value\n// If it's cold outside\nif (outdoorTemperature < 35) {\n    // Turn on the pool pump, no other questions asked\n    console.debug(\"Turning on pool pump because outdoor temperature is: \" + outdoorTemperature)\n    return [msg, null]\n}\n\n// Next consider if we're supposed to keep the pool pump on for 24 hours\nvar keepingPoolPumpOn = global.get(\"state\").keepPoolPumpOnFor24Hours.value\n// We're in a forced state of keeping the pump on\nif (keepingPoolPumpOn == \"on\") {\n    // Turn it on!\n    console.debug(\"Turning on pool pump because we are in an override state\")\n    return [msg, null]\n}\n\n// Otherwise let's check if the message we received is that the amount of energy we're reiving from the sun is too low\nif (msg.topic == \"solar energy production\") {\n    // Turn off the pool pump\n    console.debug(\"Turning of pool pump because we are not receiving enough solar energy\")\n    return [null, msg]\n}\n",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -18788,13 +18453,13 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 380,
+        "y": 400,
         "wires": [
             [
-                "7e1c42d8c3a5c4fa"
+                "a5b2c8d2dd988ccb"
             ],
             [
-                "4e27db343be5826a"
+                "490e9815ac267b4f"
             ]
         ]
     },
@@ -18807,7 +18472,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 240,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "11a89c2e6b28babf"
@@ -18839,7 +18504,7 @@
         "blockInputOverrides": false,
         "domain": "switch",
         "service": "turn_on",
-        "x": 850,
+        "x": 970,
         "y": 340,
         "wires": [
             []
@@ -18870,7 +18535,7 @@
         "blockInputOverrides": false,
         "domain": "switch",
         "service": "turn_off",
-        "x": 850,
+        "x": 970,
         "y": 420,
         "wires": [
             []
@@ -18894,8 +18559,244 @@
         "allowrate": false,
         "outputs": 1,
         "x": 430,
-        "y": 440,
+        "y": 480,
         "wires": [
+            [
+                "5ab60c4fdfb101bc"
+            ]
+        ]
+    },
+    {
+        "id": "a5b2c8d2dd988ccb",
+        "type": "delay",
+        "z": "c90d4a5ca629d0b3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 780,
+        "y": 340,
+        "wires": [
+            [
+                "7e1c42d8c3a5c4fa"
+            ]
+        ]
+    },
+    {
+        "id": "490e9815ac267b4f",
+        "type": "delay",
+        "z": "c90d4a5ca629d0b3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 780,
+        "y": 420,
+        "wires": [
+            [
+                "4e27db343be5826a"
+            ]
+        ]
+    },
+    {
+        "id": "88bdd0e12ddad9f4",
+        "type": "server-state-changed",
+        "z": "c90d4a5ca629d0b3",
+        "name": "Sense if Keep Pool Pump on Switch is On",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.keep_pool_pump_on_for_24_hours"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "x": 300,
+        "y": 240,
+        "wires": [
+            [
+                "1d32684e11a6532d"
+            ]
+        ]
+    },
+    {
+        "id": "1d32684e11a6532d",
+        "type": "set-shared-state",
+        "z": "c90d4a5ca629d0b3",
+        "state": "469ca31e4d142f8d",
+        "name": "keepPoolPumpOnFor24Hours",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 630,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6e7f2c907189f90f",
+        "type": "server-state-changed",
+        "z": "c90d4a5ca629d0b3",
+        "name": "Sense if Keep Pool Pump on Switch is On",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.keep_pool_pump_on_for_24_hours"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "on",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "24",
+        "forType": "num",
+        "forUnits": "hours",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "4dd91c7cd67c2388"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4dd91c7cd67c2388",
+        "type": "api-call-service",
+        "z": "c90d4a5ca629d0b3",
+        "name": "Turn off Keep Pool Pump on Switch",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.keep_pool_pump_on_for_24_hours"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 640,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "707bfa1d4f07a90e",
+        "type": "server-state-changed",
+        "z": "c90d4a5ca629d0b3",
+        "name": "Sense if we're generating solar energy",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.weather_station_irradiance"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "num",
+        "ifState": "50",
+        "ifStateType": "num",
+        "ifStateOperator": "gt",
+        "outputOnlyOnStateChange": true,
+        "for": "10",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "solar energy production",
+                "valueType": "str"
+            }
+        ],
+        "x": 290,
+        "y": 340,
+        "wires": [
+            [
+                "a5b2c8d2dd988ccb"
+            ],
             [
                 "5ab60c4fdfb101bc"
             ]
@@ -19202,7 +19103,6 @@
         "id": "d09168bac0fc13e4",
         "type": "api-call-service",
         "z": "7097dab4eb91af0f",
-        "d": true,
         "name": "Open the garage",
         "server": "3ec50562615a9f50",
         "version": 7,
@@ -19301,7 +19201,7 @@
         "ignoreCurrentStateUnavailable": false,
         "outputProperties": [],
         "x": 140,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "8686e9c5c467f192",
@@ -19316,7 +19216,7 @@
         "name": "Doorbell Notification",
         "info": "",
         "x": 130,
-        "y": 580,
+        "y": 600,
         "wires": []
     },
     {
@@ -19345,7 +19245,7 @@
         "domain": "tts",
         "service": "speak",
         "x": 500,
-        "y": 620,
+        "y": 640,
         "wires": [
             []
         ]
@@ -19368,7 +19268,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 320,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "a3377b78cbc04684"
@@ -19402,7 +19302,7 @@
         "domain": "light",
         "service": "turn_on",
         "x": 310,
-        "y": 680,
+        "y": 700,
         "wires": [
             []
         ]
