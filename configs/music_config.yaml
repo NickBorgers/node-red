@@ -71,7 +71,7 @@ music:
           - variable: isTVPlaying
             value: true
       - player_name: "Office"
-        base_volume: 7
+        base_volume: 6
         leave_muted_if: []
     playback_options:
       # Kygo Radio
