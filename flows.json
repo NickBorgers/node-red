@@ -200,19 +200,20 @@
         },
         "nodes": [
             "2a368b2441b8e268",
-            "a16d6614f34882e1",
             "1400bc1a11781043",
-            "bb35db542533564d",
             "1147be5849344bdf",
-            "da8a13699f936fa8",
-            "222f41b3e4fc44cd",
             "d13325716094a950",
-            "16264ecde9053b53"
+            "16264ecde9053b53",
+            "47decdb0d369afc6",
+            "40adb454033be9c8",
+            "5ec2630a0c5e4b93",
+            "240985938af00e0e",
+            "0436fe2a9cb05dd6"
         ],
         "x": 34,
         "y": 1059,
-        "w": 1092,
-        "h": 202
+        "w": 1052,
+        "h": 222
     },
     {
         "id": "1dd96a4a.9d6316",
@@ -6604,70 +6605,31 @@
         "type": "comment",
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
-        "name": "Button in guest bathroom for pooper to bump volume up",
+        "name": "Tori makes a lot of noise, so increase volume",
         "info": "",
-        "x": 270,
+        "x": 230,
         "y": 1100,
         "wires": []
-    },
-    {
-        "id": "a16d6614f34882e1",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "confignode": "5f5c9d95d1284e33",
-        "command": "group.get.members",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": true,
-        "name": "Get participants",
-        "x": 620,
-        "y": 1100,
-        "wires": [
-            [
-                "1400bc1a11781043"
-            ]
-        ]
     },
     {
         "id": "1400bc1a11781043",
         "type": "function",
         "z": "90f5fe8cb80ae6a7",
         "g": "4b656d74411ea89c",
-        "name": "Iterate over players",
-        "func": "msg.payload.forEach(function(participant) {\n    msg.payload = null\n    msg.playerName = participant.playerName\n    if ([ \"Bedroom\", \"Kitchen\" ].indexOf(msg.playerName) > -1) {\n        node.send(msg)\n        console.debug(`Kicking ${msg.playerName} for acoustic cover`)\n    }\n});",
+        "name": "Modify music playback config",
+        "func": "var currentKnownPlayingMusic = global.get(\"state\").currentlyPlayingMusic.value\n\ncurrentKnownPlayingMusic.participants.forEach(function (participant) {\n    var target_speakers = [\"Bedroom\", \"Kitchen\"]\n    if (target_speakers.includes(participant.player_name)) {\n        participant.volume = participant.volume + 10\n    }\n});\n\nmsg.payload = currentKnownPlayingMusic\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 830,
-        "y": 1100,
+        "x": 930,
+        "y": 1160,
         "wires": [
             [
-                "222f41b3e4fc44cd"
-            ]
-        ]
-    },
-    {
-        "id": "bb35db542533564d",
-        "type": "function",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "name": "Create Adjusted Volume",
-        "func": "msg.originalVolume = msg.payload\n\nvar new_based_on_percentage = Math.floor(msg.payload * 1.3)\nvar new_based_on_minimum = msg.payload + 7\n\nmsg.payload = Math.max(new_based_on_percentage, new_based_on_minimum)\n\nconsole.debug(`${msg.playerName} volume was ${msg.originalVolume}, bumping to ${msg.payload}`)\n\nreturn msg",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 670,
-        "y": 1180,
-        "wires": [
-            [
-                "da8a13699f936fa8"
+                "47decdb0d369afc6",
+                "5ec2630a0c5e4b93"
             ]
         ]
     },
@@ -7381,7 +7343,8 @@
         "name": "Set Volumes and Mute",
         "links": [
             "4a3bdf6826669285",
-            "84ed0aab23753b90"
+            "84ed0aab23753b90",
+            "5ec2630a0c5e4b93"
         ],
         "x": 505,
         "y": 400,
@@ -8970,42 +8933,6 @@
         ]
     },
     {
-        "id": "da8a13699f936fa8",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "confignode": "5f5c9d95d1284e33",
-        "command": "player.set.volume",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": true,
-        "name": "Set Higher Volume",
-        "x": 910,
-        "y": 1180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "222f41b3e4fc44cd",
-        "type": "sonos-universal",
-        "z": "90f5fe8cb80ae6a7",
-        "g": "4b656d74411ea89c",
-        "confignode": "5f5c9d95d1284e33",
-        "command": "player.get.volume",
-        "state": "",
-        "stateType": "str",
-        "avoidCheckPlayerAvailability": true,
-        "name": "Get Volume",
-        "x": 1030,
-        "y": 1100,
-        "wires": [
-            [
-                "bb35db542533564d"
-            ]
-        ]
-    },
-    {
         "id": "fa5a15fef36b436f",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
@@ -9338,12 +9265,99 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 1220,
+        "x": 660,
+        "y": 1160,
         "wires": [
             [
-                "a16d6614f34882e1"
+                "1400bc1a11781043"
             ]
+        ]
+    },
+    {
+        "id": "47decdb0d369afc6",
+        "type": "set-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "state": "b74697c734ad5557",
+        "name": "Currently Playing Music",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 230,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "40adb454033be9c8",
+        "type": "comment",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "Use normal volume set to apply",
+        "info": "",
+        "x": 670,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "5ec2630a0c5e4b93",
+        "type": "link out",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "Set Volumes and Mute",
+        "mode": "link",
+        "links": [
+            "34bd02b0a6ce0a3f"
+        ],
+        "x": 515,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "240985938af00e0e",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 420,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0436fe2a9cb05dd6",
+        "type": "delay",
+        "z": "90f5fe8cb80ae6a7",
+        "g": "4b656d74411ea89c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "12",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 1160,
+        "wires": [
+            []
         ]
     },
     {
