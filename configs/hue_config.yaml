@@ -7,3 +7,7 @@ rooms:
   - hue_group: Primary Suite
     hass_area_id: master_bedroom
     off_if_true: isMasterAsleep
+  - hue_group: Dining Room
+    hass_area_id: dining_room
+    off_if_true: isEveryoneAsleep
+    increase_brightness_if_true: isHaveGuests
