@@ -17,7 +17,6 @@ flowchart LR
 
 A[Node Red] --> |Websockets| B[Home Assistant]
 A --> C[Sonos]
-A --> D[Elasticsearch]
 A --> G[HomeKit]
 B --> E[Phillips Hue]
 B --> F[Dyson]
@@ -65,17 +64,11 @@ Hue config got significantly less complex when I adopted Home Assistant, as it h
 
 ![Hue Control](https://nickborgers.github.io/node-red/Hue%20Control.png)
 
-### Vacuum
-A [Roborock vacuum is controlled](https://us.roborock.com/products/roborock-s7-maxv-ultra) so that it only runs at night if there are no guests, or when we are not at home. The device is denied an Internet connection by the router, but can be interacted with via WLAN from the same network.
-
-![Vacuum](https://nickborgers.github.io/node-red/Vacuum.png)
-
 ### Configuration - Music and Lights
 I wanted to be able to git track the fairly complex configuration objects that I needed to describe my intents for music playback and lighting. These were the first files in this repository to be source controlled. Those configuration objects take the form of YAML files:
   - [hue_config.yaml](configs/hue_config.yaml)
   - [music_config.yaml](configs/music_config.yaml)
   - [schedule_config.yaml](configs/schedule_config.yaml)
-  - [climate_config.yaml](configs/climate_config.yaml)
 
 [The config files are validated for YAML correctness using `yamllint` in a GitHub Action](.github/workflows/validate.yml#10-24). Because the majority of music playback leverages public Spotify playlists, the [music_config.yaml](configs/music_config.yaml) gets some additional validation by a [script which confirms every indicated Spotify Playback URI is a valid, reachable, and public Spotify Playlist](config-test/validate_spotify_uris.py).
 
@@ -94,27 +87,21 @@ We're working on sleep hygiene right now and have enslisted the home automation 
 ![Sleep Hygiene](https://nickborgers.github.io/node-red/Sleep%20Hygiene.png)
 
 ### TV Monitoring and Manipulation
-We display art on the TV, so like for it to come on in the mornings and evenings.
-
 When we watch something on the TV we want the nearby speakers to mute. So, we monitor what's going on with the TV itself and the associated Apple TV to drive some automations.
 
 ![TV Monitoring and Manipulation](https://nickborgers.github.io/node-red/TV%20Monitoring%20and%20Manipulation.png)
 
-### Calendar
-Verbal alerts are played for us based on calendar events. Home Assistant is actually integrated with our calendars, and this automation checks those calendars and notifies us if we should really be going to be bed instead of watching that next YouTube video or whatever.
+### Pool Pump
+We have a pool and a solar system for electricity generation. The automation detects solar irradiance (energy being receieved) with our weather station and uses that to kick up the pool pump. This work pretty well because algae only grows with solar energy, and this way we only drive the pool pump when we are producing energy.
 
-![Calendar](https://nickborgers.github.io/node-red/Calendar.png)
+This is also how we trigger the pool pump during freezing temperatures, again relying on local weather data from our weather station device.
 
-### Log
-Changes to state variables which drive behavior are written to an Elasticsearch instance in the home, [originally setup to track energy consumption](https://github.com/NickBorgers/coned-data-visualizer).
+![Pool Pump](https://nickborgers.github.io/node-red/Pool%20Pump.png)
 
-![Log](https://nickborgers.github.io/node-red/Log.png)
+### Security
+Nothing too fancy, just open the garage door if someone comes home and lock things down when folks leave or go to sleep.
 
-### Air Condition
-Configuring the speed of the fans in the home and activating the humidifier in the bedroom when appropriate, plus recording the interior temperature and humidity. These flows have significant issues with being hardcoded to this home.
+This also includes the doorbell notification driven from Scrypted.
 
-![Climate Control](https://nickborgers.github.io/node-red/Air%20Condition.png)
-
-The data collection bits let me do this in Elasticsearch dashboards:
-<img width="1500" alt="image" src="https://user-images.githubusercontent.com/1139580/225003174-e66e57e9-3c69-4a94-87aa-34923ae7376a.png">
+![Security](https://nickborgers.github.io/node-red/Security.png)
 
