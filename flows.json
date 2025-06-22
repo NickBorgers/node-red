@@ -5048,7 +5048,8 @@
         "y": 280,
         "wires": [
             [
-                "7935909ef8708c2f"
+                "7935909ef8708c2f",
+                "0d84f4884fc0df27"
             ]
         ]
     },
@@ -6146,6 +6147,23 @@
                 "471118ec3815948a"
             ]
         ]
+    },
+    {
+        "id": "0d84f4884fc0df27",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1720,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "ed9bddb805628e39",
@@ -19303,7 +19321,8 @@
         "deviceId": [],
         "entityId": [
             "light.primary_suite",
-            "light.living_room"
+            "light.living_room",
+            "light.independent"
         ],
         "labelId": [],
         "data": "{\"flash\": \"short\"}",
@@ -19316,6 +19335,66 @@
         "domain": "light",
         "service": "turn_on",
         "x": 310,
+        "y": 700,
+        "wires": [
+            [
+                "ffc457ab1d386e04"
+            ]
+        ]
+    },
+    {
+        "id": "ffc457ab1d386e04",
+        "type": "delay",
+        "z": "7097dab4eb91af0f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 700,
+        "wires": [
+            [
+                "5e0402bbe2c11da6"
+            ]
+        ]
+    },
+    {
+        "id": "5e0402bbe2c11da6",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.primary_suite",
+            "light.living_room",
+            "light.independent"
+        ],
+        "labelId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 610,
         "y": 700,
         "wires": [
             []
