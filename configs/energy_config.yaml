@@ -5,20 +5,45 @@ energy:
        battery_minimum_percentage: 0
        energy_production_minimum_kw: 0
        remaining_energy_production_minimum_kwh: 0
+       light_config:
+         red: 25
+         green: 25
+         blue: 112
+         brightness_pct: 10
     -  condition_name: red
        battery_minimum_percentage: 40
        energy_production_minimum_kw: 0
        remaining_energy_production_minimum_kwh: 0
+       light_config:
+         red: 255
+         green: 0
+         blue: 0
+         brightness_pct: 30
     -  condition_name: yellow
        battery_minimum_percentage: 60
        energy_production_minimum_kw: 0
        remaining_energy_production_minimum_kwh: 0
+       light_config:
+         red: 255
+         green: 255
+         blue: 0
+         brightness_pct: 30
     -  condition_name: green
        battery_minimum_percentage: 80
        energy_production_minimum_kw: 2
        remaining_energy_production_minimum_kwh: 10
+       light_config:
+         red: 0
+         green: 255
+         blue: 0
+         brightness_pct: 60
     -  condition_name: white
        battery_minimum_percentage: 95
        energy_production_minimum_kw: 4
        remaining_energy_production_minimum_kwh: 20
+       light_config:
+         red: 255
+         green: 255
+         blue: 255
+         brightness_pct: 100
      
