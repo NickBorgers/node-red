@@ -3,22 +3,22 @@ energy:
   energy_states:
     -  condition_name: black
        battery_minimum_percentage: 0
-       energy_production_minimum_kwh: 0
+       energy_production_minimum_kw: 0
        remaining_energy_production_minimum_kwh: 0
     -  condition_name: red
        battery_minimum_percentage: 40
-       energy_production_minimum_kwh: 0
+       energy_production_minimum_kw: 0
        remaining_energy_production_minimum_kwh: 0
     -  condition_name: yellow
        battery_minimum_percentage: 60
-       energy_production_minimum_kwh: 0
+       energy_production_minimum_kw: 0
        remaining_energy_production_minimum_kwh: 0
     -  condition_name: green
        battery_minimum_percentage: 80
-       energy_production_minimum_kwh: 2000
+       energy_production_minimum_kw: 2
        remaining_energy_production_minimum_kwh: 10
     -  condition_name: white
        battery_minimum_percentage: 95
-       energy_production_minimum_kwh: 4000
+       energy_production_minimum_kw: 4
        remaining_energy_production_minimum_kwh: 20
      
