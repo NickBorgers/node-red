@@ -20014,7 +20014,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine solar energy level",
-        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\nvar thisHourSolarGeneration = global.get(\"state\").thisHourSolarGeneration.value\nvar remainingSolarGeneration = global.get(\"state\").remainingSolarGeneration.value\n\n\n// Create variable for new energy level\n// Default to black\nvar new_energy_level = \"black\"\n\nfunction determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions) {\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        // If the amount of energy we will make this hour is greater than the minimum required\n        if (thisHourSolarGeneration > possibleEnergyLevel[\"energy_production_minimum_kwh\"]) {\n            // And the amount of energy we will still make today is greater than the minimum required\n            if (remainingSolarGeneration > possibleEnergyLevel[\"remaining_energy_production_minimum_kwh\"]) {\n                new_energy_level = possibleEnergyLevel.condition_name;\n            }\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by current and remaining solar generation\");\n    msg.payload = new_energy_level;\n    return msg\n}\n\nreturn determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions)\n",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\nvar thisHourSolarGeneration = global.get(\"state\").thisHourSolarGeneration.value\nvar remainingSolarGeneration = global.get(\"state\").remainingSolarGeneration.value\n\n\n// Create variable for new energy level\n// Default to black\nvar new_energy_level = \"black\"\n\nfunction determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions) {\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        // If the amount of energy we will make this hour is greater than the minimum required\n        if (thisHourSolarGeneration > possibleEnergyLevel[\"energy_production_minimum_kw\"]) {\n            // And the amount of energy we will still make today is greater than the minimum required\n            if (remainingSolarGeneration > possibleEnergyLevel[\"remaining_energy_production_minimum_kwh\"]) {\n                new_energy_level = possibleEnergyLevel.condition_name;\n            }\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by current and remaining solar generation\");\n    msg.payload = new_energy_level;\n    return msg\n}\n\nreturn determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions)\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -20084,5 +20084,21 @@
         "x": 280,
         "y": 620,
         "wires": []
+    },
+    {
+        "id": "5c646b52f5d76120",
+        "type": "get-shared-state",
+        "z": "25c8955517cef179",
+        "state": "f54240c4b5a78c3c",
+        "name": "Energy Config",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "36fae9cc22db6f7a"
+            ]
+        ]
     }
 ]
