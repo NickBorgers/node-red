@@ -1277,6 +1277,40 @@
         "saveInterval": "0"
     },
     {
+        "id": "f732f53bcebeeecd",
+        "type": "shared-state",
+        "name": "remainingSolarGeneration",
+        "lbl": "Remaining Solar Generation",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "kWh",
+        "saveInterval": "0"
+    },
+    {
+        "id": "904df74aaec4d25f",
+        "type": "shared-state",
+        "name": "thisHourSolarGeneration",
+        "lbl": "This Hour Solar Generation",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "kW",
+        "saveInterval": "0"
+    },
+    {
         "id": "9460cec7.a8b9e8",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -19529,14 +19563,14 @@
         "id": "d4bd6f61e4ca3aca",
         "type": "server-state-changed",
         "z": "25c8955517cef179",
-        "name": "Output current solar irradience",
+        "name": "Output this hour solar generation",
         "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 1,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "sensor.weather_station_irradiance"
+                "sensor.energy_next_hour"
             ],
             "substring": [],
             "regex": []
@@ -19570,10 +19604,10 @@
             }
         ],
         "x": 210,
-        "y": 100,
+        "y": 360,
         "wires": [
             [
-                "2c61f03bd3d8de44"
+                "392a711f3277fc27"
             ]
         ]
     },
@@ -19622,7 +19656,7 @@
             }
         ],
         "x": 210,
-        "y": 180,
+        "y": 120,
         "wires": [
             [
                 "2c61f03bd3d8de44"
@@ -19634,20 +19668,16 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine independent energy levels",
-        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\n// Create variable for new energy level\nvar new_energy_level\n\nfunction determineEnergyLevel(configKey, sourceDescription) {\n    let new_energy_level;\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        if (msg.payload > possibleEnergyLevel[configKey]) {\n            new_energy_level = possibleEnergyLevel.condition_name;\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by \" + sourceDescription);\n    msg.payload = new_energy_level;\n    return msg\n}\n\nif (msg.topic == \"solar energy production\") {\n    return [\n            determineEnergyLevel(\"irradiance_minimum\", \"solar generation\"),\n            null\n    ]\n}\n\nif (msg.topic == \"current battery level\") {\n    return [\n        null,\n        determineEnergyLevel(\"battery_minimum\", \"battery charge\")\n    ]\n}",
-        "outputs": 2,
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\n// Create variable for new energy level\nvar new_energy_level = \"black\"\n\nfunction determineEnergyLevel(configKey, sourceDescription) {\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        if (msg.payload > possibleEnergyLevel[configKey]) {\n            new_energy_level = possibleEnergyLevel.condition_name;\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by \" + sourceDescription);\n    msg.payload = new_energy_level;\n    return msg\n}\n\nreturn determineEnergyLevel(\"battery_minimum_percentage\", \"battery charge\")\n",
+        "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 140,
+        "x": 550,
+        "y": 120,
         "wires": [
-            [
-                "9dd3a68f113e4431",
-                "563c81bc8fce3ee2"
-            ],
             [
                 "b0500c07a41ae3e8",
                 "55cf524b75b03627"
@@ -19680,7 +19710,7 @@
         "domain": "input_text",
         "service": "set_value",
         "x": 910,
-        "y": 360,
+        "y": 700,
         "wires": [
             []
         ]
@@ -19696,7 +19726,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 760,
-        "y": 420,
+        "y": 780,
         "wires": []
     },
     {
@@ -19709,8 +19739,8 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 800,
-        "y": 180,
+        "x": 860,
+        "y": 100,
         "wires": []
     },
     {
@@ -19723,8 +19753,8 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 830,
-        "y": 100,
+        "x": 810,
+        "y": 500,
         "wires": []
     },
     {
@@ -19752,8 +19782,8 @@
         "blockInputOverrides": false,
         "domain": "input_text",
         "service": "set_value",
-        "x": 810,
-        "y": 240,
+        "x": 870,
+        "y": 180,
         "wires": [
             []
         ]
@@ -19783,8 +19813,8 @@
         "blockInputOverrides": false,
         "domain": "input_text",
         "service": "set_value",
-        "x": 840,
-        "y": 60,
+        "x": 1000,
+        "y": 420,
         "wires": [
             []
         ]
@@ -19798,7 +19828,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 170,
-        "y": 420,
+        "y": 760,
         "wires": [
             [
                 "0bf2c25313d782e0"
@@ -19814,7 +19844,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 200,
-        "y": 360,
+        "y": 700,
         "wires": [
             [
                 "0bf2c25313d782e0"
@@ -19834,7 +19864,7 @@
         "finalize": "",
         "libs": [],
         "x": 490,
-        "y": 400,
+        "y": 740,
         "wires": [
             [
                 "53b0217d91dc82e3",
@@ -19860,11 +19890,199 @@
         "allowrate": false,
         "outputs": 1,
         "x": 720,
-        "y": 360,
+        "y": 700,
         "wires": [
             [
                 "0be1a29664c3a493"
             ]
         ]
+    },
+    {
+        "id": "f9def1c3fd281943",
+        "type": "server-state-changed",
+        "z": "25c8955517cef179",
+        "name": "Output remaining day solar generation",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.energy_production_today_remaining"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "num",
+        "ifState": "",
+        "ifStateType": "num",
+        "ifStateOperator": "gt",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "solar energy production",
+                "valueType": "str"
+            }
+        ],
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "627e1d45a8c8bb9a"
+            ]
+        ]
+    },
+    {
+        "id": "627e1d45a8c8bb9a",
+        "type": "set-shared-state",
+        "z": "25c8955517cef179",
+        "state": "f732f53bcebeeecd",
+        "name": "Remaining Solar Generation",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 540,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "392a711f3277fc27",
+        "type": "set-shared-state",
+        "z": "25c8955517cef179",
+        "state": "904df74aaec4d25f",
+        "name": "This Hour Solar Generation",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 540,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "adc7d9ed455d6c63",
+        "type": "get-shared-state",
+        "z": "25c8955517cef179",
+        "state": "904df74aaec4d25f",
+        "name": "This Hour Solar Generation",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "36fae9cc22db6f7a"
+            ]
+        ]
+    },
+    {
+        "id": "097a21882c30e24f",
+        "type": "get-shared-state",
+        "z": "25c8955517cef179",
+        "state": "f732f53bcebeeecd",
+        "name": "Remaining Solar Generation",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 200,
+        "y": 500,
+        "wires": [
+            [
+                "36fae9cc22db6f7a"
+            ]
+        ]
+    },
+    {
+        "id": "36fae9cc22db6f7a",
+        "type": "function",
+        "z": "25c8955517cef179",
+        "name": "Determine solar energy level",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\nvar thisHourSolarGeneration = global.get(\"state\").thisHourSolarGeneration.value\nvar remainingSolarGeneration = global.get(\"state\").remainingSolarGeneration.value\n\n\n// Create variable for new energy level\n// Default to black\nvar new_energy_level = \"black\"\n\nfunction determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions) {\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        // If the amount of energy we will make this hour is greater than the minimum required\n        if (thisHourSolarGeneration > possibleEnergyLevel[\"energy_production_minimum_kwh\"]) {\n            // And the amount of energy we will still make today is greater than the minimum required\n            if (remainingSolarGeneration > possibleEnergyLevel[\"remaining_energy_production_minimum_kwh\"]) {\n                new_energy_level = possibleEnergyLevel.condition_name;\n            }\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by current and remaining solar generation\");\n    msg.payload = new_energy_level;\n    return msg\n}\n\nreturn determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions)\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "9dd3a68f113e4431",
+                "5c69c0a5c6aeaf43"
+            ]
+        ]
+    },
+    {
+        "id": "5c69c0a5c6aeaf43",
+        "type": "delay",
+        "z": "25c8955517cef179",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 420,
+        "wires": [
+            [
+                "563c81bc8fce3ee2"
+            ]
+        ]
+    },
+    {
+        "id": "8280a6040fb5998b",
+        "type": "comment",
+        "z": "25c8955517cef179",
+        "name": "Convert current battery percentage into battery energy level",
+        "info": "",
+        "x": 300,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "05cc4bf3baffbd46",
+        "type": "comment",
+        "z": "25c8955517cef179",
+        "name": "Convert projected solar generation into solar energy level",
+        "info": "",
+        "x": 290,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "8eea9edf83ec3bba",
+        "type": "comment",
+        "z": "25c8955517cef179",
+        "name": "Convert battery and generation levels into overall level",
+        "info": "",
+        "x": 280,
+        "y": 620,
+        "wires": []
     }
 ]
