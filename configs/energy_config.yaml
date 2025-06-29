@@ -2,18 +2,23 @@
 energy:
   energy_states:
     -  condition_name: black
-       battery_minimum: 0
-       irradiance_minimum: 0
+       battery_minimum_percentage: 0
+       energy_production_minimum_kwh: 0
+       remaining_energy_production_minimum_kwh: 0
     -  condition_name: red
-       battery_minimum: 20
-       irradiance_minimum: 0
+       battery_minimum_percentage: 40
+       energy_production_minimum_kwh: 0
+       remaining_energy_production_minimum_kwh: 0
     -  condition_name: yellow
-       battery_minimum: 40
-       irradiance_minimum: 0
+       battery_minimum_percentage: 60
+       energy_production_minimum_kwh: 0
+       remaining_energy_production_minimum_kwh: 0
     -  condition_name: green
-       battery_minimum: 60
-       irradiance_minimum: 0
+       battery_minimum_percentage: 80
+       energy_production_minimum_kwh: 2000
+       remaining_energy_production_minimum_kwh: 10
     -  condition_name: white
-       battery_minimum: 80
-       irradiance_minimum: 350
+       battery_minimum_percentage: 95
+       energy_production_minimum_kwh: 4000
+       remaining_energy_production_minimum_kwh: 20
      
