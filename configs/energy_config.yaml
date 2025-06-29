@@ -12,8 +12,8 @@ energy:
        irradiance_minimum: 0
     -  condition_name: green
        battery_minimum: 60
-       irradiance_minimum: 350
+       irradiance_minimum: 0
     -  condition_name: white
        battery_minimum: 80
-       irradiance_minimum: 500
+       irradiance_minimum: 350
      
