@@ -1,0 +1,19 @@
+---
+energy:
+  energy_states:
+    -  condition_name: black
+       battery_minimum: 0
+       irradiance_minimum: 0
+    -  condition_name: red
+       battery_minimum: 20
+       irradiance_minimum: 0
+    -  condition_name: yellow
+       battery_minimum: 40
+       irradiance_minimum: 0
+    -  condition_name: green
+       battery_minimum: 60
+       irradiance_minimum: 350
+    -  condition_name: white
+       battery_minimum: 80
+       irradiance_minimum: 500
+     
