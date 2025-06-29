@@ -1,5 +1,8 @@
 ---
 energy:
+  free_energy_time:
+    start: "21:00"
+    end: "07:00"
   energy_states:
     -  condition_name: black
        battery_minimum_percentage: 0
