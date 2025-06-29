@@ -1311,6 +1311,40 @@
         "saveInterval": "0"
     },
     {
+        "id": "3a562d3a1802e445",
+        "type": "shared-state",
+        "name": "isFreeEnergyAvailable",
+        "lbl": "Free Energy Available?",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "d916d510408c1320",
+        "type": "shared-state",
+        "name": "isGridAvailable",
+        "lbl": "Grid Available?",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
         "id": "9460cec7.a8b9e8",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -19856,7 +19890,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine overall energy level",
-        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar batteryEnergyLevel = global.get(\"state\").batteryEnergyLevel.value\nvar solarProductionEnergyLevel = global.get(\"state\").solarProductionEnergyLevel.value\n\nfunction determineOutputEnergyLevel(batteryEnergyLevel, solarPowerEnergyLevel, energyStateDefinitions) {\n    // Extract the ordered list of condition names\n    const levels = energyStateDefinitions.map(def => def.condition_name);\n\n    // Get numeric indexes for easy comparison\n    const batteryIndex = levels.indexOf(batteryEnergyLevel);\n    const solarIndex = levels.indexOf(solarPowerEnergyLevel);\n\n    // Find lowest and highest input levels\n    const minIndex = Math.min(batteryIndex, solarIndex);\n    const maxIndex = Math.max(batteryIndex, solarIndex);\n\n    // Maximum output allowed is at most one higher than the lowest input level\n    const maxAllowedIndex = Math.min(minIndex + 1, levels.length - 1);\n\n    // Final output is the lesser of maxIndex and maxAllowedIndex\n    const outputIndex = Math.min(maxIndex, maxAllowedIndex);\n\n    return levels[outputIndex];\n}\n\nmsg.payload = determineOutputEnergyLevel(batteryEnergyLevel, solarProductionEnergyLevel, energyStateDefinitions)\n\nreturn msg\n\n",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar batteryEnergyLevel = global.get(\"state\").batteryEnergyLevel.value\nvar solarProductionEnergyLevel = global.get(\"state\").solarProductionEnergyLevel.value\nvar isFreeEnergyAvailable = global.get(\"state\").isFreeEnergyAvailable.value\n\n// Check if we are getting free energy right now\nif (isFreeEnergyAvailable) {\n    msg.payload = \"white\"\n    return msg\n}\n\nfunction determineOutputEnergyLevel(batteryEnergyLevel, solarPowerEnergyLevel, energyStateDefinitions) {\n    // Extract the ordered list of condition names\n    const levels = energyStateDefinitions.map(def => def.condition_name);\n\n    // Get numeric indexes for easy comparison\n    const batteryIndex = levels.indexOf(batteryEnergyLevel);\n    const solarIndex = levels.indexOf(solarPowerEnergyLevel);\n\n    // Find lowest and highest input levels\n    const minIndex = Math.min(batteryIndex, solarIndex);\n    const maxIndex = Math.max(batteryIndex, solarIndex);\n\n    // Maximum output allowed is at most one higher than the lowest input level\n    const maxAllowedIndex = Math.min(minIndex + 1, levels.length - 1);\n\n    // Final output is the lesser of maxIndex and maxAllowedIndex\n    const outputIndex = Math.min(maxIndex, maxAllowedIndex);\n\n    return levels[outputIndex];\n}\n\nmsg.payload = determineOutputEnergyLevel(batteryEnergyLevel, solarProductionEnergyLevel, energyStateDefinitions)\n\nreturn msg\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -20203,6 +20237,177 @@
         "wires": [
             [
                 "d3e901e890fbb9e6"
+            ]
+        ]
+    },
+    {
+        "id": "ac88bea764218194",
+        "type": "set-shared-state",
+        "z": "25c8955517cef179",
+        "state": "3a562d3a1802e445",
+        "name": "Free Energy Available?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 760,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "57e62913fb12e533",
+        "type": "server-state-changed",
+        "z": "25c8955517cef179",
+        "name": "Is Grid Available?",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.span_left_most_of_house_current_run_config"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "PANEL_ON_GRID",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "x": 160,
+        "y": 1080,
+        "wires": [
+            [
+                "5a48bc2a5bc9abfc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fb42ed197fb395bf",
+        "type": "server-state-changed",
+        "z": "25c8955517cef179",
+        "name": "Is Grid Unavailable?",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.span_left_most_of_house_current_run_config"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "PANEL_ON_GRID",
+        "ifStateType": "str",
+        "ifStateOperator": "is_not",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "x": 170,
+        "y": 1140,
+        "wires": [
+            [
+                "5a48bc2a5bc9abfc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0ff93fc3dbb401c4",
+        "type": "function",
+        "z": "25c8955517cef179",
+        "name": "Check if we're getting free energy",
+        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - begin_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n            msg.payload = true\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n            msg.payload = true\n        }\n    }\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1260,
+        "wires": [
+            [
+                "ac88bea764218194"
+            ]
+        ]
+    },
+    {
+        "id": "5a48bc2a5bc9abfc",
+        "type": "set-shared-state",
+        "z": "25c8955517cef179",
+        "state": "d916d510408c1320",
+        "name": "Grid Available?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 380,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "8603e7e8c9ecb4d2",
+        "type": "comment",
+        "z": "25c8955517cef179",
+        "name": "Check if free energy is available",
+        "info": "",
+        "x": 210,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "ab81c64683dd329e",
+        "type": "inject",
+        "z": "25c8955517cef179",
+        "name": "Check every minute",
+        "props": [],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 1260,
+        "wires": [
+            [
+                "0ff93fc3dbb401c4"
             ]
         ]
     }
