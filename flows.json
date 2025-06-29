@@ -94,17 +94,17 @@
         "env": []
     },
     {
-        "id": "7097dab4eb91af0f",
+        "id": "25c8955517cef179",
         "type": "tab",
-        "label": "Security",
+        "label": "Energy State",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "25c8955517cef179",
+        "id": "7097dab4eb91af0f",
         "type": "tab",
-        "label": "Energy State",
+        "label": "Security",
         "disabled": false,
         "info": "",
         "env": []
@@ -19028,572 +19028,6 @@
         ]
     },
     {
-        "id": "938ddcbfe0b17e2f",
-        "type": "get-shared-state",
-        "z": "7097dab4eb91af0f",
-        "state": "60c1725bc2519ee0",
-        "name": "Everyone Asleep",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 140,
-        "y": 120,
-        "wires": [
-            [
-                "2b8264f48373257b"
-            ]
-        ]
-    },
-    {
-        "id": "2b8264f48373257b",
-        "type": "switch",
-        "z": "7097dab4eb91af0f",
-        "name": "True?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 330,
-        "y": 120,
-        "wires": [
-            [
-                "f02b1e2c31a4d805"
-            ]
-        ]
-    },
-    {
-        "id": "f02b1e2c31a4d805",
-        "type": "api-call-service",
-        "z": "7097dab4eb91af0f",
-        "name": "Activate Lockdown",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.lockdown"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_on",
-        "x": 530,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "ad51cb5370f2f996",
-        "type": "comment",
-        "z": "7097dab4eb91af0f",
-        "name": "Initiate Lockdown",
-        "info": "",
-        "x": 130,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "e764052f3dd0ffd0",
-        "type": "get-shared-state",
-        "z": "7097dab4eb91af0f",
-        "state": "1dd96a4a.9d6316",
-        "name": "Anyone Home",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 130,
-        "y": 180,
-        "wires": [
-            [
-                "e35d8dbcfee9933b"
-            ]
-        ]
-    },
-    {
-        "id": "e35d8dbcfee9933b",
-        "type": "switch",
-        "z": "7097dab4eb91af0f",
-        "name": "False?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 330,
-        "y": 180,
-        "wires": [
-            [
-                "f02b1e2c31a4d805"
-            ]
-        ]
-    },
-    {
-        "id": "5f9f0457faed72f3",
-        "type": "server-state-changed",
-        "z": "7097dab4eb91af0f",
-        "name": "Lockdown Enabled",
-        "server": "3ec50562615a9f50",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "input_boolean.lockdown"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": true,
-        "stateType": "habool",
-        "ifState": "true",
-        "ifStateType": "bool",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": false,
-        "for": "5",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [],
-        "x": 150,
-        "y": 280,
-        "wires": [
-            [
-                "b372749f063176b7"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "b372749f063176b7",
-        "type": "api-call-service",
-        "z": "7097dab4eb91af0f",
-        "name": "Reset Lockdown Switch",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "input_boolean.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.lockdown"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "input_boolean",
-        "service": "turn_off",
-        "x": 390,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "77dcc0a5d63cbdcd",
-        "type": "comment",
-        "z": "7097dab4eb91af0f",
-        "name": "Open Garage Door on Return",
-        "info": "",
-        "x": 160,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "6326527cbc95979b",
-        "type": "get-shared-state",
-        "z": "7097dab4eb91af0f",
-        "state": "857635a5cf27b9ea",
-        "name": "Nick Home",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 160,
-        "y": 440,
-        "wires": [
-            [
-                "2e6192d062141541"
-            ]
-        ]
-    },
-    {
-        "id": "7f5d2ac5891d4983",
-        "type": "get-shared-state",
-        "z": "7097dab4eb91af0f",
-        "state": "b2f3086099f29cf0",
-        "name": "Caroline Home",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 180,
-        "y": 500,
-        "wires": [
-            [
-                "2e6192d062141541"
-            ]
-        ]
-    },
-    {
-        "id": "2e6192d062141541",
-        "type": "switch",
-        "z": "7097dab4eb91af0f",
-        "name": "True?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 350,
-        "y": 460,
-        "wires": [
-            [
-                "a086a59c08e0599b"
-            ]
-        ]
-    },
-    {
-        "id": "a73e845f0b1181b6",
-        "type": "comment",
-        "z": "7097dab4eb91af0f",
-        "name": "If one of us came home",
-        "info": "",
-        "x": 180,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "a086a59c08e0599b",
-        "type": "api-current-state",
-        "z": "7097dab4eb91af0f",
-        "name": "Check if the garage is empty",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "false",
-        "halt_if_type": "bool",
-        "halt_if_compare": "is",
-        "entity_id": "binary_sensor.garage_door_vehicle_detected",
-        "state_type": "habool",
-        "blockInputOverrides": true,
-        "outputProperties": [],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 540,
-        "y": 460,
-        "wires": [
-            [
-                "d09168bac0fc13e4"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "d09168bac0fc13e4",
-        "type": "api-call-service",
-        "z": "7097dab4eb91af0f",
-        "name": "Open the garage",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "cover.open_cover",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "cover.garage_door_door"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "cover",
-        "service": "open_cover",
-        "x": 770,
-        "y": 460,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "008b62310c00d422",
-        "type": "comment",
-        "z": "7097dab4eb91af0f",
-        "name": "If the garage is empty (of a vehicle, open it)",
-        "info": "",
-        "x": 580,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "0f3d895c7f1cc0b1",
-        "type": "inject",
-        "z": "7097dab4eb91af0f",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 320,
-        "y": 60,
-        "wires": [
-            [
-                "f02b1e2c31a4d805"
-            ]
-        ]
-    },
-    {
-        "id": "e8c3de4a526a2ab6",
-        "type": "server-state-changed",
-        "z": "7097dab4eb91af0f",
-        "name": "Doorbell Pressed",
-        "server": "3ec50562615a9f50",
-        "version": 6,
-        "outputs": 1,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "input_button.doorbell"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "habool",
-        "ifState": "",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": false,
-        "for": "",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [],
-        "x": 140,
-        "y": 640,
-        "wires": [
-            [
-                "8686e9c5c467f192",
-                "08f1fa66b3075772"
-            ]
-        ]
-    },
-    {
-        "id": "60f19157de574df4",
-        "type": "comment",
-        "z": "7097dab4eb91af0f",
-        "name": "Doorbell Notification",
-        "info": "",
-        "x": 130,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "a3377b78cbc04684",
-        "type": "api-call-service",
-        "z": "7097dab4eb91af0f",
-        "name": "Notify Audibly",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "tts.speak",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "tts.google_translate_en_com"
-        ],
-        "labelId": [],
-        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.bedroom\",\"media_player.kitchen\",\"media_player.dining_room\",\"media_player.soundbar\",\"media_player.kids_bathroom\"],\"message\":\"Doorbell ringing\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "tts",
-        "service": "speak",
-        "x": 500,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8686e9c5c467f192",
-        "type": "delay",
-        "z": "7097dab4eb91af0f",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "20",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 320,
-        "y": 640,
-        "wires": [
-            [
-                "a3377b78cbc04684"
-            ]
-        ]
-    },
-    {
-        "id": "08f1fa66b3075772",
-        "type": "api-call-service",
-        "z": "7097dab4eb91af0f",
-        "name": "Flash Lights",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "light.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.primary_suite",
-            "light.living_room",
-            "light.independent"
-        ],
-        "labelId": [],
-        "data": "{\"flash\": \"short\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "light",
-        "service": "turn_on",
-        "x": 310,
-        "y": 700,
-        "wires": [
-            [
-                "ffc457ab1d386e04"
-            ]
-        ]
-    },
-    {
-        "id": "ffc457ab1d386e04",
-        "type": "delay",
-        "z": "7097dab4eb91af0f",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 460,
-        "y": 700,
-        "wires": [
-            [
-                "5e0402bbe2c11da6"
-            ]
-        ]
-    },
-    {
-        "id": "5e0402bbe2c11da6",
-        "type": "api-call-service",
-        "z": "7097dab4eb91af0f",
-        "name": "Flash Lights",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "light.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.primary_suite",
-            "light.living_room",
-            "light.independent"
-        ],
-        "labelId": [],
-        "data": "{\"flash\": \"short\"}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "light",
-        "service": "turn_on",
-        "x": 610,
-        "y": 700,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "d4bd6f61e4ca3aca",
         "type": "server-state-changed",
         "z": "25c8955517cef179",
@@ -20353,7 +19787,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Check if we're getting free energy",
-        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - begin_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n            msg.payload = true\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n            msg.payload = true\n        }\n    }\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
+        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.energy.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - begin_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n            msg.payload = true\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n            msg.payload = true\n        }\n    }\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -20409,6 +19843,572 @@
             [
                 "0ff93fc3dbb401c4"
             ]
+        ]
+    },
+    {
+        "id": "938ddcbfe0b17e2f",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "60c1725bc2519ee0",
+        "name": "Everyone Asleep",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "2b8264f48373257b"
+            ]
+        ]
+    },
+    {
+        "id": "2b8264f48373257b",
+        "type": "switch",
+        "z": "7097dab4eb91af0f",
+        "name": "True?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "f02b1e2c31a4d805"
+            ]
+        ]
+    },
+    {
+        "id": "f02b1e2c31a4d805",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Activate Lockdown",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.lockdown"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 530,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad51cb5370f2f996",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "Initiate Lockdown",
+        "info": "",
+        "x": 130,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e764052f3dd0ffd0",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "1dd96a4a.9d6316",
+        "name": "Anyone Home",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "e35d8dbcfee9933b"
+            ]
+        ]
+    },
+    {
+        "id": "e35d8dbcfee9933b",
+        "type": "switch",
+        "z": "7097dab4eb91af0f",
+        "name": "False?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "f02b1e2c31a4d805"
+            ]
+        ]
+    },
+    {
+        "id": "5f9f0457faed72f3",
+        "type": "server-state-changed",
+        "z": "7097dab4eb91af0f",
+        "name": "Lockdown Enabled",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.lockdown"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "true",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": false,
+        "for": "5",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "b372749f063176b7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b372749f063176b7",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Reset Lockdown Switch",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.lockdown"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 390,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "77dcc0a5d63cbdcd",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "Open Garage Door on Return",
+        "info": "",
+        "x": 160,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6326527cbc95979b",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "857635a5cf27b9ea",
+        "name": "Nick Home",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 160,
+        "y": 440,
+        "wires": [
+            [
+                "2e6192d062141541"
+            ]
+        ]
+    },
+    {
+        "id": "7f5d2ac5891d4983",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "b2f3086099f29cf0",
+        "name": "Caroline Home",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "2e6192d062141541"
+            ]
+        ]
+    },
+    {
+        "id": "2e6192d062141541",
+        "type": "switch",
+        "z": "7097dab4eb91af0f",
+        "name": "True?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 460,
+        "wires": [
+            [
+                "a086a59c08e0599b"
+            ]
+        ]
+    },
+    {
+        "id": "a73e845f0b1181b6",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "If one of us came home",
+        "info": "",
+        "x": 180,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a086a59c08e0599b",
+        "type": "api-current-state",
+        "z": "7097dab4eb91af0f",
+        "name": "Check if the garage is empty",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.garage_door_vehicle_detected",
+        "state_type": "habool",
+        "blockInputOverrides": true,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 540,
+        "y": 460,
+        "wires": [
+            [
+                "d09168bac0fc13e4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d09168bac0fc13e4",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Open the garage",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "cover.open_cover",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "cover.garage_door_door"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "cover",
+        "service": "open_cover",
+        "x": 770,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "008b62310c00d422",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "If the garage is empty (of a vehicle, open it)",
+        "info": "",
+        "x": 580,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0f3d895c7f1cc0b1",
+        "type": "inject",
+        "z": "7097dab4eb91af0f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 60,
+        "wires": [
+            [
+                "f02b1e2c31a4d805"
+            ]
+        ]
+    },
+    {
+        "id": "e8c3de4a526a2ab6",
+        "type": "server-state-changed",
+        "z": "7097dab4eb91af0f",
+        "name": "Doorbell Pressed",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_button.doorbell"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": false,
+        "for": "",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "8686e9c5c467f192",
+                "08f1fa66b3075772"
+            ]
+        ]
+    },
+    {
+        "id": "60f19157de574df4",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "Doorbell Notification",
+        "info": "",
+        "x": 130,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "a3377b78cbc04684",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Notify Audibly",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "tts.speak",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "tts.google_translate_en_com"
+        ],
+        "labelId": [],
+        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.bedroom\",\"media_player.kitchen\",\"media_player.dining_room\",\"media_player.soundbar\",\"media_player.kids_bathroom\"],\"message\":\"Doorbell ringing\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "tts",
+        "service": "speak",
+        "x": 500,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8686e9c5c467f192",
+        "type": "delay",
+        "z": "7097dab4eb91af0f",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 640,
+        "wires": [
+            [
+                "a3377b78cbc04684"
+            ]
+        ]
+    },
+    {
+        "id": "08f1fa66b3075772",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.primary_suite",
+            "light.living_room",
+            "light.independent"
+        ],
+        "labelId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 310,
+        "y": 700,
+        "wires": [
+            [
+                "ffc457ab1d386e04"
+            ]
+        ]
+    },
+    {
+        "id": "ffc457ab1d386e04",
+        "type": "delay",
+        "z": "7097dab4eb91af0f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 700,
+        "wires": [
+            [
+                "5e0402bbe2c11da6"
+            ]
+        ]
+    },
+    {
+        "id": "5e0402bbe2c11da6",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Flash Lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.primary_suite",
+            "light.living_room",
+            "light.independent"
+        ],
+        "labelId": [],
+        "data": "{\"flash\": \"short\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 610,
+        "y": 700,
+        "wires": [
+            []
         ]
     }
 ]
