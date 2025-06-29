@@ -20100,5 +20100,110 @@
                 "36fae9cc22db6f7a"
             ]
         ]
+    },
+    {
+        "id": "cd551b0c68c5bdc5",
+        "type": "comment",
+        "z": "25c8955517cef179",
+        "name": "Represent energy state colors",
+        "info": "",
+        "x": 200,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "8a8c8006ea5e7208",
+        "type": "get-shared-state",
+        "z": "25c8955517cef179",
+        "state": "118fbb8dbc9bd661",
+        "name": "Current Energy Level",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 180,
+        "y": 940,
+        "wires": [
+            [
+                "4711a670d7ec0e58"
+            ]
+        ]
+    },
+    {
+        "id": "4711a670d7ec0e58",
+        "type": "function",
+        "z": "25c8955517cef179",
+        "name": "Get appropriate light config",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar currentEnergyLevel = global.get(\"state\").currentEnergyLevel.value\n\nfunction getLightConfigByConditionName(conditionName, energyStateDefinitions) {\n    // Find the matching energy state\n    const state = energyStateDefinitions.find(def => def.condition_name === conditionName);\n\n    if (!state) {\n        throw new Error(`Energy state with condition_name \"${conditionName}\" not found.`);\n    }\n\n    // Return its light_config attribute\n    return state.light_config;\n}\n\nvar light_config = getLightConfigByConditionName(currentEnergyLevel, energyStateDefinitions)\n\nmsg.payload = light_config\n\nreturn msg\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 940,
+        "wires": [
+            [
+                "7fd96cd681ece172"
+            ]
+        ]
+    },
+    {
+        "id": "d3e901e890fbb9e6",
+        "type": "api-call-service",
+        "z": "25c8955517cef179",
+        "name": "Set Lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [
+            "ce94f80ee62f51bbc99b77e0b56b2230",
+            "9c03912f2eef146ce9ab6243c39815cb",
+            "d2e2f85f858586e60a1ebc9e2797e844",
+            "db12b5f2eef20df9fc98ec92909da84a"
+        ],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\t    \"rgb_color\": [\t        payload.red, \t        payload.green, \t        payload.blue\t    ], \t    \"brightness_pct\": payload.brightness_pct\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 840,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7fd96cd681ece172",
+        "type": "delay",
+        "z": "25c8955517cef179",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 940,
+        "wires": [
+            [
+                "d3e901e890fbb9e6"
+            ]
+        ]
     }
 ]
