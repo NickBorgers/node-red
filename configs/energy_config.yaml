@@ -9,7 +9,7 @@ energy:
          red: 25
          green: 25
          blue: 112
-         brightness_pct: 10
+         brightness_pct: 70
     -  condition_name: red
        battery_minimum_percentage: 40
        energy_production_minimum_kw: 0
