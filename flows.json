@@ -102,6 +102,14 @@
         "env": []
     },
     {
+        "id": "25c8955517cef179",
+        "type": "tab",
+        "label": "Energy State",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "42abe9d54fa46266",
         "type": "group",
         "z": "90f5fe8cb80ae6a7",
@@ -1188,6 +1196,74 @@
         "type": "shared-state",
         "name": "keepPoolPumpOnFor24Hours",
         "lbl": "",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "str",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "f54240c4b5a78c3c",
+        "type": "shared-state",
+        "name": "energyConfig",
+        "lbl": "Energy Config",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "obj",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "118fbb8dbc9bd661",
+        "type": "shared-state",
+        "name": "currentEnergyLevel",
+        "lbl": "Current Energy Level",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "str",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "c7620a6fda236a95",
+        "type": "shared-state",
+        "name": "batteryEnergyLevel",
+        "lbl": "Battery Energy Level",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "str",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "ef99803e11d1a564",
+        "type": "shared-state",
+        "name": "solarProductionEnergyLevel",
+        "lbl": "Solar Production Energy Level",
         "tags": "",
         "historyCount": 2,
         "dataType": "str",
@@ -3282,7 +3358,8 @@
             [
                 "03d49e6e6a6a882d",
                 "a78b91dcc37bee92",
-                "8409a48850c82e37"
+                "8409a48850c82e37",
+                "e5043dc3604a5e4f"
             ]
         ]
     },
@@ -4135,6 +4212,54 @@
                 "8d33424674ffe41c"
             ]
         ]
+    },
+    {
+        "id": "e5043dc3604a5e4f",
+        "type": "file in",
+        "z": "634c78c80eb9f37e",
+        "name": "Read energy config file",
+        "filename": "/data/projects/NickNodeRed/configs/energy_config.yaml",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 620,
+        "y": 160,
+        "wires": [
+            [
+                "a3fe0aa70ed88d6a"
+            ]
+        ]
+    },
+    {
+        "id": "a3fe0aa70ed88d6a",
+        "type": "yaml",
+        "z": "634c78c80eb9f37e",
+        "property": "payload",
+        "name": "Convert to JSON",
+        "x": 870,
+        "y": 160,
+        "wires": [
+            [
+                "a74b1c075c1d0936"
+            ]
+        ]
+    },
+    {
+        "id": "a74b1c075c1d0936",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "f54240c4b5a78c3c",
+        "name": "Energy Config",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1060,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "f16bcb4bfea89461",
@@ -19398,6 +19523,348 @@
         "y": 700,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "d4bd6f61e4ca3aca",
+        "type": "server-state-changed",
+        "z": "25c8955517cef179",
+        "name": "Output current solar irradience",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.weather_station_irradiance"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "num",
+        "ifState": "",
+        "ifStateType": "num",
+        "ifStateOperator": "gt",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "solar energy production",
+                "valueType": "str"
+            }
+        ],
+        "x": 210,
+        "y": 100,
+        "wires": [
+            [
+                "2c61f03bd3d8de44"
+            ]
+        ]
+    },
+    {
+        "id": "4675636c7d5c5bdd",
+        "type": "server-state-changed",
+        "z": "25c8955517cef179",
+        "name": "Output current battery level (left)",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.span_panel_span_storage_battery_percentage_2"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "num",
+        "ifState": "",
+        "ifStateType": "num",
+        "ifStateOperator": "gt",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "current battery level",
+                "valueType": "str"
+            }
+        ],
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "2c61f03bd3d8de44"
+            ]
+        ]
+    },
+    {
+        "id": "2c61f03bd3d8de44",
+        "type": "function",
+        "z": "25c8955517cef179",
+        "name": "Determine independent energy levels",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\n// Create variable for new energy level\nvar new_energy_level\n\nfunction determineEnergyLevel(configKey, sourceDescription) {\n    let new_energy_level;\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        if (msg.payload > possibleEnergyLevel[configKey]) {\n            new_energy_level = possibleEnergyLevel.condition_name;\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by \" + sourceDescription);\n    msg.payload = new_energy_level;\n    return msg\n}\n\nif (msg.topic == \"solar energy production\") {\n    return [\n            determineEnergyLevel(\"irradiance_minimum\", \"solar generation\"),\n            null\n    ]\n}\n\nif (msg.topic == \"current battery level\") {\n    return [\n        null,\n        determineEnergyLevel(\"battery_minimum\", \"battery charge\")\n    ]\n}",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 140,
+        "wires": [
+            [
+                "9dd3a68f113e4431",
+                "563c81bc8fce3ee2"
+            ],
+            [
+                "b0500c07a41ae3e8",
+                "55cf524b75b03627"
+            ]
+        ]
+    },
+    {
+        "id": "0be1a29664c3a493",
+        "type": "api-call-service",
+        "z": "25c8955517cef179",
+        "name": "Set Current Energy Level",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_text.set_value",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_text.current_energy_level"
+        ],
+        "labelId": [],
+        "data": "{\"value\": payload}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_text",
+        "service": "set_value",
+        "x": 910,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "53b0217d91dc82e3",
+        "type": "set-shared-state",
+        "z": "25c8955517cef179",
+        "state": "118fbb8dbc9bd661",
+        "name": "Current Energy Level",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 760,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b0500c07a41ae3e8",
+        "type": "set-shared-state",
+        "z": "25c8955517cef179",
+        "state": "c7620a6fda236a95",
+        "name": "Battery Energy Level",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 800,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "9dd3a68f113e4431",
+        "type": "set-shared-state",
+        "z": "25c8955517cef179",
+        "state": "ef99803e11d1a564",
+        "name": "Solar Production Energy Level",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 830,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "55cf524b75b03627",
+        "type": "api-call-service",
+        "z": "25c8955517cef179",
+        "name": "Set Battery Energy Level",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_text.set_value",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_text.battery_energy_level"
+        ],
+        "labelId": [],
+        "data": "{\"value\": payload}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_text",
+        "service": "set_value",
+        "x": 810,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "563c81bc8fce3ee2",
+        "type": "api-call-service",
+        "z": "25c8955517cef179",
+        "name": "Set Solar Production Energy Level",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_text.set_value",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_text.solar_production_energy_level"
+        ],
+        "labelId": [],
+        "data": "{\"value\": payload}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_text",
+        "service": "set_value",
+        "x": 840,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "01b2e93390d2a1ab",
+        "type": "get-shared-state",
+        "z": "25c8955517cef179",
+        "state": "c7620a6fda236a95",
+        "name": "Battery Energy Level",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "0bf2c25313d782e0"
+            ]
+        ]
+    },
+    {
+        "id": "71f7b1971eaad83b",
+        "type": "get-shared-state",
+        "z": "25c8955517cef179",
+        "state": "ef99803e11d1a564",
+        "name": "Solar Production Energy Level",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 200,
+        "y": 360,
+        "wires": [
+            [
+                "0bf2c25313d782e0"
+            ]
+        ]
+    },
+    {
+        "id": "0bf2c25313d782e0",
+        "type": "function",
+        "z": "25c8955517cef179",
+        "name": "Determine overall energy level",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar batteryEnergyLevel = global.get(\"state\").batteryEnergyLevel.value\nvar solarProductionEnergyLevel = global.get(\"state\").solarProductionEnergyLevel.value\n\nfunction determineOutputEnergyLevel(batteryEnergyLevel, solarPowerEnergyLevel, energyStateDefinitions) {\n    // Extract the ordered list of condition names\n    const levels = energyStateDefinitions.map(def => def.condition_name);\n\n    // Get numeric indexes for easy comparison\n    const batteryIndex = levels.indexOf(batteryEnergyLevel);\n    const solarIndex = levels.indexOf(solarPowerEnergyLevel);\n\n    // Find lowest and highest input levels\n    const minIndex = Math.min(batteryIndex, solarIndex);\n    const maxIndex = Math.max(batteryIndex, solarIndex);\n\n    // Maximum output allowed is at most one higher than the lowest input level\n    const maxAllowedIndex = Math.min(minIndex + 1, levels.length - 1);\n\n    // Final output is the lesser of maxIndex and maxAllowedIndex\n    const outputIndex = Math.min(maxIndex, maxAllowedIndex);\n\n    return levels[outputIndex];\n}\n\nmsg.payload = determineOutputEnergyLevel(batteryEnergyLevel, solarProductionEnergyLevel, energyStateDefinitions)\n\nreturn msg\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 400,
+        "wires": [
+            [
+                "53b0217d91dc82e3",
+                "1e79a3dd75d5a042"
+            ]
+        ]
+    },
+    {
+        "id": "1e79a3dd75d5a042",
+        "type": "delay",
+        "z": "25c8955517cef179",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 360,
+        "wires": [
+            [
+                "0be1a29664c3a493"
+            ]
         ]
     }
 ]
