@@ -4311,7 +4311,7 @@
         "y": 160,
         "wires": [
             [
-                "a74b1c075c1d0936"
+                "6baefca890e1462d"
             ]
         ]
     },
@@ -4325,9 +4325,29 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1060,
+        "x": 1280,
         "y": 160,
         "wires": []
+    },
+    {
+        "id": "6baefca890e1462d",
+        "type": "function",
+        "z": "634c78c80eb9f37e",
+        "name": "Parse schedule times",
+        "func": "var today = new Date();\nvar day_of_week = today.getDay();\nvar dd = String(today.getDate()).padStart(2, '0');\nvar mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!\nvar yyyy = today.getFullYear();\n\ntoday = yyyy + '-' + mm + '-' + dd;\n\nvar schedule = {}\n\nfunction get_time_from_string (string_time) {\n    var time\n    try {\n        time = Date.parse(today + 'T' + string_time + \":00\")\n        if (isNaN(time)) {\n            throw new Error('Didnt parse time successfully');\n        }\n    } catch {\n        time = Date.parse(today + 'T0' + string_time + \":00\")\n        if (isNaN(time)) {\n            throw new Error('Didnt parse time successfully');\n        }\n    }\n    console.debug(`Parsed time is ${time} from config value ${string_time}`)\n    return time\n}\n\nmsg.payload.energy.free_energy_time.start = get_time_from_string(msg.payload.energy.free_energy_time.start)\nmsg.payload.energy.free_energy_time.end = get_time_from_string(msg.payload.energy.free_energy_time.end)\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 160,
+        "wires": [
+            [
+                "a74b1c075c1d0936"
+            ]
+        ]
     },
     {
         "id": "f16bcb4bfea89461",
@@ -18420,6 +18440,7 @@
         "id": "2277fe9e3535e6ed",
         "type": "pythonshell in",
         "z": "164999f348401406",
+        "d": true,
         "name": "Min TV Brightness",
         "pyfile": "/data/pythonvenv/pybravia/min_brightness.py",
         "virtualenv": "/data/pythonvenv/pybravia/venv",
@@ -18435,6 +18456,7 @@
         "id": "3d0c5a13411d2035",
         "type": "pythonshell in",
         "z": "164999f348401406",
+        "d": true,
         "name": "Mid TV Brightness",
         "pyfile": "/data/pythonvenv/pybravia/mid_brightness.py",
         "virtualenv": "/data/pythonvenv/pybravia/venv",
@@ -18490,6 +18512,7 @@
         "id": "99b9ef0d3f0d81be",
         "type": "pythonshell in",
         "z": "164999f348401406",
+        "d": true,
         "name": "High TV Brightness",
         "pyfile": "/data/pythonvenv/pybravia/max_brightness.py",
         "virtualenv": "/data/pythonvenv/pybravia/venv",
@@ -19324,7 +19347,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine overall energy level",
-        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar batteryEnergyLevel = global.get(\"state\").batteryEnergyLevel.value\nvar solarProductionEnergyLevel = global.get(\"state\").solarProductionEnergyLevel.value\nvar isFreeEnergyAvailable = global.get(\"state\").isFreeEnergyAvailable.value\n\n// Check if we are getting free energy right now\nif (isFreeEnergyAvailable) {\n    msg.payload = \"white\"\n    return msg\n}\n\nfunction determineOutputEnergyLevel(batteryEnergyLevel, solarPowerEnergyLevel, energyStateDefinitions) {\n    // Extract the ordered list of condition names\n    const levels = energyStateDefinitions.map(def => def.condition_name);\n\n    // Get numeric indexes for easy comparison\n    const batteryIndex = levels.indexOf(batteryEnergyLevel);\n    const solarIndex = levels.indexOf(solarPowerEnergyLevel);\n\n    // Find lowest and highest input levels\n    const minIndex = Math.min(batteryIndex, solarIndex);\n    const maxIndex = Math.max(batteryIndex, solarIndex);\n\n    // Maximum output allowed is at most one higher than the lowest input level\n    const maxAllowedIndex = Math.min(minIndex + 1, levels.length - 1);\n\n    // Final output is the lesser of maxIndex and maxAllowedIndex\n    const outputIndex = Math.min(maxIndex, maxAllowedIndex);\n\n    return levels[outputIndex];\n}\n\nmsg.payload = determineOutputEnergyLevel(batteryEnergyLevel, solarProductionEnergyLevel, energyStateDefinitions)\n\nreturn msg\n\n",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar batteryEnergyLevel = global.get(\"state\").batteryEnergyLevel.value\nvar solarProductionEnergyLevel = global.get(\"state\").solarProductionEnergyLevel.value\nvar isFreeEnergyAvailable = global.get(\"state\").isFreeEnergyAvailable.value\n\n// Check if we are getting free energy right now\nif (isFreeEnergyAvailable) {\n    msg.payload = \"white\"\n    return msg\n}\n\nfunction determineOutputEnergyLevel(batteryEnergyLevel, solarPowerEnergyLevel, energyStateDefinitions) {\n    // Extract the ordered list of condition names\n    const levels = energyStateDefinitions.map(def => def.condition_name);\n\n    // Get numeric indexes for easy comparison\n    const batteryIndex = levels.indexOf(batteryEnergyLevel);\n    const solarIndex = levels.indexOf(solarPowerEnergyLevel);\n\n    // Find lowest and highest input levels\n    const minIndex = Math.min(batteryIndex, solarIndex);\n    const maxIndex = Math.max(batteryIndex, solarIndex);\n\n    // Maximum output allowed is at most one higher than the lowest input level\n    const maxAllowedIndex = Math.min(minIndex + 1, levels.length - 1);\n\n    // Final output is the lesser of maxIndex and maxAllowedIndex\n    const outputIndex = Math.min(maxIndex, maxAllowedIndex);\n\n    return levels[outputIndex];\n}\n\nmsg.payload = determineOutputEnergyLevel(batteryEnergyLevel, solarProductionEnergyLevel, energyStateDefinitions)\n\nconsole.debug(\"Determine doverall energy level of \" + msg.payload)\n\nreturn msg\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -19482,7 +19505,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine solar energy level",
-        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\nvar thisHourSolarGeneration = global.get(\"state\").thisHourSolarGeneration.value\nvar remainingSolarGeneration = global.get(\"state\").remainingSolarGeneration.value\n\n\n// Create variable for new energy level\n// Default to black\nvar new_energy_level = \"black\"\n\nfunction determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions) {\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        // If the amount of energy we will make this hour is greater than the minimum required\n        if (thisHourSolarGeneration > possibleEnergyLevel[\"energy_production_minimum_kw\"]) {\n            // And the amount of energy we will still make today is greater than the minimum required\n            if (remainingSolarGeneration > possibleEnergyLevel[\"remaining_energy_production_minimum_kwh\"]) {\n                new_energy_level = possibleEnergyLevel.condition_name;\n            }\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by current and remaining solar generation\");\n    msg.payload = new_energy_level;\n    return msg\n}\n\nreturn determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions)\n",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\nvar thisHourSolarGeneration = global.get(\"state\").thisHourSolarGeneration.value\nvar remainingSolarGeneration = global.get(\"state\").remainingSolarGeneration.value\n\n\n// Create variable for new energy level\n// Default to black\nvar new_energy_level = \"black\"\n\nfunction determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions) {\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        // If the amount of energy we will make this hour is greater than the minimum required\n        if (thisHourSolarGeneration >= possibleEnergyLevel[\"energy_production_minimum_kw\"]) {\n            // And the amount of energy we will still make today is greater than the minimum required\n            if (remainingSolarGeneration >= possibleEnergyLevel[\"remaining_energy_production_minimum_kwh\"]) {\n                new_energy_level = possibleEnergyLevel.condition_name;\n            }\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by current and remaining solar generation\");\n    msg.payload = new_energy_level;\n    return msg\n}\n\nreturn determineEnergyLevel(thisHourSolarGeneration, remainingSolarGeneration, energyStateDefinitions)\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -19787,7 +19810,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Check if we're getting free energy",
-        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.energy.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - begin_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n            msg.payload = true\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n            msg.payload = true\n        }\n    }\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
+        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.energy.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((begin_free_energy_time.getTime() - now.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n            msg.payload = true\n            return msg\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n            msg.payload = true\n            return msg\n        }\n    }\n} else {\n    console.debug(\"Grid is not available so we're obviously not getting free energy\")\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
