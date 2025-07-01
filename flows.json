@@ -19319,7 +19319,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 170,
-        "y": 760,
+        "y": 740,
         "wires": [
             [
                 "0bf2c25313d782e0"
@@ -19335,7 +19335,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 200,
-        "y": 700,
+        "y": 680,
         "wires": [
             [
                 "0bf2c25313d782e0"
@@ -19865,6 +19865,22 @@
         "wires": [
             [
                 "0ff93fc3dbb401c4"
+            ]
+        ]
+    },
+    {
+        "id": "e12c971899715a5e",
+        "type": "get-shared-state",
+        "z": "25c8955517cef179",
+        "state": "3a562d3a1802e445",
+        "name": "Free Energy Available?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 180,
+        "y": 800,
+        "wires": [
+            [
+                "0bf2c25313d782e0"
             ]
         ]
     },
