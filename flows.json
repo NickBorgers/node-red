@@ -2886,7 +2886,7 @@
         "outputOnlyOnStateChange": true,
         "for": "20",
         "forType": "num",
-        "forUnits": "seconds",
+        "forUnits": "minutes",
         "ignorePrevStateNull": false,
         "ignorePrevStateUnknown": false,
         "ignorePrevStateUnavailable": false,
