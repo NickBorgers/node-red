@@ -19225,7 +19225,7 @@
         "y": 360,
         "wires": [
             [
-                "392a711f3277fc27"
+                "39d223401b74bd29"
             ]
         ]
     },
@@ -19563,7 +19563,7 @@
         "y": 300,
         "wires": [
             [
-                "627e1d45a8c8bb9a"
+                "18aa969c93f490a5"
             ]
         ]
     },
@@ -19577,7 +19577,7 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 540,
+        "x": 860,
         "y": 300,
         "wires": []
     },
@@ -19591,7 +19591,7 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 540,
+        "x": 860,
         "y": 360,
         "wires": []
     },
@@ -20008,6 +20008,94 @@
         "wires": [
             [
                 "0bf2c25313d782e0"
+            ]
+        ]
+    },
+    {
+        "id": "18aa969c93f490a5",
+        "type": "switch",
+        "z": "25c8955517cef179",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 300,
+        "wires": [
+            [
+                "a9a975b1b009b2e5"
+            ]
+        ]
+    },
+    {
+        "id": "a9a975b1b009b2e5",
+        "type": "function",
+        "z": "25c8955517cef179",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 300,
+        "wires": [
+            [
+                "627e1d45a8c8bb9a"
+            ]
+        ]
+    },
+    {
+        "id": "39d223401b74bd29",
+        "type": "switch",
+        "z": "25c8955517cef179",
+        "name": "If it's a number",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "number",
+                "vt": "number"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "e7e62024a2d69e94"
+            ]
+        ]
+    },
+    {
+        "id": "e7e62024a2d69e94",
+        "type": "function",
+        "z": "25c8955517cef179",
+        "name": "reject if NaN",
+        "func": "if (isNaN(msg.payload)) {\n    return null\n}\n\nif (msg.payload == \"NaN\") {\n    return null\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 360,
+        "wires": [
+            [
+                "392a711f3277fc27"
             ]
         ]
     },
