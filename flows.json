@@ -25,7 +25,7 @@
     {
         "id": "16cd74edb3f2c03d",
         "type": "tab",
-        "label": "Hue Control",
+        "label": "Lighting Control",
         "disabled": false,
         "info": ""
     },
@@ -6504,6 +6504,158 @@
         "x": 1720,
         "y": 160,
         "wires": []
+    },
+    {
+        "id": "6e48df6ec70c169f",
+        "type": "get-shared-state",
+        "z": "16cd74edb3f2c03d",
+        "state": "b2f3086099f29cf0",
+        "name": "Caroline Home",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 120,
+        "y": 1000,
+        "wires": [
+            [
+                "27d50e08d9ecab69"
+            ]
+        ]
+    },
+    {
+        "id": "27d50e08d9ecab69",
+        "type": "switch",
+        "z": "16cd74edb3f2c03d",
+        "name": "True?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 1000,
+        "wires": [
+            [
+                "575aab8a22402d3d"
+            ]
+        ]
+    },
+    {
+        "id": "f6997636c2c55013",
+        "type": "comment",
+        "z": "16cd74edb3f2c03d",
+        "name": "Up Lights for Caroline",
+        "info": "",
+        "x": 120,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "575aab8a22402d3d",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on front porch lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.front_porch_front_up_lights"
+        ],
+        "labelId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "data"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 450,
+        "y": 1000,
+        "wires": [
+            [
+                "f188b035a01905f5"
+            ]
+        ]
+    },
+    {
+        "id": "f188b035a01905f5",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 1000,
+        "wires": [
+            [
+                "024eb526afbf3b5d"
+            ]
+        ]
+    },
+    {
+        "id": "024eb526afbf3b5d",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn off front porch lights",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.front_porch_front_up_lights"
+        ],
+        "labelId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "data"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 850,
+        "y": 1000,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "ed9bddb805628e39",
