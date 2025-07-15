@@ -11520,7 +11520,7 @@
         "y": 100,
         "wires": [
             [
-                "e08bfb353c156eb6"
+                "fa073067dec5e147"
             ]
         ]
     },
@@ -12216,8 +12216,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 350,
-        "y": 40,
+        "x": 130,
+        "y": 220,
         "wires": [
             [
                 "e08bfb353c156eb6"
@@ -12409,8 +12409,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 490,
-        "y": 100,
+        "x": 210,
+        "y": 280,
         "wires": [
             [
                 "a72f66c9a254e028"
@@ -12624,8 +12624,8 @@
         "blockInputOverrides": false,
         "domain": "tts",
         "service": "speak",
-        "x": 710,
-        "y": 100,
+        "x": 430,
+        "y": 280,
         "wires": [
             [
                 "fa073067dec5e147"
