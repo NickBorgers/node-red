@@ -6601,7 +6601,7 @@
         "name": "",
         "pauseType": "delay",
         "timeout": "10",
-        "timeoutUnits": "minutes",
+        "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -6611,7 +6611,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 650,
+        "x": 640,
         "y": 1000,
         "wires": [
             [
@@ -6635,7 +6635,7 @@
             "switch.front_porch_front_up_lights"
         ],
         "labelId": [],
-        "data": "msg.payload",
+        "data": "",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -6648,7 +6648,7 @@
             }
         ],
         "queue": "none",
-        "blockInputOverrides": false,
+        "blockInputOverrides": true,
         "domain": "switch",
         "service": "turn_off",
         "x": 850,
