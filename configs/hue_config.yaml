@@ -3,11 +3,18 @@ rooms:
   - hue_group: Living Room
     hass_area_id: living_room_2
     off_if_true: isEveryoneAsleep
+    off_if_false: ~
     increase_brightness_if_true: isHaveGuests
   - hue_group: Primary Suite
     hass_area_id: master_bedroom
     off_if_true: isMasterAsleep
+    off_if_false: ~
   - hue_group: Dining Room
     hass_area_id: dining_room
     off_if_true: isEveryoneAsleep
+    off_if_false: ~
     increase_brightness_if_true: isHaveGuests
+  - hue_group: Front of House
+    hass_area_id: front_of_house
+    off_if_true: isEveryoneAsleep
+    off_if_false: haveGuests
