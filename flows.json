@@ -5387,8 +5387,7 @@
         "y": 280,
         "wires": [
             [
-                "7935909ef8708c2f",
-                "0d84f4884fc0df27"
+                "7935909ef8708c2f"
             ]
         ]
     },
@@ -6487,23 +6486,6 @@
                 "471118ec3815948a"
             ]
         ]
-    },
-    {
-        "id": "0d84f4884fc0df27",
-        "type": "debug",
-        "z": "16cd74edb3f2c03d",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1720,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "6e48df6ec70c169f",
