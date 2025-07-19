@@ -9,7 +9,7 @@ rooms:
     hass_area_id: master_bedroom
     off_if_true: isMasterAsleep
     off_if_false: ~
-  - hue_group: Dining Room
+  - hue_group: Sitting Room
     hass_area_id: dining_room
     off_if_true: isEveryoneAsleep
     off_if_false: ~
