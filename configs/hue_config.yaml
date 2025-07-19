@@ -17,4 +17,4 @@ rooms:
   - hue_group: Front of House
     hass_area_id: front_of_house
     off_if_true: isEveryoneAsleep
-    off_if_false: haveGuests
+    off_if_false: isHaveGuests
