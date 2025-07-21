@@ -6583,7 +6583,7 @@
         "name": "",
         "pauseType": "delay",
         "timeout": "10",
-        "timeoutUnits": "seconds",
+        "timeoutUnits": "minutes",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -6593,7 +6593,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 600,
+        "x": 610,
         "y": 1000,
         "wires": [
             [
@@ -6633,7 +6633,7 @@
         "blockInputOverrides": true,
         "domain": "switch",
         "service": "turn_off",
-        "x": 790,
+        "x": 810,
         "y": 1000,
         "wires": [
             []
