@@ -3723,7 +3723,8 @@
         "y": 340,
         "wires": [
             [
-                "09657a19ee07783e"
+                "09657a19ee07783e",
+                "c4e546bd4aa9e52d"
             ],
             [
                 "9e8bb057c702e878"
@@ -4473,6 +4474,62 @@
         "wires": [
             [
                 "a74b1c075c1d0936"
+            ]
+        ]
+    },
+    {
+        "id": "1a3488b820bea21e",
+        "type": "api-call-service",
+        "z": "634c78c80eb9f37e",
+        "name": "Set Day Phase",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_text.set_value",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_text.day_phase"
+        ],
+        "labelId": [],
+        "data": "{\"value\": payload}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_text",
+        "service": "set_value",
+        "x": 1120,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4e546bd4aa9e52d",
+        "type": "delay",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 960,
+        "y": 280,
+        "wires": [
+            [
+                "1a3488b820bea21e"
             ]
         ]
     },
