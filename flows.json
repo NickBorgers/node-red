@@ -4535,35 +4535,6 @@
         ]
     },
     {
-        "id": "0871f080f75aac35",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 500,
-        "y": 280,
-        "wires": [
-            [
-                "f826979d9173e4f6"
-            ]
-        ]
-    },
-    {
         "id": "f16bcb4bfea89461",
         "type": "api-current-state",
         "z": "499c53680d148fb0",
