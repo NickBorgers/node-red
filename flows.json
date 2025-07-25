@@ -3712,7 +3712,7 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Sun State Summarizer",
-        "func": "// If sunset\nif (\n    msg.payload.sunevent == \"goldenHour\" ||\n    msg.payload.sunevent == \"sunsetStart\" ||\n    msg.payload.sunevent == \"sunset\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"sunset\"\n}\n// If dusk\nelse if (\n    msg.payload.sunevent == \"dusk\" ||\n    msg.payload.sunevent == \"nauticalDusk\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"dusk\"\n}\n// If night\nelse if (\n    msg.payload.sunevent == \"night\" ||\n    msg.payload.sunevent == \"nightEnd\" ||\n    msg.payload.sunevent == \"nauticalDawn\" ||\n    msg.payload.sunevent == \"dawn\" ||\n    msg.payload.sunevent == \"nadir\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"night\"\n}\n// If morning\nelse if (\n    msg.payload.sunevent == \"sunrise\" ||\n    msg.payload.sunevent == \"sunriseEnd\"\n  ) {\n   // set our summarized sun state\n    msg.payload = \"morning\"\n}\n// If end of morning\nelse if (\n  msg.payload.sunevent == \"goldenHourEnd\"\n) {\n    // do something special...\n    // set our summarized sun state\n    msg.payload = \"day\"\n    // and send it to the second output...\n    // which will set it but with a delay\n   return [ null, msg ]\n}\n// If it's not morning, sunset, dusk, or night; assume it's day\nelse {\n    msg.payload = \"day\"\n}\n\n// Check if this is new, if it is send it\nif (global.get(\"state\").sunevent.value != msg.payload) {\n    return [ msg, null ]\n}\nreturn [ null, null ]",
+        "func": "// If sunset\nif (\n    msg.payload.sunevent == \"goldenHour\" ||\n    msg.payload.sunevent == \"sunsetStart\" ||\n    msg.payload.sunevent == \"sunset\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"sunset\"\n}\n// If dusk\nelse if (\n    msg.payload.sunevent == \"dusk\" ||\n    msg.payload.sunevent == \"nauticalDusk\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"dusk\"\n}\n// If night\nelse if (\n    msg.payload.sunevent == \"night\" ||\n    msg.payload.sunevent == \"nightEnd\" ||\n    msg.payload.sunevent == \"nauticalDawn\" ||\n    msg.payload.sunevent == \"dawn\" ||\n    msg.payload.sunevent == \"nadir\"\n  ) {\n    // set our summarized sun state\n    msg.payload = \"night\"\n}\n// If morning\nelse if (\n    msg.payload.sunevent == \"sunrise\" ||\n    msg.payload.sunevent == \"sunriseEnd\"\n  ) {\n   // set our summarized sun state\n    msg.payload = \"morning\"\n}\n// If end of morning\nelse if (\n  msg.payload.sunevent == \"goldenHourEnd\"\n) {\n    // do something special...\n    // set our summarized sun state\n    msg.payload = \"day\"\n    // and send it to the second output...\n    // which will set it but with a delay\n   return [ null, msg ]\n}\n// If it's not morning, sunset, dusk, or night; assume it's day\nelse {\n    msg.payload = \"day\"\n}\n\n// Check if this is new, if it is send it\n/*\nif (global.get(\"state\").sunevent.value != msg.payload) {\n    return [ msg, null ]\n}\nreturn [ null, null ]\n*/\nreturn [ msg, null ]",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -4531,6 +4531,35 @@
         "wires": [
             [
                 "1a3488b820bea21e"
+            ]
+        ]
+    },
+    {
+        "id": "0871f080f75aac35",
+        "type": "inject",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 500,
+        "y": 280,
+        "wires": [
+            [
+                "f826979d9173e4f6"
             ]
         ]
     },
