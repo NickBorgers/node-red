@@ -205,7 +205,7 @@ music:
           - variable: isTVPlaying
             value: true
       - player_name: "Kitchen"
-        base_volume: 8
+        base_volume: 15
         leave_muted_if: []
       - player_name: "Office"
         base_volume: 8
