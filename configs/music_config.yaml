@@ -197,29 +197,29 @@ music:
   sleep:
     participants:
       - player_name: "Bedroom"
-        base_volume: 15
+        base_volume: 16
         leave_muted_if: []
       - player_name: "Dining Room"
-        base_volume: 8
+        base_volume: 9
         leave_muted_if:
           - variable: isTVPlaying
             value: true
       - player_name: "Kitchen"
-        base_volume: 15
+        base_volume: 16
         leave_muted_if: []
       - player_name: "Office"
-        base_volume: 8
+        base_volume: 9
         leave_muted_if: []
     playback_options:
       - uri: "Local Rain Track 1"
         media_type: radio
-        volume_multiplier: 1.3
+        volume_multiplier: 1.1
       - uri: "Local Rain Track 2"
         media_type: radio
-        volume_multiplier: 0.9
+        volume_multiplier: 1.0
       - uri: "Local Rain Track 3"
         media_type: radio
-        volume_multiplier: 1.2
+        volume_multiplier: 0.8
   sex:
     participants:
       - player_name: "Bedroom"
