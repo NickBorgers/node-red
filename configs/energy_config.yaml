@@ -33,7 +33,7 @@ energy:
          brightness_pct: 30
     -  condition_name: green
        battery_minimum_percentage: 80
-       energy_production_minimum_kw: 2
+       energy_production_minimum_kw: 0
        remaining_energy_production_minimum_kwh: 10
        light_config:
          red: 0
