@@ -18,3 +18,8 @@ rooms:
     hass_area_id: front_of_house
     off_if_true: isEveryoneAsleep
     off_if_false: isHaveGuests
+  - hue_group: N Office
+    hass_area_id: n_office
+    off_if_true: isGuestAsleep
+    off_if_false: ~
+    increase_brightness_if_true: ~
