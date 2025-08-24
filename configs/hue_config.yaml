@@ -20,6 +20,6 @@ rooms:
     off_if_false: isHaveGuests
   - hue_group: N Office
     hass_area_id: n_office
-    off_if_true: isGuestAsleep
-    off_if_false: ~
+    off_if_true: ~
+    off_if_false: isNickOfficeOccupied
     increase_brightness_if_true: ~
