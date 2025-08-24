@@ -3535,7 +3535,7 @@
             "substring": [],
             "regex": []
         },
-        "outputInitially": false,
+        "outputInitially": true,
         "stateType": "habool",
         "ifState": "",
         "ifStateType": "str",
@@ -3549,7 +3549,14 @@
         "ignorePrevStateUnavailable": false,
         "ignoreCurrentStateUnknown": false,
         "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [],
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
         "x": 1020,
         "y": 1420,
         "wires": [
