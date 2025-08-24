@@ -2,24 +2,34 @@
 rooms:
   - hue_group: Living Room
     hass_area_id: living_room_2
+    on_if_true: ~
+    on_if_false: ~
     off_if_true: isEveryoneAsleep
     off_if_false: ~
     increase_brightness_if_true: isHaveGuests
   - hue_group: Primary Suite
     hass_area_id: master_bedroom
+    on_if_true: ~
+    on_if_false: ~
     off_if_true: isMasterAsleep
     off_if_false: ~
   - hue_group: Sitting Room
     hass_area_id: dining_room
+    on_if_true: ~
+    on_if_false: ~
     off_if_true: isEveryoneAsleep
     off_if_false: ~
     increase_brightness_if_true: ~
   - hue_group: Front of House
     hass_area_id: front_of_house
+    on_if_true: ~
+    on_if_false: ~
     off_if_true: isEveryoneAsleep
     off_if_false: isHaveGuests
   - hue_group: N Office
     hass_area_id: n_office
+    on_if_true: isNickOfficeOccupied
+    on_if_false: ~
     off_if_true: ~
     off_if_false: isNickOfficeOccupied
     increase_brightness_if_true: ~
