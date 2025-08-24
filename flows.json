@@ -5542,7 +5542,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick rooms whose variables are now applicable",
-        "func": "var hueConfig = global.get(\"state\").hueConfig.value\n\nhueConfig.rooms.forEach(function(thisRoomToTurnOff) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToTurnOff) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_true) \n        // Is the variable this room cares about true?\n        && global.get(\"state\")[thisRoomToTurnOff.off_if_true].value) {\n            msg.payload = {}\n            msg.payload.area_id = thisRoomToTurnOff.hass_area_id\n            node.send(msg)\n        }\n    }\n    // Does this participant even have this attribute?\n    if (\"off_if_false\" in thisRoomToTurnOff) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToTurnOff.off_if_false)\n            // Is the variable this room cares about true?\n            && global.get(\"state\")[thisRoomToTurnOff.off_if_false].value) {\n            msg.payload = {}\n            msg.payload.area_id = thisRoomToTurnOff.hass_area_id\n            node.send(msg)\n        }\n    }\n});",
+        "func": "var hueConfig = global.get(\"state\").hueConfig.value\n\nhueConfig.rooms.forEach(function(thisRoomToToggle) {\n    // Does this participant even have this attribute?\n    if (\"on_if_true\" in thisRoomToToggle) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToToggle.on_if_true)\n            // Is the variable this room cares about true?\n            && global.get(\"state\")[thisRoomToToggle.on_if_true].value) {\n            msg.payload = {}\n            msg.payload.area_id = thisRoomToToggle.hass_area_id\n            //msg.payload.transition = 2000\n            msg.action = \"on\"\n            node.send(msg)\n        }\n    }\n    // Does this participant even have this attribute?\n    if (\"on_if_false\" in thisRoomToToggle) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToToggle.on_if_false)\n            // Is the variable this room cares about false?\n            && global.get(\"state\")[thisRoomToToggle.on_if_false].value == false) {\n            msg.payload = {}\n            msg.payload.area_id = thisRoomToToggle.hass_area_id\n            //msg.payload.transition = 2000\n            msg.action = \"on\"\n            node.send(msg)\n        }\n    }\n\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToToggle) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToToggle.off_if_true) \n            // Is the variable this room cares about true?\n            && global.get(\"state\")[thisRoomToToggle.off_if_true].value) {\n            msg.payload = {}\n            msg.payload.area_id = thisRoomToToggle.hass_area_id\n            msg.action = \"off\"\n            node.send(msg)\n        }\n    }\n    // Does this participant even have this attribute?\n    if (\"off_if_false\" in thisRoomToToggle) {\n        // Is the variable change triggering us the special \"reset\" case, or is it the variable this room cares about?\n        if ((msg.topic == \"reset\" || msg.topic == thisRoomToToggle.off_if_false)\n            // Is the variable this room cares about false?\n            && global.get(\"state\")[thisRoomToToggle.off_if_false].value == false) {\n            msg.payload = {}\n            msg.payload.area_id = thisRoomToToggle.hass_area_id\n            msg.action = \"off\"\n            node.send(msg)\n        }\n    }\n});",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5553,7 +5553,7 @@
         "y": 300,
         "wires": [
             [
-                "7ed258ec2fd76e0a"
+                "2f846f3d9d5b2750"
             ]
         ]
     },
@@ -6937,6 +6937,75 @@
         "wires": [
             [
                 "3e279bdd0682936e"
+            ]
+        ]
+    },
+    {
+        "id": "5c5123cf876f7eb8",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn on lights in room",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "msg.payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "data"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 980,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f846f3d9d5b2750",
+        "type": "switch",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "property": "action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 770,
+        "y": 420,
+        "wires": [
+            [
+                "5c5123cf876f7eb8"
+            ],
+            [
+                "7ed258ec2fd76e0a"
             ]
         ]
     },
