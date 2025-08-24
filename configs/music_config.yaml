@@ -27,7 +27,9 @@ music:
             value: true
       - player_name: "Office"
         base_volume: 8
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isNickOfficeOccupied
+            value: false
     playback_options:
       # Instrumental Melodic House and Techno
       - uri: spotify:playlist:62CFZGi01r81y81tSuj155
@@ -72,7 +74,9 @@ music:
             value: true
       - player_name: "Office"
         base_volume: 6
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isNickOfficeOccupied
+            value: false
     playback_options:
       # Kygo Radio
       - uri: spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
@@ -128,7 +132,9 @@ music:
             value: true
       - player_name: "Office"
         base_volume: 8
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isNickOfficeOccupied
+            value: false
     playback_options:
       # Instrumental Study
       - uri: spotify:playlist:37i9dQZF1DX9sIqqvKsjG8
@@ -180,7 +186,9 @@ music:
             value: true
       - player_name: "Office"
         base_volume: 8
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isNickOfficeOccupied
+            value: false
     playback_options:
       # Floating Through Space
       - uri: spotify:playlist:37i9dQZF1DX1n9whBbBKoL
@@ -209,7 +217,9 @@ music:
         leave_muted_if: []
       - player_name: "Office"
         base_volume: 9
-        leave_muted_if: []
+        leave_muted_if:
+          - variable: isNickOfficeOccupied
+            value: false
     playback_options:
       - uri: "Local Rain Track 1"
         media_type: radio
