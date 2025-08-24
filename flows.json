@@ -450,7 +450,7 @@
         "name": "Home Assistant",
         "version": 5,
         "addon": false,
-        "rejectUnauthorizedCerts": true,
+        "rejectUnauthorizedCerts": false,
         "ha_boolean": "y|yes|true|on|home|open",
         "connectionDelay": true,
         "cacheJson": true,
@@ -1332,6 +1332,23 @@
         "type": "shared-state",
         "name": "isGridAvailable",
         "lbl": "Grid Available?",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "9559cd4e1873e51f",
+        "type": "shared-state",
+        "name": "isNickOfficeOccupied",
+        "lbl": "Nick Office Occupied",
         "tags": "",
         "historyCount": 2,
         "dataType": "bool",
@@ -3493,6 +3510,69 @@
         ]
     },
     {
+        "id": "138699285dcf7e90",
+        "type": "comment",
+        "z": "d7a3510d.e93d98",
+        "name": "Room occupied?",
+        "info": "",
+        "x": 980,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "6fa7670dd0c7808c",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Nick Office Occupied",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.nick_office_occupied"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 1020,
+        "y": 1420,
+        "wires": [
+            [
+                "fea2aad3ae17a874"
+            ]
+        ]
+    },
+    {
+        "id": "fea2aad3ae17a874",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "9559cd4e1873e51f",
+        "name": "Nick Office Occupied",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1240,
+        "y": 1420,
+        "wires": []
+    },
+    {
         "id": "f98f511841b27c8c",
         "type": "comment",
         "z": "634c78c80eb9f37e",
@@ -5280,7 +5360,7 @@
         "name": "Turn everything off if needed",
         "info": "",
         "x": 140,
-        "y": 540,
+        "y": 580,
         "wires": []
     },
     {
@@ -5292,7 +5372,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 110,
-        "y": 580,
+        "y": 620,
         "wires": [
             [
                 "a14179adc764d592"
@@ -5558,7 +5638,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 520,
+        "y": 560,
         "wires": [
             [
                 "7ed258ec2fd76e0a"
@@ -5598,7 +5678,7 @@
         "name": "Bright",
         "info": "",
         "x": 70,
-        "y": 640,
+        "y": 680,
         "wires": []
     },
     {
@@ -5645,7 +5725,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 110,
-        "y": 680,
+        "y": 720,
         "wires": [
             [
                 "515bdc9718d62b40"
@@ -5673,7 +5753,7 @@
         "to": "",
         "reg": false,
         "x": 290,
-        "y": 680,
+        "y": 720,
         "wires": [
             [
                 "117283bed69961e5"
@@ -5707,7 +5787,7 @@
         "to": "",
         "reg": false,
         "x": 280,
-        "y": 740,
+        "y": 780,
         "wires": [
             [
                 "3a18c616bed81b01"
@@ -5736,7 +5816,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 740,
+        "y": 780,
         "wires": [
             [
                 "be1b0aef8b46b403"
@@ -5755,7 +5835,7 @@
         "finalize": "",
         "libs": [],
         "x": 870,
-        "y": 680,
+        "y": 720,
         "wires": [
             [
                 "0793eb5edefcf142"
@@ -5780,7 +5860,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 650,
-        "y": 680,
+        "y": 720,
         "wires": [
             [
                 "b9f2817921074955"
@@ -5811,7 +5891,7 @@
         "domain": "hue",
         "service": "hue_activate_scene",
         "x": 1120,
-        "y": 680,
+        "y": 720,
         "wires": [
             []
         ]
@@ -5834,7 +5914,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 480,
-        "y": 680,
+        "y": 720,
         "wires": [
             [
                 "be1b0aef8b46b403",
@@ -5897,7 +5977,7 @@
         "domain": "remote",
         "service": "turn_off",
         "x": 530,
-        "y": 580,
+        "y": 620,
         "wires": [
             []
         ]
@@ -5918,7 +5998,7 @@
         "repair": false,
         "outputs": 1,
         "x": 340,
-        "y": 580,
+        "y": 620,
         "wires": [
             [
                 "6e7492c93999c36c",
@@ -6123,7 +6203,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 120,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "24e9a86f6ef237d7"
@@ -6158,7 +6238,7 @@
         "to": "",
         "reg": false,
         "x": 280,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
                 "744205d987216a52"
@@ -6185,7 +6265,7 @@
         "to": "",
         "reg": false,
         "x": 310,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "3a58ce5706edc9df"
@@ -6214,7 +6294,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
                 "a7f6b62ed3480f3d"
@@ -6239,7 +6319,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 480,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "a7f6b62ed3480f3d",
@@ -6265,7 +6345,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 650,
-        "y": 840,
+        "y": 880,
         "wires": [
             [
                 "66a7133c326a29d9"
@@ -6279,7 +6359,7 @@
         "name": "Christmas Tree",
         "info": "",
         "x": 100,
-        "y": 800,
+        "y": 840,
         "wires": []
     },
     {
@@ -6308,7 +6388,7 @@
         "domain": "light",
         "service": "turn_on",
         "x": 850,
-        "y": 840,
+        "y": 880,
         "wires": [
             []
         ]
@@ -6556,7 +6636,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 120,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "27d50e08d9ecab69"
@@ -6579,7 +6659,7 @@
         "repair": false,
         "outputs": 1,
         "x": 270,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "575aab8a22402d3d"
@@ -6593,7 +6673,7 @@
         "name": "Up Lights for Caroline",
         "info": "",
         "x": 120,
-        "y": 960,
+        "y": 1000,
         "wires": []
     },
     {
@@ -6629,7 +6709,7 @@
         "domain": "switch",
         "service": "turn_on",
         "x": 430,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "f188b035a01905f5"
@@ -6654,7 +6734,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 610,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "024eb526afbf3b5d"
@@ -6694,7 +6774,7 @@
         "domain": "switch",
         "service": "turn_off",
         "x": 810,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -6708,7 +6788,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 110,
-        "y": 1100,
+        "y": 1140,
         "wires": [
             [
                 "3c395140dbb23127"
@@ -6734,7 +6814,7 @@
         "repair": false,
         "outputs": 2,
         "x": 270,
-        "y": 1100,
+        "y": 1140,
         "wires": [
             [
                 "07703d0befc69d45"
@@ -6777,7 +6857,7 @@
         "domain": "switch",
         "service": "turn_on",
         "x": 430,
-        "y": 1080,
+        "y": 1120,
         "wires": [
             []
         ]
@@ -6815,7 +6895,7 @@
         "domain": "switch",
         "service": "turn_off",
         "x": 450,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -6836,6 +6916,22 @@
         "x": 1620,
         "y": 200,
         "wires": []
+    },
+    {
+        "id": "5b94e42d8bf15803",
+        "type": "get-shared-state",
+        "z": "16cd74edb3f2c03d",
+        "state": "9559cd4e1873e51f",
+        "name": "Nick Office Occupied",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 160,
+        "y": 540,
+        "wires": [
+            [
+                "3e279bdd0682936e"
+            ]
+        ]
     },
     {
         "id": "ed9bddb805628e39",
@@ -9500,7 +9596,8 @@
         "y": 200,
         "wires": [
             [
-                "b4bd3a8c72acad85"
+                "b4bd3a8c72acad85",
+                "60ea3d1a4a187bd8"
             ]
         ]
     },
@@ -10049,6 +10146,23 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "60ea3d1a4a187bd8",
+        "type": "debug",
+        "z": "90f5fe8cb80ae6a7",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1540,
+        "y": 360,
+        "wires": []
     },
     {
         "id": "66648323963fb7f3",
