@@ -33,7 +33,7 @@
         "id": "90f5fe8cb80ae6a7",
         "type": "tab",
         "label": "Music",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -5496,7 +5496,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Pick which rooms to apply scenes to",
-        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate && thisRoomToActivate.off_if_true) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    if (\"off_if_false\" in thisRoomToActivate && thisRoomToActivate.off_if_false) {\n        // If so, is it false?\n        if (false == global.get(\"state\")[thisRoomToActivate.off_if_false].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    var scene_name = thisRoomToActivate.hue_group + \" \" + dayPhase \n    msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n    //msg.payload.dynamic = true\n    msg.payload.transition = 240\n    msg.delay = msg.payload.transition*1000\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    node.send(msg)\n});",
+        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\n\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoomToActivate) {\n    // Does this participant even have this attribute?\n    if (\"off_if_true\" in thisRoomToActivate && thisRoomToActivate.off_if_true) {\n        // If so, is it true?\n        if (global.get(\"state\")[thisRoomToActivate.off_if_true].value) {\n            return null\n        }\n    }\n    if (\"off_if_false\" in thisRoomToActivate && thisRoomToActivate.off_if_false) {\n        // If so, is it false?\n        if (false == global.get(\"state\")[thisRoomToActivate.off_if_false].value) {\n            return null\n        }\n    }\n    \n    msg.payload = {}\n    var scene_name = thisRoomToActivate.hue_group + \" \" + dayPhase \n    msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n    //msg.payload.dynamic = true\n    msg.payload.transition = 240\n    msg.delay = msg.payload.transition*1000\n    msg.config = thisRoomToActivate\n    // The nook doesn't do well with dynamics b/c of its lights\n    if (thisRoomToActivate.hue_group == \"Nook\") {\n        msg.payload.dynamic = false\n    }\n    console.debug(\"Applying scene \" + msg.entity)\n    node.send(msg)\n});",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5507,8 +5507,7 @@
         "y": 280,
         "wires": [
             [
-                "1e0d8022cef2ed62",
-                "6c1dd14d74164f64"
+                "1e0d8022cef2ed62"
             ]
         ]
     },
@@ -6740,7 +6739,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 610,
+        "x": 650,
         "y": 1040,
         "wires": [
             [
@@ -6780,7 +6779,7 @@
         "blockInputOverrides": true,
         "domain": "switch",
         "service": "turn_off",
-        "x": 810,
+        "x": 850,
         "y": 1040,
         "wires": [
             []
@@ -6906,23 +6905,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "6c1dd14d74164f64",
-        "type": "debug",
-        "z": "16cd74edb3f2c03d",
-        "name": "Hue Scene Activation",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1620,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "5b94e42d8bf15803",
@@ -10239,6 +10221,22 @@
         "x": 1540,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "33126f486c3c466b",
+        "type": "get-shared-state",
+        "z": "90f5fe8cb80ae6a7",
+        "state": "9559cd4e1873e51f",
+        "name": "Nick Office Occupied",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 760,
+        "wires": [
+            [
+                "a78f9276bce4a401"
+            ]
+        ]
     },
     {
         "id": "66648323963fb7f3",
@@ -20459,7 +20457,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Check if we're getting free energy",
-        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.energy.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((begin_free_energy_time.getTime() - now.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n            msg.payload = true\n            return msg\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n            msg.payload = true\n            return msg\n        }\n    }\n} else {\n    console.debug(\"Grid is not available so we're obviously not getting free energy\")\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
+        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.energy.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\nvar isFreeEnergyActive = global.get(\"state\").isFreeEnergyAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((begin_free_energy_time.getTime() - now.getTime()) < ONE_HOUR) {\n            if (isFreeEnergyActive != true) {\n                console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n                msg.payload = true\n                return msg\n            }\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            if (isFreeEnergyActive == true) {\n                console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n                msg.payload = true\n                return msg\n            }\n        }\n    }\n} else {\n    console.debug(\"Grid is not available so we're obviously not getting free energy\")\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
