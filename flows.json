@@ -6815,7 +6815,7 @@
         "y": 1140,
         "wires": [
             [
-                "3c395140dbb23127"
+                "f671d48003363e5f"
             ]
         ]
     },
@@ -6837,7 +6837,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 270,
+        "x": 450,
         "y": 1140,
         "wires": [
             [
@@ -6880,7 +6880,7 @@
         "blockInputOverrides": false,
         "domain": "switch",
         "service": "turn_on",
-        "x": 430,
+        "x": 610,
         "y": 1120,
         "wires": [
             []
@@ -6918,7 +6918,7 @@
         "blockInputOverrides": true,
         "domain": "switch",
         "service": "turn_off",
-        "x": 450,
+        "x": 630,
         "y": 1160,
         "wires": [
             []
@@ -7006,6 +7006,31 @@
             ],
             [
                 "7ed258ec2fd76e0a"
+            ]
+        ]
+    },
+    {
+        "id": "f671d48003363e5f",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 1140,
+        "wires": [
+            [
+                "3c395140dbb23127"
             ]
         ]
     },
