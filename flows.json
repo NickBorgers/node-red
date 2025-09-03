@@ -1181,14 +1181,14 @@
         "lbl": "Fade Out in Progress",
         "tags": "",
         "historyCount": 2,
-        "dataType": "str",
+        "dataType": "bool",
         "boolType": "bool",
         "boolStrTrue": "",
         "boolStrFalse": "",
         "precision": "",
         "numMin": "",
         "numMax": "",
-        "unit": "",
+        "unit": "ms",
         "saveInterval": "0"
     },
     {
@@ -1359,6 +1359,23 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
+        "saveInterval": "0"
+    },
+    {
+        "id": "cfc991901c50054e",
+        "type": "shared-state",
+        "name": "alarmTime",
+        "lbl": "Alarm Time",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "num",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "ms",
         "saveInterval": "0"
     },
     {
@@ -5314,8 +5331,9 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Check if anyone home and not everyone asleep",
-        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isEveryoneAsleep.value == true) {\n    return null\n}\nreturn msg;",
+        "func": "if (global.get(\"state\").isAnyoneHome.value == false) {\n    return null\n}\nif (global.get(\"state\").isEveryoneAsleep.value == true) {\n    return null\n}\n\nconsole.debug(\"Lighting scene relevant message: \" + msg.topic + \" to value: \" + msg.payload) \n\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -9654,8 +9672,7 @@
         "y": 200,
         "wires": [
             [
-                "b4bd3a8c72acad85",
-                "60ea3d1a4a187bd8"
+                "b4bd3a8c72acad85"
             ]
         ]
     },
@@ -10204,23 +10221,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "60ea3d1a4a187bd8",
-        "type": "debug",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1540,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "33126f486c3c466b",
@@ -11916,7 +11916,7 @@
         "type": "function",
         "z": "95cf961539320dd3",
         "name": "Identify which time triggers are satisfied",
-        "func": "var begin_wake_time = new Date(global.get(\"state\").schedule.value.begin_wake)\nvar wake_time = new Date(global.get(\"state\").schedule.value.wake)\nvar stop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\nvar go_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now.getTime() > begin_wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - begin_wake_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to begin_wake based on begin_wake time of: \" + begin_wake_time)\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - wake_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to wake based on wake time of: \" + wake_time)\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > stop_screens_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - stop_screens_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to stop_screens based on stop_screens time of: \" + stop_screens_time)\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > go_to_bed_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - go_to_bed_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to go_to_bed based on go_to_bed time of: \" + go_to_bed_time)\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
+        "func": "var begin_wake_time = new Date(global.get(\"state\").alarmTime.value)\n// 25 minutes after beginning wake\nvar wake_time = new Date(begin_wake_time.getTime() + 25 * 60 * 1000);\nvar stop_screens_time = new Date(global.get(\"state\").schedule.value.stop_screens)\nvar go_to_bed_time = new Date(global.get(\"state\").schedule.value.go_to_bed)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\nif (now.getTime() > begin_wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - begin_wake_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to begin_wake based on begin_wake time of: \" + begin_wake_time)\n        msg.topic = \"begin_wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > wake_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - wake_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to wake based on wake time of: \" + wake_time)\n        msg.topic = \"wake\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > stop_screens_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - stop_screens_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to stop_screens based on stop_screens time of: \" + stop_screens_time)\n        msg.topic = \"stop_screens\"\n        node.send(msg)\n    }\n}\n\nif (now.getTime() > go_to_bed_time.getTime()) {\n    // Only act if it's been true for less than one hour\n    if ((now.getTime() - go_to_bed_time.getTime()) < ONE_HOUR) {\n        console.debug(\"Determined it is time to go_to_bed based on go_to_bed time of: \" + go_to_bed_time)\n        msg.topic = \"go_to_bed\"\n        node.send(msg)\n    }\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -13251,6 +13251,166 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "8752d08f0f6edcf0",
+        "type": "server-state-changed",
+        "z": "95cf961539320dd3",
+        "name": "Caroline Alarm Time",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.caroline_s_eight_sleep_side_next_alarm"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 1020,
+        "wires": [
+            [
+                "a4e21f6d2eb93a46"
+            ]
+        ]
+    },
+    {
+        "id": "81c7b20afde256e7",
+        "type": "server-state-changed",
+        "z": "95cf961539320dd3",
+        "name": "Nick Alarm Time",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.nick_s_eight_sleep_side_next_alarm"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 140,
+        "y": 1080,
+        "wires": [
+            [
+                "a4e21f6d2eb93a46"
+            ]
+        ]
+    },
+    {
+        "id": "a4e21f6d2eb93a46",
+        "type": "function",
+        "z": "95cf961539320dd3",
+        "name": "Parse schedule times",
+        "func": "// Input: msg.payload = \"2025-09-02T13:30:00+00:00\"\n\n// Parse the string as a Date object\nlet date = new Date(msg.payload);\n\n// Validate parsed date\nif (isNaN(date.getTime())) {\n    node.error(\"Invalid date string: \" + msg.payload, msg);\n    return null;\n}\n\n// Convert to Unix timestamp in milliseconds\nlet newAlarmTime = date.getTime();\n\n// Safely get current alarm time from global context\nlet state = global.get(\"state\") || {};\nlet currentAlarmTime = state.alarmTime?.value || 0;\n\n// Compare times\nif (currentAlarmTime >= newAlarmTime) {\n    // Existing alarm is later or equal — no update needed\n    return null;\n}\n\n// Otherwise, update with the new earlier alarm time\nmsg.payload = newAlarmTime;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1060,
+        "wires": [
+            [
+                "94d293dd27addbb7"
+            ]
+        ]
+    },
+    {
+        "id": "94d293dd27addbb7",
+        "type": "set-shared-state",
+        "z": "95cf961539320dd3",
+        "state": "cfc991901c50054e",
+        "name": "Alarm Time",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 610,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "1077e948db2c135e",
+        "type": "comment",
+        "z": "95cf961539320dd3",
+        "name": "Use Eight for auto-alarm",
+        "info": "",
+        "x": 170,
+        "y": 960,
+        "wires": []
     },
     {
         "id": "a99efe1134ae512d",
@@ -19687,11 +19847,36 @@
             }
         ],
         "x": 290,
-        "y": 340,
+        "y": 320,
         "wires": [
             [
                 "a5b2c8d2dd988ccb"
             ],
+            [
+                "eb89882f17b20e92"
+            ]
+        ]
+    },
+    {
+        "id": "eb89882f17b20e92",
+        "type": "delay",
+        "z": "c90d4a5ca629d0b3",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 360,
+        "wires": [
             [
                 "5ab60c4fdfb101bc"
             ]
@@ -19994,7 +20179,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine overall energy level",
-        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar batteryEnergyLevel = global.get(\"state\").batteryEnergyLevel.value\nvar solarProductionEnergyLevel = global.get(\"state\").solarProductionEnergyLevel.value\nvar isFreeEnergyAvailable = global.get(\"state\").isFreeEnergyAvailable.value\n\n// Check if we are getting free energy right now\nif (isFreeEnergyAvailable) {\n    msg.payload = \"white\"\n    return msg\n}\n\nfunction determineOutputEnergyLevel(batteryEnergyLevel, solarPowerEnergyLevel, energyStateDefinitions) {\n    // Extract the ordered list of condition names\n    const levels = energyStateDefinitions.map(def => def.condition_name);\n\n    // Get numeric indexes for easy comparison\n    const batteryIndex = levels.indexOf(batteryEnergyLevel);\n    const solarIndex = levels.indexOf(solarPowerEnergyLevel);\n\n    // Find lowest and highest input levels\n    const minIndex = Math.min(batteryIndex, solarIndex);\n    const maxIndex = Math.max(batteryIndex, solarIndex);\n\n    // Maximum output allowed is at most one higher than the lowest input level\n    const maxAllowedIndex = Math.min(minIndex + 1, levels.length - 1);\n\n    // Final output is the lesser of maxIndex and maxAllowedIndex\n    const outputIndex = Math.min(maxIndex, maxAllowedIndex);\n\n    return levels[outputIndex];\n}\n\nmsg.payload = determineOutputEnergyLevel(batteryEnergyLevel, solarProductionEnergyLevel, energyStateDefinitions)\n\nconsole.debug(\"Determine doverall energy level of \" + msg.payload)\n\nreturn msg\n\n",
+        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\nvar batteryEnergyLevel = global.get(\"state\").batteryEnergyLevel.value\nvar solarProductionEnergyLevel = global.get(\"state\").solarProductionEnergyLevel.value\nvar isFreeEnergyAvailable = global.get(\"state\").isFreeEnergyAvailable.value\n\n// Check if we are getting free energy right now\nif (isFreeEnergyAvailable) {\n    msg.payload = \"white\"\n    return msg\n}\n\nfunction determineOutputEnergyLevel(batteryEnergyLevel, solarPowerEnergyLevel, energyStateDefinitions) {\n    // Extract the ordered list of condition names\n    const levels = energyStateDefinitions.map(def => def.condition_name);\n\n    // Get numeric indexes for easy comparison\n    const batteryIndex = levels.indexOf(batteryEnergyLevel);\n    const solarIndex = levels.indexOf(solarPowerEnergyLevel);\n\n    // Find lowest and highest input levels\n    const minIndex = Math.min(batteryIndex, solarIndex);\n    const maxIndex = Math.max(batteryIndex, solarIndex);\n\n    // Maximum output allowed is at most one higher than the lowest input level\n    const maxAllowedIndex = Math.min(minIndex + 1, levels.length - 1);\n\n    // Final output is the lesser of maxIndex and maxAllowedIndex\n    const outputIndex = Math.min(maxIndex, maxAllowedIndex);\n\n    return levels[outputIndex];\n}\n\nmsg.payload = determineOutputEnergyLevel(batteryEnergyLevel, solarProductionEnergyLevel, energyStateDefinitions)\n\nconsole.debug(\"Determined overall energy level of \" + msg.payload)\n\nreturn msg\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -20457,7 +20642,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Check if we're getting free energy",
-        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.energy.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\nvar isFreeEnergyActive = global.get(\"state\").isFreeEnergyAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((begin_free_energy_time.getTime() - now.getTime()) < ONE_HOUR) {\n            if (isFreeEnergyActive != true) {\n                console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n                msg.payload = true\n                return msg\n            }\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            if (isFreeEnergyActive == true) {\n                console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n                msg.payload = true\n                return msg\n            }\n        }\n    }\n} else {\n    console.debug(\"Grid is not available so we're obviously not getting free energy\")\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
+        "func": "var freeEnergyTime = global.get(\"state\").energyConfig.value.energy.free_energy_time\nvar isGridAvailable = global.get(\"state\").isGridAvailable.value\nvar isFreeEnergyAvailable = global.get(\"state\").isFreeEnergyAvailable.value\n\nvar begin_free_energy_time = new Date(freeEnergyTime.start)\nvar end_free_energy_time = new Date(freeEnergyTime.end)\n\nvar now = new Date()\n\nvar ONE_HOUR = 60 * 60 * 1000; /* ms */\n\n// We only get free energy if grid is available\nif (isGridAvailable) {\n    // Check if it is after the start of free energy time\n    if (now.getTime() > begin_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((begin_free_energy_time.getTime() - now.getTime()) < ONE_HOUR) {\n            // Check if we already know free energy is available\n            if (isFreeEnergyAvailable != true) {\n                console.debug(\"Determined it is time to begin free energy based on free_energy_time.start time of: \" + begin_free_energy_time)\n            }\n            msg.payload = true\n            return msg\n        }\n    }\n    // Check if it is before the end of free energy time\n    if (now.getTime() < end_free_energy_time.getTime()) {\n        // Only act if it's been true for less than one hour\n        if ((now.getTime() - end_free_energy_time.getTime()) < ONE_HOUR) {\n            // Check if we already know free energy is NOT available\n            if (isFreeEnergyAvailable != true) {\n                console.debug(\"Determined it is time to end free energy based on free_energy_time.end time of: \" + end_free_energy_time)\n            }\n            msg.payload = true\n            return msg\n        }\n    }\n} else {\n    console.debug(\"Grid is not available so we're obviously not getting free energy\")\n}\n\n// We got here because did not hit one of the affirmative triggers for free energy time or grid was not available\n// We are not getting free energy right now\nmsg.payload = false\n\nreturn msg\n\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
