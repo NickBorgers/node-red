@@ -114,7 +114,9 @@ music:
     participants:
       - player_name: "Kitchen"
         base_volume: 9
-        leave_muted_if: []
+        leave_muted_if: 
+          - variable: isTVPlaying
+            value: true
       - player_name: "Kids Bathroom"
         base_volume: 8
         leave_muted_if:
@@ -168,7 +170,9 @@ music:
     participants:
       - player_name: "Kitchen"
         base_volume: 10
-        leave_muted_if: []
+        leave_muted_if: 
+          - variable: isTVPlaying
+            value: true
       - player_name: "Kids Bathroom"
         base_volume: 8
         leave_muted_if:
