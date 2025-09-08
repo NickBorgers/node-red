@@ -8147,22 +8147,6 @@
         ]
     },
     {
-        "id": "3b5eb7152ac47fa3",
-        "type": "get-shared-state",
-        "z": "90f5fe8cb80ae6a7",
-        "state": "3e3052d11dc41010",
-        "name": "Is Guest Bedroom Door Open?",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 170,
-        "y": 700,
-        "wires": [
-            [
-                "a78f9276bce4a401"
-            ]
-        ]
-    },
-    {
         "id": "a09328f28a47fb2f",
         "type": "delay",
         "z": "90f5fe8cb80ae6a7",
