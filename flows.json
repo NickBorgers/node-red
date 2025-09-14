@@ -110,6 +110,14 @@
         "env": []
     },
     {
+        "id": "19f6585f634cdeaa",
+        "type": "tab",
+        "label": "Load Shedding",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "42abe9d54fa46266",
         "type": "group",
         "z": "90f5fe8cb80ae6a7",
@@ -20594,7 +20602,8 @@
         "y": 1080,
         "wires": [
             [
-                "5a48bc2a5bc9abfc"
+                "5a48bc2a5bc9abfc",
+                "12274f9569448b32"
             ],
             []
         ]
@@ -20641,7 +20650,8 @@
         "y": 1140,
         "wires": [
             [
-                "5a48bc2a5bc9abfc"
+                "5a48bc2a5bc9abfc",
+                "d3b1fb302aa766b6"
             ],
             []
         ]
@@ -20811,6 +20821,68 @@
             [
                 "392a711f3277fc27"
             ]
+        ]
+    },
+    {
+        "id": "12274f9569448b32",
+        "type": "api-call-service",
+        "z": "25c8955517cef179",
+        "name": "Set Grid Available",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.grid_available"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 430,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3b1fb302aa766b6",
+        "type": "api-call-service",
+        "z": "25c8955517cef179",
+        "name": "Set Grid Unavailable",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.grid_available"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 440,
+        "y": 1160,
+        "wires": [
+            []
         ]
     },
     {
@@ -21376,6 +21448,82 @@
         "x": 610,
         "y": 700,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "37c48b89a77d5ae5",
+        "type": "server-state-changed",
+        "z": "19f6585f634cdeaa",
+        "name": "Is Grid Down for 5 mins?",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.grid_available"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "false",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "5",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 210,
+        "y": 160,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f81d3b12db771234",
+        "type": "server-state-changed",
+        "z": "19f6585f634cdeaa",
+        "name": "Is Grid Down for 1 hour?",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.grid_available"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "false",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "1",
+        "forType": "num",
+        "forUnits": "hours",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [],
             []
         ]
     }
