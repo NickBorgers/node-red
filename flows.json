@@ -21452,66 +21452,28 @@
         ]
     },
     {
-        "id": "37c48b89a77d5ae5",
-        "type": "server-state-changed",
-        "z": "19f6585f634cdeaa",
-        "name": "Is Grid Down for 5 mins?",
-        "server": "3ec50562615a9f50",
-        "version": 6,
-        "outputs": 2,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "input_boolean.grid_available"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": true,
-        "stateType": "habool",
-        "ifState": "false",
-        "ifStateType": "bool",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "5",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [],
-        "x": 210,
-        "y": 160,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
         "id": "f81d3b12db771234",
         "type": "server-state-changed",
         "z": "19f6585f634cdeaa",
-        "name": "Is Grid Down for 1 hour?",
+        "name": "Are we in energy state red?",
         "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "input_boolean.grid_available"
+                "input_text.current_energy_level"
             ],
             "substring": [],
             "regex": []
         },
         "outputInitially": true,
-        "stateType": "habool",
-        "ifState": "false",
-        "ifStateType": "bool",
+        "stateType": "str",
+        "ifState": "red",
+        "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
-        "for": "1",
+        "for": "",
         "forType": "num",
         "forUnits": "hours",
         "ignorePrevStateNull": false,
@@ -21521,9 +21483,249 @@
         "ignoreCurrentStateUnavailable": false,
         "outputProperties": [],
         "x": 210,
-        "y": 240,
+        "y": 140,
         "wires": [
-            [],
+            [
+                "155cbe5860768efe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "155cbe5860768efe",
+        "type": "api-call-service",
+        "z": "19f6585f634cdeaa",
+        "name": "Set Thermostat Hold Mode",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.most_of_house_thermostat_hold",
+            "switch.primary_suite_thermostat_hold"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "5661eff27bb36155"
+            ]
+        ]
+    },
+    {
+        "id": "5661eff27bb36155",
+        "type": "api-call-service",
+        "z": "19f6585f634cdeaa",
+        "name": "Set Thermostat Wider Range",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "climate.set_temperature",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "climate.most_of_house_thermostat",
+            "climate.primary_suite_thermostat"
+        ],
+        "labelId": [],
+        "data": "{\"target_temp_high\":80,\"target_temp_low\":65}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "climate",
+        "service": "set_temperature",
+        "x": 520,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "117acbe0c194bd61",
+        "type": "server-state-changed",
+        "z": "19f6585f634cdeaa",
+        "name": "Are we in energy state black?",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_text.current_energy_level"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "black",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "hours",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "155cbe5860768efe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "383b983377acb2f8",
+        "type": "comment",
+        "z": "19f6585f634cdeaa",
+        "name": "In energy state red or black, widen thermostat ranges",
+        "info": "",
+        "x": 300,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8a2dad4581c8f69d",
+        "type": "server-state-changed",
+        "z": "19f6585f634cdeaa",
+        "name": "Are we in energy state green?",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_text.current_energy_level"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "green",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "hours",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 220,
+        "y": 340,
+        "wires": [
+            [
+                "61c66605c07fe7fc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "98fab6151774ec3b",
+        "type": "server-state-changed",
+        "z": "19f6585f634cdeaa",
+        "name": "Are we in energy state white?",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_text.current_energy_level"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "white",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "hours",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 220,
+        "y": 400,
+        "wires": [
+            [
+                "61c66605c07fe7fc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "592f4c98d1dc8734",
+        "type": "comment",
+        "z": "19f6585f634cdeaa",
+        "name": "In energy state green or white, restore thermostat ranges",
+        "info": "",
+        "x": 310,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "61c66605c07fe7fc",
+        "type": "api-call-service",
+        "z": "19f6585f634cdeaa",
+        "name": "Set Thermostat Schedule Mode",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.most_of_house_thermostat_hold",
+            "switch.primary_suite_thermostat_hold"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 530,
+        "y": 340,
+        "wires": [
             []
         ]
     }
