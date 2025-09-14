@@ -89,7 +89,7 @@
         "id": "c90d4a5ca629d0b3",
         "type": "tab",
         "label": "Pool Pump",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
