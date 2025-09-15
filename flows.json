@@ -18641,9 +18641,9 @@
         "id": "274f237edf2f1bd7",
         "type": "comment",
         "z": "164999f348401406",
-        "name": "Monitor for whether TV is on",
+        "name": "Monitor for whether sync box is on",
         "info": "",
-        "x": 720,
+        "x": 740,
         "y": 240,
         "wires": []
     },
@@ -18651,14 +18651,14 @@
         "id": "54b3e77834091de8",
         "type": "server-state-changed",
         "z": "164999f348401406",
-        "name": "Sense if TV is on",
+        "name": "Sense if sync box is on",
         "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "remote.sony_xr_65a80k"
+                "switch.sync_box_power"
             ],
             "substring": [],
             "regex": []
@@ -18685,7 +18685,7 @@
                 "valueType": "bool"
             }
         ],
-        "x": 700,
+        "x": 720,
         "y": 280,
         "wires": [
             [
@@ -18703,7 +18703,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1060,
+        "x": 1080,
         "y": 300,
         "wires": []
     },
@@ -18711,14 +18711,14 @@
         "id": "577710b513289538",
         "type": "server-state-changed",
         "z": "164999f348401406",
-        "name": "Sense if TV is off",
+        "name": "Sense if sync box is off",
         "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "remote.sony_xr_65a80k"
+                "switch.sync_box_power"
             ],
             "substring": [],
             "regex": []
@@ -18745,7 +18745,7 @@
                 "valueType": "bool"
             }
         ],
-        "x": 700,
+        "x": 720,
         "y": 340,
         "wires": [
             [
@@ -18765,101 +18765,6 @@
         "wires": []
     },
     {
-        "id": "cde489975cb390df",
-        "type": "api-current-state",
-        "z": "164999f348401406",
-        "name": "",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "media_player.sony_xr_65a80k",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "$entity().attributes.media_content_id",
-                "valueType": "jsonata"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "seconds",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 450,
-        "y": 660,
-        "wires": [
-            [
-                "aa51ad0395e3d10c"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "fc52884908f8d65e",
-        "type": "inject",
-        "z": "164999f348401406",
-        "name": "Constantly re-check",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "5",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "5",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 660,
-        "wires": [
-            [
-                "cde489975cb390df"
-            ]
-        ]
-    },
-    {
-        "id": "aa51ad0395e3d10c",
-        "type": "switch",
-        "z": "164999f348401406",
-        "name": "If Apple TV is selected",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "port=4",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 760,
-        "y": 660,
-        "wires": [
-            [
-                "e846ec9142631cad"
-            ],
-            [
-                "5a57e4e428d0e3a5"
-            ]
-        ]
-    },
-    {
         "id": "e846ec9142631cad",
         "type": "function",
         "z": "164999f348401406",
@@ -18870,7 +18775,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1000,
+        "x": 680,
         "y": 620,
         "wires": [
             [
@@ -18887,7 +18792,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1320,
+        "x": 1000,
         "y": 640,
         "wires": []
     },
@@ -18910,7 +18815,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
+        "x": 720,
         "y": 680,
         "wires": [
             [
@@ -18988,7 +18893,7 @@
         "name": "Decide if TV is being used",
         "info": "",
         "x": 150,
-        "y": 600,
+        "y": 580,
         "wires": []
     },
     {
@@ -19011,6 +18916,7 @@
         "id": "645726f28db704e6",
         "type": "api-call-service",
         "z": "164999f348401406",
+        "d": true,
         "name": "Use Soundbar",
         "server": "3ec50562615a9f50",
         "version": 7,
@@ -19066,6 +18972,7 @@
         "id": "86d4e21e11d6bf10",
         "type": "ha-api",
         "z": "164999f348401406",
+        "d": true,
         "name": "Restart Apple TV Integration",
         "server": "3ec50562615a9f50",
         "version": 1,
@@ -19094,6 +19001,7 @@
         "id": "e394e3d7d2d0f765",
         "type": "inject",
         "z": "164999f348401406",
+        "d": true,
         "name": "",
         "props": [
             {
@@ -19483,7 +19391,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 910,
+        "x": 930,
         "y": 300,
         "wires": [
             [
@@ -19509,6 +19417,144 @@
             [
                 "9d85e338bb7616e4",
                 "891dcc09a057ebce"
+            ]
+        ]
+    },
+    {
+        "id": "3b5154469cf6542d",
+        "type": "server-state-changed",
+        "z": "164999f348401406",
+        "name": "Sense if Apple TV is current input",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "select.sync_box_hdmi_input"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "x": 170,
+        "y": 680,
+        "wires": [
+            [
+                "aa51ad0395e3d10c"
+            ]
+        ]
+    },
+    {
+        "id": "aa51ad0395e3d10c",
+        "type": "switch",
+        "z": "164999f348401406",
+        "name": "If Apple TV is selected",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "AppleTV",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 440,
+        "y": 680,
+        "wires": [
+            [
+                "e846ec9142631cad"
+            ],
+            [
+                "5a57e4e428d0e3a5"
+            ]
+        ]
+    },
+    {
+        "id": "44d48764e6ac1837",
+        "type": "api-current-state",
+        "z": "164999f348401406",
+        "name": "Get current input of Hue Sync",
+        "server": "3ec50562615a9f50",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "AppleTV",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "select.sync_box_hdmi_input",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 370,
+        "y": 620,
+        "wires": [
+            [
+                "e846ec9142631cad"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "232367dc8a43c7d6",
+        "type": "get-shared-state",
+        "z": "164999f348401406",
+        "state": "e1e1553b9b6a27c9",
+        "name": "Is Apple TV Playing?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 130,
+        "y": 620,
+        "wires": [
+            [
+                "44d48764e6ac1837"
             ]
         ]
     },
