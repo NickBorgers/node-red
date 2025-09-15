@@ -33,3 +33,10 @@ rooms:
     off_if_true: ~
     off_if_false: isNickOfficeOccupied
     increase_brightness_if_true: ~
+  - hue_group: Kitchen
+    hass_area_id: kitchen
+    on_if_true: isKitchenOccupied
+    on_if_false: ~
+    off_if_true: ~
+    off_if_false: ~
+    increase_brightness_if_true: ~
