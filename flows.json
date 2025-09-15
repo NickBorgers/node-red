@@ -1387,6 +1387,23 @@
         "saveInterval": "0"
     },
     {
+        "id": "30b38705c75270d7",
+        "type": "shared-state",
+        "name": "isKitchenOccupied",
+        "lbl": "Kitchen Occupied?",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
         "id": "9460cec7.a8b9e8",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -3602,6 +3619,66 @@
         "outputs": 0,
         "x": 1240,
         "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "e0d45e3d372c6527",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Kitchen Occupied",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.kitchen_occupied"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "x": 1010,
+        "y": 1480,
+        "wires": [
+            [
+                "667b0e806d843c6a"
+            ]
+        ]
+    },
+    {
+        "id": "667b0e806d843c6a",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "30b38705c75270d7",
+        "name": "Kitchen Occupied?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1230,
+        "y": 1480,
         "wires": []
     },
     {
@@ -7039,6 +7116,22 @@
         "wires": [
             [
                 "3c395140dbb23127"
+            ]
+        ]
+    },
+    {
+        "id": "b46d4c8eca8d7094",
+        "type": "get-shared-state",
+        "z": "16cd74edb3f2c03d",
+        "state": "30b38705c75270d7",
+        "name": "Kitchen Occupied?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 370,
+        "y": 460,
+        "wires": [
+            [
+                "3e279bdd0682936e"
             ]
         ]
     },
