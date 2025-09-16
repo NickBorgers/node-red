@@ -3643,7 +3643,7 @@
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
-        "for": "0",
+        "for": "2",
         "forType": "num",
         "forUnits": "minutes",
         "ignorePrevStateNull": false,
@@ -20138,7 +20138,8 @@
         "y": 120,
         "wires": [
             [
-                "2c61f03bd3d8de44"
+                "2c61f03bd3d8de44",
+                "52393cd6c37be3c3"
             ]
         ]
     },
@@ -20147,7 +20148,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine independent energy levels",
-        "func": "var energyStateDefinitions = global.get(\"state\").energyConfig.value.energy.energy_states\n\n// Create variable for new energy level\nvar new_energy_level = \"black\"\n\nfunction determineEnergyLevel(configKey, sourceDescription) {\n    energyStateDefinitions.forEach(function (possibleEnergyLevel) {\n        if (msg.payload > possibleEnergyLevel[configKey]) {\n            new_energy_level = possibleEnergyLevel.condition_name;\n        }\n    });\n    console.debug(\"Determined energy level of \" + new_energy_level + \" by \" + sourceDescription);\n    msg.payload = new_energy_level;\n    return msg\n}\n\nreturn determineEnergyLevel(\"battery_minimum_percentage\", \"battery charge\")\n",
+        "func": "// Coerce payload to a number\nconst val = Number(msg.payload);\nif (!Number.isFinite(val)) {\n    // Not a number → just drop the message\n    return null;\n}\n\nconst defs = global.get(\"state\")?.energyConfig?.value?.energy?.energy_states;\nif (!Array.isArray(defs) || defs.length === 0) {\n    // Nothing to compare against → drop\n    return null;\n}\n\nconst KEY = \"battery_minimum_percentage\";\n\n// Build clean numeric thresholds\nconst levels = defs\n    .map(e => ({ name: e.condition_name, thr: Number(e[KEY]) }))\n    .filter(e => Number.isFinite(e.thr))\n    .sort((a, b) => a.thr - b.thr);\n\nif (levels.length === 0) {\n    return null;\n}\n\n// Pick the highest level whose threshold is <= current %\nlet chosen = null;\nfor (const lvl of levels) {\n    if (val >= lvl.thr) chosen = lvl.name;\n}\n\n// Only set payload if a level was found\nif (chosen !== null) {\n    msg.payload = chosen;\n    return msg;\n}\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -20776,7 +20777,7 @@
         "ignorePrevStateUnknown": false,
         "ignorePrevStateUnavailable": false,
         "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
+        "ignoreCurrentStateUnavailable": true,
         "outputProperties": [
             {
                 "property": "payload",
@@ -21023,6 +21024,23 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "52393cd6c37be3c3",
+        "type": "debug",
+        "z": "25c8955517cef179",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "938ddcbfe0b17e2f",
@@ -21625,7 +21643,7 @@
         "y": 140,
         "wires": [
             [
-                "155cbe5860768efe"
+                "dcceb60825aff428"
             ],
             []
         ]
@@ -21656,7 +21674,7 @@
         "blockInputOverrides": false,
         "domain": "switch",
         "service": "turn_on",
-        "x": 520,
+        "x": 640,
         "y": 140,
         "wires": [
             [
@@ -21690,7 +21708,7 @@
         "blockInputOverrides": false,
         "domain": "climate",
         "service": "set_temperature",
-        "x": 520,
+        "x": 640,
         "y": 200,
         "wires": [
             []
@@ -21731,7 +21749,7 @@
         "y": 200,
         "wires": [
             [
-                "155cbe5860768efe"
+                "dcceb60825aff428"
             ],
             []
         ]
@@ -21781,7 +21799,7 @@
         "y": 340,
         "wires": [
             [
-                "61c66605c07fe7fc"
+                "e07dacc6b9e1fe0e"
             ],
             []
         ]
@@ -21821,7 +21839,7 @@
         "y": 400,
         "wires": [
             [
-                "61c66605c07fe7fc"
+                "e07dacc6b9e1fe0e"
             ],
             []
         ]
@@ -21862,10 +21880,60 @@
         "blockInputOverrides": false,
         "domain": "switch",
         "service": "turn_off",
-        "x": 530,
+        "x": 650,
         "y": 340,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "dcceb60825aff428",
+        "type": "delay",
+        "z": "19f6585f634cdeaa",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 140,
+        "wires": [
+            [
+                "155cbe5860768efe"
+            ]
+        ]
+    },
+    {
+        "id": "e07dacc6b9e1fe0e",
+        "type": "delay",
+        "z": "19f6585f634cdeaa",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 340,
+        "wires": [
+            [
+                "61c66605c07fe7fc"
+            ]
         ]
     }
 ]
