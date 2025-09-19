@@ -5522,10 +5522,10 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 130,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
-                "3e279bdd0682936e"
+                "01e8b9cbe6bc9e78"
             ]
         ]
     },
@@ -5554,7 +5554,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 110,
-        "y": 480,
+        "y": 420,
         "wires": [
             [
                 "3e279bdd0682936e"
@@ -5691,7 +5691,7 @@
         "to": "",
         "reg": false,
         "x": 350,
-        "y": 360,
+        "y": 340,
         "wires": [
             [
                 "d2a0c7cb.1bd518",
@@ -6202,7 +6202,7 @@
         "z": "16cd74edb3f2c03d",
         "name": "",
         "pauseType": "delayv",
-        "timeout": "500",
+        "timeout": "45",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -7021,7 +7021,7 @@
         "y": 540,
         "wires": [
             [
-                "3e279bdd0682936e"
+                "01e8b9cbe6bc9e78"
             ]
         ]
     },
@@ -7127,11 +7127,30 @@
         "name": "Kitchen Occupied?",
         "triggerOnInit": false,
         "triggerOnChange": true,
-        "x": 370,
-        "y": 460,
+        "x": 330,
+        "y": 480,
         "wires": [
             [
-                "3e279bdd0682936e"
+                "01e8b9cbe6bc9e78"
+            ]
+        ]
+    },
+    {
+        "id": "01e8b9cbe6bc9e78",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Aggregate Triggers",
+        "rules": [],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 420,
+        "wires": [
+            [
+                "792164089d62de52"
             ]
         ]
     },
@@ -13363,24 +13382,25 @@
         ]
     },
     {
-        "id": "8752d08f0f6edcf0",
+        "id": "1ecd9abd5e9d267b",
         "type": "server-state-changed",
         "z": "95cf961539320dd3",
-        "name": "Caroline Alarm Time",
+        "name": "Eight Sleep Pod Alarm Active",
         "server": "3ec50562615a9f50",
         "version": 6,
-        "outputs": 1,
+        "outputs": 2,
         "exposeAsEntityConfig": "",
         "entities": {
             "entity": [
-                "sensor.caroline_s_eight_sleep_side_next_alarm"
+                "sensor.nick_s_eight_sleep_side_bed_state_type",
+                "sensor.caroline_s_eight_sleep_side_bed_state_type"
             ],
             "substring": [],
             "regex": []
         },
         "outputInitially": true,
         "stateType": "str",
-        "ifState": "",
+        "ifState": "alarm",
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
@@ -13408,119 +13428,18 @@
             {
                 "property": "topic",
                 "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
+                "value": "begin_wake",
+                "valueType": "str"
             }
         ],
-        "x": 150,
-        "y": 1020,
+        "x": 460,
+        "y": 540,
         "wires": [
             [
-                "a4e21f6d2eb93a46"
-            ]
-        ]
-    },
-    {
-        "id": "81c7b20afde256e7",
-        "type": "server-state-changed",
-        "z": "95cf961539320dd3",
-        "name": "Nick Alarm Time",
-        "server": "3ec50562615a9f50",
-        "version": 6,
-        "outputs": 1,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "sensor.nick_s_eight_sleep_side_next_alarm"
+                "db4ccb257569707c"
             ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": true,
-        "stateType": "str",
-        "ifState": "",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 140,
-        "y": 1080,
-        "wires": [
-            [
-                "a4e21f6d2eb93a46"
-            ]
+            []
         ]
-    },
-    {
-        "id": "a4e21f6d2eb93a46",
-        "type": "function",
-        "z": "95cf961539320dd3",
-        "name": "Parse schedule times",
-        "func": "// Input: msg.payload = \"2025-09-02T13:30:00+00:00\"\n\n// Parse the string as a Date object\nlet date = new Date(msg.payload);\n\nconsole.debug(\"New Eight Sleep Alarm time is: \" + date)\n\n// Validate parsed date\nif (isNaN(date.getTime())) {\n    node.error(\"Invalid date string: \" + msg.payload, msg);\n    return null;\n}\n\n// Convert to Unix timestamp in milliseconds\nlet newAlarmTime = date.getTime();\n\n// Safely get current alarm time from global context\nlet state = global.get(\"state\") || {};\nlet currentAlarmTime = state.alarmTime?.value || 0;\nconsole.debug(\"Existing alarm is: \" + new Date(currentAlarmTime))\n\n// Compare times\nif (currentAlarmTime >= newAlarmTime) {\n    console.debug(\"Existing alarm is later or equal — no update needed\")\n    return null;\n}\n\n// Otherwise, update with the new earlier alarm time\nmsg.payload = newAlarmTime;\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 400,
-        "y": 1060,
-        "wires": [
-            [
-                "94d293dd27addbb7"
-            ]
-        ]
-    },
-    {
-        "id": "94d293dd27addbb7",
-        "type": "set-shared-state",
-        "z": "95cf961539320dd3",
-        "state": "cfc991901c50054e",
-        "name": "Alarm Time",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 610,
-        "y": 1060,
-        "wires": []
-    },
-    {
-        "id": "1077e948db2c135e",
-        "type": "comment",
-        "z": "95cf961539320dd3",
-        "name": "Use Eight for auto-alarm",
-        "info": "",
-        "x": 170,
-        "y": 960,
-        "wires": []
     },
     {
         "id": "a99efe1134ae512d",
