@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   auto-format:
@@ -32,9 +33,9 @@ jobs:
             CHANGES_MADE=true
           fi
 
-          # Fix trailing spaces in other common files
+          # Fix trailing spaces in other common files (excluding workflow files)
           echo "Checking for trailing spaces in other files..."
-          if find . -name "*.js" -o -name "*.json" -o -name "*.md" -o -name "*.yml" | grep -v node_modules | xargs sed -i 's/[[:space:]]*$//' && git diff --quiet; then
+          if find . -name "*.js" -o -name "*.json" -o -name "*.md" | grep -v node_modules | grep -v .github/workflows | xargs -r sed -i 's/[[:space:]]*$//' && git diff --quiet; then
             echo "No trailing spaces found in other files"
           else
             echo "Fixed trailing spaces in other files"

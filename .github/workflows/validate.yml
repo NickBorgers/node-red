@@ -12,7 +12,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Validate Music YAML file
         run: make run-yamllint-music
-        
   validate-hue-config-yaml:
     runs-on: ubuntu-latest
     steps:
