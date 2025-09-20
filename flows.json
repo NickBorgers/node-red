@@ -1404,6 +1404,23 @@
         "saveInterval": "0"
     },
     {
+        "id": "3da45b40328007dd",
+        "type": "shared-state",
+        "name": "isAnyoneAwake",
+        "lbl": "Anyone Awake",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
         "id": "9460cec7.a8b9e8",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -2753,7 +2770,8 @@
         "y": 1160,
         "wires": [
             [
-                "acdaab9da7d03657"
+                "acdaab9da7d03657",
+                "4befb06ddb926631"
             ]
         ]
     },
@@ -2769,7 +2787,8 @@
         "y": 1220,
         "wires": [
             [
-                "acdaab9da7d03657"
+                "acdaab9da7d03657",
+                "4befb06ddb926631"
             ]
         ]
     },
@@ -3679,6 +3698,40 @@
         "outputs": 0,
         "x": 1230,
         "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "4befb06ddb926631",
+        "type": "function",
+        "z": "d7a3510d.e93d98",
+        "name": "Is anyone awake?",
+        "func": "// If anyone is asleep true otherwise false\nmsg.payload = !(global.get(\"state\").isMasterAsleep.value || global.get(\"state\").isGuestAsleep.value)\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1240,
+        "wires": [
+            [
+                "b94472c5c70b82fc"
+            ]
+        ]
+    },
+    {
+        "id": "b94472c5c70b82fc",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "3da45b40328007dd",
+        "name": "Anyone Awake",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 600,
+        "y": 1240,
         "wires": []
     },
     {
@@ -5488,7 +5541,9 @@
         "x": 150,
         "y": 80,
         "wires": [
-            []
+            [
+                "a008d236a12f1c5f"
+            ]
         ]
     },
     {
@@ -6916,7 +6971,8 @@
         "y": 120,
         "wires": [
             [
-                "9d778c91b22ded93"
+                "9d778c91b22ded93",
+                "82c54492e1519340"
             ]
         ]
     },
@@ -6946,10 +7002,12 @@
         "y": 120,
         "wires": [
             [
-                "4fbd8cc9a34cf1b8"
+                "4fbd8cc9a34cf1b8",
+                "76544619d7679aff"
             ],
             [
-                "76f82e989af87f08"
+                "76f82e989af87f08",
+                "f0f6bc2787feb2a0"
             ]
         ]
     },
@@ -7030,6 +7088,57 @@
         "info": "",
         "x": 1230,
         "y": 80,
+        "wires": []
+    },
+    {
+        "id": "82c54492e1519340",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "all",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "76544619d7679aff",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "on",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1210,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f0f6bc2787feb2a0",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "off",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1210,
+        "y": 160,
         "wires": []
     },
     {
