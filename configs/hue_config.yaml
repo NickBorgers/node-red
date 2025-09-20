@@ -32,6 +32,13 @@ rooms:
       - isHaveGuests
       - didOwnerJustReturnHome
     increase_brightness_if_true: ~
+  - hue_group: Decorative Outdoor Lights
+    hass_area_id: front_of_house
+    on_if_true: didOwnerJustReturnHome
+    on_if_false: ~
+    off_if_true: isEveryoneAsleep
+    off_if_false: didOwnerJustReturnHome
+    increase_brightness_if_true: ~
   - hue_group: N Office
     hass_area_id: n_office
     on_if_true: isNickOfficeOccupied
