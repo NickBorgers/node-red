@@ -22,8 +22,8 @@ rooms:
     increase_brightness_if_true: ~
   - hue_group: Front of House
     hass_area_id: front_of_house
-    on_if_true: ~
-    off_if_false: isAnyoneHome
+    on_if_true: isHaveGuests
+    on_if_false: ~
     off_if_true: isEveryoneAsleep
     off_if_false: isHaveGuests
   - hue_group: N Office
