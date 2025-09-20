@@ -1421,6 +1421,23 @@
         "saveInterval": "0"
     },
     {
+        "id": "8016fa34ee571968",
+        "type": "shared-state",
+        "name": "didOwnerJustReturnHome",
+        "lbl": "Did Owner Just Return Home?",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
         "id": "9460cec7.a8b9e8",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -3732,6 +3749,123 @@
         "outputs": 0,
         "x": 600,
         "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "b6e0aad6e7ce5559",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "9fcddb6cb7581f32",
+        "name": "Is Any Owner Home?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 180,
+        "y": 1820,
+        "wires": [
+            [
+                "1d2eab946f062da3"
+            ]
+        ]
+    },
+    {
+        "id": "13978101a7e29e88",
+        "type": "delay",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 1820,
+        "wires": [
+            [
+                "347b9767c5cc33d1"
+            ]
+        ]
+    },
+    {
+        "id": "347b9767c5cc33d1",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "8016fa34ee571968",
+        "name": "Did Owner Just Return Home?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 710,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "075d7e3d656d2024",
+        "type": "inject",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 330,
+        "y": 1780,
+        "wires": [
+            [
+                "13978101a7e29e88"
+            ]
+        ]
+    },
+    {
+        "id": "1d2eab946f062da3",
+        "type": "switch",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 1820,
+        "wires": [
+            [
+                "13978101a7e29e88"
+            ]
+        ]
+    },
+    {
+        "id": "cdadcb6b348acdfc",
+        "type": "comment",
+        "z": "d7a3510d.e93d98",
+        "name": "Owner just came home control",
+        "info": "",
+        "x": 190,
+        "y": 1740,
         "wires": []
     },
     {
@@ -6626,279 +6760,6 @@
         ]
     },
     {
-        "id": "6e48df6ec70c169f",
-        "type": "get-shared-state",
-        "z": "16cd74edb3f2c03d",
-        "state": "b2f3086099f29cf0",
-        "name": "Caroline Home",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 120,
-        "y": 1040,
-        "wires": [
-            [
-                "27d50e08d9ecab69"
-            ]
-        ]
-    },
-    {
-        "id": "27d50e08d9ecab69",
-        "type": "switch",
-        "z": "16cd74edb3f2c03d",
-        "name": "True?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 270,
-        "y": 1040,
-        "wires": [
-            [
-                "575aab8a22402d3d"
-            ]
-        ]
-    },
-    {
-        "id": "f6997636c2c55013",
-        "type": "comment",
-        "z": "16cd74edb3f2c03d",
-        "name": "Up Lights for Caroline",
-        "info": "",
-        "x": 120,
-        "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "575aab8a22402d3d",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Turn on front lights",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.front_porch_front_up_lights"
-        ],
-        "labelId": [],
-        "data": "msg.payload",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "data"
-            }
-        ],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "x": 430,
-        "y": 1040,
-        "wires": [
-            [
-                "f188b035a01905f5"
-            ]
-        ]
-    },
-    {
-        "id": "f188b035a01905f5",
-        "type": "delay",
-        "z": "16cd74edb3f2c03d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "10",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 650,
-        "y": 1040,
-        "wires": [
-            [
-                "024eb526afbf3b5d"
-            ]
-        ]
-    },
-    {
-        "id": "024eb526afbf3b5d",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Turn off front porch lights",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.front_porch_front_up_lights"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "data"
-            }
-        ],
-        "queue": "none",
-        "blockInputOverrides": true,
-        "domain": "switch",
-        "service": "turn_off",
-        "x": 850,
-        "y": 1040,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6bdd1a18bad4fade",
-        "type": "get-shared-state",
-        "z": "16cd74edb3f2c03d",
-        "state": "a5ea3d0a7df352b2",
-        "name": "Have Guests?",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 110,
-        "y": 1140,
-        "wires": [
-            [
-                "f671d48003363e5f"
-            ]
-        ]
-    },
-    {
-        "id": "3c395140dbb23127",
-        "type": "switch",
-        "z": "16cd74edb3f2c03d",
-        "name": "True?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 450,
-        "y": 1140,
-        "wires": [
-            [
-                "07703d0befc69d45"
-            ],
-            [
-                "6f4f124e16c706a0"
-            ]
-        ]
-    },
-    {
-        "id": "07703d0befc69d45",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Turn on front lights",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.front_porch_front_up_lights"
-        ],
-        "labelId": [],
-        "data": "msg.payload",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "data"
-            }
-        ],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "x": 610,
-        "y": 1120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6f4f124e16c706a0",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Turn off front porch lights",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "switch.turn_off",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.front_porch_front_up_lights"
-        ],
-        "labelId": [],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "data"
-            }
-        ],
-        "queue": "none",
-        "blockInputOverrides": true,
-        "domain": "switch",
-        "service": "turn_off",
-        "x": 630,
-        "y": 1160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "5b94e42d8bf15803",
         "type": "get-shared-state",
         "z": "16cd74edb3f2c03d",
@@ -6911,31 +6772,6 @@
         "wires": [
             [
                 "3e279bdd0682936e"
-            ]
-        ]
-    },
-    {
-        "id": "f671d48003363e5f",
-        "type": "delay",
-        "z": "16cd74edb3f2c03d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "10",
-        "timeoutUnits": "minutes",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 290,
-        "y": 1140,
-        "wires": [
-            [
-                "3c395140dbb23127"
             ]
         ]
     },
@@ -6960,7 +6796,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Determine what action to take based on variable change",
-        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoom) {\n    let shouldActivateScene = false;\n    let shouldTurnOff = false;\n    \n    // Check if room should be turned ON based on conditions\n    if (\"on_if_true\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.on_if_true)\n            && global.get(\"state\")[thisRoom.on_if_true].value) {\n            shouldActivateScene = true;\n        }\n    }\n    \n    if (\"on_if_false\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.on_if_false)\n            && global.get(\"state\")[thisRoom.on_if_false].value == false) {\n            shouldActivateScene = true;\n        }\n    }\n    \n    // Check if room should be turned OFF based on conditions\n    if (\"off_if_true\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.off_if_true) \n            && global.get(\"state\")[thisRoom.off_if_true].value) {\n            shouldTurnOff = true;\n        }\n    }\n    \n    if (\"off_if_false\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.off_if_false)\n            && global.get(\"state\")[thisRoom.off_if_false].value == false) {\n            shouldTurnOff = true;\n        }\n    }\n    \n    // Generate output message based on determined action\n    if (shouldTurnOff) {\n        // Turn off the lights\n        msg.payload = {}\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.action = \"off\"\n        msg.config = thisRoom\n        console.debug(\"Turning off lights in \" + thisRoom.hue_group)\n        node.send(msg)\n    } else if (shouldActivateScene) {\n        // Apply the appropriate scene for current day phase\n        msg.payload = {}\n        var scene_name = thisRoom.hue_group + \" \" + dayPhase \n        msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.payload.transition = 30\n        msg.delay = msg.payload.transition * 1000\n        msg.action = \"scene\"\n        msg.config = thisRoom\n        \n        // The nook doesn't do well with dynamics b/c of its lights\n        if (thisRoom.hue_group == \"Nook\") {\n            msg.payload.dynamic = false\n        }\n        \n        console.debug(\"Applying scene \" + msg.entity + \" to \" + thisRoom.hue_group)\n        node.send(msg)\n    }\n});",
+        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoom) {\n    let shouldActivateScene = false;\n    let shouldTurnOff = false;\n    \n    // Check if room should be turned ON based on conditions\n    if (\"on_if_true\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.on_if_true)\n            && global.get(\"state\")[thisRoom.on_if_true]?.value) {\n            shouldActivateScene = true;\n        }\n    }\n    \n    if (\"on_if_false\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.on_if_false)\n            && global.get(\"state\")[thisRoom.on_if_false]?.value == false) {\n            shouldActivateScene = true;\n        }\n    }\n    \n    // Check if room should be turned OFF based on conditions\n    if (\"off_if_true\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.off_if_true) \n            && global.get(\"state\")[thisRoom.off_if_true]?.value) {\n            shouldTurnOff = true;\n        }\n    }\n    \n    if (\"off_if_false\" in thisRoom) {\n        if ((msg.topic == \"reset\" || msg.topic == thisRoom.off_if_false)\n            && global.get(\"state\")[thisRoom.off_if_false]?.value == false) {\n            shouldTurnOff = true;\n        }\n    }\n    \n    // Generate output message based on determined action\n    if (shouldTurnOff) {\n        // Turn off the lights\n        msg.payload = {}\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.action = \"off\"\n        msg.config = thisRoom\n        console.debug(\"Turning off lights in \" + thisRoom.hue_group)\n        node.send(msg)\n    } else if (shouldActivateScene) {\n        // Apply the appropriate scene for current day phase\n        msg.payload = {}\n        var scene_name = thisRoom.hue_group + \" \" + dayPhase \n        msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.payload.transition = 30\n        msg.delay = msg.payload.transition * 1000\n        msg.action = \"scene\"\n        msg.config = thisRoom\n        \n        // The nook doesn't do well with dynamics b/c of its lights\n        if (thisRoom.hue_group == \"Nook\") {\n            msg.payload.dynamic = false\n        }\n        \n        console.debug(\"Applying scene \" + msg.entity + \" to \" + thisRoom.hue_group)\n        node.send(msg)\n    }\n});",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -6972,7 +6808,7 @@
         "wires": [
             [
                 "9d778c91b22ded93",
-                "82c54492e1519340"
+                "60735e1ed5c7cc27"
             ]
         ]
     },
@@ -7002,12 +6838,10 @@
         "y": 120,
         "wires": [
             [
-                "4fbd8cc9a34cf1b8",
-                "76544619d7679aff"
+                "4fbd8cc9a34cf1b8"
             ],
             [
-                "76f82e989af87f08",
-                "f0f6bc2787feb2a0"
+                "76f82e989af87f08"
             ]
         ]
     },
@@ -7075,7 +6909,7 @@
         "domain": "light",
         "service": "turn_off",
         "x": 1260,
-        "y": 220,
+        "y": 200,
         "wires": [
             []
         ]
@@ -7091,55 +6925,37 @@
         "wires": []
     },
     {
-        "id": "82c54492e1519340",
+        "id": "60735e1ed5c7cc27",
         "type": "debug",
         "z": "16cd74edb3f2c03d",
-        "name": "all",
+        "name": "Log light actions",
         "active": true,
         "tosidebar": true,
-        "console": false,
+        "console": true,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 930,
+        "x": 970,
         "y": 200,
         "wires": []
     },
     {
-        "id": "76544619d7679aff",
-        "type": "debug",
+        "id": "b603297deb361e03",
+        "type": "get-shared-state",
         "z": "16cd74edb3f2c03d",
-        "name": "on",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1210,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "f0f6bc2787feb2a0",
-        "type": "debug",
-        "z": "16cd74edb3f2c03d",
-        "name": "off",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1210,
-        "y": 160,
-        "wires": []
+        "state": "8016fa34ee571968",
+        "name": "Did Owner Just Return Home?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 550,
+        "y": 400,
+        "wires": [
+            [
+                "3e279bdd0682936e"
+            ]
+        ]
     },
     {
         "id": "ed9bddb805628e39",
