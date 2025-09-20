@@ -2,7 +2,7 @@
 rooms:
   - hue_group: Living Room
     hass_area_id: living_room_2
-    on_if_true: isAnyoneAwake
+    on_if_true: isAnyoneHomeAndAwake
     on_if_false: ~
     off_if_true: isEveryoneAsleep
     off_if_false: isAnyoneHome
@@ -16,7 +16,7 @@ rooms:
     increase_brightness_if_true: ~
   - hue_group: Sitting Room
     hass_area_id: dining_room
-    on_if_true: isAnyoneAwake
+    on_if_true: isAnyoneHomeAndAwake
     on_if_false: ~
     off_if_true: isEveryoneAsleep
     off_if_false: isAnyoneHome
