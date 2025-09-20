@@ -1406,8 +1406,8 @@
     {
         "id": "3da45b40328007dd",
         "type": "shared-state",
-        "name": "isAnyoneAwake",
-        "lbl": "Anyone Awake",
+        "name": "isAnyoneHomeAndAwake",
+        "lbl": "Anyone Home and Awake",
         "tags": "",
         "historyCount": 2,
         "dataType": "bool",
@@ -1783,7 +1783,7 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 200,
-        "y": 1400,
+        "y": 1420,
         "wires": [
             [
                 "38b97ca236e8163d"
@@ -1924,7 +1924,7 @@
         "name": "Door Tracking",
         "info": "",
         "x": 130,
-        "y": 1280,
+        "y": 1300,
         "wires": []
     },
     {
@@ -2007,7 +2007,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 490,
-        "y": 1340,
+        "y": 1360,
         "wires": []
     },
     {
@@ -2031,7 +2031,7 @@
         "to": "",
         "reg": false,
         "x": 450,
-        "y": 1400,
+        "y": 1420,
         "wires": [
             [
                 "19ef2aa0c73641ce"
@@ -2049,7 +2049,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 710,
-        "y": 1400,
+        "y": 1420,
         "wires": []
     },
     {
@@ -3462,7 +3462,7 @@
             }
         ],
         "x": 210,
-        "y": 1340,
+        "y": 1360,
         "wires": [
             [
                 "74c36bd307050540"
@@ -3679,7 +3679,7 @@
         "ifStateType": "str",
         "ifStateOperator": "is",
         "outputOnlyOnStateChange": true,
-        "for": "2",
+        "for": "0",
         "forType": "num",
         "forUnits": "minutes",
         "ignorePrevStateNull": false,
@@ -3742,12 +3742,12 @@
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
         "state": "3da45b40328007dd",
-        "name": "Anyone Awake",
+        "name": "Anyone Home and Awake",
         "triggerOnInit": true,
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 600,
+        "x": 630,
         "y": 1240,
         "wires": []
     },
@@ -3785,7 +3785,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 490,
-        "y": 1820,
+        "y": 1780,
         "wires": [
             [
                 "347b9767c5cc33d1"
@@ -3845,16 +3845,22 @@
         "rules": [
             {
                 "t": "true"
+            },
+            {
+                "t": "false"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
+        "outputs": 2,
         "x": 350,
         "y": 1820,
         "wires": [
             [
                 "13978101a7e29e88"
+            ],
+            [
+                "347b9767c5cc33d1"
             ]
         ]
     },
@@ -3867,6 +3873,45 @@
         "x": 190,
         "y": 1740,
         "wires": []
+    },
+    {
+        "id": "cc25d4bec3cd4416",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "1dd96a4a.9d6316",
+        "name": "Anyone Home",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 310,
+        "y": 1280,
+        "wires": [
+            [
+                "298cbad85632a636"
+            ]
+        ]
+    },
+    {
+        "id": "298cbad85632a636",
+        "type": "switch",
+        "z": "d7a3510d.e93d98",
+        "name": "false",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 1280,
+        "wires": [
+            [
+                "b94472c5c70b82fc"
+            ]
+        ]
     },
     {
         "id": "f98f511841b27c8c",
@@ -5688,7 +5733,7 @@
         "name": "Guest Asleep",
         "triggerOnInit": false,
         "triggerOnChange": true,
-        "x": 270,
+        "x": 330,
         "y": 400,
         "wires": [
             [
@@ -5720,7 +5765,7 @@
         "name": "Reset",
         "triggerOnInit": false,
         "triggerOnChange": true,
-        "x": 250,
+        "x": 310,
         "y": 340,
         "wires": [
             [
@@ -5760,7 +5805,7 @@
         "to": "",
         "reg": false,
         "x": 490,
-        "y": 300,
+        "y": 220,
         "wires": [
             [
                 "a008d236a12f1c5f"
@@ -6767,7 +6812,7 @@
         "name": "Nick Office Occupied",
         "triggerOnInit": false,
         "triggerOnChange": true,
-        "x": 300,
+        "x": 360,
         "y": 460,
         "wires": [
             [
@@ -6783,7 +6828,7 @@
         "name": "Kitchen Occupied?",
         "triggerOnInit": false,
         "triggerOnChange": true,
-        "x": 290,
+        "x": 350,
         "y": 520,
         "wires": [
             [
@@ -6796,7 +6841,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Determine what action to take based on variable change",
-        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function (thisRoom) {\n    let shouldActivateScene = false;\n    let shouldTurnOff = false;\n\n    // Helper function to check if a variable list matches current topic or reset\n    function isTopicRelevant(variableList) {\n        if (msg.topic == \"reset\") return true;\n        if (Array.isArray(variableList)) {\n            return variableList.includes(msg.topic);\n        } else {\n            return msg.topic == variableList;\n        }\n    }\n\n    // Helper function to evaluate conditions\n    function evaluateConditions(variableList, expectedValue) {\n        if (!variableList) return false;\n\n        const variables = Array.isArray(variableList) ? variableList : [variableList];\n\n        return variables.some(variable => {\n            const stateValue = global.get(\"state\")[variable]?.value;\n            return stateValue === expectedValue;\n        });\n    }\n\n    // Check if room should be turned ON based on conditions\n    if (\"on_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_true) && evaluateConditions(thisRoom.on_if_true, true)) {\n            shouldActivateScene = true;\n        }\n    }\n\n    if (\"on_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_false) && evaluateConditions(thisRoom.on_if_false, false)) {\n            shouldActivateScene = true;\n        }\n    }\n\n    // Check if room should be turned OFF based on conditions\n    if (\"off_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_true) && evaluateConditions(thisRoom.off_if_true, true)) {\n            shouldTurnOff = true;\n        }\n    }\n\n    if (\"off_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_false) && evaluateConditions(thisRoom.off_if_false, false)) {\n            shouldTurnOff = true;\n        }\n    }\n\n    // Generate output message based on determined action\n    // ON takes precedence over OFF\n    if (shouldActivateScene) {\n        // Apply the appropriate scene for current day phase\n        msg.payload = {}\n        var scene_name = thisRoom.hue_group + \" \" + dayPhase\n        msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.payload.transition = 30\n        msg.delay = msg.payload.transition * 1000\n        msg.action = \"scene\"\n        msg.config = thisRoom\n\n        // The nook doesn't do well with dynamics b/c of its lights\n        if (thisRoom.hue_group == \"Nook\") {\n            msg.payload.dynamic = false\n        }\n\n        console.debug(\"Applying scene \" + msg.entity + \" to \" + thisRoom.hue_group +\n            (shouldTurnOff ? \" (ON takes precedence over OFF)\" : \"\"))\n        node.send(msg)\n    } else if (shouldTurnOff) {\n        // Turn off the lights only if no ON conditions are met\n        msg.payload = {}\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.action = \"off\"\n        msg.config = thisRoom\n        console.debug(\"Turning off lights in \" + thisRoom.hue_group)\n        node.send(msg)\n    }\n});",
+        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function (thisRoom) {\n    let shouldActivateScene = false;\n    let shouldTurnOff = false;\n\n    // Helper function to check if a variable list matches current topic or reset\n    function isTopicRelevant(variableList) {\n        if (msg.topic == \"reset\") return true;\n        if (Array.isArray(variableList)) {\n            return variableList.includes(msg.topic);\n        } else {\n            return msg.topic == variableList;\n        }\n    }\n\n    // Helper function to evaluate conditions\n    function evaluateConditions(variableList, expectedValue) {\n        if (!variableList) return false;\n\n        const variables = Array.isArray(variableList) ? variableList : [variableList];\n\n        return variables.some(variable => {\n            const stateValue = global.get(\"state\")[variable]?.value;\n            return stateValue === expectedValue;\n        });\n    }\n\n    // Check if room should be turned ON based on conditions\n    if (\"on_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_true) && evaluateConditions(thisRoom.on_if_true, true)) {\n            shouldActivateScene = true;\n        }\n    }\n\n    if (\"on_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_false) && evaluateConditions(thisRoom.on_if_false, false)) {\n            shouldActivateScene = true;\n        }\n    }\n\n    // Check if room should be turned OFF based on conditions\n    if (\"off_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_true) && evaluateConditions(thisRoom.off_if_true, true)) {\n            shouldTurnOff = true;\n        }\n    }\n\n    if (\"off_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_false) && evaluateConditions(thisRoom.off_if_false, false)) {\n            shouldTurnOff = true;\n        }\n    }\n\n    // Generate output message based on determined action\n    // ON takes precedence over OFF\n    if (shouldActivateScene) {\n        // Apply the appropriate scene for current day phase\n        msg.payload = {}\n        var scene_name = thisRoom.hue_group + \" \" + dayPhase\n        msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n        msg.payload.transition = 30\n        msg.action = \"scene\"\n        msg.config = thisRoom\n\n        // The nook doesn't do well with dynamics b/c of its lights\n        if (thisRoom.hue_group == \"Nook\") {\n            msg.payload.dynamic = false\n        }\n\n        console.debug(\"Applying scene \" + msg.entity + \" to \" + thisRoom.hue_group +\n            (shouldTurnOff ? \" (ON takes precedence over OFF)\" : \"\"))\n        node.send(msg)\n    } else if (shouldTurnOff) {\n        // Turn off the lights only if no ON conditions are met\n        msg.payload = {}\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.action = \"off\"\n        msg.config = thisRoom\n        console.debug(\"Turning off lights in \" + thisRoom.hue_group)\n        node.send(msg)\n    }\n});",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -6838,7 +6883,8 @@
         "y": 120,
         "wires": [
             [
-                "4fbd8cc9a34cf1b8"
+                "4fbd8cc9a34cf1b8",
+                "a03414fae97c6d30"
             ],
             [
                 "76f82e989af87f08"
@@ -6949,8 +6995,41 @@
         "name": "Did Owner Just Return Home?",
         "triggerOnInit": false,
         "triggerOnChange": true,
-        "x": 550,
+        "x": 610,
         "y": 400,
+        "wires": [
+            [
+                "3e279bdd0682936e"
+            ]
+        ]
+    },
+    {
+        "id": "a03414fae97c6d30",
+        "type": "debug",
+        "z": "16cd74edb3f2c03d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "bb9424417ed157b2",
+        "type": "get-shared-state",
+        "z": "16cd74edb3f2c03d",
+        "state": "3da45b40328007dd",
+        "name": "Anyone Home and Awake",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 130,
+        "y": 420,
         "wires": [
             [
                 "3e279bdd0682936e"
