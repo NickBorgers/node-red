@@ -15,7 +15,7 @@ These are public in case they are interesting or even useful to someone else, so
 ```mermaid
 flowchart LR
 
-A[Node Red] --> |Websockets| B[Home Assistant]
+A[Node Red] <--> |Websockets| B[Home Assistant]
 A --> C[Sonos]
 A --> G[HomeKit]
 B --> E[Phillips Hue]
@@ -24,6 +24,11 @@ B --> H[Apple TV]
 B --> I[Bravia TV]
 B --> K[Google Calendar]
 B --> J[Roborock Vacuum]
+B --> L[Lutron Caseta]
+B --> M[ratgdo]
+N[Scrypted] --> |webhooks| B
+B --> P[Music Assistant]
+P --> C
 ```
 
 ### Taking a look at the nodes interactively
@@ -55,8 +60,8 @@ Music config remains quite complex, and is actually flattened out in the longest
 
 ![Music](https://nickborgers.github.io/node-red/Music.png)
 
-### Lights - Hue Control
-Phillips Hue lights are used to provide accent and ambient lighting in the home. Task lighting is entirely separate and uses manually switched lights. Some conditional behavior is driven by [hue_config.yaml](configs/hue_config.yaml) but a scene in the Hue system must exist for activation based on the "day phase" of the home.
+### Lighting Control
+A blend of Lutron Caseta and Phillips Hue lights are used to provide accent and ambient lighting in the home. Task lighting is entirely separate and uses manually switched lights. Some conditional behavior is driven by [hue_config.yaml](configs/hue_config.yaml) but a scene in the Hue system must exist for activation based on the "day phase" of the home.
 
 Hue config got significantly less complex when I adopted Home Assistant, as it has wonderful Hue integration which allowed me to key off the string names of the scenes for each Hue "room" in the home. At this point, modifying the lighting of a scene is done directly through the Hue App and you just save the Scene with the name matching which "Home Day Phase" it is for, e.g. `Morning`.
 
@@ -91,17 +96,23 @@ When we watch something on the TV we want the nearby speakers to mute. So, we mo
 
 ![TV Monitoring and Manipulation](https://nickborgers.github.io/node-red/TV%20Monitoring%20and%20Manipulation.png)
 
-### Pool Pump
-We have a pool and a solar system for electricity generation. The automation detects solar irradiance (energy being receieved) with our weather station and uses that to kick up the pool pump. This work pretty well because algae only grows with solar energy, and this way we only drive the pool pump when we are producing energy.
+### Energy State
+We have an electrical energy generation, storage, and backup system. To summarize the state of this system and drive automations, I configured a "level" concept in:
+  - [energy_config.yaml](configs/energy_config.yaml)
 
-This is also how we trigger the pool pump during freezing temperatures, again relying on local weather data from our weather station device.
+We additionally get free energy at night, and so have an override of energy level if infinite free electricity is available.
 
-![Pool Pump](https://nickborgers.github.io/node-red/Pool%20Pump.png)
+![Energy State](https://nickborgers.github.io/node-red/Energy%20State.png)
+
+### Load Shedding
+To better utilize our backup energy supply I have implemented some load shedding beyond what our [SPAN panels provide](https://www.span.io/panel). In particular HVAC is our largest use of energy by far, and widening temperature ranges can save a huge amount of energy. Thus, if we reach certain energy levels we should either widen our temperature range to save energy or resume our "comfort" mode.
+
+![Load Shedding](https://nickborgers.github.io/node-red/Load%20Shedding.png)
 
 ### Security
-Nothing too fancy, just open the garage door if someone comes home and lock things down when folks leave or go to sleep.
+Based on Apple Homekit presence detection and/or everyone going to sleep, lock down the house or open the garage door if someone is returning and the garage is open (thanks [ratgdo](https://ratcloud.llc/)).
 
-This also includes the doorbell notification driven from Scrypted.
+This also includes the doorbell notification driven from Scrypted. And most recently is trying to have a trigger we can activate with a Siri command of "Turn on expecting someone" to then cause a notification when a vehicle arrives.
 
 ![Security](https://nickborgers.github.io/node-red/Security.png)
 
