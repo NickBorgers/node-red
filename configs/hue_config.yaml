@@ -5,25 +5,25 @@ rooms:
     on_if_true: ~
     on_if_false: ~
     off_if_true: isEveryoneAsleep
-    off_if_false: ~
+    off_if_false: isAnyoneHome
     increase_brightness_if_true: isHaveGuests
   - hue_group: Primary Suite
     hass_area_id: master_bedroom
     on_if_true: ~
     on_if_false: ~
     off_if_true: isMasterAsleep
-    off_if_false: ~
+    off_if_false: isAnyoneHome
   - hue_group: Sitting Room
     hass_area_id: dining_room
     on_if_true: ~
     on_if_false: ~
     off_if_true: isEveryoneAsleep
-    off_if_false: ~
+    off_if_false: isAnyoneHome
     increase_brightness_if_true: ~
   - hue_group: Front of House
     hass_area_id: front_of_house
     on_if_true: ~
-    on_if_false: ~
+    off_if_false: isAnyoneHome
     off_if_true: isEveryoneAsleep
     off_if_false: isHaveGuests
   - hue_group: N Office
@@ -38,5 +38,5 @@ rooms:
     on_if_true: isKitchenOccupied
     on_if_false: ~
     off_if_true: ~
-    off_if_false: ~
+    off_if_false: isAnyoneHome
     increase_brightness_if_true: ~
