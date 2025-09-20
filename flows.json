@@ -1438,6 +1438,23 @@
         "saveInterval": "0"
     },
     {
+        "id": "0ebca88b6efb691b",
+        "type": "shared-state",
+        "name": "isExpectingSomeone",
+        "lbl": "Expecting someone?",
+        "tags": "",
+        "historyCount": 2,
+        "dataType": "bool",
+        "boolType": "bool",
+        "boolStrTrue": "",
+        "boolStrFalse": "",
+        "precision": "",
+        "numMin": "",
+        "numMax": "",
+        "unit": "",
+        "saveInterval": "0"
+    },
+    {
         "id": "9460cec7.a8b9e8",
         "type": "set-shared-state",
         "z": "d7a3510d.e93d98",
@@ -21387,6 +21404,251 @@
         "service": "turn_on",
         "x": 610,
         "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f188922870d169e3",
+        "type": "server-state-changed",
+        "z": "7097dab4eb91af0f",
+        "name": "Expecting Someone",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.expecting_someone"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "x": 790,
+        "y": 120,
+        "wires": [
+            [
+                "bbe5e4d95a5e15e5"
+            ]
+        ]
+    },
+    {
+        "id": "bbe5e4d95a5e15e5",
+        "type": "set-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "0ebca88b6efb691b",
+        "name": "Expecting someone?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 1020,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "fc2f4388f9d28ce4",
+        "type": "comment",
+        "z": "7097dab4eb91af0f",
+        "name": "Expecting Someone?",
+        "info": "",
+        "x": 800,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "73bdf2292477b0da",
+        "type": "server-state-changed",
+        "z": "7097dab4eb91af0f",
+        "name": "Vehicle arriving",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_button.vehicle_arriving"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": false,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [],
+        "x": 780,
+        "y": 180,
+        "wires": [
+            [
+                "8ba366f8ae871e26"
+            ]
+        ]
+    },
+    {
+        "id": "8ba366f8ae871e26",
+        "type": "function",
+        "z": "7097dab4eb91af0f",
+        "name": "Are we expecting someone?",
+        "func": "var expectingSomeone = global.get(\"state\").isExpectingSomeone.value\n\nif (expectingSomeone) {\n    return msg;\n}\n\nreturn null",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 180,
+        "wires": [
+            [
+                "1e737c63e3258ba9"
+            ]
+        ]
+    },
+    {
+        "id": "f1d40b635a643bf3",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Notify Audibly",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "tts.speak",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "tts.google_translate_en_com"
+        ],
+        "labelId": [],
+        "data": "{\"cache\":true,\"media_player_entity_id\":[\"media_player.bedroom\",\"media_player.kitchen\",\"media_player.dining_room\",\"media_player.soundbar\",\"media_player.kids_bathroom\"],\"message\":\"They have arrived\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "tts",
+        "service": "speak",
+        "x": 1000,
+        "y": 260,
+        "wires": [
+            [
+                "962e4e788146452a"
+            ]
+        ]
+    },
+    {
+        "id": "1e737c63e3258ba9",
+        "type": "delay",
+        "z": "7097dab4eb91af0f",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "20",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 820,
+        "y": 260,
+        "wires": [
+            [
+                "f1d40b635a643bf3"
+            ]
+        ]
+    },
+    {
+        "id": "962e4e788146452a",
+        "type": "change",
+        "z": "7097dab4eb91af0f",
+        "name": "Set false",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 260,
+        "wires": [
+            [
+                "c3b3cc17de96cb57"
+            ]
+        ]
+    },
+    {
+        "id": "c3b3cc17de96cb57",
+        "type": "api-call-service",
+        "z": "7097dab4eb91af0f",
+        "name": "Reset Expecting Someone",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.expecting_someone"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 1360,
+        "y": 260,
         "wires": [
             []
         ]
