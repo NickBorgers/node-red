@@ -1941,7 +1941,7 @@
         "name": "Door Tracking",
         "info": "",
         "x": 130,
-        "y": 1300,
+        "y": 1320,
         "wires": []
     },
     {
@@ -3738,15 +3738,15 @@
         "id": "4befb06ddb926631",
         "type": "function",
         "z": "d7a3510d.e93d98",
-        "name": "Is anyone awake?",
-        "func": "// If anyone is asleep true otherwise false\nmsg.payload = !(global.get(\"state\").isMasterAsleep.value || global.get(\"state\").isGuestAsleep.value)\nreturn msg;",
+        "name": "Is anyone home and awake?",
+        "func": "// If anyone home and awake\nvar anyone_awake = !(global.get(\"state\").isMasterAsleep.value || global.get(\"state\").isGuestAsleep.value)\nvar anyone_home = global.get(\"state\").isAnyoneHome.value\n\nmsg.paylod = anyone_awake && anyone_home;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
+        "x": 400,
         "y": 1240,
         "wires": [
             [
@@ -3764,7 +3764,7 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 630,
+        "x": 650,
         "y": 1240,
         "wires": []
     },
@@ -3899,34 +3899,11 @@
         "name": "Anyone Home",
         "triggerOnInit": true,
         "triggerOnChange": true,
-        "x": 310,
+        "x": 150,
         "y": 1280,
         "wires": [
             [
-                "298cbad85632a636"
-            ]
-        ]
-    },
-    {
-        "id": "298cbad85632a636",
-        "type": "switch",
-        "z": "d7a3510d.e93d98",
-        "name": "false",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 450,
-        "y": 1280,
-        "wires": [
-            [
-                "b94472c5c70b82fc"
+                "4befb06ddb926631"
             ]
         ]
     },
