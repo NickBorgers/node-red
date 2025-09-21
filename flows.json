@@ -4513,7 +4513,7 @@
         "type": "function",
         "z": "634c78c80eb9f37e",
         "name": "Phase Decider",
-        "func": "var sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nvar now = new Date()\n// Get the hour\nvar this_hour = now.getHours()\n// Get the minute\nvar this_minute = now.getMinutes()\n\n// Get override times\nvar dusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nvar winddown_time = new Date(global.get(\"state\").schedule.value.winddown)\nvar night_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    msg.payload = \"dusk\"\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time or early in the morning\n    if (now > night_time || this_hour < 6) {\n        msg.payload = \"night\"\n    // If it's after winddown time\n    } else if (now > winddown_time) {\n        msg.payload = \"winddown\"\n    }\n}\n\nreturn msg;",
+        "func": "var sun_event = global.get(\"state\").sunevent.value\n\nmsg = {}\n\n// Get current time\nvar now = new Date()\n// Get the hour\nvar this_hour = now.getHours()\n// Get the minute\nvar this_minute = now.getMinutes()\n\n// Get override times\nvar dusk_time = new Date(global.get(\"state\").schedule.value.dusk)\nvar winddown_time = new Date(global.get(\"state\").schedule.value.winddown)\nvar night_time = new Date(global.get(\"state\").schedule.value.night)\n\n// No override of morning, just go with the sun event\nif (sun_event == \"morning\")\n    // Override if after noon\n    if (this_hour >= 12) {\n        msg.payload = \"day\"\n    } else {\n        msg.payload = \"morning\"\n    }\n// No override of day, just go with the sun event\nif (sun_event == \"day\")\n    msg.payload = \"day\"\n// No override of sunset, just go with the sun event\nif (sun_event == \"sunset\")\n    msg.payload = \"sunset\"\n// If it's dusk we're going to override\nif (sun_event == \"dusk\") {\n    msg.payload = \"dusk\"\n}\n// If it's night we're going to override\nif (sun_event == \"night\") {\n    // If it's after night time or early in the morning\n    if (now > night_time || this_hour < 6) {\n        msg.payload = \"night\"\n    // If it's not night it's winddown\n    } else {\n        msg.payload = \"winddown\"\n    }\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5806,7 +5806,7 @@
         "z": "16cd74edb3f2c03d",
         "name": "Turn off lights path",
         "info": "",
-        "x": 1250,
+        "x": 1670,
         "y": 260,
         "wires": []
     },
@@ -6245,7 +6245,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1550,
+        "x": 2030,
         "y": 120,
         "wires": [
             [
@@ -6276,7 +6276,7 @@
         "blockInputOverrides": false,
         "domain": "light",
         "service": "turn_on",
-        "x": 1950,
+        "x": 2430,
         "y": 120,
         "wires": [
             []
@@ -6299,7 +6299,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 1780,
+        "x": 2260,
         "y": 120,
         "wires": [
             [
@@ -6869,8 +6869,8 @@
         "y": 120,
         "wires": [
             [
-                "9d778c91b22ded93",
-                "60735e1ed5c7cc27"
+                "60735e1ed5c7cc27",
+                "04323e8a763c59c7"
             ]
         ]
     },
@@ -6896,15 +6896,14 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1030,
+        "x": 1210,
         "y": 120,
         "wires": [
             [
-                "4fbd8cc9a34cf1b8",
-                "a03414fae97c6d30"
+                "b226c8126f2066ca"
             ],
             [
-                "76f82e989af87f08"
+                "cdb9a09d1511a955"
             ]
         ]
     },
@@ -6912,7 +6911,7 @@
         "id": "4fbd8cc9a34cf1b8",
         "type": "api-call-service",
         "z": "16cd74edb3f2c03d",
-        "name": "Activate Dynamic Scene",
+        "name": "Activate Scene",
         "server": "3ec50562615a9f50",
         "version": 7,
         "debugenabled": false,
@@ -6933,11 +6932,11 @@
         "blockInputOverrides": false,
         "domain": "scene",
         "service": "turn_on",
-        "x": 1250,
+        "x": 1660,
         "y": 120,
         "wires": [
             [
-                "d13c1bcbd1548e82"
+                "a03414fae97c6d30"
             ]
         ]
     },
@@ -6971,7 +6970,7 @@
         "blockInputOverrides": false,
         "domain": "light",
         "service": "turn_off",
-        "x": 1260,
+        "x": 1680,
         "y": 200,
         "wires": [
             []
@@ -6983,7 +6982,7 @@
         "z": "16cd74edb3f2c03d",
         "name": "Activate scene path",
         "info": "",
-        "x": 1230,
+        "x": 1650,
         "y": 80,
         "wires": []
     },
@@ -7033,7 +7032,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1260,
+        "x": 1640,
         "y": 20,
         "wires": []
     },
@@ -7050,6 +7049,116 @@
         "wires": [
             [
                 "3e279bdd0682936e"
+            ]
+        ]
+    },
+    {
+        "id": "04323e8a763c59c7",
+        "type": "delay",
+        "z": "16cd74edb3f2c03d",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1050,
+        "y": 120,
+        "wires": [
+            [
+                "9d778c91b22ded93"
+            ]
+        ]
+    },
+    {
+        "id": "b226c8126f2066ca",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Remove extraneous fields",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "action",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "config",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "delay",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "topic",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload.area_id",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1430,
+        "y": 120,
+        "wires": [
+            [
+                "4fbd8cc9a34cf1b8"
+            ]
+        ]
+    },
+    {
+        "id": "cdb9a09d1511a955",
+        "type": "change",
+        "z": "16cd74edb3f2c03d",
+        "name": "Remove extraneous fields",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "action",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "config",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "delay",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "topic",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1430,
+        "y": 200,
+        "wires": [
+            [
+                "76f82e989af87f08"
             ]
         ]
     },
