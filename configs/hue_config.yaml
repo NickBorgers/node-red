@@ -28,7 +28,7 @@ rooms:
       - didOwnerJustReturnHome
     on_if_false: ~
     off_if_true: isEveryoneAsleep
-    off_if_false: 
+    off_if_false:
       - isHaveGuests
       - didOwnerJustReturnHome
     increase_brightness_if_true: ~

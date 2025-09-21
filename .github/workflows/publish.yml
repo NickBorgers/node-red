@@ -30,7 +30,7 @@ jobs:
         run: make generate-screenshots
       - name: Upload screenshots as a github-pages artifact
         uses: actions/upload-pages-artifact@v3
-        with: 
+        with:
           path: .automated-rendering/screenshot-capture/screenshots/
   publish-screenshots:
     needs: generate-screenshots

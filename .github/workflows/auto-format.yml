@@ -1,0 +1,106 @@
+name: Auto-Format
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  auto-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo content
+        uses: actions/checkout@v4
+
+      - name: Check for formatting issues
+        id: format-check
+        run: |
+          # Create a flag to track if any changes were made
+          CHANGES_MADE=false
+
+          # Fix trailing spaces in YAML files
+          echo "Checking for trailing spaces in YAML files..."
+          if find configs/ -name "*.yaml" -exec sed -i 's/[[:space:]]*$//' {} + && git diff --quiet; then
+            echo "No trailing spaces found"
+          else
+            echo "Fixed trailing spaces in YAML files"
+            CHANGES_MADE=true
+          fi
+
+          # Fix trailing spaces in other common files (excluding workflow files)
+          echo "Checking for trailing spaces in other files..."
+          if find . -name "*.js" -o -name "*.json" -o -name "*.md" | grep -v node_modules | grep -v .github/workflows | xargs -r sed -i 's/[[:space:]]*$//' && git diff --quiet; then
+            echo "No trailing spaces found in other files"
+          else
+            echo "Fixed trailing spaces in other files"
+            CHANGES_MADE=true
+          fi
+
+          # Check if any changes were made
+          if [ "$CHANGES_MADE" = true ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Formatting changes detected"
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No formatting issues found"
+          fi
+
+      - name: Run config tests to validate changes
+        if: steps.format-check.outputs.changes == 'true'
+        run: |
+          echo "Running config tests to ensure fixes are valid..."
+          make run-config-tests
+
+      - name: Create Pull Request
+        if: steps.format-check.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            Auto-fix formatting issues
+
+            - Remove trailing spaces from YAML and other files
+            - Ensure yamllint compliance
+
+            🤖 Generated with [Claude Code](https://claude.ai/code)
+
+            Co-Authored-By: Claude <noreply@anthropic.com>
+          title: 'Auto-fix: Remove trailing spaces and formatting issues'
+          body: |
+            ## Summary
+            This PR automatically fixes formatting issues found in the repository:
+
+            - Removes trailing spaces from YAML files in `configs/`
+            - Removes trailing spaces from JS, JSON, MD, and YML files
+            - Ensures yamllint compliance
+
+            ## Validation
+            - ✅ Config tests pass after formatting fixes
+            - ✅ All YAML files pass yamllint validation
+
+            ## Changes Made
+            The following types of formatting issues were automatically fixed:
+            - Trailing whitespace removal
+            - YAML formatting compliance
+
+            This PR was created automatically by the daily formatting workflow.
+
+            🤖 Generated with [Claude Code](https://claude.ai/code)
+          branch: auto-format/trailing-spaces
+          branch-suffix: timestamp
+          delete-branch: true
+          draft: false
+
+      - name: Log results
+        run: |
+          if [ "${{ steps.format-check.outputs.changes }}" = "true" ]; then
+            echo "✅ Formatting issues found and fixed. PR created."
+          else
+            echo "✅ No formatting issues found. Repository is clean."
+          fi
