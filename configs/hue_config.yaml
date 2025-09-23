@@ -7,6 +7,7 @@ rooms:
     off_if_true: isEveryoneAsleep
     off_if_false: isAnyoneHome
     increase_brightness_if_true: isHaveGuests
+    transition_seconds: 120
   - hue_group: Primary Suite
     hass_area_id: master_bedroom
     on_if_true: ~
@@ -14,6 +15,7 @@ rooms:
     off_if_true: isMasterAsleep
     off_if_false: isAnyoneHome
     increase_brightness_if_true: ~
+    transition_seconds: 120
   - hue_group: Sitting Room
     hass_area_id: dining_room
     on_if_true: isAnyoneHomeAndAwake
@@ -21,6 +23,7 @@ rooms:
     off_if_true: isEveryoneAsleep
     off_if_false: isAnyoneHome
     increase_brightness_if_true: ~
+    transition_seconds: 120
   - hue_group: Front of House
     hass_area_id: front_of_house
     on_if_true:
@@ -32,6 +35,7 @@ rooms:
       - isHaveGuests
       - didOwnerJustReturnHome
     increase_brightness_if_true: ~
+    transition_seconds: 120
   - hue_group: Decorative Outdoor Lights
     hass_area_id: front_of_house
     on_if_true: didOwnerJustReturnHome
@@ -39,6 +43,7 @@ rooms:
     off_if_true: isEveryoneAsleep
     off_if_false: didOwnerJustReturnHome
     increase_brightness_if_true: ~
+    transition_seconds: ~
   - hue_group: N Office
     hass_area_id: n_office
     on_if_true: isNickOfficeOccupied
@@ -46,10 +51,12 @@ rooms:
     off_if_true: ~
     off_if_false: isNickOfficeOccupied
     increase_brightness_if_true: ~
+    transition_seconds: 2
   - hue_group: Kitchen
     hass_area_id: kitchen
     on_if_true: isKitchenOccupied
     on_if_false: ~
-    off_if_true: isEveryoneAsleep
-    off_if_false: isAnyoneHome
+    off_if_true: ~
+    off_if_false: isAnyoneHomeAndAwake
     increase_brightness_if_true: ~
+    transition_seconds: 5
