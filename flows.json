@@ -3739,7 +3739,7 @@
         "type": "function",
         "z": "d7a3510d.e93d98",
         "name": "Is anyone home and awake?",
-        "func": "// If anyone home and awake\nvar anyone_awake = !(global.get(\"state\").isMasterAsleep.value || global.get(\"state\").isGuestAsleep.value)\nvar anyone_home = global.get(\"state\").isAnyoneHome.value\n\nmsg.paylod = anyone_awake && anyone_home;\n\nreturn msg;",
+        "func": "// If anyone home and awake\nvar anyone_awake = !(global.get(\"state\").isMasterAsleep.value || global.get(\"state\").isGuestAsleep.value)\nvar anyone_home = global.get(\"state\").isAnyoneHome.value\n\nmsg.payload = anyone_awake && anyone_home;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
