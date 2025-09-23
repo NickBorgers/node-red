@@ -20864,6 +20864,35 @@
         ]
     },
     {
+        "id": "a015aa01df84e52b",
+        "type": "inject",
+        "z": "25c8955517cef179",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 980,
+        "wires": [
+            [
+                "4711a670d7ec0e58"
+            ]
+        ]
+    },
+    {
         "id": "938ddcbfe0b17e2f",
         "type": "get-shared-state",
         "z": "7097dab4eb91af0f",
