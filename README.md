@@ -87,7 +87,7 @@ Responding to the occupants of the home requires tracking state, largely facilit
 ![State Tracking](https://nickborgers.github.io/node-red/State%20Tracking.png)
 
 ### Sleep Hygiene
-We're working on sleep hygiene right now and have enslisted the home automation to help. 
+We're working on sleep hygiene right now and have enslisted the home automation to help.
 
 ![Sleep Hygiene](https://nickborgers.github.io/node-red/Sleep%20Hygiene.png)
 
