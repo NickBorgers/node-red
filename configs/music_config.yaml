@@ -102,7 +102,7 @@ music:
       - uri: spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
         media_type: playlist
         volume_multiplier: 1.0
-      # Owl City
+      # Kygo Radio
       - uri: spotify:playlist:37i9dQZF1E4zvzTbEfkwF2
         media_type: playlist
         volume_multiplier: 1.0
