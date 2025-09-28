@@ -3805,7 +3805,7 @@
         "y": 1780,
         "wires": [
             [
-                "347b9767c5cc33d1"
+                "1a12698790eb0edd"
             ]
         ]
     },
@@ -3819,7 +3819,7 @@
         "triggerOnChange": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 710,
+        "x": 790,
         "y": 1820,
         "wires": []
     },
@@ -3904,6 +3904,33 @@
         "wires": [
             [
                 "4befb06ddb926631"
+            ]
+        ]
+    },
+    {
+        "id": "1a12698790eb0edd",
+        "type": "change",
+        "z": "d7a3510d.e93d98",
+        "name": "Set false",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 1780,
+        "wires": [
+            [
+                "347b9767c5cc33d1"
             ]
         ]
     },
@@ -6835,7 +6862,7 @@
         "type": "function",
         "z": "16cd74edb3f2c03d",
         "name": "Determine what action to take based on variable change",
-        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function(thisRoom) {\n    let shouldActivateScene = false;\n    let shouldTurnOff = false;\n    \n    // Helper function to check if a variable list matches current topic or reset\n    function isTopicRelevant(variableList) {\n        if (msg.topic == \"reset\" || msg.topic == \"dayPhase\") return true;\n        if (Array.isArray(variableList)) {\n            return variableList.includes(msg.topic);\n        } else {\n            return msg.topic == variableList;\n        }\n    }\n    \n    // Helper function to evaluate conditions\n    function evaluateConditions(variableList, expectedValue) {\n        if (!variableList) return false;\n        \n        const variables = Array.isArray(variableList) ? variableList : [variableList];\n        \n        return variables.some(variable => {\n            const stateValue = global.get(\"state\")[variable]?.value;\n            return stateValue === expectedValue;\n        });\n    }\n    \n    // Check if room should be turned ON based on conditions\n    if (\"on_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_true) && evaluateConditions(thisRoom.on_if_true, true)) {\n            shouldActivateScene = true;\n        }\n    }\n    \n    if (\"on_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_false) && evaluateConditions(thisRoom.on_if_false, false)) {\n            shouldActivateScene = true;\n        }\n    }\n    \n    // Check if room should be turned OFF based on conditions\n    if (\"off_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_true) && evaluateConditions(thisRoom.off_if_true, true)) {\n            shouldTurnOff = true;\n        }\n    }\n    \n    if (\"off_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_false) && evaluateConditions(thisRoom.off_if_false, false)) {\n            shouldTurnOff = true;\n        }\n    }\n    \n    // Generate output message based on determined action\n    // ON takes precedence over OFF\n    if (shouldActivateScene) {\n        // Apply the appropriate scene for current day phase\n        msg.payload = {}\n        var scene_name = thisRoom.hue_group + \" \" + dayPhase \n        msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.payload.transition = thisRoom.transition_seconds\n        msg.delay = msg.payload.transition * 1000\n        msg.action = \"scene\"\n        msg.config = thisRoom\n        \n        // The nook doesn't do well with dynamics b/c of its lights\n        if (thisRoom.hue_group == \"Nook\") {\n            msg.payload.dynamic = false\n        }\n        \n        console.debug(\"Applying scene \" + msg.entity + \" to \" + thisRoom.hue_group + \n                     (shouldTurnOff ? \" (ON takes precedence over OFF)\" : \"\"))\n        node.send(msg)\n    } else if (shouldTurnOff) {\n        // Turn off the lights only if no ON conditions are met\n        msg.payload = {}\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.action = \"off\"\n        msg.config = thisRoom\n        console.debug(\"Turning off lights in \" + thisRoom.hue_group)\n        node.send(msg)\n    }\n});",
+        "func": "const toSnakeCase = str =>\n    str &&\n    str\n        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)\n        .map(x => x.toLowerCase())\n        .join('_');\n\nvar hueConfig = global.get(\"state\").hueConfig.value\nvar dayPhase = global.get(\"state\").dayPhase.value\n\nhueConfig.rooms.forEach(function (thisRoom) {\n    let shouldActivateScene = false;\n    let shouldTurnOff = false;\n\n    // Helper function to check if a variable list matches current topic or reset\n    function isTopicRelevant(variableList) {\n        if (msg.topic == \"reset\" || msg.topic == \"dayPhase\") return true;\n        if (Array.isArray(variableList)) {\n            return variableList.includes(msg.topic);\n        } else {\n            return msg.topic == variableList;\n        }\n    }\n\n    // Helper function to evaluate conditions\n    function evaluateConditions(variableList, expectedValue) {\n        if (!variableList) return false;\n\n        const variables = Array.isArray(variableList) ? variableList : [variableList];\n\n        return variables.some(variable => {\n            const stateValue = global.get(\"state\")[variable]?.value;\n            return stateValue === expectedValue;\n        });\n    }\n\n    // Check if room should be turned ON based on conditions\n    if (\"on_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_true) && evaluateConditions(thisRoom.on_if_true, true)) {\n            shouldActivateScene = true;\n        }\n    }\n\n    if (\"on_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.on_if_false) && evaluateConditions(thisRoom.on_if_false, false)) {\n            shouldActivateScene = true;\n        }\n    }\n\n    // Check if room should be turned OFF based on conditions\n    if (\"off_if_true\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_true) && evaluateConditions(thisRoom.off_if_true, true)) {\n            shouldTurnOff = true;\n        }\n    }\n\n    if (\"off_if_false\" in thisRoom) {\n        if (isTopicRelevant(thisRoom.off_if_false) && evaluateConditions(thisRoom.off_if_false, false)) {\n            shouldTurnOff = true;\n        }\n    }\n\n    // Generate output message based on determined action\n    // ON takes precedence over OFF\n    if (shouldActivateScene) {\n        // Apply the appropriate scene for current day phase\n        msg.payload = {}\n        var scene_name = thisRoom.hue_group + \" \" + dayPhase\n        msg.entity = \"scene.\" + String(toSnakeCase(scene_name))\n        msg.payload.area_id = thisRoom.hass_area_id\n\n        // Only set transition if it's not null/undefined\n        if (thisRoom.transition_seconds != null) {\n            msg.payload.transition = thisRoom.transition_seconds\n            msg.delay = msg.payload.transition * 1000\n        }\n\n        msg.action = \"scene\"\n        msg.config = thisRoom\n\n        // The nook doesn't do well with dynamics b/c of its lights\n        if (thisRoom.hue_group == \"Nook\") {\n            msg.payload.dynamic = false\n        }\n\n        console.debug(\"Applying scene \" + msg.entity + \" to \" + thisRoom.hue_group +\n            (shouldTurnOff ? \" (ON takes precedence over OFF)\" : \"\"))\n        node.send(msg)\n    } else if (shouldTurnOff) {\n        // Turn off the lights only if no ON conditions are met\n        msg.payload = {}\n        msg.payload.area_id = thisRoom.hass_area_id\n        msg.action = \"off\"\n        msg.config = thisRoom\n        console.debug(\"Turning off lights in \" + thisRoom.hue_group)\n        node.send(msg)\n    }\n});",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
