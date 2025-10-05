@@ -3874,7 +3874,8 @@
         "y": 1820,
         "wires": [
             [
-                "13978101a7e29e88"
+                "13978101a7e29e88",
+                "ec4910a3b6ff7525"
             ],
             [
                 "347b9767c5cc33d1"
@@ -3933,6 +3934,20 @@
                 "347b9767c5cc33d1"
             ]
         ]
+    },
+    {
+        "id": "ec4910a3b6ff7525",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "8016fa34ee571968",
+        "name": "Did Owner Just Return Home?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 530,
+        "y": 1880,
+        "wires": []
     },
     {
         "id": "f98f511841b27c8c",
@@ -19507,7 +19522,7 @@
         "z": "164999f348401406",
         "state": "e1e1553b9b6a27c9",
         "name": "Is Apple TV Playing?",
-        "triggerOnInit": true,
+        "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 130,
         "y": 620,
@@ -21120,38 +21135,6 @@
         "wires": []
     },
     {
-        "id": "6326527cbc95979b",
-        "type": "get-shared-state",
-        "z": "7097dab4eb91af0f",
-        "state": "857635a5cf27b9ea",
-        "name": "Nick Home",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 160,
-        "y": 440,
-        "wires": [
-            [
-                "2e6192d062141541"
-            ]
-        ]
-    },
-    {
-        "id": "7f5d2ac5891d4983",
-        "type": "get-shared-state",
-        "z": "7097dab4eb91af0f",
-        "state": "b2f3086099f29cf0",
-        "name": "Caroline Home",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 180,
-        "y": 500,
-        "wires": [
-            [
-                "2e6192d062141541"
-            ]
-        ]
-    },
-    {
         "id": "2e6192d062141541",
         "type": "switch",
         "z": "7097dab4eb91af0f",
@@ -21728,6 +21711,22 @@
         "y": 260,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "d98e8c2771197cc3",
+        "type": "get-shared-state",
+        "z": "7097dab4eb91af0f",
+        "state": "8016fa34ee571968",
+        "name": "Did Owner Just Return Home?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "2e6192d062141541"
+            ]
         ]
     },
     {
