@@ -3769,22 +3769,6 @@
         "wires": []
     },
     {
-        "id": "b6e0aad6e7ce5559",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "9fcddb6cb7581f32",
-        "name": "Is Any Owner Home?",
-        "triggerOnInit": false,
-        "triggerOnChange": true,
-        "x": 180,
-        "y": 1820,
-        "wires": [
-            [
-                "1d2eab946f062da3"
-            ]
-        ]
-    },
-    {
         "id": "13978101a7e29e88",
         "type": "delay",
         "z": "d7a3510d.e93d98",
@@ -3948,6 +3932,38 @@
         "x": 530,
         "y": 1880,
         "wires": []
+    },
+    {
+        "id": "2a715df9674ea43e",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "b2f3086099f29cf0",
+        "name": "Caroline Home",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 160,
+        "y": 1800,
+        "wires": [
+            [
+                "1d2eab946f062da3"
+            ]
+        ]
+    },
+    {
+        "id": "d2b9b16b6a2f9731",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "857635a5cf27b9ea",
+        "name": "Nick Home",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "x": 180,
+        "y": 1840,
+        "wires": [
+            [
+                "1d2eab946f062da3"
+            ]
+        ]
     },
     {
         "id": "f98f511841b27c8c",
