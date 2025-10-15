@@ -17,7 +17,8 @@ flowchart LR
 
 A[Node Red] <--> |Websockets| B[Home Assistant]
 A --> C[Sonos]
-A --> G[HomeKit]
+A <--> G[HomeKit]
+B <--> G
 B --> E[Phillips Hue]
 B --> F[Dyson]
 B --> H[Apple TV]
@@ -27,8 +28,8 @@ B --> J[Roborock Vacuum]
 B --> L[Lutron Caseta]
 B --> M[ratgdo]
 N[Scrypted] --> |webhooks| B
-B --> P[Music Assistant]
-P --> C
+B --> C
+O((Device Location)) --> G
 ```
 
 ### Taking a look at the nodes interactively
