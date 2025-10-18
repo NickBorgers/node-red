@@ -18634,7 +18634,7 @@
         "name": "Monitor for whether sync box is on",
         "info": "",
         "x": 740,
-        "y": 240,
+        "y": 200,
         "wires": []
     },
     {
@@ -18676,7 +18676,7 @@
             }
         ],
         "x": 720,
-        "y": 280,
+        "y": 240,
         "wires": [
             [
                 "664cfc7887a2380f"
@@ -18693,7 +18693,7 @@
         "triggerOnInit": true,
         "provideOutput": false,
         "outputs": 0,
-        "x": 1080,
+        "x": 1140,
         "y": 300,
         "wires": []
     },
@@ -18736,7 +18736,7 @@
             }
         ],
         "x": 720,
-        "y": 340,
+        "y": 300,
         "wires": [
             [
                 "664cfc7887a2380f"
@@ -18956,65 +18956,6 @@
         "y": 780,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "86d4e21e11d6bf10",
-        "type": "ha-api",
-        "z": "164999f348401406",
-        "d": true,
-        "name": "Restart Apple TV Integration",
-        "server": "3ec50562615a9f50",
-        "version": 1,
-        "debugenabled": false,
-        "protocol": "http",
-        "method": "post",
-        "path": "config/config_entries/entry/01JQ488J195TKC2EH8057NNY9Q/reload",
-        "data": "{}",
-        "dataType": "json",
-        "responseType": "json",
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "results"
-            }
-        ],
-        "x": 1080,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e394e3d7d2d0f765",
-        "type": "inject",
-        "z": "164999f348401406",
-        "d": true,
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 860,
-        "y": 380,
-        "wires": [
-            [
-                "86d4e21e11d6bf10"
-            ]
         ]
     },
     {
@@ -19381,7 +19322,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 930,
+        "x": 990,
         "y": 300,
         "wires": [
             [
@@ -19546,6 +19487,53 @@
             [
                 "44d48764e6ac1837"
             ]
+        ]
+    },
+    {
+        "id": "6294c82da0d80743",
+        "type": "server-state-changed",
+        "z": "164999f348401406",
+        "name": "Sense if sync box is unavailable",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "switch.sync_box_power"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "unavailable",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "x": 750,
+        "y": 360,
+        "wires": [
+            [
+                "664cfc7887a2380f"
+            ],
+            []
         ]
     },
     {
