@@ -60,3 +60,11 @@ rooms:
     off_if_false: isAnyoneHomeAndAwake
     increase_brightness_if_true: ~
     transition_seconds: 5
+  - hue_group: C Office
+    hass_area_id: c_office
+    on_if_true: ~
+    on_if_false: ~
+    off_if_true: ~
+    off_if_false: isAnyoneHomeAndAwake
+    increase_brightness_if_true: ~
+    transition_seconds: 2
