@@ -7133,6 +7133,22 @@
         ]
     },
     {
+        "id": "c4c2ddaa3a859c1f",
+        "type": "get-shared-state",
+        "z": "16cd74edb3f2c03d",
+        "state": "d9abb6b3441e0c2a",
+        "name": "Is TV Playing?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 90,
+        "y": 480,
+        "wires": [
+            [
+                "3e279bdd0682936e"
+            ]
+        ]
+    },
+    {
         "id": "ed9bddb805628e39",
         "type": "sonos-universal",
         "z": "90f5fe8cb80ae6a7",
