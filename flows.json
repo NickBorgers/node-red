@@ -19537,6 +19537,113 @@
         ]
     },
     {
+        "id": "f4b5db83bcb564b7",
+        "type": "get-shared-state",
+        "z": "164999f348401406",
+        "state": "d9abb6b3441e0c2a",
+        "name": "Is TV Playing?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 110,
+        "y": 1140,
+        "wires": [
+            [
+                "4448689b55cd2653"
+            ]
+        ]
+    },
+    {
+        "id": "285e9e8fcebccb9c",
+        "type": "api-call-service",
+        "z": "164999f348401406",
+        "name": "Turn on Sync",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sync_box_light_sync"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 450,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4448689b55cd2653",
+        "type": "switch",
+        "z": "164999f348401406",
+        "name": "True or False",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 270,
+        "y": 1140,
+        "wires": [
+            [
+                "285e9e8fcebccb9c"
+            ],
+            [
+                "3344aee450a5a16d"
+            ]
+        ]
+    },
+    {
+        "id": "3344aee450a5a16d",
+        "type": "api-call-service",
+        "z": "164999f348401406",
+        "name": "Turn off Sync",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sync_box_light_sync"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 450,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "5ab60c4fdfb101bc",
         "type": "function",
         "z": "c90d4a5ca629d0b3",
