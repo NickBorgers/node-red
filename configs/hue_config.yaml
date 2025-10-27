@@ -3,7 +3,7 @@ rooms:
   - hue_group: Living Room
     hass_area_id: living_room_2
     on_if_true: isAnyoneHomeAndAwake
-    on_if_false: ~
+    on_if_false: isTVPlaying
     off_if_true: isEveryoneAsleep
     off_if_false: isAnyoneHome
     increase_brightness_if_true: isHaveGuests
