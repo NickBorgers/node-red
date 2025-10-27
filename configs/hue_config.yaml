@@ -7,7 +7,7 @@ rooms:
     off_if_true: isEveryoneAsleep
     off_if_false: isAnyoneHome
     increase_brightness_if_true: isHaveGuests
-    transition_seconds: 120
+    transition_seconds: 30
   - hue_group: Primary Suite
     hass_area_id: master_bedroom
     on_if_true: ~
@@ -15,7 +15,7 @@ rooms:
     off_if_true: isMasterAsleep
     off_if_false: isAnyoneHome
     increase_brightness_if_true: ~
-    transition_seconds: 120
+    transition_seconds: 180
   - hue_group: Sitting Room
     hass_area_id: dining_room
     on_if_true: isAnyoneHomeAndAwake
