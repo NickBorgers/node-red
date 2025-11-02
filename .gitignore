@@ -6,3 +6,5 @@
 .automated-rendering/screenshot-capture/playwright-report/
 .automated-rendering/node-red/package.json
 .DS_Store
+password
+token
