@@ -118,6 +118,13 @@
         "env": []
     },
     {
+        "id": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "type": "tab",
+        "label": "HA Sync",
+        "disabled": false,
+        "info": "Bidirectional synchronization between Node Red state and Home Assistant input helpers"
+    },
+    {
         "id": "42abe9d54fa46266",
         "type": "group",
         "z": "90f5fe8cb80ae6a7",
@@ -246,12 +253,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "174c278f.609ec8",
@@ -268,12 +270,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "b69e9a96.7fc43",
@@ -290,12 +287,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "156ccde543ba4845",
@@ -312,12 +304,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "8c211e55da1f4c7f",
@@ -334,12 +321,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "e4f5bf03444063a0",
@@ -356,12 +338,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "10000",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "10000"
     },
     {
         "id": "b74697c734ad5557",
@@ -378,12 +355,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "86b433f8beadaac5",
@@ -400,12 +372,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "60c1725bc2519ee0",
@@ -422,12 +389,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "8c8dbb69a0c4c67f",
@@ -461,12 +423,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "a5ea3d0a7df352b2",
@@ -483,12 +440,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "3d96ef25996d1dd1",
@@ -545,12 +497,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "e498a23d75394b05",
@@ -594,12 +541,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "e98cb8b7d7a02f27",
@@ -629,12 +571,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "f4fbefedb919c3c1",
@@ -651,12 +588,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "e1e1553b9b6a27c9",
@@ -673,12 +605,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "611761b9dd5c9c4c",
@@ -865,12 +792,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "21cd8d0ba24c57ec",
@@ -1142,12 +1064,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "189769065e060549",
@@ -1195,12 +1112,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "1",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "1"
     },
     {
         "id": "b2f3086099f29cf0",
@@ -1217,12 +1129,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "b2cc5799.eea9d",
@@ -1263,12 +1170,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "9fcddb6cb7581f32",
@@ -1285,12 +1187,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "e305e5abc2f5d281",
@@ -1307,12 +1204,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "ms",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "469ca31e4d142f8d",
@@ -1346,12 +1238,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "118fbb8dbc9bd661",
@@ -1368,12 +1255,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "c7620a6fda236a95",
@@ -1390,12 +1272,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "ef99803e11d1a564",
@@ -1412,12 +1289,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "f732f53bcebeeecd",
@@ -1434,12 +1306,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "kWh",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "904df74aaec4d25f",
@@ -1456,12 +1323,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "kW",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "3a562d3a1802e445",
@@ -1478,12 +1340,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "d916d510408c1320",
@@ -1500,12 +1357,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "9559cd4e1873e51f",
@@ -1539,12 +1391,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "ms",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "30b38705c75270d7",
@@ -1612,12 +1459,7 @@
         "numMin": "",
         "numMax": "",
         "unit": "",
-        "saveInterval": "0",
-        "wires": [
-            [
-                "809581fa.e362.41f2.b222.f0b48463bb86"
-            ]
-        ]
+        "saveInterval": "0"
     },
     {
         "id": "9460cec7.a8b9e8",
@@ -20320,7 +20162,7 @@
         "type": "function",
         "z": "25c8955517cef179",
         "name": "Determine independent energy levels",
-        "func": "// Coerce payload to a number\nconst val = Number(msg.payload);\nif (!Number.isFinite(val)) {\n    // Not a number \u2192 just drop the message\n    return null;\n}\n\nconst defs = global.get(\"state\")?.energyConfig?.value?.energy?.energy_states;\nif (!Array.isArray(defs) || defs.length === 0) {\n    // Nothing to compare against \u2192 drop\n    return null;\n}\n\nconst KEY = \"battery_minimum_percentage\";\n\n// Build clean numeric thresholds\nconst levels = defs\n    .map(e => ({ name: e.condition_name, thr: Number(e[KEY]) }))\n    .filter(e => Number.isFinite(e.thr))\n    .sort((a, b) => a.thr - b.thr);\n\nif (levels.length === 0) {\n    return null;\n}\n\n// Pick the highest level whose threshold is <= current %\nlet chosen = null;\nfor (const lvl of levels) {\n    if (val >= lvl.thr) chosen = lvl.name;\n}\n\n// Only set payload if a level was found\nif (chosen !== null) {\n    msg.payload = chosen;\n    return msg;\n}\n",
+        "func": "// Coerce payload to a number\nconst val = Number(msg.payload);\nif (!Number.isFinite(val)) {\n    // Not a number → just drop the message\n    return null;\n}\n\nconst defs = global.get(\"state\")?.energyConfig?.value?.energy?.energy_states;\nif (!Array.isArray(defs) || defs.length === 0) {\n    // Nothing to compare against → drop\n    return null;\n}\n\nconst KEY = \"battery_minimum_percentage\";\n\n// Build clean numeric thresholds\nconst levels = defs\n    .map(e => ({ name: e.condition_name, thr: Number(e[KEY]) }))\n    .filter(e => Number.isFinite(e.thr))\n    .sort((a, b) => a.thr - b.thr);\n\nif (levels.length === 0) {\n    return null;\n}\n\n// Pick the highest level whose threshold is <= current %\nlet chosen = null;\nfor (const lvl of levels) {\n    if (val >= lvl.thr) chosen = lvl.name;\n}\n\n// Only set payload if a level was found\nif (chosen !== null) {\n    msg.payload = chosen;\n    return msg;\n}\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -22430,13 +22272,6 @@
         ]
     },
     {
-        "id": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "type": "tab",
-        "label": "HA Sync",
-        "disabled": false,
-        "info": "Bidirectional synchronization between Node Red state and Home Assistant input helpers"
-    },
-    {
         "id": "15054bee.741d.4ec6.89f0.2841715157d1",
         "type": "comment",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
@@ -22476,9 +22311,13 @@
         "type": "function",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "Build Entity List",
-        "func": "\n// Build list of all Home Assistant entities to read for startup sync\nconst entities = [\n    \"input_number.alarm_time\",  // alarmTime\n    \"input_text.battery_energy_level\",  // batteryEnergyLevel\n    \"input_text.current_energy_level\",  // currentEnergyLevel\n    \"input_text.currently_playing_music\",  // currentlyPlayingMusic\n    \"input_text.day_phase\",  // dayPhase\n    \"input_text.energy_config\",  // energyConfig\n    \"input_text.hue_config\",  // hueConfig\n    \"input_boolean.any_owner_home\",  // isAnyOwnerHome\n    \"input_boolean.anyone_asleep\",  // isAnyoneAsleep\n    \"input_boolean.anyone_home\",  // isAnyoneHome\n    \"input_boolean.apple_tv_playing\",  // isAppleTVPlaying\n    \"input_boolean.caroline_home\",  // isCarolineHome\n    \"input_boolean.everyone_asleep\",  // isEveryoneAsleep\n    \"input_boolean.expecting_someone\",  // isExpectingSomeone\n    \"input_boolean.fade_out_in_progress\",  // isFadeOutInProgress\n    \"input_boolean.free_energy_available\",  // isFreeEnergyAvailable\n    \"input_boolean.grid_available\",  // isGridAvailable\n    \"input_boolean.guest_asleep\",  // isGuestAsleep\n    \"input_boolean.guest_bedroom_door_open\",  // isGuestBedroomDoorOpen\n    \"input_boolean.have_guests\",  // isHaveGuests\n    \"input_boolean.master_asleep\",  // isMasterAsleep\n    \"input_boolean.nick_home\",  // isNickHome\n    \"input_boolean.tv_playing\",  // isTVPlaying\n    \"input_boolean.tv_on\",  // isTVon\n    \"input_boolean.tori_here\",  // isToriHere\n    \"input_text.music_config\",  // musicConfig\n    \"input_text.music_playback_type\",  // musicPlaybackType\n    \"input_text.music_playlist_numbers\",  // musicPlaylistNumbers\n    \"input_number.remaining_solar_generation\",  // remainingSolarGeneration\n    \"input_text.schedule\",  // schedule\n    \"input_text.solar_production_energy_level\",  // solarProductionEnergyLevel\n    \"input_text.sunevent\",  // sunevent\n    \"input_number.this_hour_solar_generation\",  // thisHourSolarGeneration\n];\n\nmsg.payload = entities;\nreturn msg;\n",
+        "func": "\n// Build list of all Home Assistant entities to read for startup sync\nconst entities = [\n    \"input_number.alarm_time\",  // alarmTime\n    \"input_text.battery_energy_level\",  // batteryEnergyLevel\n    \"input_text.current_energy_level\",  // currentEnergyLevel\n    \"input_text.day_phase\",  // dayPhase\n    \"input_boolean.any_owner_home\",  // isAnyOwnerHome\n    \"input_boolean.anyone_asleep\",  // isAnyoneAsleep\n    \"input_boolean.anyone_home\",  // isAnyoneHome\n    \"input_boolean.apple_tv_playing\",  // isAppleTVPlaying\n    \"input_boolean.caroline_home\",  // isCarolineHome\n    \"input_boolean.everyone_asleep\",  // isEveryoneAsleep\n    \"input_boolean.expecting_someone\",  // isExpectingSomeone\n    \"input_boolean.fade_out_in_progress\",  // isFadeOutInProgress\n    \"input_boolean.free_energy_available\",  // isFreeEnergyAvailable\n    \"input_boolean.grid_available\",  // isGridAvailable\n    \"input_boolean.guest_asleep\",  // isGuestAsleep\n    \"input_boolean.guest_bedroom_door_open\",  // isGuestBedroomDoorOpen\n    \"input_boolean.have_guests\",  // isHaveGuests\n    \"input_boolean.master_asleep\",  // isMasterAsleep\n    \"input_boolean.nick_home\",  // isNickHome\n    \"input_boolean.tv_playing\",  // isTVPlaying\n    \"input_boolean.tv_on\",  // isTVon\n    \"input_boolean.tori_here\",  // isToriHere\n    \"input_text.music_playback_type\",  // musicPlaybackType\n    \"input_number.remaining_solar_generation\",  // remainingSolarGeneration\n    \"input_text.solar_production_energy_level\",  // solarProductionEnergyLevel\n    \"input_text.sun_event\",  // sunevent\n    \"input_number.this_hour_solar_generation\",  // thisHourSolarGeneration\n];\n\nmsg.payload = entities;\nreturn msg;\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 340,
         "y": 80,
         "wires": [
@@ -22511,13 +22350,13 @@
         "type": "api-current-state",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "Read HA Entity",
-        "server": "",
+        "server": "3ec50562615a9f50",
         "version": 3,
         "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "",
+        "entity_id": "{{payload}}",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -22555,9 +22394,13 @@
         "type": "function",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "Map to NR Variable",
-        "func": "\n// Map Home Assistant entity to Node Red variable\nconst entityToVariable = {\n    \"input_boolean.caroline_home\": {\n        \"name\": \"isCarolineHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.expecting_someone\": {\n        \"name\": \"isExpectingSomeone\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.grid_available\": {\n        \"name\": \"isGridAvailable\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.nick_home\": {\n        \"name\": \"isNickHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tori_here\": {\n        \"name\": \"isToriHere\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.any_owner_home\": {\n        \"name\": \"isAnyOwnerHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.anyone_asleep\": {\n        \"name\": \"isAnyoneAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.anyone_home\": {\n        \"name\": \"isAnyoneHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.apple_tv_playing\": {\n        \"name\": \"isAppleTVPlaying\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.everyone_asleep\": {\n        \"name\": \"isEveryoneAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.fade_out_in_progress\": {\n        \"name\": \"isFadeOutInProgress\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.free_energy_available\": {\n        \"name\": \"isFreeEnergyAvailable\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.guest_asleep\": {\n        \"name\": \"isGuestAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.guest_bedroom_door_open\": {\n        \"name\": \"isGuestBedroomDoorOpen\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.have_guests\": {\n        \"name\": \"isHaveGuests\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.master_asleep\": {\n        \"name\": \"isMasterAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tv_playing\": {\n        \"name\": \"isTVPlaying\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tv_on\": {\n        \"name\": \"isTVon\",\n        \"type\": \"boolean\"\n    },\n    \"input_number.alarm_time\": {\n        \"name\": \"alarmTime\",\n        \"type\": \"number\"\n    },\n    \"input_number.remaining_solar_generation\": {\n        \"name\": \"remainingSolarGeneration\",\n        \"type\": \"number\"\n    },\n    \"input_number.this_hour_solar_generation\": {\n        \"name\": \"thisHourSolarGeneration\",\n        \"type\": \"number\"\n    },\n    \"input_text.battery_energy_level\": {\n        \"name\": \"batteryEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.current_energy_level\": {\n        \"name\": \"currentEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.day_phase\": {\n        \"name\": \"dayPhase\",\n        \"type\": \"text\"\n    },\n    \"input_text.music_playback_type\": {\n        \"name\": \"musicPlaybackType\",\n        \"type\": \"text\"\n    },\n    \"input_text.solar_production_energy_level\": {\n        \"name\": \"solarProductionEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.sunevent\": {\n        \"name\": \"sunevent\",\n        \"type\": \"text\"\n    },\n    \"input_text.currently_playing_music\": {\n        \"name\": \"currentlyPlayingMusic\",\n        \"type\": \"json\"\n    },\n    \"input_text.energy_config\": {\n        \"name\": \"energyConfig\",\n        \"type\": \"json\"\n    },\n    \"input_text.hue_config\": {\n        \"name\": \"hueConfig\",\n        \"type\": \"json\"\n    },\n    \"input_text.music_config\": {\n        \"name\": \"musicConfig\",\n        \"type\": \"json\"\n    },\n    \"input_text.music_playlist_numbers\": {\n        \"name\": \"musicPlaylistNumbers\",\n        \"type\": \"json\"\n    },\n    \"input_text.schedule\": {\n        \"name\": \"schedule\",\n        \"type\": \"json\"\n    }\n};\n\nconst entityId = msg.entity_id.entity_id || msg.payload;\nconst mapping = entityToVariable[entityId];\n\nif (!mapping) {\n    node.warn(\"Unknown entity: \" + entityId);\n    return null;\n}\n\nconst varName = mapping.name;\nconst varType = mapping.type;\nlet value = msg.payload;\n\n// Convert boolean entities\nif (varType === 'boolean') {\n    value = (value === 'on' || value === true);\n}\n\n// Convert number entities\nif (varType === 'number') {\n    value = parseFloat(value);\n}\n\n// Parse JSON objects\nif (varType === 'json' && typeof value === 'string' && value.length > 0) {\n    try {\n        value = JSON.parse(value);\n    } catch (e) {\n        node.warn(\"Failed to parse JSON for \" + varName + \": \" + e);\n        value = {};\n    }\n}\n\n// Set the value in Node Red global state\nglobal.set(varName, value);\n\nmsg.topic = varName;\nmsg.payload = value;\n\nnode.status({fill: \"green\", shape: \"dot\", text: varName + \" = \" + JSON.stringify(value).substring(0, 20)});\n\nreturn msg;\n",
+        "func": "\n// Map Home Assistant entity to Node Red variable\nconst entityToVariable = {\n    \"input_boolean.caroline_home\": {\n        \"name\": \"isCarolineHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.expecting_someone\": {\n        \"name\": \"isExpectingSomeone\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.grid_available\": {\n        \"name\": \"isGridAvailable\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.nick_home\": {\n        \"name\": \"isNickHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tori_here\": {\n        \"name\": \"isToriHere\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.any_owner_home\": {\n        \"name\": \"isAnyOwnerHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.anyone_asleep\": {\n        \"name\": \"isAnyoneAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.anyone_home\": {\n        \"name\": \"isAnyoneHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.apple_tv_playing\": {\n        \"name\": \"isAppleTVPlaying\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.everyone_asleep\": {\n        \"name\": \"isEveryoneAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.fade_out_in_progress\": {\n        \"name\": \"isFadeOutInProgress\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.free_energy_available\": {\n        \"name\": \"isFreeEnergyAvailable\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.guest_asleep\": {\n        \"name\": \"isGuestAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.guest_bedroom_door_open\": {\n        \"name\": \"isGuestBedroomDoorOpen\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.have_guests\": {\n        \"name\": \"isHaveGuests\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.master_asleep\": {\n        \"name\": \"isMasterAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tv_playing\": {\n        \"name\": \"isTVPlaying\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tv_on\": {\n        \"name\": \"isTVon\",\n        \"type\": \"boolean\"\n    },\n    \"input_number.alarm_time\": {\n        \"name\": \"alarmTime\",\n        \"type\": \"number\"\n    },\n    \"input_number.remaining_solar_generation\": {\n        \"name\": \"remainingSolarGeneration\",\n        \"type\": \"number\"\n    },\n    \"input_number.this_hour_solar_generation\": {\n        \"name\": \"thisHourSolarGeneration\",\n        \"type\": \"number\"\n    },\n    \"input_text.battery_energy_level\": {\n        \"name\": \"batteryEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.current_energy_level\": {\n        \"name\": \"currentEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.day_phase\": {\n        \"name\": \"dayPhase\",\n        \"type\": \"text\"\n    },\n    \"input_text.music_playback_type\": {\n        \"name\": \"musicPlaybackType\",\n        \"type\": \"text\"\n    },\n    \"input_text.solar_production_energy_level\": {\n        \"name\": \"solarProductionEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.sun_event\": {\n        \"name\": \"sunevent\",\n        \"type\": \"text\"\n    }\n};\n\nconst entityId = msg.entity_id.entity_id || msg.payload;\nconst mapping = entityToVariable[entityId];\n\nif (!mapping) {\n    node.warn(\"Unknown entity: \" + entityId);\n    return null;\n}\n\nconst varName = mapping.name;\nconst varType = mapping.type;\nlet value = msg.payload;\n\n// Convert boolean entities\nif (varType === 'boolean') {\n    value = (value === 'on' || value === true);\n}\n\n// Convert number entities\nif (varType === 'number') {\n    value = parseFloat(value);\n}\n\n// Parse JSON objects\nif (varType === 'json' && typeof value === 'string' && value.length > 0) {\n    try {\n        value = JSON.parse(value);\n    } catch (e) {\n        node.warn(\"Failed to parse JSON for \" + varName + \": \" + e);\n        value = {};\n    }\n}\n\n// Set the value in Node Red global state\nglobal.set(varName, value);\n\nmsg.topic = varName;\nmsg.payload = value;\n\nnode.status({fill: \"green\", shape: \"dot\", text: varName + \" = \" + JSON.stringify(value).substring(0, 20)});\n\nreturn msg;\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 1130,
         "y": 80,
         "wires": [
@@ -22570,8 +22413,8 @@
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "WRITE SYNC: Push Node Red variable changes to Home Assistant",
         "info": "",
-        "x": 330,
-        "y": 200,
+        "x": 270,
+        "y": 280,
         "wires": []
     },
     {
@@ -22579,14 +22422,19 @@
         "type": "function",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "Convert to HA Update",
-        "func": "\n// Map Node Red variable to Home Assistant entity\nconst variableToEntity = {\n    \"isCarolineHome\": {\n        \"entity\": \"input_boolean.caroline_home\",\n        \"type\": \"boolean\"\n    },\n    \"isExpectingSomeone\": {\n        \"entity\": \"input_boolean.expecting_someone\",\n        \"type\": \"boolean\"\n    },\n    \"isGridAvailable\": {\n        \"entity\": \"input_boolean.grid_available\",\n        \"type\": \"boolean\"\n    },\n    \"isNickHome\": {\n        \"entity\": \"input_boolean.nick_home\",\n        \"type\": \"boolean\"\n    },\n    \"isToriHere\": {\n        \"entity\": \"input_boolean.tori_here\",\n        \"type\": \"boolean\"\n    },\n    \"isAnyOwnerHome\": {\n        \"entity\": \"input_boolean.any_owner_home\",\n        \"type\": \"boolean\"\n    },\n    \"isAnyoneAsleep\": {\n        \"entity\": \"input_boolean.anyone_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isAnyoneHome\": {\n        \"entity\": \"input_boolean.anyone_home\",\n        \"type\": \"boolean\"\n    },\n    \"isAppleTVPlaying\": {\n        \"entity\": \"input_boolean.apple_tv_playing\",\n        \"type\": \"boolean\"\n    },\n    \"isEveryoneAsleep\": {\n        \"entity\": \"input_boolean.everyone_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isFadeOutInProgress\": {\n        \"entity\": \"input_boolean.fade_out_in_progress\",\n        \"type\": \"boolean\"\n    },\n    \"isFreeEnergyAvailable\": {\n        \"entity\": \"input_boolean.free_energy_available\",\n        \"type\": \"boolean\"\n    },\n    \"isGuestAsleep\": {\n        \"entity\": \"input_boolean.guest_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isGuestBedroomDoorOpen\": {\n        \"entity\": \"input_boolean.guest_bedroom_door_open\",\n        \"type\": \"boolean\"\n    },\n    \"isHaveGuests\": {\n        \"entity\": \"input_boolean.have_guests\",\n        \"type\": \"boolean\"\n    },\n    \"isMasterAsleep\": {\n        \"entity\": \"input_boolean.master_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isTVPlaying\": {\n        \"entity\": \"input_boolean.tv_playing\",\n        \"type\": \"boolean\"\n    },\n    \"isTVon\": {\n        \"entity\": \"input_boolean.tv_on\",\n        \"type\": \"boolean\"\n    },\n    \"alarmTime\": {\n        \"entity\": \"input_number.alarm_time\",\n        \"type\": \"number\"\n    },\n    \"remainingSolarGeneration\": {\n        \"entity\": \"input_number.remaining_solar_generation\",\n        \"type\": \"number\"\n    },\n    \"thisHourSolarGeneration\": {\n        \"entity\": \"input_number.this_hour_solar_generation\",\n        \"type\": \"number\"\n    },\n    \"batteryEnergyLevel\": {\n        \"entity\": \"input_text.battery_energy_level\",\n        \"type\": \"text\"\n    },\n    \"currentEnergyLevel\": {\n        \"entity\": \"input_text.current_energy_level\",\n        \"type\": \"text\"\n    },\n    \"dayPhase\": {\n        \"entity\": \"input_text.day_phase\",\n        \"type\": \"text\"\n    },\n    \"musicPlaybackType\": {\n        \"entity\": \"input_text.music_playback_type\",\n        \"type\": \"text\"\n    },\n    \"solarProductionEnergyLevel\": {\n        \"entity\": \"input_text.solar_production_energy_level\",\n        \"type\": \"text\"\n    },\n    \"sunevent\": {\n        \"entity\": \"input_text.sunevent\",\n        \"type\": \"text\"\n    },\n    \"currentlyPlayingMusic\": {\n        \"entity\": \"input_text.currently_playing_music\",\n        \"type\": \"json\"\n    },\n    \"energyConfig\": {\n        \"entity\": \"input_text.energy_config\",\n        \"type\": \"json\"\n    },\n    \"hueConfig\": {\n        \"entity\": \"input_text.hue_config\",\n        \"type\": \"json\"\n    },\n    \"musicConfig\": {\n        \"entity\": \"input_text.music_config\",\n        \"type\": \"json\"\n    },\n    \"musicPlaylistNumbers\": {\n        \"entity\": \"input_text.music_playlist_numbers\",\n        \"type\": \"json\"\n    },\n    \"schedule\": {\n        \"entity\": \"input_text.schedule\",\n        \"type\": \"json\"\n    }\n};\n\nconst varName = msg.topic;\nconst mapping = variableToEntity[varName];\n\nif (!mapping) {\n    node.warn(\"Unknown variable: \" + varName);\n    return null;\n}\n\nlet value = msg.payload;\nconst varType = mapping.type;\n\n// Convert booleans to on/off for HA\nif (varType === 'boolean') {\n    value = value ? 'on' : 'off';\n}\n\n// Convert JSON objects to strings\nif (varType === 'json' && typeof value === 'object') {\n    value = JSON.stringify(value);\n}\n\n// Build service call payload\nmsg.data = {\n    entity_id: mapping.entity,\n    value: value\n};\n\nnode.status({fill: \"blue\", shape: \"dot\", text: varName + \" -> \" + mapping.entity});\n\nreturn msg;\n",
+        "func": "\n// Map Node Red variable to Home Assistant entity\nconst variableToEntity = {\n    \"isCarolineHome\": {\n        \"entity\": \"input_boolean.caroline_home\",\n        \"type\": \"boolean\"\n    },\n    \"isExpectingSomeone\": {\n        \"entity\": \"input_boolean.expecting_someone\",\n        \"type\": \"boolean\"\n    },\n    \"isGridAvailable\": {\n        \"entity\": \"input_boolean.grid_available\",\n        \"type\": \"boolean\"\n    },\n    \"isNickHome\": {\n        \"entity\": \"input_boolean.nick_home\",\n        \"type\": \"boolean\"\n    },\n    \"isToriHere\": {\n        \"entity\": \"input_boolean.tori_here\",\n        \"type\": \"boolean\"\n    },\n    \"isAnyOwnerHome\": {\n        \"entity\": \"input_boolean.any_owner_home\",\n        \"type\": \"boolean\"\n    },\n    \"isAnyoneAsleep\": {\n        \"entity\": \"input_boolean.anyone_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isAnyoneHome\": {\n        \"entity\": \"input_boolean.anyone_home\",\n        \"type\": \"boolean\"\n    },\n    \"isAppleTVPlaying\": {\n        \"entity\": \"input_boolean.apple_tv_playing\",\n        \"type\": \"boolean\"\n    },\n    \"isEveryoneAsleep\": {\n        \"entity\": \"input_boolean.everyone_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isFadeOutInProgress\": {\n        \"entity\": \"input_boolean.fade_out_in_progress\",\n        \"type\": \"boolean\"\n    },\n    \"isFreeEnergyAvailable\": {\n        \"entity\": \"input_boolean.free_energy_available\",\n        \"type\": \"boolean\"\n    },\n    \"isGuestAsleep\": {\n        \"entity\": \"input_boolean.guest_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isGuestBedroomDoorOpen\": {\n        \"entity\": \"input_boolean.guest_bedroom_door_open\",\n        \"type\": \"boolean\"\n    },\n    \"isHaveGuests\": {\n        \"entity\": \"input_boolean.have_guests\",\n        \"type\": \"boolean\"\n    },\n    \"isMasterAsleep\": {\n        \"entity\": \"input_boolean.master_asleep\",\n        \"type\": \"boolean\"\n    },\n    \"isTVPlaying\": {\n        \"entity\": \"input_boolean.tv_playing\",\n        \"type\": \"boolean\"\n    },\n    \"isTVon\": {\n        \"entity\": \"input_boolean.tv_on\",\n        \"type\": \"boolean\"\n    },\n    \"alarmTime\": {\n        \"entity\": \"input_number.alarm_time\",\n        \"type\": \"number\"\n    },\n    \"remainingSolarGeneration\": {\n        \"entity\": \"input_number.remaining_solar_generation\",\n        \"type\": \"number\"\n    },\n    \"thisHourSolarGeneration\": {\n        \"entity\": \"input_number.this_hour_solar_generation\",\n        \"type\": \"number\"\n    },\n    \"batteryEnergyLevel\": {\n        \"entity\": \"input_text.battery_energy_level\",\n        \"type\": \"text\"\n    },\n    \"currentEnergyLevel\": {\n        \"entity\": \"input_text.current_energy_level\",\n        \"type\": \"text\"\n    },\n    \"dayPhase\": {\n        \"entity\": \"input_text.day_phase\",\n        \"type\": \"text\"\n    },\n    \"musicPlaybackType\": {\n        \"entity\": \"input_text.music_playback_type\",\n        \"type\": \"text\"\n    },\n    \"solarProductionEnergyLevel\": {\n        \"entity\": \"input_text.solar_production_energy_level\",\n        \"type\": \"text\"\n    },\n    \"sunevent\": {\n        \"entity\": \"input_text.sun_event\",\n        \"type\": \"text\"\n    }\n};\n\nconst varName = msg.topic;\nconst mapping = variableToEntity[varName];\n\nif (!mapping) {\n    node.warn(\"Unknown variable: \" + varName);\n    return null;\n}\n\nlet value = msg.payload;\nconst varType = mapping.type;\n\n// Convert booleans to on/off for HA\nif (varType === 'boolean') {\n    value = value ? 'on' : 'off';\n}\n\n// Convert JSON objects to strings\nif (varType === 'json' && typeof value === 'object') {\n    value = JSON.stringify(value);\n}\n\n// Build service call payload\nmsg.data = {\n    entity_id: mapping.entity,\n    value: value\n};\n\nnode.status({fill: \"blue\", shape: \"dot\", text: varName + \" -> \" + mapping.entity});\n\nreturn msg;\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
-        "x": 590,
-        "y": 300,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 380,
         "wires": [
             [
-                "bb6168ec.f8ea.40a2.91bb.320239ff3692"
+                "bb6168ec.f8ea.40a2.91bb.320239ff3692",
+                "af31036d3955a3d5"
             ]
         ]
     },
@@ -22598,8 +22446,8 @@
         "func": "\n// Determine which service to call based on entity type\nconst entityId = msg.data.entity_id;\nconst value = msg.data.value;\n\nlet domain, service, serviceData;\n\nif (entityId.startsWith('input_boolean.')) {\n    domain = 'input_boolean';\n    service = value === 'on' ? 'turn_on' : 'turn_off';\n    serviceData = {\n        entity_id: entityId\n    };\n} else if (entityId.startsWith('input_number.')) {\n    domain = 'input_number';\n    service = 'set_value';\n    serviceData = {\n        entity_id: entityId,\n        value: parseFloat(value)\n    };\n} else if (entityId.startsWith('input_text.')) {\n    domain = 'input_text';\n    service = 'set_value';\n    serviceData = {\n        entity_id: entityId,\n        value: String(value)\n    };\n} else {\n    node.warn(\"Unknown entity type: \" + entityId);\n    return null;\n}\n\nmsg.payload = {\n    domain: domain,\n    service: service,\n    data: serviceData\n};\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 850,
-        "y": 300,
+        "x": 950,
+        "y": 380,
         "wires": [
             [
                 "2df0c359.e70f.4ec6.a7f6.03aff902ab9e"
@@ -22611,22 +22459,26 @@
         "type": "api-call-service",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "Update HA Entity",
-        "server": "",
-        "version": 5,
+        "server": "3ec50562615a9f50",
+        "version": 7,
         "debugenabled": false,
-        "domain": "payload.domain",
-        "service": "payload.service",
+        "action": "payload.domain.payload.service",
+        "floorId": [],
         "areaId": [],
         "deviceId": [],
         "entityId": [],
+        "labelId": [],
         "data": "payload.data",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1110,
-        "y": 300,
+        "blockInputOverrides": false,
+        "domain": "payload",
+        "service": "domain",
+        "x": 1170,
+        "y": 380,
         "wires": [
             []
         ]
@@ -22637,8 +22489,8 @@
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "CONTINUOUS SYNC: Listen for state changes in Home Assistant and update Node Red",
         "info": "",
-        "x": 380,
-        "y": 420,
+        "x": 650,
+        "y": 160,
         "wires": []
     },
     {
@@ -22646,7 +22498,7 @@
         "type": "server-state-changed",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "Monitor All Synced Entities",
-        "server": "",
+        "server": "3ec50562615a9f50",
         "version": 6,
         "outputs": 1,
         "exposeAsEntityConfig": "",
@@ -22655,10 +22507,7 @@
                 "input_number.alarm_time",
                 "input_text.battery_energy_level",
                 "input_text.current_energy_level",
-                "input_text.currently_playing_music",
                 "input_text.day_phase",
-                "input_text.energy_config",
-                "input_text.hue_config",
                 "input_boolean.any_owner_home",
                 "input_boolean.anyone_asleep",
                 "input_boolean.anyone_home",
@@ -22677,13 +22526,10 @@
                 "input_boolean.tv_playing",
                 "input_boolean.tv_on",
                 "input_boolean.tori_here",
-                "input_text.music_config",
                 "input_text.music_playback_type",
-                "input_text.music_playlist_numbers",
                 "input_number.remaining_solar_generation",
-                "input_text.schedule",
                 "input_text.solar_production_energy_level",
-                "input_text.sunevent",
+                "input_text.sun_event",
                 "input_number.this_hour_solar_generation"
             ],
             "substring": [],
@@ -22711,18 +22557,307 @@
                 "valueType": "entityState"
             },
             {
-                "property": "entity_id",
+                "property": "entity_id.entity_id",
                 "propertyType": "msg",
                 "value": "",
-                "valueType": "entity"
+                "valueType": "triggerId"
             }
         ],
-        "x": 390,
-        "y": 480,
+        "x": 850,
+        "y": 220,
         "wires": [
             [
-                "dd97dfb4.cb28.419d.9e5d.5b9ed3781238"
+                "dd97dfb4.cb28.419d.9e5d.5b9ed3781238",
+                "686d378180deb3aa"
             ]
         ]
+    },
+    {
+        "id": "af31036d3955a3d5",
+        "type": "debug",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "bdf919aa294a7419",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "9fcddb6cb7581f32",
+        "name": "Is Any Owner Home?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "b80e8e312f276257",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "26ccc92b36b23b99",
+        "name": "Anyone Asleep",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 120,
+        "y": 380,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "5ce2a9f74c9849f1",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "1dd96a4a.9d6316",
+        "name": "Anyone Home",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "9af5221ef663a19d",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "e1e1553b9b6a27c9",
+        "name": "Is Apple TV Playing?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "70fbe11b511d8afd",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "60c1725bc2519ee0",
+        "name": "Everyone Asleep",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 120,
+        "y": 560,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "c702e8d03661851c",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "e305e5abc2f5d281",
+        "name": "Fade Out in Progress",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 620,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "6c046a585253925d",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "3a562d3a1802e445",
+        "name": "Free Energy Available?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 140,
+        "y": 680,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "ff23f908693bf52e",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "a5ea3d0a7df352b2",
+        "name": "Have Guests?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "7c07ee08159adf37",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "d9abb6b3441e0c2a",
+        "name": "Is TV Playing?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "c3a12ced98af3c24",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "9784d6c488d7a77e",
+        "name": "Is TV On?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 320,
+        "y": 380,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "2c27144423a07e46",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "cfc991901c50054e",
+        "name": "Alarm Time",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 330,
+        "y": 440,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "f89dcf7b3f3dc2fa",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "f732f53bcebeeecd",
+        "name": "Remaining Solar Generation",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "b804fca0931aa4d2",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "904df74aaec4d25f",
+        "name": "This Hour Solar Generation",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 370,
+        "y": 560,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "a8898a460770fc98",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "904df74aaec4d25f",
+        "name": "This Hour Solar Generation",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 370,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a05ce3ab70cc518",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "efc87f0de00a2d36",
+        "name": "Day Phase",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 320,
+        "y": 680,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "5c3a43cc1587470e",
+        "type": "get-shared-state",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "state": "174c278f.609ec8",
+        "name": "Sun Event",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 320,
+        "y": 740,
+        "wires": [
+            [
+                "809581fa.e362.41f2.b222.f0b48463bb86"
+            ]
+        ]
+    },
+    {
+        "id": "686d378180deb3aa",
+        "type": "debug",
+        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 280,
+        "wires": []
     }
 ]
