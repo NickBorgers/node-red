@@ -1605,162 +1605,14 @@
         "wires": []
     },
     {
-        "id": "d3ddb03d.1dba08",
-        "type": "homekit-service",
-        "z": "d7a3510d.e93d98",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Masters Asleep",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 560,
-        "y": 780,
-        "wires": [
-            [
-                "d235bec0.ec595"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "d235bec0.ec595",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 770,
-        "y": 780,
-        "wires": [
-            [
-                "df524162.b52ae8"
-            ]
-        ]
-    },
-    {
-        "id": "df524162.b52ae8",
-        "type": "set-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "b69e9a96.7fc43",
-        "name": "Master Asleep",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 960,
-        "y": 780,
-        "wires": []
-    },
-    {
         "id": "5d4ad8acbf758ea3",
         "type": "comment",
         "z": "d7a3510d.e93d98",
         "name": "Are Guests Asleep?",
         "info": "",
         "x": 150,
-        "y": 860,
+        "y": 900,
         "wires": []
-    },
-    {
-        "id": "74b1e4364e7efcf2",
-        "type": "set-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "156ccde543ba4845",
-        "name": "Guest Asleep",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 960,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "3bcef5f89ded8641",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "b69e9a96.7fc43",
-        "name": "Master Asleep",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 150,
-        "y": 780,
-        "wires": [
-            [
-                "494477a5e37d3abe"
-            ]
-        ]
-    },
-    {
-        "id": "494477a5e37d3abe",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move value to On",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.On",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 350,
-        "y": 780,
-        "wires": [
-            [
-                "d3ddb03d.1dba08"
-            ]
-        ]
     },
     {
         "id": "394af9bb2a153a77",
@@ -1807,62 +1659,10 @@
         "waitForSetupMsg": false,
         "outputs": 2,
         "x": 200,
-        "y": 1420,
+        "y": 1780,
         "wires": [
             [
                 "38b97ca236e8163d"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "b9496f0c3ed2fd10",
-        "type": "homekit-service",
-        "z": "d7a3510d.e93d98",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Guest Asleep",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 560,
-        "y": 920,
-        "wires": [
-            [
-                "07d850c58997c540"
             ],
             []
         ]
@@ -1877,7 +1677,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 610,
-        "y": 1060,
+        "y": 1380,
         "wires": []
     },
     {
@@ -1887,7 +1687,7 @@
         "name": "Manage Asleep variable",
         "info": "",
         "x": 160,
-        "y": 980,
+        "y": 1300,
         "wires": []
     },
     {
@@ -1899,7 +1699,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 1040,
+        "y": 1360,
         "wires": [
             [
                 "ca90adbe07cc8c51"
@@ -1915,7 +1715,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 1100,
+        "y": 1420,
         "wires": [
             [
                 "ca90adbe07cc8c51"
@@ -1934,7 +1734,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1060,
+        "y": 1380,
         "wires": [
             [
                 "6dd5f9bf57603ff8"
@@ -1948,78 +1748,8 @@
         "name": "Door Tracking",
         "info": "",
         "x": 130,
-        "y": 1320,
+        "y": 1680,
         "wires": []
-    },
-    {
-        "id": "07d850c58997c540",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 770,
-        "y": 920,
-        "wires": [
-            [
-                "74b1e4364e7efcf2"
-            ]
-        ]
-    },
-    {
-        "id": "05ac5235e80b464e",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move value to On",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.On",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 350,
-        "y": 920,
-        "wires": [
-            [
-                "b9496f0c3ed2fd10"
-            ]
-        ]
-    },
-    {
-        "id": "21c335cc7ba24c56",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "156ccde543ba4845",
-        "name": "Guest Asleep",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 150,
-        "y": 920,
-        "wires": [
-            [
-                "05ac5235e80b464e"
-            ]
-        ]
     },
     {
         "id": "74c36bd307050540",
@@ -2031,7 +1761,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 490,
-        "y": 1360,
+        "y": 1720,
         "wires": []
     },
     {
@@ -2055,7 +1785,7 @@
         "to": "",
         "reg": false,
         "x": 450,
-        "y": 1420,
+        "y": 1780,
         "wires": [
             [
                 "19ef2aa0c73641ce"
@@ -2073,143 +1803,8 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 710,
-        "y": 1420,
+        "y": 1780,
         "wires": []
-    },
-    {
-        "id": "33941ae1433a1b4e",
-        "type": "homekit-service",
-        "z": "d7a3510d.e93d98",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Have Guests",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 1610,
-        "y": 920,
-        "wires": [
-            [
-                "ef38dc46cc944eaf"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "ad2b0d5d23831af5",
-        "type": "set-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "a5ea3d0a7df352b2",
-        "name": "Have Guests?",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 2000,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "ef38dc46cc944eaf",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1810,
-        "y": 860,
-        "wires": [
-            [
-                "ad2b0d5d23831af5"
-            ]
-        ]
-    },
-    {
-        "id": "18b1ebcd18d0855c",
-        "type": "change",
-        "z": "d7a3510d.e93d98",
-        "name": "Move value to On",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.On",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1410,
-        "y": 920,
-        "wires": [
-            [
-                "33941ae1433a1b4e"
-            ]
-        ]
-    },
-    {
-        "id": "8d006bf9909b6636",
-        "type": "get-shared-state",
-        "z": "d7a3510d.e93d98",
-        "state": "a5ea3d0a7df352b2",
-        "name": "Have Guests?",
-        "triggerOnInit": true,
-        "triggerOnChange": true,
-        "x": 1210,
-        "y": 920,
-        "wires": [
-            [
-                "18b1ebcd18d0855c"
-            ]
-        ]
     },
     {
         "id": "45fde91860361e14",
@@ -2217,8 +1812,8 @@
         "z": "d7a3510d.e93d98",
         "name": "Have Guests",
         "info": "",
-        "x": 1190,
-        "y": 860,
+        "x": 130,
+        "y": 1060,
         "wires": []
     },
     {
@@ -2345,7 +1940,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 830,
-        "y": 1080,
+        "y": 1400,
         "wires": [
             [
                 "0e3907f2e4812720"
@@ -2359,7 +1954,7 @@
         "name": "If we don't have guests, they're asleep if master is asleep",
         "info": "",
         "x": 970,
-        "y": 1020,
+        "y": 1340,
         "wires": []
     },
     {
@@ -2374,7 +1969,7 @@
         "finalize": "",
         "libs": [],
         "x": 1040,
-        "y": 1100,
+        "y": 1420,
         "wires": [
             [
                 "d51c49cc4596b1df"
@@ -2391,7 +1986,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1260,
-        "y": 1100,
+        "y": 1420,
         "wires": []
     },
     {
@@ -2644,7 +2239,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 830,
-        "y": 1140,
+        "y": 1460,
         "wires": [
             [
                 "0e3907f2e4812720"
@@ -2779,7 +2374,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 830,
-        "y": 1200,
+        "y": 1520,
         "wires": [
             [
                 "0e3907f2e4812720"
@@ -2796,7 +2391,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 600,
-        "y": 1180,
+        "y": 1500,
         "wires": []
     },
     {
@@ -2808,7 +2403,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 1160,
+        "y": 1480,
         "wires": [
             [
                 "acdaab9da7d03657",
@@ -2825,7 +2420,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 1220,
+        "y": 1540,
         "wires": [
             [
                 "acdaab9da7d03657",
@@ -2845,7 +2440,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 1180,
+        "y": 1500,
         "wires": [
             [
                 "4db9c19db8e3a4e7"
@@ -3177,7 +2772,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 1540,
+        "y": 1900,
         "wires": [
             [
                 "e6ca64c1d494f341"
@@ -3216,7 +2811,7 @@
         "ignoreCurrentStateUnavailable": false,
         "outputProperties": [],
         "x": 210,
-        "y": 1540,
+        "y": 1900,
         "wires": [
             [
                 "04eba44d880d5c87"
@@ -3256,7 +2851,7 @@
         "ignoreCurrentStateUnavailable": false,
         "outputProperties": [],
         "x": 220,
-        "y": 1600,
+        "y": 1960,
         "wires": [
             [
                 "9c297a10a40dbcfe"
@@ -3271,7 +2866,7 @@
         "name": "Notify of someone coming home",
         "info": "",
         "x": 190,
-        "y": 1480,
+        "y": 1840,
         "wires": []
     },
     {
@@ -3287,7 +2882,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 1600,
+        "y": 1960,
         "wires": [
             [
                 "1820fb2f18721a6d"
@@ -3320,7 +2915,7 @@
         "domain": "tts",
         "service": "speak",
         "x": 700,
-        "y": 1540,
+        "y": 1900,
         "wires": [
             []
         ]
@@ -3351,7 +2946,7 @@
         "domain": "tts",
         "service": "speak",
         "x": 710,
-        "y": 1600,
+        "y": 1960,
         "wires": [
             []
         ]
@@ -3388,7 +2983,7 @@
         "ignoreCurrentStateUnavailable": false,
         "outputProperties": [],
         "x": 210,
-        "y": 1660,
+        "y": 2020,
         "wires": [
             [
                 "ddb81322077ca954"
@@ -3409,7 +3004,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 1660,
+        "y": 2020,
         "wires": [
             [
                 "b10962bde014310e"
@@ -3442,7 +3037,7 @@
         "domain": "tts",
         "service": "speak",
         "x": 690,
-        "y": 1660,
+        "y": 2020,
         "wires": [
             []
         ]
@@ -3486,7 +3081,7 @@
             }
         ],
         "x": 210,
-        "y": 1360,
+        "y": 1720,
         "wires": [
             [
                 "74c36bd307050540"
@@ -3618,7 +3213,7 @@
         "name": "Room occupied?",
         "info": "",
         "x": 980,
-        "y": 1360,
+        "y": 1720,
         "wires": []
     },
     {
@@ -3660,7 +3255,7 @@
             }
         ],
         "x": 1020,
-        "y": 1420,
+        "y": 1780,
         "wires": [
             [
                 "fea2aad3ae17a874"
@@ -3678,7 +3273,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1240,
-        "y": 1420,
+        "y": 1780,
         "wires": []
     },
     {
@@ -3720,7 +3315,7 @@
             }
         ],
         "x": 1010,
-        "y": 1480,
+        "y": 1840,
         "wires": [
             [
                 "667b0e806d843c6a"
@@ -3738,7 +3333,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 1230,
-        "y": 1480,
+        "y": 1840,
         "wires": []
     },
     {
@@ -3754,7 +3349,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1240,
+        "y": 1560,
         "wires": [
             [
                 "b94472c5c70b82fc"
@@ -3772,7 +3367,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 650,
-        "y": 1240,
+        "y": 1560,
         "wires": []
     },
     {
@@ -3793,7 +3388,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 490,
-        "y": 1780,
+        "y": 2140,
         "wires": [
             [
                 "1a12698790eb0edd"
@@ -3811,7 +3406,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 790,
-        "y": 1820,
+        "y": 2180,
         "wires": []
     },
     {
@@ -3836,7 +3431,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 350,
-        "y": 1780,
+        "y": 2140,
         "wires": [
             [
                 "13978101a7e29e88"
@@ -3862,7 +3457,7 @@
         "repair": false,
         "outputs": 2,
         "x": 350,
-        "y": 1820,
+        "y": 2180,
         "wires": [
             [
                 "13978101a7e29e88",
@@ -3880,7 +3475,7 @@
         "name": "Owner just came home control",
         "info": "",
         "x": 190,
-        "y": 1740,
+        "y": 2100,
         "wires": []
     },
     {
@@ -3892,7 +3487,7 @@
         "triggerOnInit": true,
         "triggerOnChange": true,
         "x": 150,
-        "y": 1280,
+        "y": 1600,
         "wires": [
             [
                 "4befb06ddb926631"
@@ -3919,7 +3514,7 @@
         "to": "",
         "reg": false,
         "x": 640,
-        "y": 1780,
+        "y": 2140,
         "wires": [
             [
                 "347b9767c5cc33d1"
@@ -3937,7 +3532,7 @@
         "provideOutput": false,
         "outputs": 0,
         "x": 530,
-        "y": 1880,
+        "y": 2240,
         "wires": []
     },
     {
@@ -3949,7 +3544,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 160,
-        "y": 1800,
+        "y": 2160,
         "wires": [
             [
                 "1d2eab946f062da3"
@@ -3965,10 +3560,621 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 180,
-        "y": 1840,
+        "y": 2200,
         "wires": [
             [
                 "1d2eab946f062da3"
+            ]
+        ]
+    },
+    {
+        "id": "0292b7775f7c4703",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Master Asleep Change in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.master_asleep"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 220,
+        "y": 780,
+        "wires": [
+            [
+                "270275bcaf9a9746"
+            ]
+        ]
+    },
+    {
+        "id": "270275bcaf9a9746",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 480,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "f8b7e84f2daab3ea",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Set Master Asleep in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.master_asleep"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 1270,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a885d6796dea4342",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "b69e9a96.7fc43",
+        "name": "Master Asleep",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 650,
+        "y": 780,
+        "wires": [
+            [
+                "cda56410e7b5ed11"
+            ]
+        ]
+    },
+    {
+        "id": "8d827a8694b46e9f",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Set Master NOT Asleep in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.master_asleep"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 1290,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fb30b97831b88cdf",
+        "type": "switch",
+        "z": "d7a3510d.e93d98",
+        "name": "Boolean Switch",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1000,
+        "y": 780,
+        "wires": [
+            [
+                "f8b7e84f2daab3ea"
+            ],
+            [
+                "8d827a8694b46e9f"
+            ]
+        ]
+    },
+    {
+        "id": "cda56410e7b5ed11",
+        "type": "delay",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 820,
+        "y": 780,
+        "wires": [
+            [
+                "fb30b97831b88cdf"
+            ]
+        ]
+    },
+    {
+        "id": "0f9e4d745c1d7b13",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "156ccde543ba4845",
+        "name": "Guest Asleep",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 480,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "96c3f93a2dca94b4",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Set Guest Asleep in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.guest_asleep"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 1270,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dca757c1ef25c1b4",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "156ccde543ba4845",
+        "name": "Guest Asleep",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 650,
+        "y": 940,
+        "wires": [
+            [
+                "563ec106f0fd74a9"
+            ]
+        ]
+    },
+    {
+        "id": "a07c749ac9a921ed",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Set Guest NOT Asleep in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.guest_asleep"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 1280,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5bdcfc69dde4cc80",
+        "type": "switch",
+        "z": "d7a3510d.e93d98",
+        "name": "Boolean Switch",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1000,
+        "y": 940,
+        "wires": [
+            [
+                "96c3f93a2dca94b4"
+            ],
+            [
+                "a07c749ac9a921ed"
+            ]
+        ]
+    },
+    {
+        "id": "563ec106f0fd74a9",
+        "type": "delay",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 820,
+        "y": 940,
+        "wires": [
+            [
+                "5bdcfc69dde4cc80"
+            ]
+        ]
+    },
+    {
+        "id": "a0d482cd27edec0e",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Guest Asleep Change in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.guest_asleep"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 220,
+        "y": 940,
+        "wires": [
+            [
+                "0f9e4d745c1d7b13"
+            ]
+        ]
+    },
+    {
+        "id": "ed29c5aade3dfae6",
+        "type": "set-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "a5ea3d0a7df352b2",
+        "name": "Have Guests?",
+        "triggerOnInit": true,
+        "triggerOnChange": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 480,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "d29661ef4a3015e8",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Set Have Guests in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.have_guests"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 1287.1428527832031,
+        "y": 1061.4285888671875,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63d17116ae88937f",
+        "type": "get-shared-state",
+        "z": "d7a3510d.e93d98",
+        "state": "a5ea3d0a7df352b2",
+        "name": "Have Guests?",
+        "triggerOnInit": false,
+        "triggerOnChange": true,
+        "x": 660,
+        "y": 1100,
+        "wires": [
+            [
+                "2898f7bfe7a69336"
+            ]
+        ]
+    },
+    {
+        "id": "c4f3670a656aec34",
+        "type": "api-call-service",
+        "z": "d7a3510d.e93d98",
+        "name": "Set NOT Have Guests in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.have_guests"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 1307.1428527832031,
+        "y": 1141.4285888671875,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "33161e9af07f734c",
+        "type": "switch",
+        "z": "d7a3510d.e93d98",
+        "name": "Boolean Switch",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1020,
+        "y": 1100,
+        "wires": [
+            [
+                "d29661ef4a3015e8"
+            ],
+            [
+                "c4f3670a656aec34"
+            ]
+        ]
+    },
+    {
+        "id": "2898f7bfe7a69336",
+        "type": "delay",
+        "z": "d7a3510d.e93d98",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 1100,
+        "wires": [
+            [
+                "33161e9af07f734c"
+            ]
+        ]
+    },
+    {
+        "id": "f9f3b61295fb79e2",
+        "type": "server-state-changed",
+        "z": "d7a3510d.e93d98",
+        "name": "Have Guests Change in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.have_guests"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 210,
+        "y": 1100,
+        "wires": [
+            [
+                "ed29c5aade3dfae6"
             ]
         ]
     },
@@ -4321,188 +4527,8 @@
         "name": "Reset mechanism available through Homekit",
         "info": "",
         "x": 210,
-        "y": 700,
+        "y": 720,
         "wires": []
-    },
-    {
-        "id": "1b9873d4c1d781ca",
-        "type": "homekit-service",
-        "z": "634c78c80eb9f37e",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Reset",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 130,
-        "y": 740,
-        "wires": [
-            [
-                "45230be763c062ae"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "aa9dca0548480ae1",
-        "type": "set-shared-state",
-        "z": "634c78c80eb9f37e",
-        "state": "3d96ef25996d1dd1",
-        "name": "Reset",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 850,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "45230be763c062ae",
-        "type": "change",
-        "z": "634c78c80eb9f37e",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "date"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 310,
-        "y": 740,
-        "wires": [
-            [
-                "fc6d53171a0a2eef"
-            ]
-        ]
-    },
-    {
-        "id": "392367f1059edf8f",
-        "type": "change",
-        "z": "634c78c80eb9f37e",
-        "name": "Turn off",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 300,
-        "y": 800,
-        "wires": [
-            [
-                "1b9873d4c1d781ca"
-            ]
-        ]
-    },
-    {
-        "id": "05dc4cb847d1d054",
-        "type": "delay",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 680,
-        "y": 740,
-        "wires": [
-            [
-                "aa9dca0548480ae1"
-            ]
-        ]
-    },
-    {
-        "id": "3c5040df487f58af",
-        "type": "inject",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 800,
-        "wires": [
-            [
-                "392367f1059edf8f"
-            ]
-        ]
     },
     {
         "id": "a727f6fa4e037102",
@@ -4582,32 +4608,6 @@
         "x": 610,
         "y": 420,
         "wires": []
-    },
-    {
-        "id": "fc6d53171a0a2eef",
-        "type": "delay",
-        "z": "634c78c80eb9f37e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 500,
-        "y": 740,
-        "wires": [
-            [
-                "05dc4cb847d1d054",
-                "392367f1059edf8f"
-            ]
-        ]
     },
     {
         "id": "03d49e6e6a6a882d",
@@ -5012,6 +5012,187 @@
             [
                 "1a3488b820bea21e"
             ]
+        ]
+    },
+    {
+        "id": "04cd174793335d8e",
+        "type": "server-state-changed",
+        "z": "634c78c80eb9f37e",
+        "name": "Reset On in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.reset"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "true",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 160,
+        "y": 760,
+        "wires": [
+            [
+                "f272019d98cf3d5b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f272019d98cf3d5b",
+        "type": "change",
+        "z": "634c78c80eb9f37e",
+        "name": "Generate timestamp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 760,
+        "wires": [
+            [
+                "025980516c2bba68",
+                "ed6e3ff3cea524d4"
+            ]
+        ]
+    },
+    {
+        "id": "0d33adaa8e5e23a9",
+        "type": "set-shared-state",
+        "z": "634c78c80eb9f37e",
+        "state": "3d96ef25996d1dd1",
+        "name": "Reset",
+        "triggerOnInit": true,
+        "provideOutput": false,
+        "outputs": 0,
+        "x": 890,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "d1688006eb22f044",
+        "type": "delay",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 760,
+        "wires": [
+            [
+                "0d33adaa8e5e23a9"
+            ]
+        ]
+    },
+    {
+        "id": "025980516c2bba68",
+        "type": "delay",
+        "z": "634c78c80eb9f37e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 580,
+        "y": 760,
+        "wires": [
+            [
+                "d1688006eb22f044"
+            ]
+        ]
+    },
+    {
+        "id": "ed6e3ff3cea524d4",
+        "type": "api-call-service",
+        "z": "634c78c80eb9f37e",
+        "name": "Turn off Reset",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.reset"
+        ],
+        "labelId": [],
+        "data": "payload.data",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 620,
+        "y": 800,
+        "wires": [
+            []
         ]
     },
     {
@@ -5867,7 +6048,8 @@
         "y": 220,
         "wires": [
             [
-                "a008d236a12f1c5f"
+                "a008d236a12f1c5f",
+                "cb5e9ad34e76e9ce"
             ]
         ]
     },
@@ -6397,240 +6579,6 @@
         ]
     },
     {
-        "id": "744205d987216a52",
-        "type": "homekit-service",
-        "z": "16cd74edb3f2c03d",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Christmas Tree",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 120,
-        "y": 880,
-        "wires": [
-            [
-                "24e9a86f6ef237d7"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "a7f6b62ed3480f3d",
-        "type": "change",
-        "z": "16cd74edb3f2c03d",
-        "name": "Turn off",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 280,
-        "y": 940,
-        "wires": [
-            [
-                "744205d987216a52"
-            ]
-        ]
-    },
-    {
-        "id": "24e9a86f6ef237d7",
-        "type": "change",
-        "z": "16cd74edb3f2c03d",
-        "name": "Move on to value",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "date"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 310,
-        "y": 880,
-        "wires": [
-            [
-                "3a58ce5706edc9df"
-            ]
-        ]
-    },
-    {
-        "id": "c48609019e991911",
-        "type": "inject",
-        "z": "16cd74edb3f2c03d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 940,
-        "wires": [
-            [
-                "a7f6b62ed3480f3d"
-            ]
-        ]
-    },
-    {
-        "id": "3a58ce5706edc9df",
-        "type": "delay",
-        "z": "16cd74edb3f2c03d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 480,
-        "y": 880,
-        "wires": [
-            [
-                "a7f6b62ed3480f3d",
-                "87c36e5948fb7493"
-            ]
-        ]
-    },
-    {
-        "id": "87c36e5948fb7493",
-        "type": "delay",
-        "z": "16cd74edb3f2c03d",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 650,
-        "y": 880,
-        "wires": [
-            [
-                "66a7133c326a29d9"
-            ]
-        ]
-    },
-    {
-        "id": "6a16930c8658d389",
-        "type": "comment",
-        "z": "16cd74edb3f2c03d",
-        "name": "Christmas Tree",
-        "info": "",
-        "x": 100,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "66a7133c326a29d9",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Turn On Christmas Tree",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "light.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.christmas_tree"
-        ],
-        "labelId": [],
-        "data": "{\"brightness_pct\":100,\"transition\": 240}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "light",
-        "service": "turn_on",
-        "x": 850,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "7753f747909284c6",
         "type": "function",
         "z": "16cd74edb3f2c03d",
@@ -6664,8 +6612,8 @@
         "y": 520,
         "wires": [
             [
-                "529e7ec5c577e8a3",
-                "b47a5d8324f29a71"
+                "b47a5d8324f29a71",
+                "80b69f2b1e048b8d"
             ]
         ]
     },
@@ -6684,7 +6632,7 @@
         "y": 560,
         "wires": [
             [
-                "205c08e95dbca68c"
+                "80b69f2b1e048b8d"
             ]
         ]
     },
@@ -6692,19 +6640,19 @@
         "id": "80b69f2b1e048b8d",
         "type": "api-call-service",
         "z": "16cd74edb3f2c03d",
-        "name": "Christmas Tree Full Brightness",
+        "name": "Sitting Room Christmas Lights On",
         "server": "3ec50562615a9f50",
         "version": 7,
         "debugenabled": false,
         "action": "light.turn_on",
         "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.christmas_tree"
+        "areaId": [
+            "dining_room"
         ],
+        "deviceId": [],
+        "entityId": [],
         "labelId": [],
-        "data": "{\"brightness_pct\":100,\"transition\": 240}",
+        "data": "",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -6713,70 +6661,8 @@
         "blockInputOverrides": false,
         "domain": "light",
         "service": "turn_on",
-        "x": 1530,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "529e7ec5c577e8a3",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Christmas Tree Moderate Brightness",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "light.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.christmas_tree"
-        ],
-        "labelId": [],
-        "data": "{\"brightness_pct\":60,\"transition\": 240}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "light",
-        "service": "turn_on",
-        "x": 1550,
-        "y": 520,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "205c08e95dbca68c",
-        "type": "api-call-service",
-        "z": "16cd74edb3f2c03d",
-        "name": "Christmas Tree Low Brightness",
-        "server": "3ec50562615a9f50",
-        "version": 7,
-        "debugenabled": false,
-        "action": "light.turn_on",
-        "floorId": [],
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.christmas_tree"
-        ],
-        "labelId": [],
-        "data": "{\"brightness_pct\":40,\"transition\": 240}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "blockInputOverrides": false,
-        "domain": "light",
-        "service": "turn_on",
-        "x": 1530,
-        "y": 580,
+        "x": 1560,
+        "y": 560,
         "wires": [
             []
         ]
@@ -6835,7 +6721,7 @@
         "y": 600,
         "wires": [
             [
-                "205c08e95dbca68c"
+                "80b69f2b1e048b8d"
             ]
         ]
     },
@@ -7153,6 +7039,141 @@
             [
                 "3e279bdd0682936e"
             ]
+        ]
+    },
+    {
+        "id": "d59ec436c42e14a8",
+        "type": "server-state-changed",
+        "z": "16cd74edb3f2c03d",
+        "name": "Christmas On in Home Assistant",
+        "server": "3ec50562615a9f50",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.christmas"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "true",
+        "ifStateType": "bool",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 900,
+        "wires": [
+            [
+                "770aa5fe587d0e3a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "770aa5fe587d0e3a",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn On Christmas",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.christmas_tree",
+            "light.christmas_bar_2",
+            "light.christmas_village"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 450,
+        "y": 900,
+        "wires": [
+            [
+                "071763ce2ecfc1a0"
+            ]
+        ]
+    },
+    {
+        "id": "6a16930c8658d389",
+        "type": "comment",
+        "z": "16cd74edb3f2c03d",
+        "name": "Christmas",
+        "info": "",
+        "x": 80,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "071763ce2ecfc1a0",
+        "type": "api-call-service",
+        "z": "16cd74edb3f2c03d",
+        "name": "Turn off Christmas Toggle",
+        "server": "3ec50562615a9f50",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.christmas"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "x": 690,
+        "y": 900,
+        "wires": [
+            []
         ]
     },
     {
@@ -8832,220 +8853,6 @@
                 "d6f678177a40f732"
             ]
         ]
-    },
-    {
-        "id": "b8624a9798508f86",
-        "type": "comment",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Prepare for Airplay",
-        "info": "",
-        "x": 150,
-        "y": 1400,
-        "wires": []
-    },
-    {
-        "id": "053acfa1369f7077",
-        "type": "change",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Turn off",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "payload.On",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 290,
-        "y": 1500,
-        "wires": [
-            [
-                "0c06b3ab431b4a5d"
-            ]
-        ]
-    },
-    {
-        "id": "d1dd67e097547adc",
-        "type": "delay",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 340,
-        "y": 1440,
-        "wires": [
-            [
-                "40ad98fa1f9d1c37"
-            ]
-        ]
-    },
-    {
-        "id": "faaa22a4567a2a1a",
-        "type": "inject",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 1500,
-        "wires": [
-            [
-                "053acfa1369f7077"
-            ]
-        ]
-    },
-    {
-        "id": "0c06b3ab431b4a5d",
-        "type": "homekit-service",
-        "z": "90f5fe8cb80ae6a7",
-        "isParent": true,
-        "hostType": "0",
-        "bridge": "b2cc5799.eea9d",
-        "accessoryId": "",
-        "parentService": "",
-        "name": "Airplay",
-        "serviceName": "Switch",
-        "topic": "",
-        "filter": false,
-        "manufacturer": "NRCHKB",
-        "model": "1.4.3",
-        "serialNo": "Default Serial Number",
-        "firmwareRev": "1.4.3",
-        "hardwareRev": "1.4.3",
-        "softwareRev": "1.4.3",
-        "cameraConfigVideoProcessor": "ffmpeg",
-        "cameraConfigSource": "",
-        "cameraConfigStillImageSource": "",
-        "cameraConfigMaxStreams": 2,
-        "cameraConfigMaxWidth": 1280,
-        "cameraConfigMaxHeight": 720,
-        "cameraConfigMaxFPS": 10,
-        "cameraConfigMaxBitrate": 300,
-        "cameraConfigVideoCodec": "libx264",
-        "cameraConfigAudioCodec": "libfdk_aac",
-        "cameraConfigAudio": false,
-        "cameraConfigPacketSize": 1316,
-        "cameraConfigVerticalFlip": false,
-        "cameraConfigHorizontalFlip": false,
-        "cameraConfigMapVideo": "0:0",
-        "cameraConfigMapAudio": "0:1",
-        "cameraConfigVideoFilter": "scale=1280:720",
-        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
-        "cameraConfigDebug": false,
-        "cameraConfigSnapshotOutput": "disabled",
-        "cameraConfigInterfaceName": "",
-        "characteristicProperties": "{}",
-        "waitForSetupMsg": false,
-        "outputs": 2,
-        "x": 110,
-        "y": 1440,
-        "wires": [
-            [
-                "d1dd67e097547adc"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "40ad98fa1f9d1c37",
-        "type": "switch",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "",
-        "property": "payload.On",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 490,
-        "y": 1440,
-        "wires": [
-            [
-                "053acfa1369f7077",
-                "f9e2c99c1e6e529e"
-            ]
-        ]
-    },
-    {
-        "id": "f9e2c99c1e6e529e",
-        "type": "change",
-        "z": "90f5fe8cb80ae6a7",
-        "name": "Set airplay",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "airplay",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 650,
-        "y": 1440,
-        "wires": [
-            [
-                "5d25445d1b3dde4d"
-            ]
-        ]
-    },
-    {
-        "id": "5d25445d1b3dde4d",
-        "type": "set-shared-state",
-        "z": "90f5fe8cb80ae6a7",
-        "state": "8c211e55da1f4c7f",
-        "name": "Music Playback Type",
-        "triggerOnInit": true,
-        "provideOutput": false,
-        "outputs": 0,
-        "x": 640,
-        "y": 1500,
-        "wires": []
     },
     {
         "id": "2056bb683597d209",
@@ -19667,6 +19474,35 @@
         ]
     },
     {
+        "id": "2293489cd0fc4ffd",
+        "type": "inject",
+        "z": "164999f348401406",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 650,
+        "y": 560,
+        "wires": [
+            [
+                "3a2abf13674ba857"
+            ]
+        ]
+    },
+    {
         "id": "5ab60c4fdfb101bc",
         "type": "function",
         "z": "c90d4a5ca629d0b3",
@@ -22272,149 +22108,13 @@
         ]
     },
     {
-        "id": "15054bee.741d.4ec6.89f0.2841715157d1",
-        "type": "comment",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "STARTUP SYNC: Read all 33 variables from Home Assistant on Node Red startup",
-        "info": "",
-        "x": 350,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "ec9ad47e.a915.4dbf.abb7.876f63f13ce4",
-        "type": "inject",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "On Startup",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "2",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 80,
-        "wires": [
-            [
-                "ba96e489.9ec2.4a1c.b368.4e38c85ee21e"
-            ]
-        ]
-    },
-    {
-        "id": "ba96e489.9ec2.4a1c.b368.4e38c85ee21e",
-        "type": "function",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "Build Entity List",
-        "func": "\n// Build list of all Home Assistant entities to read for startup sync\nconst entities = [\n    \"input_number.alarm_time\",  // alarmTime\n    \"input_text.battery_energy_level\",  // batteryEnergyLevel\n    \"input_text.current_energy_level\",  // currentEnergyLevel\n    \"input_text.day_phase\",  // dayPhase\n    \"input_boolean.any_owner_home\",  // isAnyOwnerHome\n    \"input_boolean.anyone_asleep\",  // isAnyoneAsleep\n    \"input_boolean.anyone_home\",  // isAnyoneHome\n    \"input_boolean.apple_tv_playing\",  // isAppleTVPlaying\n    \"input_boolean.caroline_home\",  // isCarolineHome\n    \"input_boolean.everyone_asleep\",  // isEveryoneAsleep\n    \"input_boolean.expecting_someone\",  // isExpectingSomeone\n    \"input_boolean.fade_out_in_progress\",  // isFadeOutInProgress\n    \"input_boolean.free_energy_available\",  // isFreeEnergyAvailable\n    \"input_boolean.grid_available\",  // isGridAvailable\n    \"input_boolean.guest_asleep\",  // isGuestAsleep\n    \"input_boolean.guest_bedroom_door_open\",  // isGuestBedroomDoorOpen\n    \"input_boolean.have_guests\",  // isHaveGuests\n    \"input_boolean.master_asleep\",  // isMasterAsleep\n    \"input_boolean.nick_home\",  // isNickHome\n    \"input_boolean.tv_playing\",  // isTVPlaying\n    \"input_boolean.tv_on\",  // isTVon\n    \"input_boolean.tori_here\",  // isToriHere\n    \"input_text.music_playback_type\",  // musicPlaybackType\n    \"input_number.remaining_solar_generation\",  // remainingSolarGeneration\n    \"input_text.solar_production_energy_level\",  // solarProductionEnergyLevel\n    \"input_text.sun_event\",  // sunevent\n    \"input_number.this_hour_solar_generation\",  // thisHourSolarGeneration\n];\n\nmsg.payload = entities;\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 340,
-        "y": 80,
-        "wires": [
-            [
-                "29dee306.bbe9.4b9f.bcdc.dd47a6edd6e8"
-            ]
-        ]
-    },
-    {
-        "id": "29dee306.bbe9.4b9f.bcdc.dd47a6edd6e8",
-        "type": "split",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "Split to Individual Entities",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 580,
-        "y": 80,
-        "wires": [
-            [
-                "0c3fb369.4b89.4f9c.8ac8.f0bbc1a4801d"
-            ]
-        ]
-    },
-    {
-        "id": "0c3fb369.4b89.4f9c.8ac8.f0bbc1a4801d",
-        "type": "api-current-state",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "Read HA Entity",
-        "server": "3ec50562615a9f50",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "{{payload}}",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "entity_id",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "entity_id",
-        "override_data": "msg",
-        "x": 870,
-        "y": 80,
-        "wires": [
-            [
-                "dd97dfb4.cb28.419d.9e5d.5b9ed3781238"
-            ]
-        ]
-    },
-    {
-        "id": "dd97dfb4.cb28.419d.9e5d.5b9ed3781238",
-        "type": "function",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "Map to NR Variable",
-        "func": "\n// Map Home Assistant entity to Node Red variable\nconst entityToVariable = {\n    \"input_boolean.caroline_home\": {\n        \"name\": \"isCarolineHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.expecting_someone\": {\n        \"name\": \"isExpectingSomeone\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.grid_available\": {\n        \"name\": \"isGridAvailable\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.nick_home\": {\n        \"name\": \"isNickHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tori_here\": {\n        \"name\": \"isToriHere\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.any_owner_home\": {\n        \"name\": \"isAnyOwnerHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.anyone_asleep\": {\n        \"name\": \"isAnyoneAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.anyone_home\": {\n        \"name\": \"isAnyoneHome\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.apple_tv_playing\": {\n        \"name\": \"isAppleTVPlaying\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.everyone_asleep\": {\n        \"name\": \"isEveryoneAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.fade_out_in_progress\": {\n        \"name\": \"isFadeOutInProgress\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.free_energy_available\": {\n        \"name\": \"isFreeEnergyAvailable\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.guest_asleep\": {\n        \"name\": \"isGuestAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.guest_bedroom_door_open\": {\n        \"name\": \"isGuestBedroomDoorOpen\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.have_guests\": {\n        \"name\": \"isHaveGuests\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.master_asleep\": {\n        \"name\": \"isMasterAsleep\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tv_playing\": {\n        \"name\": \"isTVPlaying\",\n        \"type\": \"boolean\"\n    },\n    \"input_boolean.tv_on\": {\n        \"name\": \"isTVon\",\n        \"type\": \"boolean\"\n    },\n    \"input_number.alarm_time\": {\n        \"name\": \"alarmTime\",\n        \"type\": \"number\"\n    },\n    \"input_number.remaining_solar_generation\": {\n        \"name\": \"remainingSolarGeneration\",\n        \"type\": \"number\"\n    },\n    \"input_number.this_hour_solar_generation\": {\n        \"name\": \"thisHourSolarGeneration\",\n        \"type\": \"number\"\n    },\n    \"input_text.battery_energy_level\": {\n        \"name\": \"batteryEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.current_energy_level\": {\n        \"name\": \"currentEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.day_phase\": {\n        \"name\": \"dayPhase\",\n        \"type\": \"text\"\n    },\n    \"input_text.music_playback_type\": {\n        \"name\": \"musicPlaybackType\",\n        \"type\": \"text\"\n    },\n    \"input_text.solar_production_energy_level\": {\n        \"name\": \"solarProductionEnergyLevel\",\n        \"type\": \"text\"\n    },\n    \"input_text.sun_event\": {\n        \"name\": \"sunevent\",\n        \"type\": \"text\"\n    }\n};\n\nconst entityId = msg.entity_id.entity_id || msg.payload;\nconst mapping = entityToVariable[entityId];\n\nif (!mapping) {\n    node.warn(\"Unknown entity: \" + entityId);\n    return null;\n}\n\nconst varName = mapping.name;\nconst varType = mapping.type;\nlet value = msg.payload;\n\n// Convert boolean entities\nif (varType === 'boolean') {\n    value = (value === 'on' || value === true);\n}\n\n// Convert number entities\nif (varType === 'number') {\n    value = parseFloat(value);\n}\n\n// Parse JSON objects\nif (varType === 'json' && typeof value === 'string' && value.length > 0) {\n    try {\n        value = JSON.parse(value);\n    } catch (e) {\n        node.warn(\"Failed to parse JSON for \" + varName + \": \" + e);\n        value = {};\n    }\n}\n\n// Set the value in Node Red global state\n// IMPORTANT: node-red-contrib-state stores values in global.get(\"state\")[varName].value\n// not in global context directly, so we need to update the state structure\nconst state = global.get(\"state\");\nif (state && state[varName]) {\n    state[varName].value = value;\n    node.status({fill: \"green\", shape: \"dot\", text: varName + \" = \" + JSON.stringify(value).substring(0, 20)});\n} else {\n    node.warn(\"State variable not found: \" + varName + \". Make sure the shared-state node exists.\");\n    node.status({fill: \"red\", shape: \"dot\", text: \"State not found: \" + varName});\n}\n\nmsg.topic = varName;\nmsg.payload = value;\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1130,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "c55343a1.cca5.4950.a809.343e9b45de43",
         "type": "comment",
         "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
         "name": "WRITE SYNC: Push Node Red variable changes to Home Assistant",
         "info": "",
         "x": 270,
-        "y": 280,
+        "y": 60,
         "wires": []
     },
     {
@@ -22430,7 +22130,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 380,
+        "y": 160,
         "wires": [
             [
                 "bb6168ec.f8ea.40a2.91bb.320239ff3692",
@@ -22447,7 +22147,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 950,
-        "y": 380,
+        "y": 160,
         "wires": [
             [
                 "2df0c359.e70f.4ec6.a7f6.03aff902ab9e"
@@ -22478,98 +22178,9 @@
         "domain": "payload",
         "service": "domain",
         "x": 1170,
-        "y": 380,
+        "y": 160,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "7a3c5f19.de3a.4e21.8c91.a5f2e8d6c034",
-        "type": "comment",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "CONTINUOUS SYNC: Listen for state changes in Home Assistant and update Node Red",
-        "info": "",
-        "x": 650,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "c8f1b2a4.6d7e.4a98.b5c3.9f8e7d6c5b4a",
-        "type": "server-state-changed",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "Monitor All Synced Entities",
-        "server": "3ec50562615a9f50",
-        "version": 6,
-        "outputs": 1,
-        "exposeAsEntityConfig": "",
-        "entities": {
-            "entity": [
-                "input_number.alarm_time",
-                "input_text.battery_energy_level",
-                "input_text.current_energy_level",
-                "input_text.day_phase",
-                "input_boolean.any_owner_home",
-                "input_boolean.anyone_asleep",
-                "input_boolean.anyone_home",
-                "input_boolean.apple_tv_playing",
-                "input_boolean.caroline_home",
-                "input_boolean.everyone_asleep",
-                "input_boolean.expecting_someone",
-                "input_boolean.fade_out_in_progress",
-                "input_boolean.free_energy_available",
-                "input_boolean.grid_available",
-                "input_boolean.guest_asleep",
-                "input_boolean.guest_bedroom_door_open",
-                "input_boolean.have_guests",
-                "input_boolean.master_asleep",
-                "input_boolean.nick_home",
-                "input_boolean.tv_playing",
-                "input_boolean.tv_on",
-                "input_boolean.tori_here",
-                "input_text.music_playback_type",
-                "input_number.remaining_solar_generation",
-                "input_text.solar_production_energy_level",
-                "input_text.sun_event",
-                "input_number.this_hour_solar_generation"
-            ],
-            "substring": [],
-            "regex": []
-        },
-        "outputInitially": false,
-        "stateType": "str",
-        "ifState": "",
-        "ifStateType": "str",
-        "ifStateOperator": "is",
-        "outputOnlyOnStateChange": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "seconds",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "entity_id.entity_id",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 850,
-        "y": 220,
-        "wires": [
-            [
-                "dd97dfb4.cb28.419d.9e5d.5b9ed3781238",
-                "686d378180deb3aa"
-            ]
         ]
     },
     {
@@ -22586,7 +22197,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 940,
-        "y": 520,
+        "y": 300,
         "wires": []
     },
     {
@@ -22598,7 +22209,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 140,
-        "y": 320,
+        "y": 100,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22614,7 +22225,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 120,
-        "y": 380,
+        "y": 160,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22630,7 +22241,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 110,
-        "y": 440,
+        "y": 220,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22646,7 +22257,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 130,
-        "y": 500,
+        "y": 280,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22662,7 +22273,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 120,
-        "y": 560,
+        "y": 340,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22678,7 +22289,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 140,
-        "y": 620,
+        "y": 400,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22694,7 +22305,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 140,
-        "y": 680,
+        "y": 460,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22710,7 +22321,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 110,
-        "y": 740,
+        "y": 520,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22726,7 +22337,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 330,
-        "y": 320,
+        "y": 100,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22742,7 +22353,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 320,
-        "y": 380,
+        "y": 160,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22758,7 +22369,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 330,
-        "y": 440,
+        "y": 220,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22774,7 +22385,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 380,
-        "y": 500,
+        "y": 280,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22790,7 +22401,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 370,
-        "y": 560,
+        "y": 340,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22806,7 +22417,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 370,
-        "y": 620,
+        "y": 400,
         "wires": [
             []
         ]
@@ -22820,7 +22431,7 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 320,
-        "y": 680,
+        "y": 460,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
@@ -22836,28 +22447,11 @@
         "triggerOnInit": false,
         "triggerOnChange": true,
         "x": 320,
-        "y": 740,
+        "y": 520,
         "wires": [
             [
                 "809581fa.e362.41f2.b222.f0b48463bb86"
             ]
         ]
-    },
-    {
-        "id": "686d378180deb3aa",
-        "type": "debug",
-        "z": "7cf51b2b.7d36.456b.a850.94a24ee0d39a",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1080,
-        "y": 280,
-        "wires": []
     }
 ]
